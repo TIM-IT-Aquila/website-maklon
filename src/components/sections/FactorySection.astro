@@ -1,0 +1,58 @@
+---
+import { factoryHighlights } from "../../data/factory";
+import { processSteps } from "../../data/process";
+---
+
+<section id="alur" class="bg-base-200/50 py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="mb-3 font-semibold tracking-wide text-primary">Alur Maklon</p>
+      <h2 class="text-3xl font-black md:text-4xl">Proses Produksi Maklon</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
+        Sistem maklon yang terstruktur dari konsultasi hingga produk siap dipasarkan.
+      </p>
+    </div>
+
+    <!-- Process Timeline -->
+    <div class="relative">
+      <!-- Timeline Line -->
+      <div class="absolute left-1/2 top-0 hidden h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary/30 to-secondary/30 md:block"></div>
+
+      <div class="space-y-8">
+        {processSteps.slice(0, 6).map((step, index) => (
+          <div class={`relative flex items-center gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+            <!-- Step Number -->
+            <div class="z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-lg">
+              {step.step}
+            </div>
+
+            <!-- Content -->
+            <div class={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+              <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div class="card-body p-6">
+                  <h3 class="card-title text-lg">{step.title}</h3>
+                  <p class="text-sm text-base-content/70">{step.desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Highlight Cards -->
+    <div class="mt-16 grid gap-6 md:grid-cols-3">
+      {factoryHighlights.slice(0, 3).map((item) => (
+        <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div class="card-body items-center text-center p-6">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">
+              {item.icon}
+            </div>
+            <h3 class="card-title mt-3 text-lg">{item.title}</h3>
+            <p class="text-sm text-base-content/70">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

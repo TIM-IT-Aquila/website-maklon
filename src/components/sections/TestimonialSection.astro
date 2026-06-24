@@ -1,0 +1,48 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import { testimonials } from "../../data/testimonials";
+---
+
+<section id="testimonial" class="bg-base-200/50 py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <SectionHeader
+      tag="Testimonial"
+      title="Apa Kata Brand Partner Kami?"
+      description="Mereka sudah merasakan kemudahan dan kualitas layanan maklon kami."
+    />
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {testimonials.map((item) => (
+        <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div class="card-body p-6">
+            <!-- Rating -->
+            <div class="flex items-center gap-1">
+              {[...Array(item.rating)].map(() => (
+                <span class="text-yellow-400 text-sm">★</span>
+              ))}
+              {[...Array(5 - item.rating)].map(() => (
+                <span class="text-base-300 text-sm">★</span>
+              ))}
+            </div>
+            <!-- Text -->
+            <p class="mt-4 text-sm italic leading-relaxed text-base-content/70">
+              "{item.text}"
+            </p>
+            <!-- Divider -->
+            <div class="mt-4 border-t border-base-200 pt-4">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                  {item.name.charAt(0)}
+                </div>
+                <div>
+                  <p class="text-sm font-semibold">{item.name}</p>
+                  <p class="text-xs text-primary">{item.brand}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

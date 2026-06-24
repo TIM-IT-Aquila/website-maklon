@@ -1,0 +1,45 @@
+---
+import { ourStory } from "../../data/company";
+---
+
+<section id="cerita" class="bg-base-200/50 py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="grid items-center gap-12 md:grid-cols-2">
+      <!-- Left: Text -->
+      <div>
+        <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">
+          {ourStory.badge}
+        </span>
+        <h2 class="text-3xl font-black md:text-4xl">{ourStory.title}</h2>
+        {ourStory.paragraphs.map((paragraph) => (
+          <p class="mt-4 leading-relaxed text-base-content/70">{paragraph}</p>
+        ))}
+      </div>
+
+      <!-- Right: Visual Card -->
+      <div class="relative">
+        <div class="rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 p-1 shadow-xl">
+          <div class="rounded-[calc(1.5rem-4px)] bg-base-100 p-8">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex aspect-square items-center justify-center rounded-2xl bg-primary/10 text-5xl">
+                🧪
+              </div>
+              <div class="flex aspect-square items-center justify-center rounded-2xl bg-secondary/10 text-5xl">
+                🏭
+              </div>
+              <div class="flex aspect-square items-center justify-center rounded-2xl bg-primary/10 text-5xl">
+                🧴
+              </div>
+              <div class="flex aspect-square items-center justify-center rounded-2xl bg-secondary/10 text-5xl">
+                📦
+              </div>
+            </div>
+            <p class="mt-6 text-center text-sm font-semibold text-base-content/60">
+              Dari Lab ke Pasar — Bersama Aquila Maklon
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

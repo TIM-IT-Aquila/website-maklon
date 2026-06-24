@@ -1,0 +1,27 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import ServiceCard from "../cards/ServiceCard.astro";
+import { services } from "../../data/services";
+---
+
+<section class="bg-base-200/50 py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <SectionHeader
+      tag="Layanan Kami"
+      title="Solusi Maklon untuk Brand Kecantikan"
+      description="Berbagai layanan maklon siap membantu Anda mewujudkan produk kecantikan impian."
+    />
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="/layanan" class="btn btn-soft rounded-full px-8">
+        Lihat Semua Layanan
+      </a>
+    </div>
+  </div>
+</section>

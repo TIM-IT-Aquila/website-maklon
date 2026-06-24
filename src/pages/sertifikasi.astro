@@ -1,0 +1,341 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { certifications, legalServices, trustCards } from "../data/certifications";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+
+// Badge colours for each cert
+const certColors = [
+  { bg: "from-blue-500/20 to-blue-600/10", text: "text-blue-600", badge: "bg-blue-500" },
+  { bg: "from-emerald-500/20 to-emerald-600/10", text: "text-emerald-600", badge: "bg-emerald-500" },
+  { bg: "from-amber-500/20 to-amber-600/10", text: "text-amber-600", badge: "bg-amber-500" },
+  { bg: "from-violet-500/20 to-violet-600/10", text: "text-violet-600", badge: "bg-violet-500" },
+  { bg: "from-rose-500/20 to-rose-600/10", text: "text-rose-600", badge: "bg-rose-500" },
+];
+---
+
+<MainLayout
+  title="Sertifikasi | Aquila Maklon"
+  description="Sertifikasi dan legalitas untuk produk maklon, termasuk BPOM, Halal, CPKB, ISO, dan HKI."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- 1. HERO — Full-width banner                                        -->
+    <!-- ================================================================== -->
+    <section class="relative flex min-h-[80vh] items-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/70"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+      <div class="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+
+      <div class="relative mx-auto w-full max-w-7xl px-4 py-24 lg:px-8">
+        <div class="grid items-center gap-14 md:grid-cols-2">
+          <!-- Left: Certificate badge visual -->
+          <div class="relative mx-auto w-full max-w-sm md:mx-0">
+            <div class="rounded-3xl bg-white/10 p-2 backdrop-blur-sm shadow-2xl">
+              <div class="rounded-[calc(1.5rem-4px)] bg-white/10 p-8">
+                <div class="mx-auto flex h-52 w-52 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/5 shadow-inner">
+                  <span class="text-7xl drop-shadow-lg">🛡️</span>
+                </div>
+                <div class="mt-6 text-center">
+                  <h3 class="text-2xl font-black text-white">Produk Legal & Terpercaya</h3>
+                  <p class="text-sm text-white/70">BPOM ● Halal ● CPKB ● ISO ● HKI</p>
+                </div>
+                <div class="mt-5 flex flex-wrap justify-center gap-2">
+                  <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">Terdaftar Resmi</span>
+                  <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">100% Legal</span>
+                </div>
+              </div>
+            </div>
+            <!-- Floating badges -->
+            <div class="absolute -bottom-4 -left-6 rounded-2xl bg-white/10 p-4 shadow-xl backdrop-blur-sm animate-[bounce_3s_ease-in-out_infinite]">
+              <span class="text-3xl">✅</span>
+              <p class="mt-1 text-xs font-semibold text-white/90">Terverifikasi</p>
+            </div>
+            <div class="absolute -right-6 -top-4 rounded-2xl bg-white/10 p-4 shadow-xl backdrop-blur-sm animate-[bounce_3s_ease-in-out_infinite_1s]">
+              <span class="text-3xl">📜</span>
+              <p class="mt-1 text-xs font-semibold text-white/90">Legalitas Lengkap</p>
+            </div>
+          </div>
+
+          <!-- Right: Text -->
+          <div class="text-center md:text-left">
+            <span class="inline-block rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-semibold tracking-widest text-white/90 backdrop-blur-sm">
+              SERTIFIKASI & LEGALITAS
+            </span>
+            <h1 class="mt-6 text-4xl font-black leading-tight text-white md:text-5xl lg:text-6xl">
+              Produk Anda <span class="text-white/80">Legal & Siap</span> Dipasarkan
+            </h1>
+            <p class="mt-6 text-lg leading-relaxed text-white/75 md:text-xl">
+              Legalitas adalah fondasi kepercayaan. Kami membantu seluruh proses sertifikasi produk Anda — dari BPOM, Halal, CPKB, ISO, hingga HKI — agar aman, terpercaya, dan siap bersaing di pasar.
+            </p>
+            <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:items-start">
+              <a
+                href={waLink}
+                target="_blank"
+                class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-8 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Konsultasi Legalitas
+              </a>
+              <a
+                href="#sertifikat"
+                class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-8 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
+              >
+                Lihat Sertifikat
+              </a>
+            </div>
+            <!-- Quick cert row -->
+            <div class="mt-10 flex flex-wrap justify-center gap-6 md:justify-start">
+              {certifications.slice(0, 5).map((cert) => (
+                <div class="flex items-center gap-2 text-white/70" title={cert.fullName}>
+                  <span class="text-xl">{cert.icon}</span>
+                  <span class="text-sm font-semibold">{cert.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. SERTIFIKASI CARDS — Large interactive certificate cards         -->
+    <!-- ================================================================== -->
+    <section id="sertifikat" class="relative overflow-hidden bg-base-100 py-20">
+      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Sertifikat</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Legalitas & Sertifikasi Resmi</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Setiap produk yang kami hasilkan didukung dengan sertifikasi resmi dari lembaga berwenang.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {certifications.map((cert, i) => {
+            const color = certColors[i % certColors.length];
+            return (
+              <div
+                class="group card overflow-hidden border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+              >
+                <!-- Colored top accent -->
+                <div class={`h-2 w-full bg-gradient-to-r ${color.bg}`}></div>
+
+                <div class="card-body items-center text-center p-8 relative">
+                  <!-- Background decorative icon -->
+                  <div class="pointer-events-none absolute -right-8 -top-8 text-[120px] font-black text-base-200/50 select-none">
+                    {cert.icon}
+                  </div>
+
+                  <!-- Certificate seal / badge -->
+                  <div class={`relative z-10 flex h-28 w-28 items-center justify-center rounded-3xl bg-gradient-to-br ${color.bg} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                    <span class="text-5xl drop-shadow-md">{cert.icon}</span>
+                  </div>
+
+                  <div class="relative z-10 mt-4">
+                    <h3 class="text-2xl font-black">{cert.name}</h3>
+                    <p class={`mt-1 text-sm font-semibold ${color.text}`}>{cert.fullName}</p>
+                  </div>
+
+                  <p class="relative z-10 mt-4 text-sm leading-relaxed text-base-content/70">{cert.desc}</p>
+
+                  <!-- Bottom decorative seal -->
+                  <div class={`relative z-10 mt-6 flex items-center gap-2 rounded-full ${color.badge}/10 px-4 py-2 ${color.text} text-xs font-semibold`}>
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    Terverifikasi & Terdaftar
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. LEGAL SERVICES — Interactive cards with progress                -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-base-200/50 py-20">
+      <div class="pointer-events-none absolute -left-60 -bottom-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Layanan Legalitas</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Kami Bantu Proses Legalitas Anda</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Tim legal kami siap mendampingi setiap tahap pengurusan dokumen dan sertifikasi produk Anda.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {legalServices.map((ls, i) => (
+            <div
+              class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
+              style={`--delay: ${i * 100}ms`}
+            >
+              <div class="card-body p-7">
+                <div class="flex items-start gap-5">
+                  <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                    {ls.icon}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="card-title text-lg">{ls.title}</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-base-content/70">{ls.desc}</p>
+                    <!-- Progress indicator -->
+                    <div class="mt-4 flex items-center gap-2">
+                      <div class="h-1.5 flex-1 rounded-full bg-base-200 overflow-hidden">
+                        <div class="h-full w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 group-hover:w-full"></div>
+                      </div>
+                      <span class="text-[10px] font-semibold text-primary opacity-0 transition-opacity duration-500 group-hover:opacity-100">Siap</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. TRUST / WHY LEGALITY — Animated cards                          -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Kepercayaan</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Mengapa Legalitas Itu Penting?</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Sertifikasi dan legalitas bukan sekadar formalitas — ini adalah investasi kepercayaan untuk brand Anda.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {trustCards.map((tc) => (
+            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+              <div class="card-body items-center text-center p-8">
+                <!-- Icon with pulse ring -->
+                <div class="relative">
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="h-20 w-20 rounded-full bg-primary/5 transition-all duration-700 group-hover:scale-150 group-hover:opacity-0"></div>
+                  </div>
+                  <div class="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                    {tc.icon}
+                  </div>
+                </div>
+                <h3 class="card-title mt-5 text-lg">{tc.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-content/70">{tc.desc}</p>
+                <!-- Hover accent line -->
+                <div class="mt-4 h-0.5 w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 group-hover:w-16"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. TIMELINE / PROCESS FLOW — How we handle legality               -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-base-200/50 py-20">
+      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Alur Legalitas</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Proses Pengurusan Legalitas</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Alur yang jelas dan transparan dalam setiap tahap pengurusan sertifikasi produk Anda.
+          </p>
+        </div>
+
+        <div class="mt-14 mx-auto max-w-4xl">
+          <div class="relative">
+            <!-- Connecting line -->
+            <div class="absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-primary/20 hidden md:block"></div>
+
+            <div class="space-y-8">
+              {[
+                { step: "01", icon: "📋", title: "Konsultasi & Assessment", desc: "Kami identifikasi kebutuhan legalitas produk Anda dan tentukan sertifikasi yang diperlukan." },
+                { step: "02", icon: "📄", title: "Persiapan Dokumen", desc: "Tim legal kami menyiapkan seluruh dokumen teknis dan administrasi yang dibutuhkan." },
+                { step: "03", icon: "📨", title: "Pendaftaran & Pengajuan", desc: "Dokumen didaftarkan ke lembaga berwenang — BPOM, MUI, Kemenkumham, dll." },
+                { step: "04", icon: "✅", title: "Approval & Sertifikat Terbit", desc: "Sertifikat resmi terbit dan produk Anda siap dipasarkan secara legal." },
+              ].map((item) => (
+                <div class="group flex items-start gap-6">
+                  <div class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-lg font-bold text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
+                    {item.icon}
+                  </div>
+                  <div class="flex-1 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg">
+                    <span class="text-xs font-bold tracking-widest text-primary">{item.step}</span>
+                    <h3 class="mt-1 text-lg font-bold">{item.title}</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-base-content/70">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. CTA Premium Banner                                             -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 50% 50%, white 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
+        <div class="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm animate-bounce">
+          <span class="text-5xl">🛡️</span>
+        </div>
+
+        <h2 class="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
+          Butuh Bantuan <span class="text-white/90">Legalitas Produk?</span>
+        </h2>
+        <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-xl leading-relaxed">
+          Konsultasikan kebutuhan legalitas produk Anda dengan tim kami. Kami siap membantu dari awal hingga sertifikat terbit.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a
+            href={waLink}
+            target="_blank"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Konsultasi via WhatsApp
+          </a>
+          <a
+            href="/layanan"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
+          >
+            Lihat Layanan Kami
+          </a>
+        </div>
+
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Gratis Konsultasi
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              Proses Transparan
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Pendampingan Penuh
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>

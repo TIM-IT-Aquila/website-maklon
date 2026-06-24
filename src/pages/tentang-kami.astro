@@ -1,0 +1,412 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { visionMission, ourStory, trustPlaceholder } from "../data/company";
+import { advantages } from "../data/advantages";
+import { factoryHighlights } from "../data/factory";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+
+// Gallery data for lab/factory photos
+const galleryItems = [
+  { icon: "🧪", label: "Laboratorium Riset", desc: "Tim R&D mengembangkan formula inovatif" },
+  { icon: "🏭", label: "Area Produksi", desc: "Fasilitas produksi standar CPKB" },
+  { icon: "🔬", label: "Quality Control", desc: "Pengujian produk sebelum dikirim" },
+  { icon: "🧴", label: "Sampling Room", desc: "Ruang pembuatan sample produk" },
+  { icon: "📦", label: "Packaging Area", desc: "Area pengemasan produk jadi" },
+  { icon: "🧫", label: "Formulasi Lab", desc: "Laboratorium formulasi skincare" },
+];
+---
+
+<MainLayout
+  title="Tentang Kami | Aquila Maklon"
+  description="Pelajari lebih lanjut tentang perusahaan jasa maklon skincare dan kosmetik terpercaya."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- 1. HERO — Company Profile Photo Banner                             -->
+    <!-- ================================================================== -->
+    <section class="relative flex min-h-[80vh] items-center overflow-hidden">
+      <!-- Background gradient solid -->
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/70"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+      <div class="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+
+      <div class="relative mx-auto w-full max-w-7xl px-4 py-24 lg:px-8">
+        <div class="grid items-center gap-14 md:grid-cols-2 md:gap-20">
+          <!-- Left: Company visual identity -->
+          <div class="relative mx-auto w-full max-w-sm md:mx-0">
+            <!-- Main "photo" card -->
+            <div class="rounded-3xl bg-white/10 p-2 backdrop-blur-sm shadow-2xl">
+              <div class="rounded-[calc(1.5rem-4px)] bg-white/10 p-8">
+                <div class="mx-auto flex h-52 w-52 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/5 shadow-inner">
+                  <span class="text-7xl drop-shadow-lg">🏢</span>
+                </div>
+                <div class="mt-6 text-center">
+                  <h3 class="text-2xl font-black text-white">Aquila Maklon</h3>
+                  <p class="text-sm text-white/70">Skincare & Cosmetics Manufacturing</p>
+                </div>
+                <div class="mt-5 flex justify-center gap-2">
+                  <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">BPOM</span>
+                  <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">Halal</span>
+                  <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">CPKB</span>
+                </div>
+              </div>
+            </div>
+            <!-- Floating badge 1 -->
+            <div class="absolute -bottom-4 -left-6 rounded-2xl bg-white/10 p-4 shadow-xl backdrop-blur-sm animate-[bounce_3s_ease-in-out_infinite]">
+              <span class="text-3xl">🇮🇩</span>
+              <p class="mt-1 text-xs font-semibold text-white/90">Made in Indonesia</p>
+            </div>
+            <!-- Floating badge 2 -->
+            <div class="absolute -right-6 -top-4 rounded-2xl bg-white/10 p-4 shadow-xl backdrop-blur-sm animate-[bounce_3s_ease-in-out_infinite_1s]">
+              <span class="text-3xl">🏭</span>
+              <p class="mt-1 text-xs font-semibold text-white/90">CPKB Standard</p>
+            </div>
+          </div>
+
+          <!-- Right: Text -->
+          <div class="text-center md:text-left">
+            <span class="inline-block rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-semibold tracking-widest text-white/90 backdrop-blur-sm">
+              TENTANG PERUSAHAAN
+            </span>
+            <h1 class="mt-6 text-4xl font-black leading-tight text-white md:text-5xl lg:text-6xl">
+              Mitra Maklon <span class="text-white/80">Terpercaya</span> untuk Brand Kecantikan
+            </h1>
+            <p class="mt-6 text-lg leading-relaxed text-white/75 md:text-xl">
+              {siteConfig.description}
+            </p>
+            <p class="mt-4 text-base leading-relaxed text-white/60">
+              Berdiri dengan komitmen tinggi, kami fokus pada kualitas, keamanan, legalitas, dan inovasi formula. Setiap produk melalui proses ketat dan terstandarisasi.
+            </p>
+            <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:items-start">
+              <a
+                href={waLink}
+                target="_blank"
+                class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-8 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Konsultasi Sekarang
+              </a>
+              <a
+                href="#visi-misi"
+                class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-8 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
+              >
+                Visi & Misi
+              </a>
+            </div>
+            <!-- Quick stats row -->
+            <div class="mt-10 flex flex-wrap justify-center gap-8 md:justify-start">
+              <div class="text-center md:text-left">
+                <p class="text-2xl font-black text-white">10+</p>
+                <p class="text-xs text-white/60">Tahun Pengalaman</p>
+              </div>
+              <div class="text-center md:text-left">
+                <p class="text-2xl font-black text-white">200+</p>
+                <p class="text-xs text-white/60">Brand Partner</p>
+              </div>
+              <div class="text-center md:text-left">
+                <p class="text-2xl font-black text-white">500+</p>
+                <p class="text-xs text-white/60">Produk Dipasarkan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. VISI & MISI                                                     -->
+    <!-- ================================================================== -->
+    <section id="visi-misi" class="relative overflow-hidden bg-base-100 py-20">
+      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -left-60 -bottom-60 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Visi & Misi</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Komitmen Kami</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Visi dan misi yang menjadi landasan setiap langkah kami dalam melayani brand partner.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 md:grid-cols-2">
+          <!-- Vision -->
+          <div class="group card rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/5 to-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5">
+            <div class="card-body p-8 md:p-10">
+              <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/30 group-hover:to-secondary/30">
+                🔭
+              </div>
+              <h3 class="card-title text-2xl md:text-3xl">Visi</h3>
+              <p class="mt-4 text-base leading-relaxed text-base-content/75 md:text-lg">
+                "{visionMission.vision}"
+              </p>
+              <div class="mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-primary to-secondary"></div>
+            </div>
+          </div>
+
+          <!-- Mission -->
+          <div class="group card rounded-3xl border border-secondary/20 bg-gradient-to-br from-secondary/5 to-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-secondary/5">
+            <div class="card-body p-8 md:p-10">
+              <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/30 group-hover:to-secondary/30">
+                🎯
+              </div>
+              <h3 class="card-title text-2xl md:text-3xl">Misi</h3>
+              <ul class="mt-4 space-y-4">
+                {visionMission.missions.map((m, i) => (
+                  <li class="flex items-start gap-4 group/item transition-all duration-300 hover:translate-x-1">
+                    <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-xs font-bold text-white shadow-md transition-all duration-300 group-hover/item:scale-110">
+                      {i + 1}
+                    </span>
+                    <span class="text-base text-base-content/75 md:text-lg">{m}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. OWNER CARD — Story / Founder Quote                              -->
+    <!-- ================================================================== -->
+    <section class="relative bg-gradient-to-r from-primary to-secondary py-20">
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 50% 50%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-white/5 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-3xl bg-white/10 p-1 backdrop-blur-sm shadow-2xl">
+            <div class="rounded-[calc(1.5rem-4px)] bg-white/10 p-8 md:p-12">
+              <div class="flex flex-col items-center gap-8 md:flex-row md:items-start">
+                <!-- Owner Avatar -->
+                <div class="shrink-0">
+                  <div class="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/5 shadow-inner ring-4 ring-white/20 md:h-36 md:w-36">
+                    <span class="text-6xl drop-shadow-lg">👨‍🔬</span>
+                  </div>
+                  <div class="mt-3 text-center">
+                    <p class="text-sm font-bold text-white">Founder</p>
+                    <p class="text-xs text-white/60">Aquila Maklon</p>
+                  </div>
+                </div>
+
+                <!-- Quote & Story -->
+                <div class="flex-1 text-center md:text-left">
+                  <svg class="mx-auto mb-4 h-8 w-8 text-white/30 md:mx-0" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                  <h3 class="text-2xl font-black text-white md:text-3xl">{ourStory.title}</h3>
+                  <div class="mt-4 space-y-4">
+                    {ourStory.paragraphs.map((p) => (
+                      <p class="text-base leading-relaxed text-white/80 md:text-lg">{p}</p>
+                    ))}
+                  </div>
+                  <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:items-center md:justify-start">
+                    <div class="flex -space-x-2">
+                      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-bold text-white ring-2 ring-white/30">🧪</div>
+                      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-bold text-white ring-2 ring-white/30">🏭</div>
+                      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-bold text-white ring-2 ring-white/30">📦</div>
+                    </div>
+                    <p class="text-sm text-white/60">Berkolaborasi dengan tim ahli di bidangnya</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. KEUNGGULAN PERUSAHAAN (Advantages)                             -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Keunggulan</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Mengapa Memilih Aquila Maklon?</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Kami hadir dengan berbagai keunggulan yang membuat proses maklon Anda menjadi mudah dan profesional.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {advantages.map((adv) => (
+            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+              <div class="card-body items-center text-center p-8">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-4xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                  {adv.icon}
+                </div>
+                <h3 class="card-title mt-4 text-xl">{adv.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-content/70">{adv.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. GALLERY LAB — Animated sliding cards                            -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-base-200/50 py-20">
+      <div class="pointer-events-none absolute -right-60 -bottom-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Galeri Fasilitas</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Sekilas Fasilitas & Lab Kami</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Fasilitas produksi modern dengan standar CPKB untuk hasil terbaik bagi brand Anda.
+          </p>
+        </div>
+
+        <!-- Scrolling row 1 (left to right) -->
+        <div class="mt-14 overflow-hidden">
+          <div class="flex animate-scroll-left gap-5" style="--scroll-speed: 30s;">
+            {[...galleryItems, ...galleryItems].map((item) => (
+              <div class="group w-64 shrink-0 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                  {item.icon}
+                </div>
+                <h4 class="mt-4 font-bold text-base-content">{item.label}</h4>
+                <p class="mt-2 text-sm text-base-content/60">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Scrolling row 2 (right to left, offset) -->
+        <div class="mt-6 overflow-hidden">
+          <div class="flex animate-scroll-right gap-5" style="--scroll-speed: 35s;">
+            {[...galleryItems, ...galleryItems].reverse().map((item) => (
+              <div class="group w-64 shrink-0 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                  {item.icon}
+                </div>
+                <h4 class="mt-4 font-bold text-base-content">{item.label}</h4>
+                <p class="mt-2 text-sm text-base-content/60">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. FACTORY HIGHLIGHTS — Card kecil animasi bergeser                -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Fasilitas</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Fasilitas & Layanan Pabrik</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Didukung fasilitas lengkap dan tim profesional untuk hasil produksi terbaik.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {factoryHighlights.map((item) => (
+            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+              <div class="card-body items-center text-center p-8">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-4xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                  {item.icon}
+                </div>
+                <h3 class="card-title mt-4 text-xl">{item.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-content/70">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. TRUST PLACEHOLDER — Company values                              -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/50 py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Nilai Perusahaan</span>
+          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Nilai-Nilai yang Kami Pegang</h2>
+          <p class="mt-4 text-base-content/70 md:text-lg">
+            Prinsip yang menjadi fondasi dalam setiap pelayanan kami kepada brand partner.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+          {trustPlaceholder.map((item) => (
+            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
+              <div class="card-body items-center text-center p-8">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-4xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
+                  {item.icon}
+                </div>
+                <h3 class="card-title mt-4 text-xl">{item.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-content/70">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 8. CTA BANNER Premium                                             -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 50% 50%, white 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
+        <div class="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm animate-bounce">
+          <span class="text-5xl">🤝</span>
+        </div>
+
+        <h2 class="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
+          Kenali Kami Lebih Lanjut
+        </h2>
+        <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-xl leading-relaxed">
+          Hubungi kami untuk konsultasi gratis dan mulai perjalanan brand Anda bersama Aquila Maklon. Tim kami siap mendampingi dari awal hingga produk siap jual!
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a
+            href={waLink}
+            target="_blank"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Konsultasi via WhatsApp
+          </a>
+          <a
+            href="/layanan"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
+          >
+            Lihat Layanan Kami
+          </a>
+        </div>
+
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Gratis Konsultasi
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Tanpa Biaya Tersembunyi
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Pendampingan Penuh
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>

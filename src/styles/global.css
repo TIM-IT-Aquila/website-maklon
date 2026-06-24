@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Viga&family=Titillium+Web:wght@300;400;600;700;900&family=Josefin+Slab:wght@300;400;600;700&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "maklon-theme";
+  default: true;
+  --color-primary: #87AE73;
+  --color-primary-content: #ffffff;
+  --color-secondary: #B9CEAC;
+  --color-secondary-content: #ffffff;
+  --color-accent: #A8C89A;
+  --color-accent-content: #1a2a12;
+  --color-neutral: #2a3a22;
+  --color-neutral-content: #e8f0e4;
+  --color-base-100: #ffffff;
+  --color-base-200: #f7faf5;
+  --color-base-300: #e8f0e4;
+  --color-base-content: #1a2a12;
+  --color-info: #6ba3c7;
+  --color-success: #87AE73;
+  --color-warning: #d4a853;
+  --color-error: #c76b6b;
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+}
+
+@theme {
+  --color-primary: #87AE73;
+  --color-secondary: #B9CEAC;
+  --color-brand-white: #FFFFFF;
+  --color-brown: #8B7355;
+  --color-brown-hover: #7A6348;
+  --font-heading: "Viga", sans-serif;
+  --font-body: "Titillium Web", sans-serif;
+  --font-small: "Josefin Slab", serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.small-text {
+  font-family: var(--font-small);
+}
+
+/* Infinite scroll animations for gallery */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left var(--scroll-speed, 30s) linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right var(--scroll-speed, 35s) linear infinite;
+}
+
+.animate-scroll-left:hover,
+.animate-scroll-right:hover {
+  animation-play-state: paused;
+}
+
+html {
+  scroll-behavior: smooth;
+}

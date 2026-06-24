@@ -1,0 +1,43 @@
+---
+import { siteConfig } from "../../data/site";
+import { createWhatsappLink } from "../../lib/whatsapp";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  waMessage?: string;
+}
+
+const {
+  title = "Siap Membuat Produk Brand Kamu Sendiri?",
+  description = "Konsultasikan ide produk kamu sekarang dan mulai bangun brand skincare bersama partner maklon yang tepat.",
+  buttonText = "Konsultasi via WhatsApp",
+  waMessage = "Halo, saya ingin konsultasi maklon skincare.",
+} = Astro.props;
+
+const waLink = createWhatsappLink(siteConfig.waNumber, waMessage);
+---
+
+<section class="bg-primary py-20">
+  <div class="mx-auto max-w-4xl px-4 text-center lg:px-8">
+    <h2 class="text-3xl font-black text-white md:text-4xl">
+      {title}
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-white/80">
+      {description}
+    </p>
+
+    <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <a
+        href={waLink}
+        target="_blank"
+        class="btn btn-lg rounded-full border-2 border-white bg-white px-10 text-primary shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-white/90"
+      >
+        <Icon name="whatsapp" class="mr-2 h-5 w-5" />
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import { processSteps } from "../../data/process";
+---
+
+<section id="alur" class="bg-base-200/50 py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <SectionHeader
+      tag="Alur Maklon"
+      title="Bagaimana Cara Kerjanya?"
+      description="Proses maklon yang mudah dan terstruktur dari konsultasi hingga produk jadi."
+    />
+
+    <div class="relative mt-10">
+      {/* Timeline line */}
+      <div class="absolute left-6 top-0 hidden h-full w-0.5 bg-primary/20 md:block"></div>
+
+      <div class="space-y-8">
+        {processSteps.map((step, index) => (
+          <div class="relative md:flex md:items-start md:gap-8">
+            {/* Step number */}
+            <div class="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md md:static">
+              {step.step}
+            </div>
+
+            {/* Content */}
+            <div class={`mt-4 md:mt-0 md:flex-1 ${index % 2 === 0 ? "md:text-left" : "md:text-left"}`}>
+              <div class="card border border-base-200 bg-base-100 shadow-sm">
+                <div class="card-body p-5">
+                  <h3 class="card-title text-lg">{step.title}</h3>
+                  <p class="text-sm text-base-content/70">{step.desc}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Spacer for alternating layout */}
+            <div class="hidden md:block md:w-1/2"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

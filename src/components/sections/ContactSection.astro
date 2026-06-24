@@ -1,0 +1,78 @@
+---
+import { siteConfig } from "../../data/site";
+import { createWhatsappLink } from "../../lib/whatsapp";
+
+const waLink = createWhatsappLink(
+  siteConfig.waNumber,
+  "Halo, saya ingin konsultasi maklon skincare"
+);
+---
+
+<section id="kontak" class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+  <div class="text-center mb-12">
+    <p class="mb-3 font-semibold tracking-wide text-primary">Kontak</p>
+    <h2 class="text-3xl font-black md:text-4xl">Hubungi Kami</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
+      Siap memulai? Konsultasikan ide produk Anda sekarang juga.
+    </p>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <!-- WhatsApp -->
+    <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div class="card-body items-center text-center p-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100 text-3xl">
+          💬
+        </div>
+        <h3 class="card-title mt-3 text-base">WhatsApp</h3>
+        <p class="mt-1 text-sm text-base-content/60">{siteConfig.waNumber}</p>
+        <a
+          href={waLink}
+          target="_blank"
+          class="btn btn-primary btn-sm mt-3 rounded-full px-5 text-white"
+        >
+          Chat Sekarang
+        </a>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div class="card-body items-center text-center p-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-3xl">
+          ✉️
+        </div>
+        <h3 class="card-title mt-3 text-base">Email</h3>
+        <p class="mt-1 text-sm text-base-content/60">{siteConfig.email}</p>
+        <a
+          href={`mailto:${siteConfig.email}`}
+          class="btn btn-soft btn-sm mt-3 rounded-full px-5"
+        >
+          Kirim Email
+        </a>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div class="card-body items-center text-center p-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-3xl">
+          📍
+        </div>
+        <h3 class="card-title mt-3 text-base">Lokasi</h3>
+        <p class="mt-1 text-sm text-base-content/60">{siteConfig.address}</p>
+      </div>
+    </div>
+
+    <!-- Operational Hours -->
+    <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div class="card-body items-center text-center p-6">
+        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-3xl">
+          🕐
+        </div>
+        <h3 class="card-title mt-3 text-base">Jam Operasional</h3>
+        <p class="mt-1 text-sm text-base-content/60">{siteConfig.operationalHours}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  tag?: string;
+  title: string;
+  description?: string;
+  centered?: boolean;
+}
+
+const { tag, title, description, centered = true } = Astro.props;
+---
+
+<div class={`mb-12 ${centered ? "text-center" : ""}`}>
+  {tag && (
+    <p class="mb-3 font-semibold tracking-wide text-primary">{tag}</p>
+  )}
+  <h2 class="text-3xl font-black md:text-4xl">{title}</h2>
+  {description && (
+    <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
+      {description}
+    </p>
+  )}
+</div>

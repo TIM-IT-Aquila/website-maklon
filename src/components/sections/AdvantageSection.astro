@@ -1,0 +1,26 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import { advantages } from "../../data/advantages";
+---
+
+<section id="keunggulan" class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+  <SectionHeader
+    tag="Keunggulan"
+    title="Mengapa Memilih Kami?"
+    description="Kami memberikan solusi maklon terlengkap untuk brand kecantikan Anda."
+  />
+
+  <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {advantages.map((item) => (
+      <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
+        <div class="card-body items-center text-center">
+          <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-3xl">
+            {item.icon}
+          </div>
+          <h3 class="card-title mt-2">{item.title}</h3>
+          <p class="text-base-content/70">{item.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
