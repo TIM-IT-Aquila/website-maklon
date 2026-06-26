@@ -1,9 +1,12 @@
 ---
+import Icon from "../ui/Icon.astro";
+
 interface Certificate {
   name: string;
   fullName: string;
   icon?: string;
   desc: string;
+  image?: string;
 }
 
 interface Props {
@@ -13,11 +16,21 @@ interface Props {
 const { certificate } = Astro.props;
 ---
 
-<div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
+<div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 overflow-hidden">
+  {certificate.image && (
+    <figure class="h-36 overflow-hidden">
+      <img
+        src={certificate.image}
+        alt={certificate.name}
+        class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+        loading="lazy"
+      />
+    </figure>
+  )}
   <div class="card-body items-center text-center p-6">
-    {certificate.icon && (
-      <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 text-4xl">
-        {certificate.icon}
+    {certificate.icon && !certificate.image && (
+      <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 text-4xl text-primary">
+        <Icon name={certificate.icon} size={40} />
       </div>
     )}
     <h3 class="card-title mt-4 text-xl">{certificate.name}</h3>

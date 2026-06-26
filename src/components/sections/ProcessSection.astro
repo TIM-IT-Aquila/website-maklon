@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "../ui/SectionHeader.astro";
+import Icon from "../ui/Icon.astro";
 import { processSteps } from "../../data/process";
 ---
 
@@ -13,20 +14,21 @@ import { processSteps } from "../../data/process";
 
     <div class="relative mt-10">
       {/* Timeline line */}
-      <div class="absolute left-6 top-0 hidden h-full w-0.5 bg-primary/20 md:block"></div>
+      <div class="absolute left-6 top-0 hidden h-full w-0.5 bg-gradient-to-b from-primary/30 to-primary/10 md:block"></div>
 
       <div class="space-y-8">
         {processSteps.map((step, index) => (
-          <div class="relative md:flex md:items-start md:gap-8">
-            {/* Step number */}
-            <div class="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md md:static">
-              {step.step}
+          <div class="group relative md:flex md:items-start md:gap-8">
+            {/* Step number with icon */}
+            <div class="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30 md:static">
+              <Icon name={step.icon} size={20} />
             </div>
 
             {/* Content */}
-            <div class={`mt-4 md:mt-0 md:flex-1 ${index % 2 === 0 ? "md:text-left" : "md:text-left"}`}>
-              <div class="card border border-base-200 bg-base-100 shadow-sm">
+            <div class="mt-4 md:mt-0 md:flex-1">
+              <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg">
                 <div class="card-body p-5">
+                  <span class="text-[11px] font-bold tracking-wider text-primary/60">TAHAP {step.step}</span>
                   <h3 class="card-title text-lg">{step.title}</h3>
                   <p class="text-sm text-base-content/70">{step.desc}</p>
                 </div>

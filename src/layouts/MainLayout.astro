@@ -4,6 +4,7 @@ import { siteConfig } from "../data/site";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import FloatingWA from "../components/FloatingWA.astro";
+import { AstroFont } from "astro-font";
 
 interface Props {
   title?: string;
@@ -30,11 +31,39 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Viga&family=Titillium+Web:wght@300;400;600;700;900&family=Josefin+Slab:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
+    <AstroFont
+      config={[
+        {
+          name: "Arsenal",
+          src: [],
+          googleFontsURL: "https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&display=swap",
+          preload: true,
+          display: "swap",
+          selector: "h1, h2, h3, h4, h5, h6",
+          fallback: "sans-serif",
+          cssVariable: "font-heading",
+        },
+        {
+          name: "Karla",
+          src: [],
+          googleFontsURL: "https://fonts.googleapis.com/css2?family=Karla:wght@300;400;600;700;800&display=swap",
+          preload: true,
+          display: "swap",
+          selector: "body",
+          fallback: "sans-serif",
+          cssVariable: "font-body",
+        },
+        {
+          name: "Josefin Slab",
+          src: [],
+          googleFontsURL: "https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300;400;600;700&display=swap",
+          preload: true,
+          display: "swap",
+          selector: ".small-text",
+          fallback: "serif",
+          cssVariable: "font-small",
+        },
+      ]}
     />
   </head>
   <body>

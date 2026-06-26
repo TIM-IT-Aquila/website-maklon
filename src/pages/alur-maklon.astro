@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import { siteConfig } from "../data/site";
@@ -38,13 +39,14 @@ import { factoryHighlights } from "../data/factory";
 
         <div class="space-y-8">
           {processSteps.map((step) => (
-            <div class="relative md:flex md:items-start md:gap-8">
-              <div class="z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-md">
-                {step.step}
+            <div class="group relative md:flex md:items-start md:gap-8">
+              <div class="z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30">
+                <Icon name={step.icon} size={26} />
               </div>
               <div class="mt-4 flex-1 md:mt-0">
-                <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg">
                   <div class="card-body p-6">
+                    <span class="text-[11px] font-bold tracking-wider text-primary/60">TAHAP {step.step}</span>
                     <h3 class="card-title text-lg">{step.title}</h3>
                     <p class="text-sm text-base-content/70">{step.desc}</p>
                   </div>
@@ -70,35 +72,35 @@ import { factoryHighlights } from "../data/factory";
         <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">🔬</div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:microscope" size={32} /></div>
               <h3 class="card-title mt-3 text-lg">R&D Lab</h3>
               <p class="mt-2 text-sm text-base-content/70">Riset dan pengembangan formula</p>
             </div>
           </div>
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">🧪</div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:flask-conical" size={32} /></div>
               <h3 class="card-title mt-3 text-lg">Sampling</h3>
               <p class="mt-2 text-sm text-base-content/70">Pembuatan sample produk</p>
             </div>
           </div>
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">🏭</div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:factory" size={32} /></div>
               <h3 class="card-title mt-3 text-lg">Production</h3>
               <p class="mt-2 text-sm text-base-content/70">Produksi massal terstandarisasi</p>
             </div>
           </div>
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">✅</div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:shield-check" size={32} /></div>
               <h3 class="card-title mt-3 text-lg">Quality Control</h3>
               <p class="mt-2 text-sm text-base-content/70">Pemeriksaan kualitas ketat</p>
             </div>
           </div>
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl">📦</div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:package" size={32} /></div>
               <h3 class="card-title mt-3 text-lg">Ready to Sell</h3>
               <p class="mt-2 text-sm text-base-content/70">Produk siap dipasarkan</p>
             </div>

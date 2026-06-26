@@ -1,23 +1,29 @@
+import { companyImages, factoryImages } from "./images";
+
 export const companyPurpose = [
   {
-    icon: "📋",
+    icon: "lucide:clipboard-check",
     title: "Untuk Kebutuhan Branding",
     desc: "Website ini hadir sebagai company profile resmi untuk memperkenalkan perusahaan jasa maklon secara profesional kepada calon mitra bisnis.",
+    image: companyImages.office,
   },
   {
-    icon: "🧪",
+    icon: "lucide:flask-conical",
     title: "Untuk Memperkenalkan Layanan",
     desc: "Menampilkan secara lengkap layanan maklon yang tersedia — dari skincare, bodycare, kosmetik, hingga custom formula — agar calon customer mudah memahami.",
+    image: factoryImages.labResearch,
   },
   {
-    icon: "🤝",
+    icon: "lucide:handshake",
     title: "Untuk Membangun Kepercayaan",
     desc: "Menyajikan informasi fasilitas, proses produksi, dan keunggulan perusahaan untuk membangun kepercayaan dan kredibilitas di mata calon customer.",
+    image: companyImages.team,
   },
   {
-    icon: "💬",
+    icon: "lucide:message-circle",
     title: "Untuk Mengarahkan ke WhatsApp",
     desc: "Setiap halaman dirancang dengan CTA yang mengarahkan calon customer ke konsultasi WhatsApp sebagai langkah awal kerja sama maklon.",
+    image: companyImages.building,
   },
 ];
 
@@ -40,22 +46,26 @@ export const ourStory = {
     "Berawal dari keprihatinan melihat banyak brand lokal kesulitan menemukan partner produksi yang tepat, kami membangun sistem maklon yang transparan, terpercaya, dan berkualitas. Kini, kami telah membantu puluhan brand mewujudkan produk impian mereka.",
     "Dari konsultasi awal hingga produk sampai di tangan customer, kami dampingi setiap langkahnya. Tim R&D, produksi, dan legalitas kami siap mendukung Anda.",
   ],
+  image: companyImages.labTeam,
 };
 
 export const trustPlaceholder = [
   {
     title: "Dipercaya untuk Pengembangan",
     desc: "Dipercaya dalam pengembangan berbagai jenis produk kecantikan mulai dari skincare, bodycare, hingga kosmetik dengan formula yang disesuaikan.",
-    icon: "🤝",
+    icon: "lucide:handshake",
+    image: factoryImages.formulasiLab,
   },
   {
     title: "Mendukung Brand Baru",
     desc: "Mendukung brand baru dalam proses pembuatan produk dari nol — termasuk formulasi, sampling, produksi, hingga pengurusan legalitas BPOM dan Halal.",
-    icon: "🚀",
+    icon: "lucide:rocket",
+    image: factoryImages.productionLine,
   },
   {
     title: "Fokus pada Kualitas",
     desc: "Fokus pada kualitas, formula, dan tampilan produk agar setiap hasil maklon memiliki standar tinggi dan siap bersaing di pasar.",
-    icon: "⭐",
+    icon: "lucide:star",
+    image: factoryImages.qualityControl,
   },
 ];

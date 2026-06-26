@@ -1,3 +1,5 @@
+import { portfolioImages } from "./images";
+
 export interface PortfolioItem {
   id: string;
   brandName: string;
@@ -7,6 +9,7 @@ export interface PortfolioItem {
   highlights: string[];
   icon: string;
   color: string;
+  image: string;
 }
 
 export const portfolioItems: PortfolioItem[] = [
@@ -18,8 +21,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand skincare lokal yang fokus pada produk brightening dengan bahan aktif niacinamide dan vitamin C.",
     products: ["Facial Wash", "Toner Brightening", "Serum Vitamin C", "Day Cream SPF"],
     highlights: ["Produk best seller di e-commerce", "Kemasan premium", "Formula ringan dan cepat menyerap"],
-    icon: "✨",
+    icon: "lucide:sparkles",
     color: "from-amber-400 to-orange-500",
+    image: portfolioImages.skincareBrand,
   },
   {
     id: "bumi-natural",
@@ -29,8 +33,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand bodycare dengan konsep natural dan bahan-bahan herbal alami khas Indonesia.",
     products: ["Body Lotion", "Body Scrub", "Body Wash", "Hand Cream"],
     highlights: ["Bahan alami Indonesia", "Kemasan ramah lingkungan", "Sertifikasi halal"],
-    icon: "🌿",
+    icon: "lucide:leaf",
     color: "from-green-400 to-emerald-600",
+    image: portfolioImages.bodycareBrand,
   },
   {
     id: "luxe-parfum",
@@ -40,8 +45,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand parfum dengan aroma eksklusif dan premium untuk kalangan muda urban.",
     products: ["EDP Parfum", "Body Mist", "Roll On Parfum"],
     highlights: ["Aroma tahan lama hingga 8 jam", "Botol kaca premium", "Varian eksklusif limited edition"],
-    icon: "🌸",
+    icon: "lucide:flower-2",
     color: "from-pink-400 to-rose-600",
+    image: portfolioImages.fragranceBrand,
   },
   {
     id: "pure-baby",
@@ -51,8 +57,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand perawatan bayi yang aman, lembut, dan teruji dermatologis untuk si kecil.",
     products: ["Baby Lotion", "Baby Wash", "Baby Oil", "Baby Cream"],
     highlights: ["Hypoallergenic & dermatologically tested", "Bebas alkohol dan pewangi sintetis", "Terdaftar BPOM"],
-    icon: "👶",
+    icon: "lucide:baby",
     color: "from-sky-400 to-blue-500",
+    image: portfolioImages.babycareBrand,
   },
   {
     id: "glamour-queen",
@@ -62,8 +69,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand makeup dengan pigmen tinggi, warna-warna kekinian, dan harga terjangkau.",
     products: ["Lip Cream", "Cushion Foundation", "Eyeshadow Palette", "Blush On"],
     highlights: ["Pigmentasi tinggi", "Varian warna lengkap", "Formula transfer-proof"],
-    icon: "💄",
+    icon: "lucide:spray-can",
     color: "from-purple-400 to-violet-600",
+    image: portfolioImages.makeupBrand,
   },
   {
     id: "hair-lust",
@@ -73,8 +81,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand perawatan rambut untuk berbagai jenis rambut dengan formula salon quality.",
     products: ["Shampoo", "Conditioner", "Hair Mask", "Hair Serum"],
     highlights: ["Formula salon quality", "Untuk semua tipe rambut", "Sulfur & paraben free"],
-    icon: "💇",
+    icon: "lucide:scissors",
     color: "from-indigo-400 to-indigo-600",
+    image: portfolioImages.haircareBrand,
   },
   {
     id: "segar-alami",
@@ -84,8 +93,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand bodycare segar dengan ekstrak buah-buahan alami untuk kulit cerah dan sehat.",
     products: ["Body Wash", "Body Lotion", "Body Scrub", "Hand & Body Cream"],
     highlights: ["Ekstrak buah asli", "Aroma segar alami", "Kemasan praktis"],
-    icon: "🍊",
+    icon: "lucide:citrus",
     color: "from-yellow-400 to-orange-400",
+    image: portfolioImages.bodycareBrand,
   },
   {
     id: "clear-skin-lab",
@@ -95,8 +105,9 @@ export const portfolioItems: PortfolioItem[] = [
       "Brand khusus kulit berjerawat dan berminyak dengan formulasi oil-free dan non-comedogenic.",
     products: ["Acne Facial Wash", "Salicylic Acid Toner", "Acne Serum", "Oil-Free Moisturizer"],
     highlights: ["Formulasi anti-jerawat", "Oil-free & non-comedogenic", "Cocok kulit sensitif"],
-    icon: "🔬",
+    icon: "lucide:microscope",
     color: "from-teal-400 to-cyan-600",
+    image: portfolioImages.skincareBrand,
   },
 ];
 

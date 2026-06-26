@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
 import CTASection from "../components/sections/CTASection.astro";
+import Icon from "../components/ui/Icon.astro";
 import { siteConfig } from "../data/site";
 import { products } from "../data/products";
 
@@ -30,7 +31,7 @@ const categories = [
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((p) => (
           <div class="flex items-start gap-4 rounded-2xl border border-base-200 bg-base-100 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-xl">{p.icon}</div>
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-xl text-primary"><Icon name={p.icon} size={24} /></div>
             <div>
               <h4 class="font-bold">{p.name}</h4>
               <p class="mt-1 text-sm text-base-content/60">{p.desc}</p>
@@ -59,7 +60,7 @@ const categories = [
                   <ul class="mt-3 space-y-2">
                     {catProducts.map((cp) => (
                       <li class="flex items-center gap-2 text-sm text-base-content/70">
-                        <span>{cp.icon}</span>
+                        <Icon name={cp.icon} size={18} />
                         <span>{cp.name}</span>
                       </li>
                     ))}

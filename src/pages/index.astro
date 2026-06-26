@@ -1,391 +1,767 @@
 ---
+import Icon from "../components/ui/Icon.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
 import { advantages } from "../data/advantages";
 import { factoryStats } from "../data/factory";
-import { certifications } from "../data/certifications";
 import { services } from "../data/services";
 import { processSteps } from "../data/process";
 import { testimonials } from "../data/testimonials";
+import { heroImages, processImages } from "../data/images";
+
+const processPreviewSteps = processSteps.slice(0, 4);
 
 const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
-const waLinkCta = createWhatsappLink(
-  siteConfig.waNumber,
-  "Halo, saya ingin konsultasi maklon skincare.",
-);
---->
+
+const heroSlides = [
+  {
+    image: heroImages.skincareHero,
+    gradient: "from-emerald-950/85 via-primary/75 to-primary/70",
+    badge: "PARTNER MAKLON PROFESIONAL",
+    title: "Wujudkan Brand Kecantikan Sendiri",
+    desc: "Kami bantu proses maklon dari konsultasi, formulasi, produksi, legalitas, hingga produk siap jual.",
+  },
+  {
+    image: heroImages.formulasiHero,
+    gradient: "from-primary/90 via-primary/80 to-emerald-900/85",
+    badge: "FORMULA CUSTOM & INOVATIF",
+    title: "Riset & Formulasi oleh Tim Ahli",
+    desc: "Tim R&D berpengalaman menciptakan formula eksklusif sesuai tren dan kebutuhan brand Anda.",
+  },
+  {
+    image: heroImages.skincareHero,
+    gradient: "from-teal-950/85 via-primary/80 to-primary/75",
+    badge: "BPOM, HALAL & SIAP JUAL",
+    title: "Legalitas Lengkap, Produk Siap Dipasarkan",
+    desc: "BPOM, Halal, HKI — semua diurus. Anda tinggal fokus jualan.",
+  },
+];
+---
 
 <MainLayout
   title="Aquila Maklon – Jasa Maklon Skincare & Kosmetik Terpercaya"
   description={siteConfig.description}
 >
   <main>
-    <!-- =================================================================== -->
-    <!-- 1. HERO — Full-width image banner with overlay                      -->
-    <!-- =================================================================== -->
-    <section class="relative flex min-h-[90vh] items-center overflow-hidden">
-      <!-- Background gradient overlay -->
-      <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/70"></div>
-      <!-- Subtle pattern overlay -->
-      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
-      <!-- Decorative blobs -->
-      <div class="pointer-events-none absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+    <!-- ================================================================== -->
+    <!-- 1. HERO — Full height slider                                      -->
+    <!-- ================================================================== -->
+    <section id="hero" class="relative flex min-h-[80vh] items-center overflow-hidden">
+      {heroSlides.map((slide, idx) => (
+        <div
+          id={`hero-slide-bg-${idx}`}
+          class="hero-bg-slide absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
+          class:list={{ "opacity-100 scale-100": idx === 0, "opacity-0 scale-105": idx !== 0 }}
+          style={`background-image: url('${slide.image}');`}
+        >
+          <div class={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`}></div>
+          <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+        </div>
+      ))}
 
-      <div class="relative mx-auto w-full max-w-7xl px-4 py-24 lg:px-8">
-        <div class="mx-auto max-w-4xl text-center">
-          <span class="inline-block animate-pulse rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-semibold tracking-widest text-white/90 backdrop-blur-sm">
-            ✨ Partner Maklon Profesional
-          </span>
-
-          <h1 class="mt-6 text-4xl font-black leading-tight text-white md:text-6xl lg:text-7xl">
-            Wujudkan Brand Skincare & Kosmetik Sendiri
+      <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 lg:px-8">
+        <div class="max-w-3xl">
+          <div class="mb-4 inline-flex min-w-0 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-5 py-1.5 backdrop-blur-xl">
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300"></span>
+            <span id="hero-badge" class="text-xs font-semibold tracking-[0.15em] text-white/80">{heroSlides[0].badge}</span>
+          </div>
+          <h1 id="hero-title" class="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
+            {heroSlides[0].title}
           </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white/80 md:text-xl">
-            Kami membantu proses maklon mulai dari konsultasi konsep, formulasi, sample produk, desain kemasan, legalitas BPOM/Halal, produksi massal, hingga produk siap jual.
+          <p id="hero-desc" class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65 md:text-base lg:text-lg">
+            {heroSlides[0].desc}
           </p>
-
-          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={waLink}
-              target="_blank"
-              class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href={waLink} target="_blank"
+              class="group inline-flex h-12 items-center gap-2.5 rounded-full bg-white px-8 text-sm font-semibold text-primary shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+              <Icon name="mdi:whatsapp" class="h-4 w-4" />
               Konsultasi via WhatsApp
             </a>
-            <a
-              href="/alur-maklon"
-              class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
-            >
+            <a href="/alur-maklon"
+              class="group inline-flex h-12 items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.06] px-8 text-sm font-medium text-white backdrop-blur-xl transition-all duration-300 hover:border-white/40 hover:bg-white/[0.12]">
               Lihat Alur Maklon
+              <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </a>
           </div>
 
           <!-- Trust badges row -->
-          <div class="mt-12 flex flex-wrap items-center justify-center gap-6">
-            <div class="flex items-center gap-2 text-white/70">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm font-medium">BPOM Terdaftar</span>
-            </div>
-            <div class="flex items-center gap-2 text-white/70">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm font-medium">Sertifikat Halal</span>
-            </div>
-            <div class="flex items-center gap-2 text-white/70">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm font-medium">CPKB Standard</span>
-            </div>
-            <div class="flex items-center gap-2 text-white/70">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <span class="text-sm font-medium">ISO 9001:2015</span>
-            </div>
+          <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span class="inline-flex items-center gap-1.5 text-xs text-white/40">
+              <Icon name="lucide:shield-check" class="h-3.5 w-3.5 text-emerald-300/60" /> BPOM Terdaftar
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-white/40">
+              <Icon name="lucide:award" class="h-3.5 w-3.5 text-emerald-300/60" /> Sertifikat Halal
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-white/40">
+              <Icon name="lucide:shield-check" class="h-3.5 w-3.5 text-emerald-300/60" /> CPKB Standard
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-white/40">
+              <Icon name="lucide:award" class="h-3.5 w-3.5 text-emerald-300/60" /> ISO 9001:2015
+            </span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- =================================================================== -->
-    <!-- 2. KEUNGGULAN (Advantages)                                          -->
-    <!-- =================================================================== -->
-    <section class="relative overflow-hidden bg-base-100 py-20">
-      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Keunggulan</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Mengapa Memilih Aquila Maklon?</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Kami memberikan solusi terlengkap untuk brand kecantikan Anda dengan layanan profesional dari awal hingga akhir.
-          </p>
-        </div>
-
-        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {advantages.map((adv) => (
-            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-              <div class="card-body items-center text-center p-8">
-                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-4xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
-                  {adv.icon}
-                </div>
-                <h3 class="card-title mt-4 text-xl">{adv.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-base-content/70">{adv.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-12 text-center">
-          <a href="/tentang-kami" class="btn btn-soft rounded-full px-8 transition-all duration-300 hover:shadow-md">
-            Pelajari Tentang Kami
-          </a>
-        </div>
+      <!-- Slide dots -->
+      <div class="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+        {heroSlides.map((_, idx) => (
+          <button
+            id={`hero-dot-${idx}`}
+            class={`hero-dot rounded-full transition-all duration-500 ${idx === 0 ? "h-2 w-8 bg-white" : "h-2 w-2 bg-white/30"}`}
+            aria-label={`Slide ${idx + 1}`}
+          ></button>
+        ))}
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- 3. STATISTIK BRAND (Numbers / Stats)                               -->
-    <!-- =================================================================== -->
-    <section class="relative bg-gradient-to-r from-primary to-secondary py-20">
-      <div class="pointer-events-none absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 75% 75%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center mb-14">
-          <span class="inline-block rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-xs font-semibold tracking-widest text-white/90 backdrop-blur-sm">BRAND STATISTICS</span>
-          <h2 class="mt-4 text-3xl font-black text-white md:text-4xl lg:text-5xl">Aquila Maklon dalam Angka</h2>
-          <p class="mt-3 text-white/70 md:text-lg">Ribuan produk telah dipercayakan kepada kami oleh brand-brand dari seluruh Indonesia.</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {factoryStats.map((stat) => (
-            <div class="group text-center transition-all duration-500 hover:-translate-y-1">
-              <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:bg-white/20 group-hover:scale-110">
-                <span class="text-4xl font-black text-white drop-shadow-lg">{stat.value}</span>
-              </div>
-              <p class="mt-4 text-sm font-semibold text-white/80">{stat.label}</p>
-              <div class="mx-auto mt-2 h-1 w-12 rounded-full bg-white/20 transition-all duration-500 group-hover:w-20 group-hover:bg-white/40"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- 4. SERTIFIKASI (Certifications)                                     -->
-    <!-- =================================================================== -->
-    <section class="bg-base-100 py-20">
+    <!-- ================================================================== -->
+    <!-- 2. LAYANAN                                                        -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Sertifikasi</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Terpercaya dengan Legalitas Lengkap</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Setiap produk yang kami hasilkan didukung dengan legalitas dan sertifikasi resmi.
-          </p>
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-primary">
+            LAYANAN MAKLON
+          </span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Solusi Lengkap untuk Brand Kecantikan Anda</h2>
+          <p class="mt-3 text-sm text-base-content/55">Konsultasi gratis, proses transparan, hasil maksimal.</p>
         </div>
 
-        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {certifications.map((cert) => (
-            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-              <div class="card-body items-center text-center p-6">
-                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
-                  {cert.icon}
-                </div>
-                <h3 class="card-title mt-4 text-sm">{cert.name}</h3>
-                <p class="mt-2 text-xs leading-relaxed text-base-content/60">{cert.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-10 text-center">
-          <a href="/sertifikasi" class="btn btn-soft rounded-full px-8">Lihat Detail Sertifikasi</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- 5. LAYANAN KAMI (Services)                                          -->
-    <!-- =================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/50 py-20">
-      <div class="pointer-events-none absolute -left-60 -bottom-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Layanan Kami</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Solusi Maklon untuk Brand Kecantikan</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Berbagai layanan maklon siap membantu Anda mewujudkan produk kecantikan impian.
-          </p>
-        </div>
-
-        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((svc) => {
-            const waService = createWhatsappLink(
-              siteConfig.waNumber,
-              `Halo, saya ingin konsultasi maklon untuk ${svc.title}.`,
-            );
+            const waService = createWhatsappLink(siteConfig.waNumber, `Halo, saya ingin konsultasi maklon ${svc.title}.`);
             return (
-              <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-                <div class="card-body p-8">
-                  <div class="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
-                    {svc.icon}
-                  </div>
-                  <h3 class="card-title text-xl">{svc.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-base-content/70">{svc.desc}</p>
-                  <div class="mt-4 rounded-xl bg-base-200/60 px-4 py-3">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-primary">Contoh produk:</p>
-                    <p class="mt-1 text-sm text-base-content/60">{svc.examples}</p>
-                  </div>
-                  <div class="card-actions mt-5">
-                    <a
-                      href={waService}
-                      target="_blank"
-                      class="btn btn-primary btn-sm rounded-full w-full text-white transition-all duration-300 group-hover:shadow-md"
-                    >
-                      Konsultasikan {svc.title}
-                    </a>
-                  </div>
-                </div>
+              <div class="group relative overflow-hidden rounded-2xl border border-base-200/80 bg-base-100 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg">
+                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-2xl transition-transform duration-300 group-hover:scale-110"><Icon name={svc.icon} size={24} /></div>
+                <h3 class="text-base font-bold transition-colors duration-300 group-hover:text-primary">{svc.title}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-base-content/55 line-clamp-2">{svc.desc}</p>
+                <a href={waService} target="_blank" class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  Konsultasi <Icon name="lucide:arrow-right" class="h-3 w-3" />
+                </a>
               </div>
             );
           })}
         </div>
-
-        <div class="mt-12 text-center">
-          <a href="/layanan" class="btn btn-soft rounded-full px-8">Lihat Semua Layanan</a>
-        </div>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- 6. ALUR MAKLON (Process)                                            -->
-    <!-- =================================================================== -->
-    <section class="bg-base-100 py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Alur Maklon</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Bagaimana Cara Kerjanya?</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Proses maklon yang mudah, transparan, dan terstruktur — dari konsultasi hingga produk jadi.
-          </p>
-        </div>
-
-        <div class="mt-14 relative">
-          <!-- Connecting line (desktop) -->
-          <div class="absolute left-1/2 top-0 hidden h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary via-secondary to-primary/20 md:block"></div>
-
-          <div class="grid gap-8 md:grid-cols-2 md:gap-12">
-            {processSteps.slice(0, 6).map((step, idx) => (
-              <div class={`group relative flex items-start gap-5 ${idx % 2 === 0 ? "md:text-right md:flex-row-reverse" : ""}`}>
-                <!-- Step number badge -->
-                <div class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-lg font-bold text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
-                  {step.step}
-                </div>
-                <!-- Content -->
-                <div class={`flex-1 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg ${idx % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}>
-                  <h3 class="text-lg font-bold">{step.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-base-content/70">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="mt-14 text-center">
-          <a href="/alur-maklon" class="btn btn-primary rounded-full px-10 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-            Lihat Alur Lengkap (9 Tahap)
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- 7. REVIEW / TESTIMONIAL                                             -->
-    <!-- =================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/50 py-20">
-      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+    <!-- ================================================================== -->
+    <!-- 3. STATISTIK                                                       -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-primary py-16 md:py-20">
+      <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 50px 50px;"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Testimonial</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Apa Kata Brand Partner Kami?</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Mereka sudah merasakan kemudahan dan kualitas layanan maklon kami.
-          </p>
+        <div class="mb-10 text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-white">OUR NUMBERS</span>
+          <h2 class="mt-3 text-3xl font-bold text-white md:text-4xl">Aquila Maklon dalam Angka</h2>
         </div>
-
-        <div class="mt-14 grid gap-8 md:grid-cols-3">
-          {testimonials.map((item) => (
-            <div class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-              <div class="card-body p-7">
-                <!-- Stars -->
-                <div class="flex items-center gap-1">
-                  {[...Array(item.rating)].map(() => <span class="text-lg text-amber-400">★</span>)}
-                  {[...Array(5 - item.rating)].map(() => <span class="text-lg text-base-300">★</span>)}
-                </div>
-                <!-- Quote -->
-                <div class="relative mt-4">
-                  <svg class="absolute -left-1 -top-2 h-6 w-6 text-primary/15" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                  <p class="text-sm italic leading-relaxed text-base-content/70 pl-6">"{item.text}"</p>
-                </div>
-                <!-- Author -->
-                <div class="mt-5 border-t border-base-200 pt-5">
-                  <div class="flex items-center gap-3">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-sm font-bold text-white shadow-md">
-                      {item.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p class="text-sm font-bold">{item.name}</p>
-                      <p class="text-xs text-primary font-medium">{item.brand}</p>
-                    </div>
-                  </div>
-                </div>
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+          {factoryStats.map((stat) => (
+            <div class="text-center">
+              <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border border-white/20 bg-white/15 shadow-sm backdrop-blur-md transition-all duration-500 hover:scale-110 hover:bg-white/25 hover:shadow-lg">
+                <span class="text-3xl font-black text-white">{stat.value}</span>
               </div>
+              <p class="mt-3 text-sm font-medium text-white/75">{stat.label}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- 8. BANNER CTA (Premium)                                             -->
-    <!-- =================================================================== -->
-    <section class="relative overflow-hidden py-24">
-      <!-- Gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary"></div>
-      <!-- Decorative elements -->
-      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 50% 50%, white 1px, transparent 1px); background-size: 50px 50px;"></div>
-
-      <div class="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
-        <!-- Floating icon -->
-        <div class="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm animate-bounce">
-          <span class="text-5xl">🚀</span>
+    <!-- ================================================================== -->
+    <!-- 4. KEUNGGULAN                                                      -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-primary">KEUNGGULAN KAMI</span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Kenapa Aquila Maklon?</h2>
+          <p class="mt-3 text-sm text-base-content/55">Setiap detail diperhatikan untuk hasil terbaik.</p>
         </div>
 
-        <h2 class="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
-          Siap Membuat Produk <br class="hidden sm:block" />
-          <span class="text-white/90">Brand Kamu Sendiri?</span>
-        </h2>
-        <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-xl leading-relaxed">
-          Konsultasikan ide produk kamu sekarang dan mulai bangun brand skincare bersama partner maklon yang tepat. Tim kami siap mendampingi dari awal hingga produk siap jual!
-        </p>
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {advantages.map((adv) => (
+            <div class="group relative overflow-hidden rounded-2xl border border-base-200/80 bg-base-100 p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 text-3xl transition-transform duration-300 group-hover:scale-110"><Icon name={adv.icon} size={32} /></div>
+              <h3 class="mt-4 text-base font-bold transition-colors group-hover:text-primary">{adv.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-base-content/55">{adv.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-        <!-- CTA Buttons -->
-        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a
-            href={waLinkCta}
-            target="_blank"
-            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <!-- ================================================================== -->
+    <!-- 5. PROSES — Interactive Image + Timeline Slider                    -->
+    <!-- ================================================================== -->
+    <section id="alur-maklon" class="bg-gradient-to-b from-base-100 to-base-200/40 py-16 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <!-- HEADER -->
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="process-animate inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-primary opacity-0">ALUR MAKLON</span>
+          <h2 class="process-animate mt-3 text-3xl font-bold md:text-4xl opacity-0 translate-y-4">Proses Mudah & Terarah</h2>
+          <p class="process-animate mt-3 text-sm text-base-content/55 opacity-0 translate-y-4">Dari ide ke produk siap jual tanpa hambatan.</p>
+        </div>
+
+        <!-- DESKTOP: Interactive Image + Step List -->
+        <div class="process-animate relative mt-14 hidden gap-8 opacity-0 translate-y-6 lg:flex">
+          <!-- Left: Large Featured Image -->
+          <div class="w-[55%] overflow-hidden rounded-2xl shadow-lg">
+            <div class="relative aspect-[4/3] bg-base-200">
+              {processPreviewSteps.map((step, idx) => (
+                <img
+                  id={`process-img-${idx}`}
+                  class="process-feature-img absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out"
+                  class:list={{ "opacity-100 scale-100": idx === 0, "opacity-0 scale-110": idx !== 0 }}
+                  src={processImages[step.imageKey]}
+                  alt={step.title}
+                  loading={idx === 0 ? "eager" : "lazy"}
+                />
+              ))}
+              <!-- Gradient overlay bottom -->
+              <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Step badge on image -->
+              <div class="absolute bottom-4 left-4 flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-md">
+                  <Icon name={processPreviewSteps[0].icon} size={20} />
+                </div>
+                <div>
+                  <span id="desktop-step-label" class="text-xs font-bold tracking-wider text-white/70">TAHAP 1</span>
+                  <h3 id="desktop-step-title" class="text-lg font-bold text-white">{processPreviewSteps[0].title}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Vertical Step List -->
+          <div class="flex w-[45%] flex-col justify-center gap-2">
+            {processPreviewSteps.map((step, idx) => (
+              <button
+                class="process-step-btn group flex items-center gap-4 rounded-xl border p-4 text-left transition-all duration-500"
+                class:list={{
+                  "border-primary/30 bg-primary/[0.04] shadow-md shadow-primary/5": idx === 0,
+                  "border-base-200/70 bg-base-100 shadow-sm hover:border-primary/20 hover:bg-primary/[0.02]": idx !== 0,
+                }}
+                data-step={idx}
+                aria-label={`Tahap ${step.step}: ${step.title}`}
+              >
+                <!-- Icon -->
+                <div
+                  class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-500"
+                  class:list={{
+                    "bg-primary text-white scale-110 shadow-md": idx === 0,
+                    "bg-primary/10 text-primary": idx !== 0,
+                  }}
+                >
+                  <Icon name={step.icon} size={20} />
+                </div>
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                  <span class="text-[11px] font-bold tracking-wider text-primary/60">TAHAP {step.step}</span>
+                  <h3 class="text-sm font-bold transition-colors duration-300">{step.title}</h3>
+                  <p id={`step-desc-${idx}`} class="mt-0.5 text-xs leading-relaxed text-base-content/55 line-clamp-2">{step.desc}</p>
+                </div>
+                <!-- Active indicator -->
+                <div
+                  class="h-2 w-2 shrink-0 rounded-full transition-all duration-500"
+                  class:list={{ "bg-primary scale-100": idx === 0, "bg-transparent scale-0": idx !== 0 }}
+                ></div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- MOBILE: Interactive Cards Carousel with Images -->
+        <div class="process-animate lg:hidden opacity-0 translate-y-6">
+          <div class="relative mt-10">
+            <!-- Progress bar -->
+            <div class="mb-4 flex items-center gap-2 px-1">
+              <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-base-200">
+                <div id="mobile-progress" class="h-full w-[25%] rounded-full bg-primary transition-all duration-500 ease-out"></div>
+              </div>
+              <span class="text-xs font-semibold text-base-content/50">
+                <span id="mobile-step-current">1</span>/<span>{processSteps.length}</span>
+              </span>
+            </div>
+
+            <!-- Image preview -->
+            <div class="overflow-hidden rounded-2xl shadow-sm">
+              <div class="relative aspect-[16/9] bg-base-200">
+                {processPreviewSteps.map((step, idx) => (
+                  <img
+                    id={`mobile-process-img-${idx}`}
+                    class="absolute inset-0 h-full w-full object-cover transition-all duration-600 ease-in-out"
+                    class:list={{ "opacity-100 scale-100": idx === 0, "opacity-0 scale-110": idx !== 0 }}
+                    src={processImages[step.imageKey]}
+                    alt={step.title}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                  />
+                ))}
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute bottom-3 left-4 flex items-center gap-2">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white backdrop-blur-md">
+                    <Icon name={processPreviewSteps[0].icon} size={16} />
+                  </div>
+                  <span id="mobile-step-title" class="text-sm font-bold text-white">{processPreviewSteps[0].title}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cards track -->
+            <div class="mt-3 overflow-hidden rounded-2xl">
+              <div id="mobile-carousel-track" class="flex transition-transform duration-500 ease-out">
+                {processPreviewSteps.map((step, i) => (
+                  <div class="min-w-0 w-full shrink-0 px-0.5">
+                    <div class="rounded-2xl border border-base-200/70 bg-base-100 p-4 shadow-sm">
+                      <div class="flex items-center gap-3">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <Icon name={step.icon} size={22} />
+                        </div>
+                        <div>
+                          <span class="text-[11px] font-bold tracking-wider text-primary/60">TAHAP {step.step}</span>
+                          <h3 class="text-base font-bold">{step.title}</h3>
+                        </div>
+                      </div>
+                      <p class="mt-2 text-sm leading-relaxed text-base-content/60">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="mt-4 flex items-center justify-between">
+              <button id="mobile-prev" class="btn btn-circle btn-soft btn-sm" aria-label="Sebelumnya">
+                <Icon name="lucide:chevron-left" size={16} />
+              </button>
+
+              <div class="flex items-center gap-1.5">
+                {processPreviewSteps.map((_, i) => (
+                  <button
+                    class={`mobile-dot h-1.5 rounded-full transition-all duration-400 ${i === 0 ? "w-6 bg-primary" : "w-1.5 bg-base-300"}`}
+                    data-mobile-dot={i}
+                    aria-label={`Tahap ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
+
+              <button id="mobile-next" class="btn btn-circle btn-soft btn-sm" aria-label="Selanjutnya">
+                <Icon name="lucide:chevron-right" size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="process-animate mt-12 text-center opacity-0 translate-y-4">
+          <a href="/alur-maklon" class="group inline-flex h-11 items-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            Lihat 4 Tahap Lengkap
+            <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. TESTIMONIAL                                                      -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-primary">TESTIMONIAL</span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Dipercaya Brand Partner</h2>
+          <p class="mt-3 text-sm text-base-content/55">Mereka sudah merasakan kemudahan bermitra dengan kami.</p>
+        </div>
+
+        <div class="mt-10 overflow-hidden">
+          <div id="testimonial-track" class="flex gap-4 transition-transform duration-600 ease-in-out">
+            {testimonials.map((item) => (
+              <div class="testimonial-slide w-full shrink-0 md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]">
+                <div class="h-full rounded-2xl border border-base-200/80 bg-base-100 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md">
+                  <Icon name="lucide:quote" class="mb-3 h-6 w-6 text-primary/15" />
+                  <p class="text-sm leading-relaxed text-base-content/65 italic">"{item.text}"</p>
+                  <div class="mt-4 flex items-center gap-3 border-t border-base-200 pt-4">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">{item.name.charAt(0)}</div>
+                    <div>
+                      <p class="text-sm font-semibold">{item.name}</p>
+                      <p class="text-xs text-primary/70">{item.brand}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Carousel controls -->
+          <div class="mt-6 flex items-center justify-center gap-3">
+            <button id="testi-prev" class="flex h-9 w-9 items-center justify-center rounded-full border border-base-200 bg-base-100 text-base-content/40 shadow-sm transition-all duration-300 hover:border-primary/30 hover:text-primary" aria-label="Sebelumnya">
+              <Icon name="lucide:chevron-left" class="h-3.5 w-3.5" />
+            </button>
+            {testimonials.map((_, idx) => (
+              <button
+                id={`testi-dot-${idx}`}
+                class={`testi-dot rounded-full transition-all duration-400 ${idx === 0 ? "h-2 w-7 bg-primary" : "h-2 w-2 bg-base-300"}`}
+                data-index={idx}
+                aria-label={`Testimonial ${idx + 1}`}
+              ></button>
+            ))}
+            <button id="testi-next" class="flex h-9 w-9 items-center justify-center rounded-full border border-base-200 bg-base-100 text-base-content/40 shadow-sm transition-all duration-300 hover:border-primary/30 hover:text-primary" aria-label="Selanjutnya">
+              <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. CTA FINAL                                                        -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary to-emerald-900 py-16 md:py-20">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-white/[0.03] blur-3xl"></div>
+      <div class="relative z-10 mx-auto max-w-3xl px-4 text-center lg:px-8">
+        <h2 class="text-3xl font-bold text-white md:text-4xl">Siap Bangun Brand Kamu?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-sm text-white/65 md:text-base">Konsultasi gratis sekarang. Tim kami siap bantu dari awal hingga produk siap jual.</p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href={waLink} target="_blank" class="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-8 text-sm font-semibold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" class="h-4 w-4" />
             Konsultasi via WhatsApp
           </a>
-          <a
-            href="/tentang-kami"
-            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
-          >
-            Pelajari Tentang Kami
+          <a href="/tentang-kami" class="group inline-flex h-12 items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-8 text-sm font-medium text-white backdrop-blur-xl transition-all duration-300 hover:border-white/40 hover:bg-white/[0.12]">
+            Tentang Kami
+            <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
-        </div>
-
-        <!-- Bottom trust line -->
-        <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">
-          <span class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            Gratis Konsultasi
-          </span>
-          <span class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            Tanpa Biaya Tersembunyi
-          </span>
-          <span class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            Pendampingan Penuh
-          </span>
         </div>
       </div>
     </section>
   </main>
 </MainLayout>
+
+<script>
+  // ====================================================================
+  // PROCESS STEPS DATA (inlined for client-side)
+  // ====================================================================
+  const processSteps = [
+  { step: 1, title: "Konsultasi Konsep", icon: "lucide:message-circle", desc: "Diskusikan ide produk, konsep, dan target pasar yang diinginkan secara gratis.", imageKey: "konsultasi" },
+  { step: 2, title: "Riset & Formulasi", icon: "lucide:flask-conical", desc: "Tim R&D melakukan riset dan mengembangkan formula sesuai kebutuhan dan tren pasar.", imageKey: "riset" },
+  { step: 3, title: "Pembuatan Sample", icon: "lucide:beaker", desc: "Sample produk dibuat untuk evaluasi dan persetujuan sebelum produksi massal.", imageKey: "sample" },
+  { step: 4, title: "Revisi Sample", icon: "lucide:refresh-cw", desc: "Sample direvisi hingga sesuai dengan keinginan brand Anda.", imageKey: "revisi" },
+  ];
+
+  const processImages = {
+    konsultasi: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80",
+    riset: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
+    sample: "https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=800&q=80",
+    revisi: "https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=800&q=80",
+    desain: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
+    legalitas: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+    produksi: "https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=800&q=80",
+    qc: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=800&q=80",
+    pengiriman: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+  };
+
+  // ====================================================================
+  // HERO SLIDER — auto + dots + swipe
+  // ====================================================================
+  const heroData = [
+    { badge: "PARTNER MAKLON PROFESIONAL", title: "Wujudkan Brand Kecantikan Sendiri", desc: "Kami bantu proses maklon dari konsultasi, formulasi, produksi, legalitas, hingga produk siap jual." },
+    { badge: "FORMULA CUSTOM & INOVATIF", title: "Riset & Formulasi oleh Tim Ahli", desc: "Tim R&D berpengalaman menciptakan formula eksklusif sesuai tren dan kebutuhan brand Anda." },
+    { badge: "BPOM, HALAL & SIAP JUAL", title: "Legalitas Lengkap, Produk Siap Dipasarkan", desc: "BPOM, Halal, HKI — semua diurus. Anda tinggal fokus jualan." },
+  ];
+
+  let currentHero = 0;
+  const totalHero = heroData.length;
+  let heroInterval;
+
+  function goHero(idx) {
+    currentHero = idx;
+    const d = heroData[idx];
+
+    for (let i = 0; i < totalHero; i++) {
+      const bg = document.getElementById(`hero-slide-bg-${i}`);
+      if (!bg) continue;
+      if (i === idx) { bg.classList.add("opacity-100"); bg.classList.remove("opacity-0", "scale-105"); }
+      else { bg.classList.remove("opacity-100"); bg.classList.add("opacity-0", "scale-105"); }
+    }
+
+    const badgeEl = document.getElementById("hero-badge");
+    if (badgeEl) badgeEl.textContent = d.badge;
+    const titleEl = document.getElementById("hero-title");
+    if (titleEl) titleEl.textContent = d.title;
+    const descEl = document.getElementById("hero-desc");
+    if (descEl) descEl.textContent = d.desc;
+
+    document.querySelectorAll(".hero-dot").forEach((dot, i) => {
+      if (i === idx) { dot.className = "hero-dot h-2 w-8 rounded-full bg-white transition-all duration-500"; }
+      else { dot.className = "hero-dot h-2 w-2 rounded-full bg-white/30 transition-all duration-500"; }
+    });
+  }
+
+  function nextHero() { goHero((currentHero + 1) % totalHero); }
+  function startHero() { stopHero(); heroInterval = setInterval(nextHero, 5000); }
+  function stopHero() { if (heroInterval) clearInterval(heroInterval); }
+
+  document.querySelectorAll(".hero-dot").forEach((dot, i) => {
+    dot.addEventListener("click", () => { goHero(i); startHero(); });
+  });
+
+  const heroSec = document.getElementById("hero");
+  let tx = 0;
+  if (heroSec) {
+    heroSec.addEventListener("touchstart", e => { tx = e.changedTouches[0].screenX; }, { passive: true });
+    heroSec.addEventListener("touchend", e => {
+      const diff = tx - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goHero((currentHero + 1) % totalHero);
+        else goHero((currentHero - 1 + totalHero) % totalHero);
+        startHero();
+      }
+    }, { passive: true });
+  }
+
+  startHero();
+
+  // ====================================================================
+  // PROCESS SECTION — Interactive Image + Step List
+  // ====================================================================
+  const processSection = document.getElementById("alur-maklon");
+
+  // Intersection Observer for scroll-triggered animation
+  if (processSection) {
+    document.querySelectorAll(".process-animate").forEach(el => {
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("opacity-100", "translate-y-0");
+          e.target.classList.remove("opacity-0", "translate-y-4", "translate-y-6");
+          obs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      obs.observe(el);
+    });
+  }
+
+  // Desktop: Interactive Step Selection
+  if (window.innerWidth >= 1024) {
+    const totalSteps = processSteps.length;
+    let activeDesktop = 0;
+
+    function goToStep(idx) {
+      if (idx < 0 || idx >= totalSteps || idx === activeDesktop) return;
+      activeDesktop = idx;
+
+      // 1. Update featured image
+      document.querySelectorAll(".process-feature-img").forEach((img, i) => {
+        if (i === idx) {
+          img.classList.add("opacity-100", "scale-100");
+          img.classList.remove("opacity-0", "scale-110");
+        } else {
+          img.classList.remove("opacity-100", "scale-100");
+          img.classList.add("opacity-0", "scale-110");
+        }
+      });
+
+      // 2. Update image badge
+      const step = processSteps[idx];
+      const labelEl = document.getElementById("desktop-step-label");
+      const titleEl = document.getElementById("desktop-step-title");
+      if (labelEl) labelEl.textContent = `TAHAP ${step.step}`;
+      if (titleEl) titleEl.textContent = step.title;
+
+      // 3. Update step buttons
+      document.querySelectorAll(".process-step-btn").forEach((btn, i) => {
+        if (i === idx) {
+          btn.classList.add("border-primary/30", "bg-primary/[0.04]", "shadow-md", "shadow-primary/5");
+          btn.classList.remove("border-base-200/70", "bg-base-100", "shadow-sm");
+          // icon
+          const icon = btn.querySelector(".rounded-xl");
+          if (icon) {
+            icon.classList.add("bg-primary", "text-white", "scale-110", "shadow-md");
+            icon.classList.remove("bg-primary/10", "text-primary");
+          }
+          // dot
+          const dot = btn.querySelector(".rounded-full");
+          if (dot) {
+            dot.classList.add("bg-primary", "scale-100");
+            dot.classList.remove("bg-transparent", "scale-0");
+          }
+        } else {
+          btn.classList.remove("border-primary/30", "bg-primary/[0.04]", "shadow-md", "shadow-primary/5");
+          btn.classList.add("border-base-200/70", "bg-base-100", "shadow-sm");
+          const icon = btn.querySelector(".rounded-xl");
+          if (icon) {
+            icon.classList.remove("bg-primary", "text-white", "scale-110", "shadow-md");
+            icon.classList.add("bg-primary/10", "text-primary");
+          }
+          const dot = btn.querySelector(".rounded-full");
+          if (dot) {
+            dot.classList.remove("bg-primary", "scale-100");
+            dot.classList.add("bg-transparent", "scale-0");
+          }
+        }
+      });
+    }
+
+    // Click on step buttons
+    document.querySelectorAll(".process-step-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-step") || "0");
+        goToStep(idx);
+      });
+    });
+
+    // Auto-advance every 4s, pause on hover
+    let autoTimer;
+    function startAutoAdvance() {
+      stopAutoAdvance();
+      autoTimer = setInterval(() => {
+        const next = (activeDesktop + 1) % totalSteps;
+        goToStep(next);
+      }, 4000);
+    }
+    function stopAutoAdvance() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    const processContainer = document.querySelector(".lg\\:flex");
+    if (processContainer) {
+      processContainer.addEventListener("mouseenter", stopAutoAdvance);
+      processContainer.addEventListener("mouseleave", startAutoAdvance);
+    }
+
+    startAutoAdvance();
+  }
+
+  // ====================================================================
+  // MOBILE — Carousel
+  // ====================================================================
+  let mobileIdx = 0;
+  const mobileTotal = processSteps.length;
+  const mobileTrack = document.getElementById("mobile-carousel-track");
+  const mobileDots = document.querySelectorAll(".mobile-dot");
+  const mobileProgress = document.getElementById("mobile-progress");
+  const mobileCurrent = document.getElementById("mobile-step-current");
+  const mobilePrev = document.getElementById("mobile-prev");
+  const mobileNext = document.getElementById("mobile-next");
+  let mobileAutoTimer;
+
+  function goMobile(idx) {
+    if (!mobileTrack) return;
+    mobileIdx = (idx + mobileTotal) % mobileTotal;
+    mobileTrack.style.transform = `translateX(-${mobileIdx * 100}%)`;
+    if (mobileProgress) mobileProgress.style.width = `${((mobileIdx + 1) / mobileTotal) * 100}%`;
+    if (mobileCurrent) mobileCurrent.textContent = String(mobileIdx + 1);
+
+    // Update mobile image
+    document.querySelectorAll("[id^='mobile-process-img-']").forEach((img, i) => {
+      if (i === mobileIdx) {
+        img.classList.add("opacity-100", "scale-100");
+        img.classList.remove("opacity-0", "scale-110");
+      } else {
+        img.classList.remove("opacity-100", "scale-100");
+        img.classList.add("opacity-0", "scale-110");
+      }
+    });
+    // Update mobile image title
+    const titleEl = document.getElementById("mobile-step-title");
+    if (titleEl) titleEl.textContent = processSteps[mobileIdx].title;
+
+    mobileDots.forEach((dot, i) => {
+      if (i === mobileIdx) {
+        dot.className = "mobile-dot w-6 bg-primary rounded-full transition-all duration-400";
+      } else {
+        dot.className = `mobile-dot h-1.5 w-1.5 rounded-full bg-base-300 transition-all duration-400`;
+      }
+    });
+  }
+
+  function startMobileAuto() { stopMobileAuto(); mobileAutoTimer = setInterval(() => { goMobile(mobileIdx + 1); }, 4000); }
+  function stopMobileAuto() { if (mobileAutoTimer) clearInterval(mobileAutoTimer); }
+  function resetMobileAuto() { stopMobileAuto(); startMobileAuto(); }
+
+  mobilePrev?.addEventListener("click", () => { goMobile(mobileIdx - 1); resetMobileAuto(); });
+  mobileNext?.addEventListener("click", () => { goMobile(mobileIdx + 1); resetMobileAuto(); });
+
+  // Dot click
+  mobileDots.forEach((dot, i) => {
+    dot.addEventListener("click", () => { goMobile(i); resetMobileAuto(); });
+  });
+
+  // Touch swipe
+  let touchX = 0;
+  const trackContainer = document.getElementById("mobile-carousel-track")?.parentElement;
+  trackContainer?.addEventListener("touchstart", (e) => { touchX = e.changedTouches[0].screenX; stopMobileAuto(); }, { passive: true });
+  trackContainer?.addEventListener("touchend", (e) => {
+    const diff = touchX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 40) {
+      goMobile(diff > 0 ? mobileIdx + 1 : mobileIdx - 1);
+    }
+    resetMobileAuto();
+  }, { passive: true });
+
+  startMobileAuto();
+
+  // ====================================================================
+  // TESTIMONIAL CAROUSEL
+  // ====================================================================
+  const track = document.getElementById("testimonial-track");
+  const slides = document.querySelectorAll(".testimonial-slide");
+  const dots = document.querySelectorAll(".testi-dot");
+  const prevBtn = document.getElementById("testi-prev");
+  const nextBtn = document.getElementById("testi-next");
+  let testiIdx = 0;
+  const testiTotal = slides.length;
+  let testiInterval;
+
+  function updateTesti() {
+    if (!track) return;
+    track.style.transform = `translateX(-${testiIdx * 100}%)`;
+    dots.forEach((d, i) => {
+      if (i === testiIdx) { d.className = "testi-dot h-2 w-7 rounded-full bg-primary transition-all duration-400"; }
+      else { d.className = "testi-dot h-2 w-2 rounded-full bg-base-300 transition-all duration-400"; }
+    });
+  }
+
+  function startTesti() { stopTesti(); testiInterval = setInterval(() => { testiIdx = (testiIdx + 1) % testiTotal; updateTesti(); }, 4000); }
+  function stopTesti() { if (testiInterval) clearInterval(testiInterval); }
+  function resetTesti() { stopTesti(); startTesti(); }
+
+  prevBtn?.addEventListener("click", () => { testiIdx = (testiIdx - 1 + testiTotal) % testiTotal; updateTesti(); resetTesti(); });
+  nextBtn?.addEventListener("click", () => { testiIdx = (testiIdx + 1) % testiTotal; updateTesti(); resetTesti(); });
+  dots.forEach(d => { d.addEventListener("click", () => { testiIdx = parseInt(d.dataset.index || "0"); updateTesti(); resetTesti(); }); });
+
+  startTesti();
+</script>
+
+<style is:global>
+  .hero-bg-slide { transition: opacity 1s ease-in-out, transform 1.2s ease-out; }
+  #testimonial-track { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* Process section animations */
+  .process-animate {
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .process-feature-img {
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .process-step-btn {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .process-step-btn .rounded-xl {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .process-step-btn .rounded-full {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #mobile-carousel-track {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #mobile-progress {
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mobile-dot {
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>

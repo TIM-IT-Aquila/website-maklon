@@ -1,0 +1,23 @@
+---
+// Icon.astro — Wrapper component untuk astro-icon (Lucide icons)
+// Usage: <Icon name="droplet" class="text-2xl" />
+// Nama ikon otomatis di-prefix "lucide:" jika belum ada prefix
+import { Icon as AstroIcon } from "astro-icon/components";
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number;
+  strokeWidth?: number;
+}
+
+const { name, class: className, size = 24, strokeWidth = 2 } = Astro.props;
+const iconName = name.includes(":") ? name : `lucide:${name}`;
+---
+
+<AstroIcon
+  name={iconName}
+  class={className}
+  size={size}
+  strokeWidth={strokeWidth}
+/>

@@ -2,10 +2,10 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
 import CTASection from "../components/sections/CTASection.astro";
+import Icon from "../components/ui/Icon.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
 import { portfolioItems, portfolioCategories } from "../data/portofolio";
-import { Icon } from "astro-icon/components";
 
 const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 ---
@@ -18,12 +18,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
     <!-- ================================================================== -->
     <!-- 1. PAGE HEADER                                                     -->
     <!-- ================================================================== -->
-    <PageHeader
-      title="Portofolio Brand Binaan"
-      description="Berbagai brand telah percaya kepada Aquila Maklon untuk mewujudkan produk kecantikan mereka. Berikut adalah portofolio brand binaan kami."
-      badge="Portofolio"
-      breadcrumb="Portofolio"
-    />
+    
 
     <!-- ================================================================== -->
     <!-- 2. FILTER KATEGORI                                                 -->
@@ -51,12 +46,24 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
             class="portfolio-card group card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20"
             data-category={item.category}
           >
-            <!-- Header with gradient icon -->
-            <div class={`flex h-44 items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-to-br ${item.color}`}>
-              <div class="flex h-24 w-24 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm shadow-lg">
-                <span class="text-5xl transition-transform duration-500 group-hover:scale-110">{item.icon}</span>
+            <!-- Header with brand photo -->
+            <figure class="relative h-44 overflow-hidden rounded-t-2xl">
+              <img
+                src={item.image}
+                alt={item.brandName}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent`}></div>
+              <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm shadow-lg">
+                  <Icon name={item.icon} size={20} class="text-white" />
+                </div>
+                <span class="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-base-content shadow-lg backdrop-blur-sm">
+                  {item.brandName}
+                </span>
               </div>
-            </div>
+            </figure>
 
             <div class="card-body">
               <!-- Badge kategori -->

@@ -14,19 +14,26 @@ const currentYear = new Date().getFullYear();
 <footer class="border-t border-base-300 bg-base-200/50">
   <div class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
     <div class="grid gap-8 md:grid-cols-4">
-      <!-- Brand -->
+      <!-- Brand Premium -->
       <div class="md:col-span-1">
-        <a href="/" class="flex items-center gap-2">
-          <div class="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-primary-content shadow-md">
-            <span class="text-lg font-black">A</span>
+        <a href="/" class="group flex items-center gap-3 transition-all duration-500 hover:opacity-85">
+          <div class="relative flex h-10 w-10 items-center justify-center">
+            <div class="absolute inset-0 rounded-xl bg-primary opacity-15 blur-md transition-all duration-500 group-hover:opacity-30"></div>
+            <div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-md ring-1 ring-white/30">
+              <svg class="h-5 w-5 text-white drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
           </div>
           <div class="leading-tight">
-            <p class="text-lg font-extrabold tracking-tight">
-              Aquila<span class="text-primary">Maklon</span>
+            <p class="text-lg font-extrabold tracking-tight text-primary">
+              Aquila<span class="text-primary/70">Maklon</span>
             </p>
           </div>
         </a>
-        <p class="mt-4 text-sm leading-relaxed text-base-content/60">
+        <p class="mt-4 text-sm leading-relaxed text-primary/50">
           {siteConfig.description}
         </p>
       </div>
@@ -73,7 +80,7 @@ const currentYear = new Date().getFullYear();
         <a
           href={waLink}
           target="_blank"
-          class="btn btn-primary rounded-full px-6 text-white shadow-md"
+          class="btn btn-primary bg-primary border-primary rounded-full px-6 text-white shadow-md hover:brightness-110"
         >
           Konsultasi Gratis
         </a>

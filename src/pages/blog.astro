@@ -15,11 +15,7 @@ import { Icon } from "astro-icon/components";
     <!-- ================================================================== -->
     <!-- 1. PAGE HEADER                                                     -->
     <!-- ================================================================== -->
-    <PageHeader
-      title="Artikel & Panduan Maklon"
-      description="Temukan berbagai artikel, tips, dan panduan lengkap seputar bisnis maklon skincare dan kosmetik untuk membantu mengembangkan brand Anda."
-      badge="Blog"
-    />
+   
 
     <!-- ================================================================== -->
     <!-- 2. FILTER KATEGORI                                                 -->
@@ -44,10 +40,15 @@ import { Icon } from "astro-icon/components";
       <div id="blog-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post) => (
           <article class="blog-card group card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20" data-category={post.category}>
-            <!-- Icon / Image -->
-            <div class="flex h-48 items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-to-br from-primary/5 to-secondary/10">
-              <span class="text-7xl transition-transform duration-500 group-hover:scale-110">{post.image}</span>
-            </div>
+            <!-- Image -->
+            <figure class="h-48 overflow-hidden rounded-t-2xl">
+              <img
+                src={post.image}
+                alt={post.title}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+            </figure>
 
             <div class="card-body">
               <!-- Meta -->

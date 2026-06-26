@@ -1,0 +1,257 @@
+---
+import Icon from "../components/ui/Icon.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { rdStats, rdPhases, rdFacilities, rdInnovations } from "../data/red";
+import { factoryImages, rdImages } from "../data/images";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi layanan R&D produk.");
+---
+
+<MainLayout
+  title="R&D | Aquila Maklon"
+  description="Research & Development produk skincare & kosmetik. Tim R&D berpengalaman siap bantu inovasi produk Anda."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- 1. HERO — Professional research hero                                -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-28 md:pt-36">
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-secondary/5 blur-3xl"></div>
+
+      <div class="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 lg:flex-row lg:px-8">
+        <!-- LEFT: Text -->
+        <div class="flex-1 text-center lg:text-left">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
+            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+            RESEARCH & DEVELOPMENT
+          </span>
+          <h1 class="mt-4 text-4xl font-black leading-tight md:text-5xl lg:text-6xl">
+            Inovasi & Riset<br /><span class="text-primary">Produk Skincare</span>
+          </h1>
+          <p class="mt-4 max-w-xl text-base leading-relaxed text-base-content/60 md:text-lg">
+            Tim R&D kami menciptakan formula inovatif yang aman, efektif, dan sesuai tren pasar. Didukung laboratorium modern dan tenaga ahli berpengalaman.
+          </p>
+          <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+            <a href={waLink} target="_blank" class="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-500 hover:scale-105 hover:shadow-xl">
+              <Icon name="mdi:whatsapp" class="h-4 w-4" />
+              Konsultasi R&D
+            </a>
+            <a href="#phases" class="group inline-flex h-14 items-center gap-2 rounded-full border border-base-300 bg-base-100 px-8 text-sm font-medium text-base-content/70 shadow-sm transition-all duration-500 hover:border-primary/30 hover:text-primary">
+              Lihat Tahapan
+              <Icon name="chevron-down" class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+            </a>
+          </div>
+
+          <!-- Mini stats -->
+          <div class="mt-8 grid grid-cols-3 gap-6">
+            {rdStats.slice(0, 3).map(function(stat) {
+              return (
+                <div class="text-center">
+                  <p class="text-2xl font-black text-primary">{stat.value}</p>
+                  <p class="text-xs font-medium text-base-content/45">{stat.label}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- RIGHT: Image -->
+        <div class="flex-1">
+          <div class="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-3xl shadow-2xl">
+            <img src={factoryImages.labResearch} alt="R&D Laboratory" class="h-full w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-primary shadow-lg backdrop-blur-sm">
+              <Icon name="microscope" class="mr-1 inline h-3 w-3" /> Lab Research
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. TAHAPAN R&D — Interactive steps                                 -->
+    <!-- ================================================================== -->
+    <section id="phases" class="bg-base-100 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
+            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+            TAHAPAN R&D
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Proses Riset & Pengembangan</h2>
+          <p class="mt-3 text-base-content/55">Setiap tahap dilakukan dengan standar ilmiah tertinggi.</p>
+        </div>
+
+        <div class="mt-14 flex flex-col gap-8 lg:flex-row lg:gap-12">
+          <!-- LEFT: Step list -->
+          <div class="flex-1 space-y-2">
+            {rdPhases.map(function(phase, i) {
+              return (
+                <div
+                  class={"rd-step-item group relative cursor-pointer rounded-2xl border p-5 transition-all duration-500 hover:bg-primary/[0.04] hover:border-primary/30 hover:scale-[1.02] hover:shadow-md" + (i === 0 ? " border-primary/20 bg-primary/[0.03] shadow-sm" : " border-base-200/80 bg-base-100")}
+                  data-step={i}
+                >
+                  <div class="flex items-center gap-5">
+                    <div class={"flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-lg font-black transition-all duration-500 group-hover:scale-110" + (i === 0 ? " bg-primary text-white shadow-md" : " bg-base-200 text-base-content/40 group-hover:bg-primary/20 group-hover:text-primary")}>
+                      {phase.step}
+                    </div>
+                    <div>
+                      <h3 class={"text-base font-bold transition-colors duration-300" + (i === 0 ? " text-primary" : " group-hover:text-primary")}>{phase.title}</h3>
+                    </div>
+                    <Icon name={i === 0 ? "chevron-down" : "chevron-right"} class={"ml-auto h-4 w-4 shrink-0 transition-all duration-500" + (i === 0 ? " text-primary opacity-100" : " text-base-content/20 opacity-0 group-hover:opacity-60")} />
+                  </div>
+                  {i < rdPhases.length - 1 && (
+                    <div class="absolute bottom-0 left-12 h-6 w-0.5 bg-gradient-to-b from-base-300 to-transparent"></div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <!-- RIGHT: Detail panel -->
+          <div class="flex-1 lg:sticky lg:top-24 lg:self-start">
+            <div id="rd-detail-panel" class="relative overflow-hidden rounded-3xl border border-base-200 bg-base-100 p-8 shadow-lg lg:p-10">
+              <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/[0.04] blur-2xl"></div>
+              <div class="relative z-10">
+                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-2xl font-black text-white shadow-lg">
+                  {rdPhases[0].step}
+                </div>
+                <h3 id="rd-detail-title" class="text-2xl font-bold">{rdPhases[0].title}</h3>
+                <p id="rd-detail-desc" class="mt-3 leading-relaxed text-base-content/60">{rdPhases[0].desc}</p>
+                <div class="mt-6 flex items-center gap-3 text-sm text-base-content/40">
+                  <span id="rd-detail-current">1</span>
+                  <span>/</span>
+                  <span>{rdPhases.length}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. FASILITAS & TEKNOLOGI                                           -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/40 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
+            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+            FASILITAS & TEKNOLOGI
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Laboratorium Modern</h2>
+          <p class="mt-3 text-base-content/55">Didukung peralatan riset terkini untuk hasil optimal.</p>
+        </div>
+
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {rdFacilities.map(function(facility) {
+            return (
+              <div class="group relative overflow-hidden rounded-2xl border border-base-200/60 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+                <figure class="h-48 overflow-hidden">
+                  <img src={facility.image} alt={facility.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                </figure>
+                <div class="p-6">
+                  <h3 class="text-lg font-bold transition-colors duration-300 group-hover:text-primary">{facility.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-base-content/55">{facility.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. INOVASI & PENGEMBANGAN — Alternating layout                     -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
+            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+            INOVASI
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Inovasi & Pengembangan Produk</h2>
+          <p class="mt-3 text-base-content/55">Kami terus berinovasi untuk menciptakan produk terbaik.</p>
+        </div>
+
+        <div class="mt-14 space-y-16">
+          {rdInnovations.map(function(item, i) {
+            var isEven = i % 2 === 0;
+            return (
+              <div class={"flex flex-col items-center gap-8 md:gap-12 " + (isEven ? "md:flex-row" : "md:flex-row-reverse")}>
+                <div class="flex-1">
+                  <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src={item.image} alt={item.title} class="h-full w-full object-cover aspect-[4/3]" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-4 py-1 text-[11px] font-semibold tracking-[0.12em] text-primary">
+                    {"0" + (i + 1)}
+                  </span>
+                  <h3 class="mt-3 text-2xl font-bold">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-relaxed text-base-content/60">{item.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. CTA                                                              -->
+    <!-- ================================================================== -->
+    <CTASection
+      title="Kembangkan Produk Anda Bersama Tim R&D Kami"
+      description="Konsultasikan ide produk Anda. Tim R&D Aquila Maklon siap mewujudkannya."
+      buttonText="Konsultasi R&D"
+      waMessage="Halo, saya ingin berkonsultasi dengan tim R&D untuk pengembangan produk."
+    />
+  </main>
+</MainLayout>
+
+<script>
+  // ====================================================================
+  // R&D STEPS — Interactive hover detail panel
+  // ====================================================================
+  var rdData = [
+    { step: "01", title: "Analisis Tren Pasar", desc: "Tim riset menganalisis tren terbaru untuk memastikan produk relevan dan kompetitif." },
+    { step: "02", title: "Konsep Formula", desc: "Perumusan konsep bahan aktif dan komposisi yang tepat untuk produk Anda." },
+    { step: "03", title: "Pengembangan Prototype", desc: "Prototype dikembangkan di laboratorium dengan pengujian bertahap." },
+    { step: "04", title: "Uji Stabilitas & Keamanan", desc: "Produk diuji stabilitas, pH, viskositas, dan keamanan secara menyeluruh." },
+    { step: "05", title: "Uji Klinis & Panel", desc: "Pengujian pada panel untuk memastikan efektivitas dan toleransi kulit." },
+    { step: "06", title: "Finalisasi & Produksi", desc: "Formula final siap diproduksi massal dengan standar kualitas tertinggi." },
+  ];
+
+  var rdItems = document.querySelectorAll(".rd-step-item");
+  var rdTitle = document.getElementById("rd-detail-title");
+  var rdDesc = document.getElementById("rd-detail-desc");
+  var rdCurrent = document.getElementById("rd-detail-current");
+
+  rdItems.forEach(function(item) {
+    item.addEventListener("mouseenter", function() {
+      var idx = parseInt(this.getAttribute("data-step") || "0");
+      var data = rdData[idx];
+      if (rdTitle) rdTitle.textContent = data.title;
+      if (rdDesc) rdDesc.textContent = data.desc;
+      if (rdCurrent) rdCurrent.textContent = String(parseInt(data.step));
+    });
+  });
+</script>
+
+<style is:global>
+  .rd-step-item {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #rd-detail-panel {
+    transition: all 0.4s ease;
+  }
+</style>

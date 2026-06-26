@@ -1,4 +1,5 @@
 ---
+import Icon from "../ui/Icon.astro";
 import { ourStory } from "../../data/company";
 ---
 
@@ -16,27 +17,17 @@ import { ourStory } from "../../data/company";
         ))}
       </div>
 
-      <!-- Right: Visual Card -->
+      <!-- Right: Photo Card -->
       <div class="relative">
-        <div class="rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 p-1 shadow-xl">
-          <div class="rounded-[calc(1.5rem-4px)] bg-base-100 p-8">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="flex aspect-square items-center justify-center rounded-2xl bg-primary/10 text-5xl">
-                🧪
+        <div class="overflow-hidden rounded-3xl shadow-xl">
+          <img src={ourStory.image} alt="Our team at Aquila Maklon" class="h-full w-full object-cover aspect-[4/3]" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                <Icon name="lucide:flask-conical" size={20} class="text-white" />
               </div>
-              <div class="flex aspect-square items-center justify-center rounded-2xl bg-secondary/10 text-5xl">
-                🏭
-              </div>
-              <div class="flex aspect-square items-center justify-center rounded-2xl bg-primary/10 text-5xl">
-                🧴
-              </div>
-              <div class="flex aspect-square items-center justify-center rounded-2xl bg-secondary/10 text-5xl">
-                📦
-              </div>
+              <p class="text-sm font-semibold text-white">Dari Lab ke Pasar — Bersama Aquila Maklon</p>
             </div>
-            <p class="mt-6 text-center text-sm font-semibold text-base-content/60">
-              Dari Lab ke Pasar — Bersama Aquila Maklon
-            </p>
           </div>
         </div>
       </div>

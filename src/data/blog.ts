@@ -1,3 +1,5 @@
+import { blogImages } from "./images";
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -23,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-06-20",
     readTime: "5 menit",
-    image: "📚",
+    image: blogImages.skincareGuide,
     tags: ["brand skincare", "pemula", "bisnis skincare", "tips"],
   },
   {
@@ -32,12 +34,12 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Kenapa banyak brand kosmetik memilih jasa maklon? Berikut lima keunggulan utama yang bisa Anda dapatkan.",
     content:
-      "Jasa maklon menjadi solusi populer bagi pelaku bisnis kosmetik karena berbagai keunggulan. Mulai dari efisiensi biaya produksi, akses ke formulasi profesional, hingga kemudahan perizinan BPOM dan sertifikasi halal. Dengan maklon, brand owner bisa fokus pada pengembangan merek dan pemasaran tanpa repot urusan produksi.",
+      "Jasa maklon menjadi solusi populer bagi pelaku bisnis kosmetik karena berbagai keunggulan. Mulai dari eficiensi biaya produksi, akses ke formulasi profesional, hingga kemudahan perizinan BPOM dan sertifikasi halal. Dengan maklon, brand owner bisa fokus pada pengembangan merek dan pemasaran tanpa repot urusan produksi.",
     category: "Layanan Maklon",
     author: "Tim Aquila Maklon",
     date: "2026-06-15",
     readTime: "4 menit",
-    image: "⭐",
+    image: blogImages.maklonBenefit,
     tags: ["jasa maklon", "keunggulan", "kosmetik", "produksi"],
   },
   {
@@ -51,7 +53,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-06-10",
     readTime: "6 menit",
-    image: "📋",
+    image: blogImages.prosesMaklon,
     tags: ["alur maklon", "skincare", "proses produksi", "panduan"],
   },
   {
@@ -65,7 +67,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-06-05",
     readTime: "4 menit",
-    image: "✅",
+    image: blogImages.sertifikasi,
     tags: ["BPOM", "sertifikasi halal", "legalitas", "kosmetik"],
   },
   {
@@ -79,7 +81,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-05-28",
     readTime: "5 menit",
-    image: "💡",
+    image: blogImages.tipsMaklon,
     tags: ["tips", "memilih maklon", "partner bisnis", "skincare"],
   },
   {
@@ -93,7 +95,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-05-20",
     readTime: "4 menit",
-    image: "📈",
+    image: blogImages.trenSkincare,
     tags: ["tren", "skincare 2026", "inovasi", "produk"],
   },
   {
@@ -107,7 +109,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-05-15",
     readTime: "6 menit",
-    image: "💰",
+    image: blogImages.modalBisnis,
     tags: ["modal", "bisnis kosmetik", "biaya maklon", "startup"],
   },
   {
@@ -121,7 +123,7 @@ export const blogPosts: BlogPost[] = [
     author: "Tim Aquila Maklon",
     date: "2026-05-08",
     readTime: "3 menit",
-    image: "🤝",
+    image: blogImages.edukasi,
     tags: ["maklon", "brand owner", "model bisnis", "edukasi"],
   },
 ];

@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "../ui/SectionHeader.astro";
+import Icon from "../ui/Icon.astro";
 import { trustPlaceholder } from "../../data/company";
 ---
 
@@ -14,8 +15,8 @@ import { trustPlaceholder } from "../../data/company";
     {trustPlaceholder.map((item) => (
       <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
         <div class="card-body items-center text-center p-8">
-          <div class="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-4xl">
-            {item.icon}
+          <div class="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-4xl text-primary">
+            <Icon name={item.icon} size={40} />
           </div>
           <h3 class="card-title mt-4 text-lg">{item.title}</h3>
           <p class="mt-2 text-sm text-base-content/70">{item.desc}</p>

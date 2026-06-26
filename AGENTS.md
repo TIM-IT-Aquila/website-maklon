@@ -46,7 +46,7 @@ Agent wajib mengikuti aturan berikut:
 9. Gunakan desain clean, modern, soft, dan premium.
 10. Gunakan warna utama project:
 
-- Primary: `#B9CEAC`
+- Primary: `659287`
 - Secondary: `#835f11`
 - White: `#FFFFFF`
     
@@ -382,7 +382,7 @@ Gunakan arsitektur layer:
 Jangan gunakan React.
 Jangan gunakan backend.
 Jangan campur semua kode di index.astro.
-Gunakan warna utama #87AE73, #B9CEAC, dan putih.
+Gunakan warna utama #659287, #88BDA4, dan putih.
 ```
 
 ---

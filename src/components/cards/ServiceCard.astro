@@ -1,9 +1,12 @@
 ---
+import Icon from "../ui/Icon.astro";
+
 interface Service {
   title: string;
   desc: string;
   examples: string;
   icon?: string;
+  image?: string;
 }
 
 interface Props {
@@ -13,11 +16,21 @@ interface Props {
 const { service } = Astro.props;
 ---
 
-<div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
+<div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 overflow-hidden">
+  {service.image && (
+    <figure class="h-48 overflow-hidden">
+      <img
+        src={service.image}
+        alt={service.title}
+        class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+        loading="lazy"
+      />
+    </figure>
+  )}
   <div class="card-body">
-    {service.icon && (
+    {service.icon && !service.image && (
       <div class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl">
-        {service.icon}
+        <Icon name={service.icon} size={28} />
       </div>
     )}
     <h3 class="card-title text-xl">{service.title}</h3>

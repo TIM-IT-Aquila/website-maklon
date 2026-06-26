@@ -1,4 +1,5 @@
 ---
+import Icon from "../ui/Icon.astro";
 import { siteConfig } from "../../data/site";
 import { advantages } from "../../data/advantages";
 import { createWhatsappLink } from "../../lib/whatsapp";
@@ -41,8 +42,8 @@ const waLink = createWhatsappLink(
         {advantages.slice(0, 4).map((item) => (
           <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
             <div class="card-body p-5">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-2xl">
-                {item.icon}
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary">
+                <Icon name={item.icon} size={24} />
               </div>
               <h3 class="card-title mt-2 text-base">{item.title}</h3>
               <p class="text-sm text-base-content/70">{item.desc}</p>
