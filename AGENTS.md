@@ -12,6 +12,8 @@ Project ini menggunakan:
 - Tidak menggunakan backend dulu
 - Website bersifat company profile statis
 - CTA utama diarahkan ke WhatsApp
+- kalo ingin melakukan build menggunakan : bun run build
+- kemudian klo ingin menjalankan server menggunakan : bun run dev
 
 Tugas utama agent adalah membantu membuat, memperbaiki, merapikan, dan mengembangkan kode sesuai arsitektur project.
 
