@@ -1,12 +1,13 @@
 ---
 import Icon from "../components/ui/Icon.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import CTASection from "../components/sections/CTASection.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
 import { merekPatenStats, merekPatenServices, merekPatenProcess, merekPatenBenefits } from "../data/merek-paten";
+import { merekPatenImages } from "../data/images";
 
 const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi pendaftaran merek dan paten.");
+const waLongLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi pendaftaran merek dan paten untuk produk skincare saya.");
 ---
 
 <MainLayout
@@ -15,62 +16,113 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
 >
   <main>
     <!-- ================================================================== -->
-    <!-- 1. HERO — Premium legal hero                                        -->
+    <!-- 1. MEREK PATEN SECTION — Image right, text left, highlights + steps  -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-28 md:pt-36">
-      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-secondary/5 blur-3xl"></div>
+    <section id="merek" class="bg-base-100 pt-16 pb-0 lg:pt-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
 
-      <div class="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 lg:flex-row lg:px-8">
-        <!-- LEFT: Text -->
-        <div class="flex-1 text-center lg:text-left">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            MEREK & PATEN
-          </span>
-          <h1 class="mt-4 text-4xl font-black leading-tight md:text-5xl lg:text-6xl">
-            Lindungi<br /><span class="text-primary">Kekayaan Intelektual</span> Anda
+        {/* ── Header Badge ── */}
+        <div class="mb-10 flex flex-col items-center text-center lg:mb-14">
+          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
+            <Icon name="lucide:scroll-text" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">MEREK & PATEN</span>
+          </div>
+          <h1 class="mt-4 text-2xl font-black md:text-3xl lg:text-4xl tracking-tight">
+            Lindungi Brand <span class="text-primary">& Inovasi Anda</span>
           </h1>
-          <p class="mt-4 max-w-xl text-base leading-relaxed text-base-content/60 md:text-lg">
-            Layanan pendaftaran merek, paten, dan perlindungan HKI untuk produk skincare & kosmetik Anda. Proses mudah, cepat, dan terpercaya.
-          </p>
-          <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-500 hover:scale-105 hover:shadow-xl">
-              <Icon name="mdi:whatsapp" class="h-4 w-4" />
-              Konsultasi Merek
-            </a>
-            <a href="#process" class="group inline-flex h-14 items-center gap-2 rounded-full border border-base-300 bg-base-100 px-8 text-sm font-medium text-base-content/70 shadow-sm transition-all duration-500 hover:border-primary/30 hover:text-primary">
-              Lihat Alur
-              <Icon name="chevron-down" class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-            </a>
+        </div>
+
+        {/* ── Content: Text + Image side by side ── */}
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* Text — left on desktop */}
+          <div class="reveal-left">
+            <h3 class="text-xl font-bold text-base-content lg:text-2xl">Perlindungan Hukum untuk Brand Skincare Anda</h3>
+            <p class="mt-3 leading-relaxed text-base-content/60">
+              Kami menyediakan layanan pendaftaran merek dan paten lengkap — dari konsultasi awal hingga sertifikat terbit. Proses transparan, didampingi tim legal berpengalaman.
+            </p>
+
+            {/* Highlights */}
+            <div class="mt-6 space-y-3">
+              {[
+                { icon: "lucide:shield-check", text: "Perlindungan hukum dari pemalsuan dan pembajakan merek" },
+                { icon: "lucide:award", text: "Merek terdaftar menjadi aset perusahaan bernilai tinggi" },
+                { icon: "lucide:scroll-text", text: "Hak eksklusif menggunakan merek untuk produk Anda" },
+                { icon: "lucide:badge-check", text: "Meningkatkan kepercayaan konsumen terhadap brand" },
+              ].map((h) => (
+                <div class="flex items-start gap-3 rounded-xl border border-base-200 bg-base-200/30 p-3 transition-all duration-300 hover:border-primary/15 hover:bg-primary/[0.03]">
+                  <div class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon name={h.icon} size={15} class="text-primary" />
+                  </div>
+                  <p class="text-sm leading-relaxed text-base-content/70">{h.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <!-- Trust badges -->
-          <div class="mt-8 flex flex-wrap items-center gap-4">
-            <div class="flex items-center gap-2 rounded-full border border-base-200 bg-base-100 px-4 py-2 text-xs font-semibold text-base-content/60 shadow-sm">
-              <Icon name="badge-check" class="h-3.5 w-3.5 text-primary" /> Dirjen HKI Terdaftar
-            </div>
-            <div class="flex items-center gap-2 rounded-full border border-base-200 bg-base-100 px-4 py-2 text-xs font-semibold text-base-content/60 shadow-sm">
-              <Icon name="shield-check" class="h-3.5 w-3.5 text-primary" /> 100% Legal
+          {/* Image — right on desktop */}
+          <div class="reveal-right">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl lg:rounded-3xl">
+              <img src={merekPatenImages.legalDoc} alt="Merek & Paten" class="h-64 w-full object-cover sm:h-80 lg:h-96" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
+                  <span class="h-1.5 w-1.5 rounded-full bg-green-400"></span>
+                  Legal & HKI
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT: Image with badge overlay -->
-        <div class="flex-1">
-          <div class="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-3xl shadow-2xl">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Legal Documentation" class="h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-primary shadow-lg backdrop-blur-sm">
-              <Icon name="lucide:scroll-text" class="mr-1 inline h-3 w-3" /> Terdaftar Resmi
+        {/* ── Process Steps — Horizontal tabs with hover popup ── */}
+        <div class="mt-14 lg:mt-20 pb-16 lg:pb-24">
+          <p class="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-base-content/40">Alur Pendaftaran</p>
+
+          {/* Desktop: Horizontal step tabs with hover popup */}
+          <div class="hidden lg:block">
+            <div class="relative grid grid-cols-6 gap-3">
+              {merekPatenProcess.map((s) => (
+                <div
+                  class="merek-step-tab group relative flex flex-col items-center gap-3 rounded-2xl border border-base-200 bg-base-100 p-4 text-center transition-all duration-400 hover:border-primary/20 hover:shadow-md hover:-translate-y-1"
+                >
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary transition-all duration-400 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+                    {s.step}
+                  </div>
+                  <span class="text-xs font-semibold text-base-content/70 leading-tight">{s.title}</span>
+
+                  {/* ── POPUP ABOVE on hover ── */}
+                  <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-3 w-64 -translate-x-1/2 rounded-2xl border-2 border-primary/25 bg-white p-4 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-4">
+                    <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-primary/25 bg-white"></div>
+                    <p class="text-xs leading-relaxed text-base-content/65">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+
+          {/* Mobile: Vertical accordion */}
+          <div class="space-y-3 lg:hidden">
+            {merekPatenProcess.map((s) => (
+              <details class="group rounded-2xl border border-base-200 bg-base-100 shadow-sm transition-all duration-400 open:border-primary/15 open:shadow-md [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
+                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary">
+                    {s.step}
+                  </div>
+                  <span class="text-sm font-semibold text-base-content flex-1">{s.title}</span>
+                  <Icon name="lucide:chevron-down" size={16} class="text-base-content/30 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div class="px-4 pb-4 pl-[56px]">
+                  <p class="text-xs leading-relaxed text-base-content/60">{s.desc}</p>
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
     </section>
 
     <!-- ================================================================== -->
-    <!-- 2. STATS                                                           -->
+    <!-- 2. STATS — Gradient bar                                            -->
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-gradient-to-br from-primary to-emerald-900 py-16">
       <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -78,7 +130,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
         <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
           {merekPatenStats.map(function(stat) {
             return (
-              <div class="text-center">
+              <div class="stat-card text-center" style="opacity:0;transform:translateY(20px)">
                 <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.05] shadow-lg backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:border-white/[0.15]">
                   <span class="text-3xl font-black text-white">{stat.value}</span>
                 </div>
@@ -91,30 +143,34 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     </section>
 
     <!-- ================================================================== -->
-    <!-- 3. LAYANAN — Cards                                                 -->
+    <!-- 3. LAYANAN — Clean grid cards                                      -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            LAYANAN
-          </span>
-          <h2 class="mt-4 text-3xl font-black md:text-4xl">Layanan Merek & Paten</h2>
-          <p class="mt-3 text-base-content/55">Perlindungan legal yang lengkap untuk brand Anda.</p>
+    <section class="relative overflow-hidden bg-base-200/40 py-20 lg:py-28">
+      <div class="pointer-events-none absolute -left-60 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/[0.04] blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03] blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="flex flex-col items-center text-center">
+          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-base-200/40 px-5 py-2">
+            <Icon name="lucide:scroll-text" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">LAYANAN KAMI</span>
+          </div>
+          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Perlindungan Merek & Paten</h2>
+          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
+            Solusi legal lengkap untuk melindungi brand dan inovasi produk Anda.
+          </p>
         </div>
 
         <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {merekPatenServices.map(function(svc) {
             return (
-              <div class="group relative overflow-hidden rounded-2xl border border-base-200/60 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-                <figure class="h-40 overflow-hidden">
-                  <img src={svc.image} alt={svc.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                </figure>
-                <div class="p-6 text-center">
-                  <h3 class="text-lg font-bold transition-colors duration-300 group-hover:text-primary">{svc.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-base-content/55">{svc.desc}</p>
+              <div class="adv-card group relative overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 lg:p-7" style="opacity:0;transform:translateY(30px)">
+                <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
+                  <Icon name={`lucide:${svc.icon}`} size={26} />
                 </div>
+                <h3 class="text-lg font-bold text-base-content transition-colors duration-300 group-hover:text-primary">{svc.title}</h3>
+                <p class="mt-2.5 text-sm leading-relaxed text-base-content/55">{svc.desc}</p>
+                <div class="mt-5 h-0.5 w-0 rounded-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-700 group-hover:w-20"></div>
               </div>
             );
           })}
@@ -123,145 +179,70 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     </section>
 
     <!-- ================================================================== -->
-    <!-- 4. ALUR PENDAFTARAN — Interactive stepper                          -->
+    <!-- 4. CTA PREMIUM BANNER                                              -->
     <!-- ================================================================== -->
-    <section id="process" class="bg-base-200/40 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            ALUR PENDAFTARAN
-          </span>
-          <h2 class="mt-4 text-3xl font-black md:text-4xl">Proses Mudah & Transparan</h2>
-          <p class="mt-3 text-base-content/55">Kami dampingi Anda dari awal hingga sertifikat terbit.</p>
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 50% 50%, white 1px, transparent 1px);background-size:50px 50px"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 text-center lg:px-8">
+        <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+          <Icon name="lucide:shield-check" size={36} class="text-white" />
         </div>
 
-        <div class="mt-14 flex flex-col gap-8 lg:flex-row lg:gap-12">
-          <!-- LEFT: Step list -->
-          <div class="flex-1 space-y-2">
-            {merekPatenProcess.map(function(item, i) {
-              return (
-                <div
-                  class={"paten-step-item group relative cursor-pointer rounded-2xl border p-5 transition-all duration-500 hover:bg-primary/[0.04] hover:border-primary/30 hover:scale-[1.02] hover:shadow-md" + (i === 0 ? " border-primary/20 bg-primary/[0.03] shadow-sm" : " border-base-200/80 bg-base-100")}
-                  data-step={i}
-                >
-                  <div class="flex items-center gap-5">
-                    <div class={"flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-lg font-black transition-all duration-500 group-hover:scale-110" + (i === 0 ? " bg-primary text-white shadow-md" : " bg-base-200 text-base-content/40 group-hover:bg-primary/20 group-hover:text-primary")}>
-                      {item.step}
-                    </div>
-                    <div>
-                      <h3 class={"text-base font-bold transition-colors duration-300" + (i === 0 ? " text-primary" : " group-hover:text-primary")}>{item.title}</h3>
-                    </div>
-                    <Icon name={i === 0 ? "chevron-down" : "chevron-right"} class={"ml-auto h-4 w-4 shrink-0 transition-all duration-500" + (i === 0 ? " text-primary opacity-100" : " text-base-content/20 opacity-0 group-hover:opacity-60")} />
-                  </div>
-                  {i < merekPatenProcess.length - 1 && (
-                    <div class="absolute bottom-0 left-12 h-6 w-0.5 bg-gradient-to-b from-base-300 to-transparent"></div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+        <h2 class="text-3xl font-black text-white md:text-4xl lg:text-5xl leading-tight">
+          Siap Daftarkan Merek & Paten Anda?
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base text-white/70 md:text-lg leading-relaxed">
+          Konsultasi gratis dengan tim legal kami. Lindungi brand dan inovasi Anda sekarang juga.
+        </p>
 
-          <!-- RIGHT: Detail panel -->
-          <div class="flex-1 lg:sticky lg:top-24 lg:self-start">
-            <div id="paten-detail-panel" class="relative overflow-hidden rounded-3xl border border-base-200 bg-base-100 p-8 shadow-lg lg:p-10">
-              <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/[0.04] blur-2xl"></div>
-              <div class="relative z-10">
-                <div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-2xl font-black text-white shadow-lg">
-                  {merekPatenProcess[0].step}
-                </div>
-                <h3 id="paten-detail-title" class="text-2xl font-bold">{merekPatenProcess[0].title}</h3>
-                <p id="paten-detail-desc" class="mt-3 leading-relaxed text-base-content/60">{merekPatenProcess[0].desc}</p>
-                <div class="mt-6 flex items-center gap-3 text-sm text-base-content/40">
-                  <span id="paten-detail-current">1</span>
-                  <span>/</span>
-                  <span>{merekPatenProcess.length}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href={waLongLink} target="_blank" rel="noopener noreferrer"
+            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" size={20} />
+            Konsultasi Sekarang
+            <Icon name="lucide:arrow-right" size={18} />
+          </a>
         </div>
       </div>
     </section>
-
-    <!-- ================================================================== -->
-    <!-- 5. BENEFIT — 2-column grid                                         -->
-    <!-- ================================================================== -->
-    <section class="bg-base-100 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            BENEFIT
-          </span>
-          <h2 class="mt-4 text-3xl font-black md:text-4xl">Mengapa Merek & Paten Penting?</h2>
-          <p class="mt-3 text-base-content/55">Lindungi inovasi dan brand Anda dari risiko hukum.</p>
-        </div>
-
-        <div class="mt-14 grid gap-6 md:grid-cols-2">
-          {merekPatenBenefits.map(function(benefit) {
-            return (
-              <div class="group relative overflow-hidden rounded-2xl border border-base-200/60 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-                <figure class="h-40 overflow-hidden">
-                  <img src={benefit.image} alt={benefit.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                </figure>
-                <div class="p-6 text-center">
-                  <h3 class="text-lg font-bold transition-colors duration-300 group-hover:text-primary">{benefit.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-base-content/55">{benefit.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 6. CTA                                                              -->
-    <!-- ================================================================== -->
-    <CTASection
-      title="Daftarkan Merek & Paten Anda Sekarang"
-      description="Konsultasi gratis dengan tim legal kami. Proses mudah, cepat, dan terpercaya."
-      buttonText="Konsultasi via WhatsApp"
-      waMessage="Halo, saya ingin konsultasi pendaftaran merek dan paten untuk produk saya."
-    />
   </main>
 </MainLayout>
 
 <script>
-  // ====================================================================
-  // PATEN STEPS — Interactive hover
-  // ====================================================================
-  var patenData = [
-    { step: "01", title: "Konsultasi Merek", desc: "Diskusikan merek yang ingin didaftarkan dan cek ketersediaan nama." },
-    { step: "02", title: "Cek Ketersediaan", desc: "Kami lakukan pengecekan nama merek di database DJKI." },
-    { step: "03", title: "Pengajuan Dokumen", desc: "Persiapan dan pengajuan dokumen pendaftaran merek." },
-    { step: "04", title: "Monitoring Proses", desc: "Kami pantau proses pendaftaran hingga terbit sertifikat." },
-    { step: "05", title: "Sertifikat Terbit", desc: "Anda terima sertifikat merek resmi dari DJKI." },
-    { step: "06", title: "Perpanjangan & Pembaruan", desc: "Layanan perpanjangan merek dan pembaruan data secara berkala." },
-  ];
+  // ═══════════════════════════════════════════════════════════════════
+  // IntersectionObserver — staggered reveal for stats & cards
+  // ═══════════════════════════════════════════════════════════════════
+  const observerOptions = { threshold: 0.2, rootMargin: "0px 0px -40px 0px" };
 
-  var patenItems = document.querySelectorAll<HTMLElement>(".paten-step-item");
-  var patenTitle = document.getElementById("paten-detail-title");
-  var patenDesc = document.getElementById("paten-detail-desc");
-  var patenCurrent = document.getElementById("paten-detail-current");
-
-  patenItems.forEach(function(item) {
-    item.addEventListener("mouseenter", function() {
-      var idx = parseInt(item.getAttribute("data-step") || "0");
-      var data = patenData[idx];
-      if (patenTitle) patenTitle.textContent = data.title;
-      if (patenDesc) patenDesc.textContent = data.desc;
-      if (patenCurrent) patenCurrent.textContent = String(parseInt(data.step));
+  const reveal = (entries: IntersectionObserverEntry[], obs: IntersectionObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const siblings = Array.from(el.parentElement?.children || []);
+        const realIdx = siblings.indexOf(el);
+        el.style.transition = `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${realIdx * 0.08}s`;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        obs.unobserve(el);
+      }
     });
+  };
+
+  const observer = new IntersectionObserver(reveal, observerOptions);
+  document.querySelectorAll(".stat-card").forEach(el => observer.observe(el));
+  document.querySelectorAll(".adv-card").forEach(el => observer.observe(el));
+  document.querySelectorAll(".reveal-left").forEach(el => {
+    (el as HTMLElement).style.opacity = "0";
+    (el as HTMLElement).style.transform = "translateX(-24px)";
+    observer.observe(el);
+  });
+  document.querySelectorAll(".reveal-right").forEach(el => {
+    (el as HTMLElement).style.opacity = "0";
+    (el as HTMLElement).style.transform = "translateX(24px)";
+    observer.observe(el);
   });
 </script>
-
-<style is:global>
-  .paten-step-item {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  #paten-detail-panel {
-    transition: all 0.4s ease;
-  }
-</style>

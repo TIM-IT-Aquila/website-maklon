@@ -1,13 +1,12 @@
 ---
 import Icon from "../components/ui/Icon.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import CTASection from "../components/sections/CTASection.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
-import { oemOdmStats, oemOdmProcess, oemOdmAdvantages } from "../data/oem-odm";
-import { factoryImages } from "../data/images";
+import { oemOdmStats, oemInfo, oemSteps, odmInfo, odmSteps, oemOdmAdvantages } from "../data/oem-odm";
 
 const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi layanan OEM/ODM.");
+const waLongLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi layanan OEM/ODM untuk produk skincare. Saya tertarik dengan penjelasan di halaman OEM/ODM.");
 ---
 
 <MainLayout
@@ -16,52 +15,228 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
 >
   <main>
     <!-- ================================================================== -->
-    <!-- 1. HERO — 2-column layout                                          -->
+    <!-- 1. OEM SECTION — Image right, text left, interactive steps         -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-28 md:pt-36">
-      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-secondary/5 blur-3xl"></div>
+    <section id="oem" class="bg-base-100 py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
 
-      <div class="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-4 lg:flex-row lg:px-8">
-        <!-- LEFT: Text -->
-        <div class="flex-1 text-center lg:text-left">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            OEM / ODM
-          </span>
-          <h1 class="mt-4 text-4xl font-black leading-tight md:text-5xl lg:text-6xl">
-            Produksi Brand<br /><span class="text-primary">Skincare & Kosmetik</span>
-          </h1>
-          <p class="mt-4 max-w-xl text-base leading-relaxed text-base-content/60 md:text-lg">
-            Layanan OEM (Original Equipment Manufacturing) dan ODM (Original Design Manufacturing) untuk brand Anda. Dari konsep hingga produk siap jual dengan standar kualitas premium.
-          </p>
-          <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="group inline-flex h-14 items-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-500 hover:scale-105 hover:shadow-xl">
-              <Icon name="mdi:whatsapp" class="h-4 w-4" />
-              Konsultasi OEM/ODM
-            </a>
-            <a href="#process" class="group inline-flex h-14 items-center gap-2 rounded-full border border-base-300 bg-base-100 px-8 text-sm font-medium text-base-content/70 shadow-sm transition-all duration-500 hover:border-primary/30 hover:text-primary">
-              Lihat Proses
-              <Icon name="chevron-down" class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-            </a>
+        {/* ── OEM Header Badge ── */}
+        <div class="mb-10 flex flex-col items-center text-center lg:mb-14">
+          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
+            <Icon name="lucide:factory" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">OEM</span>
+          </div>
+          <h2 class="mt-4 text-2xl font-black md:text-3xl lg:text-4xl tracking-tight">{oemInfo.subtitle}</h2>
+        </div>
+
+        {/* ── OEM Content: Image + Text side by side ── */}
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* Image — right on desktop */}
+          <div class="order-2 lg:order-2 reveal-left">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl lg:rounded-3xl">
+              <img src={oemInfo.image} alt={oemInfo.imageAlt} class="h-64 w-full object-cover sm:h-80 lg:h-96" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
+                  <span class="h-1.5 w-1.5 rounded-full bg-green-400"></span>
+                  Fasilitas Produksi
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Text — left on desktop */}
+          <div class="order-1 lg:order-1 reveal-right">
+            <h3 class="text-xl font-bold text-base-content lg:text-2xl">{oemInfo.title}</h3>
+            <p class="mt-3 leading-relaxed text-base-content/60">{oemInfo.description}</p>
+
+            {/* Highlights */}
+            <div class="mt-6 space-y-3">
+              {oemInfo.highlights.map((h) => (
+                <div class="flex items-start gap-3 rounded-xl border border-base-200 bg-base-200/30 p-3 transition-all duration-300 hover:border-primary/15 hover:bg-primary/[0.03]">
+                  <div class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon name={h.icon} size={15} class="text-primary" />
+                  </div>
+                  <p class="text-sm leading-relaxed text-base-content/70">{h.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <!-- RIGHT: Image -->
-        <div class="flex-1">
-          <div class="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-3xl shadow-2xl">
-            <img src={factoryImages.productionLine} alt="OEM ODM Production" class="h-full w-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold text-primary shadow-lg backdrop-blur-sm">
-              <Icon name="factory" class="mr-1 inline h-3 w-3" /> Maklon Premium
+        {/* ── OEM Steps — Horizontal interactive tabs ── */}
+        <div class="mt-14 lg:mt-20">
+          <p class="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-base-content/40">Langkah OEM</p>
+
+          {/* Desktop: Horizontal step tabs with hover popup */}
+          <div class="hidden lg:block">
+            <div class="relative grid grid-cols-6 gap-3">
+              {oemSteps.map((s) => (
+                <div
+                  class="oem-step-tab group relative flex flex-col items-center gap-3 rounded-2xl border border-base-200 bg-base-100 p-4 text-center transition-all duration-400 hover:border-primary/20 hover:shadow-md hover:-translate-y-1"
+                >
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary transition-all duration-400 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+                    {s.step}
+                  </div>
+                  <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/5 transition-all duration-400 group-hover:bg-primary/15">
+                    <Icon name={s.icon} size={16} class="text-primary" />
+                  </div>
+                  <span class="text-xs font-semibold text-base-content/70 leading-tight">{s.title}</span>
+
+                  {/* ── POPUP ABOVE on hover ── */}
+                  <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-3 w-64 -translate-x-1/2 rounded-2xl border-2 border-primary/25 bg-white p-4 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-4">
+                    <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-primary/25 bg-white"></div>
+                    <p class="text-xs leading-relaxed text-base-content/65">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+
+          {/* Mobile: Vertical accordion */}
+          <div class="space-y-3 lg:hidden">
+            {oemSteps.map((s) => (
+              <details class="group rounded-2xl border border-base-200 bg-base-100 shadow-sm transition-all duration-400 open:border-primary/15 open:shadow-md [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
+                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary">
+                    {s.step}
+                  </div>
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5">
+                    <Icon name={s.icon} size={15} class="text-primary" />
+                  </div>
+                  <span class="text-sm font-semibold text-base-content flex-1">{s.title}</span>
+                  <Icon name="lucide:chevron-down" size={16} class="text-base-content/30 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div class="px-4 pb-4 pl-[68px]">
+                  <p class="text-sm leading-relaxed text-base-content/60">{s.desc}</p>
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
     </section>
 
     <!-- ================================================================== -->
-    <!-- 2. STATS — Bar stats                                               -->
+    <!-- 3. DIVIDER — Visual separation                                     -->
+    <!-- ================================================================== -->
+    <div class="bg-base-200/50">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="flex items-center gap-4 py-8">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/5">
+            <Icon name="lucide:arrow-down" size={18} class="text-primary" />
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- 4. ODM SECTION — Image left, text right, interactive steps         -->
+    <!-- ================================================================== -->
+    <section id="odm" class="bg-base-100 py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+
+        {/* ── ODM Header Badge ── */}
+        <div class="mb-10 flex flex-col items-center text-center lg:mb-14">
+          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
+            <Icon name="lucide:lightbulb" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">ODM</span>
+          </div>
+          <h2 class="mt-4 text-2xl font-black md:text-3xl lg:text-4xl tracking-tight">{odmInfo.subtitle}</h2>
+        </div>
+
+        {/* ── ODM Content: Image left, text right ── */}
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* Image — left on desktop */}
+          <div class="reveal-left">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl lg:rounded-3xl">
+              <img src={odmInfo.image} alt={odmInfo.imageAlt} class="h-64 w-full object-cover sm:h-80 lg:h-96" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
+                  <span class="h-1.5 w-1.5 rounded-full bg-green-400"></span>
+                  Laboratorium R&D
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Text — right on desktop */}
+          <div class="reveal-right">
+            <h3 class="text-xl font-bold text-base-content lg:text-2xl">{odmInfo.title}</h3>
+            <p class="mt-3 leading-relaxed text-base-content/60">{odmInfo.description}</p>
+
+            {/* Highlights */}
+            <div class="mt-6 space-y-3">
+              {odmInfo.highlights.map((h) => (
+                <div class="flex items-start gap-3 rounded-xl border border-base-200 bg-base-200/30 p-3 transition-all duration-300 hover:border-primary/15 hover:bg-primary/[0.03]">
+                  <div class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon name={h.icon} size={15} class="text-primary" />
+                  </div>
+                  <p class="text-sm leading-relaxed text-base-content/70">{h.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── ODM Steps — Horizontal interactive tabs ── */}
+        <div class="mt-14 lg:mt-20">
+          <p class="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-base-content/40">Langkah ODM</p>
+
+          {/* Desktop: Horizontal step tabs with hover popup */}
+          <div class="hidden lg:block">
+            <div class="grid grid-cols-4 gap-3">
+              {odmSteps.map((s) => (
+                <div
+                  class="odm-step-tab group relative flex flex-col items-center gap-3 rounded-2xl border border-base-200 bg-base-100 p-4 text-center transition-all duration-400 hover:border-primary/20 hover:shadow-md hover:-translate-y-1"
+                >
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary transition-all duration-400 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+                    {s.step}
+                  </div>
+                  <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/5 transition-all duration-400 group-hover:bg-primary/15">
+                    <Icon name={s.icon} size={16} class="text-primary" />
+                  </div>
+                  <span class="text-xs font-semibold text-base-content/70 leading-tight">{s.title}</span>
+
+                  {/* ── POPUP ABOVE on hover ── */}
+                  <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-3 w-64 -translate-x-1/2 rounded-2xl border-2 border-primary/25 bg-white p-4 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-4">
+                    <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-primary/25 bg-white"></div>
+                    <p class="text-xs leading-relaxed text-base-content/65">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Vertical accordion */}
+          <div class="space-y-3 lg:hidden">
+            {odmSteps.map((s) => (
+              <details class="group rounded-2xl border border-base-200 bg-base-100 shadow-sm transition-all duration-400 open:border-primary/15 open:shadow-md [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
+                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-black text-primary">
+                    {s.step}
+                  </div>
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/5">
+                    <Icon name={s.icon} size={15} class="text-primary" />
+                  </div>
+                  <span class="text-sm font-semibold text-base-content flex-1">{s.title}</span>
+                  <Icon name="lucide:chevron-down" size={16} class="text-base-content/30 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div class="px-4 pb-4 pl-[68px]">
+                  <p class="text-sm leading-relaxed text-base-content/60">{s.desc}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. STATS — Gradient bar with animated counters                     -->
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-gradient-to-br from-primary to-emerald-900 py-16">
       <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -69,7 +244,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
         <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
           {oemOdmStats.map(function(stat) {
             return (
-              <div class="text-center">
+              <div class="stat-card text-center" style="opacity:0;transform:translateY(20px)">
                 <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.05] shadow-lg backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:border-white/[0.15]">
                   <span class="text-3xl font-black text-white">{stat.value}</span>
                 </div>
@@ -82,68 +257,34 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     </section>
 
     <!-- ================================================================== -->
-    <!-- 3. PROSES OEM-ODM — Timeline/interactive                          -->
+    <!-- 6. KEUNGGULAN — Clean grid cards                                   -->
     <!-- ================================================================== -->
-    <section id="process" class="bg-base-100 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            PROSES OEM/ODM
-          </span>
-          <h2 class="mt-4 text-3xl font-black md:text-4xl">Bagaimana Kami Bekerja</h2>
-          <p class="mt-3 text-base-content/55">Tahapan jelas dari awal hingga produk jadi.</p>
-        </div>
+    <section class="relative overflow-hidden bg-base-200/40 py-20 lg:py-28">
+      <div class="pointer-events-none absolute -left-60 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/[0.04] blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03] blur-3xl"></div>
 
-        <div class="mt-14 space-y-6">
-          {oemOdmProcess.map(function(item, i) {
-            return (
-              <div class="process-card group relative overflow-hidden rounded-2xl border border-base-200/80 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 md:p-8">
-                <div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
-                  <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-xl font-black text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
-                    {item.step}
-                  </div>
-                  <div class="flex-1">
-                    <h3 class="text-lg font-bold transition-colors duration-300 group-hover:text-primary">{item.title}</h3>
-                    <p class="mt-1 text-sm leading-relaxed text-base-content/55">{item.desc}</p>
-                  </div>
-                  <div class="hidden text-5xl font-black text-base-200/50 transition-all duration-500 group-hover:text-primary/[0.04] md:block">{item.step}</div>
-                </div>
-                {i < oemOdmProcess.length - 1 && (
-                  <div class="absolute bottom-0 left-12 h-6 w-0.5 bg-gradient-to-b from-base-300 to-transparent"></div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 4. KEUNGGULAN OEM — Grid cards                                     -->
-    <!-- ================================================================== -->
-    <section class="bg-base-200/40 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.04] px-5 py-1.5 text-xs font-semibold tracking-[0.15em] text-primary">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            KEUNGGULAN KAMI
-          </span>
-          <h2 class="mt-4 text-3xl font-black md:text-4xl">Kenapa Pilih Aquila Maklon?</h2>
-          <p class="mt-3 text-base-content/55">Kami berkomitmen memberikan layanan terbaik untuk brand Anda.</p>
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="flex flex-col items-center text-center">
+          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-base-200/40 px-5 py-2">
+            <Icon name="lucide:sparkles" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">KEUNGGULAN KAMI</span>
+          </div>
+          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Kenapa Pilih Aquila Maklon?</h2>
+          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
+            Kami berkomitmen memberikan layanan terbaik untuk brand Anda dengan standar industri terkini.
+          </p>
         </div>
 
         <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {oemOdmAdvantages.map(function(adv) {
+          {oemOdmAdvantages.map(function(adv, i) {
             return (
-              <div class="group relative overflow-hidden rounded-2xl border border-base-200/60 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5">
-                <figure class="h-48 overflow-hidden">
-                  <img src={adv.image} alt={adv.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                </figure>
-                <div class="p-6 text-center">
-                  <h3 class="text-lg font-bold transition-colors duration-300 group-hover:text-primary">{adv.title}</h3>
-                  <p class="mt-2 text-sm leading-relaxed text-base-content/55">{adv.desc}</p>
+              <div class="adv-card group relative overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 lg:p-7" style="opacity:0;transform:translateY(30px)">
+                <div class={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${adv.color} text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl`}>
+                  <Icon name={adv.icon} size={26} />
                 </div>
+                <h3 class="text-lg font-bold text-base-content transition-colors duration-300 group-hover:text-primary">{adv.title}</h3>
+                <p class="mt-2.5 text-sm leading-relaxed text-base-content/55">{adv.desc}</p>
+                <div class="mt-5 h-0.5 w-0 rounded-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-700 group-hover:w-20"></div>
               </div>
             );
           })}
@@ -152,30 +293,70 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     </section>
 
     <!-- ================================================================== -->
-    <!-- 5. CTA SECTION                                                     -->
+    <!-- 7. CTA PREMIUM BANNER                                              -->
     <!-- ================================================================== -->
-    <CTASection
-      title="Mulai Produksi Brand Anda Sekarang"
-      description="Konsultasikan kebutuhan OEM/ODM Anda. Tim kami siap membantu dari konsep hingga produk jadi."
-      buttonText="Konsultasi via WhatsApp"
-      waMessage="Halo, saya ingin konsultasi layanan OEM/ODM untuk produk skincare."
-    />
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 50% 50%, white 1px, transparent 1px);background-size:50px 50px"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 text-center lg:px-8">
+        <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+          <Icon name="lucide:rocket" size={36} class="text-white" />
+        </div>
+
+        <h2 class="text-3xl font-black text-white md:text-4xl lg:text-5xl leading-tight">
+          Mulai Produksi Brand Anda Sekarang
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base text-white/70 md:text-lg leading-relaxed">
+          Konsultasikan kebutuhan OEM/ODM Anda. Tim kami siap membantu dari konsep, formulasi, legalitas, hingga produk jadi siap edar.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href={waLongLink} target="_blank" rel="noopener noreferrer"
+            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" size={20} />
+            Konsultasi via WhatsApp
+            <Icon name="lucide:arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </MainLayout>
 
-<style is:global>
-  .process-card {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: processReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .process-card:nth-child(1) { animation-delay: 0.05s; }
-  .process-card:nth-child(2) { animation-delay: 0.1s; }
-  .process-card:nth-child(3) { animation-delay: 0.15s; }
-  .process-card:nth-child(4) { animation-delay: 0.2s; }
-  .process-card:nth-child(5) { animation-delay: 0.25s; }
-  .process-card:nth-child(6) { animation-delay: 0.3s; }
-  @keyframes processReveal {
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+<script>
+  // ═══════════════════════════════════════════════════════════════════
+  // IntersectionObserver — staggered reveal for stats & advantages
+  // ═══════════════════════════════════════════════════════════════════
+  const observerOptions = { threshold: 0.2, rootMargin: "0px 0px -40px 0px" };
+
+  const reveal = (entries: IntersectionObserverEntry[], obs: IntersectionObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const siblings = Array.from(el.parentElement?.children || []);
+        const realIdx = siblings.indexOf(el);
+        el.style.transition = `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${realIdx * 0.08}s`;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        obs.unobserve(el);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(reveal, observerOptions);
+  document.querySelectorAll(".stat-card").forEach(el => observer.observe(el));
+  document.querySelectorAll(".adv-card").forEach(el => observer.observe(el));
+  document.querySelectorAll(".reveal-left").forEach(el => {
+    (el as HTMLElement).style.opacity = "0";
+    (el as HTMLElement).style.transform = "translateX(-24px)";
+    observer.observe(el);
+  });
+  document.querySelectorAll(".reveal-right").forEach(el => {
+    (el as HTMLElement).style.opacity = "0";
+    (el as HTMLElement).style.transform = "translateX(24px)";
+    observer.observe(el);
+  });
+</script>

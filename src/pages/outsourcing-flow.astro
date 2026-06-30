@@ -1,0 +1,295 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { processSteps } from "../data/process";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+---
+
+<MainLayout
+  title="Alur Maklon | Aquila Maklon"
+  description="Proses maklon yang terstruktur dari konsultasi hingga produk siap dikirim."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- SECTION HEADER — Clean, no hero                                    -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 pt-16 pb-4 lg:pt-24 lg:pb-6">
+      <div class="mx-auto max-w-5xl px-4 lg:px-8">
+        <div class="flex flex-col items-center text-center">
+          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-base-200/40 px-5 py-2">
+            <Icon name="lucide:git-branch" size={16} class="text-primary" />
+            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">ALUR PROSES MAKLON</span>
+          </div>
+          <h1 class="mt-5 text-3xl font-black md:text-4xl lg:text-5xl tracking-tight">
+            9 Tahap <span class="text-primary">Proses Maklon</span>
+          </h1>
+          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
+            Dari ide hingga produk siap jual — setiap langkah didampingi tim profesional kami.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- SNAKE FLOW — Minimal, SVG-connected                               -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 pb-20 lg:pb-28">
+      <div class="mx-auto max-w-5xl px-4 lg:px-8">
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* ROW 1: 1 ──→ 2 ──→ 3 ──→ 4                                     */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {processSteps.slice(0, 4).map((step, i) => (
+            <div id={`step-${step.step}`}
+              class="flow-step group relative flex justify-center"
+              style="opacity:0;transform:translateY(30px)">
+              <div class="relative flex flex-col items-center gap-2 py-4">
+
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-black text-white shadow-lg transition-all duration-400 group-hover:scale-110 group-hover:shadow-xl">
+                  {step.step}
+                </div>
+
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-400 group-hover:bg-primary group-hover:shadow-lg">
+                  <Icon name={step.icon} size={22} class="text-primary transition-colors duration-400 group-hover:text-white" />
+                </div>
+
+                <h3 class="text-center text-[13px] font-bold text-base-content leading-tight lg:text-sm">
+                  {step.title}
+                </h3>
+
+                {/* ── POPUP ABOVE ── */}
+                <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-4 w-72 -translate-x-1/2 rounded-2xl border-2 border-primary/25 bg-white p-5 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-5">
+                  <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-primary/25 bg-white"></div>
+                  <p class="text-[13px] leading-relaxed text-base-content/70">{step.detail}</p>
+                </div>
+
+                {/* → Connector to next */}
+                {i < 3 && (
+                  <div class="absolute -right-5 top-1/2 z-20 hidden -translate-y-1/2 lg:flex items-center gap-0">
+                    <div class="h-0.5 w-10 bg-primary"></div>
+                    <div class="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow-md">
+                      <Icon name="lucide:chevron-right" size={14} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* SNAKE CONNECTOR R1 → R2 (right → left via SVG)                  */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div class="relative my-4 hidden h-14 lg:block">
+          <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1000 56" preserveAspectRatio="none">
+            <!-- Down from card 4 (col 4 center = 87.5%) -->
+            <line x1="875" y1="0" x2="875" y2="28" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+            <!-- Across to card 8 (col 1 center = 12.5%) -->
+            <line x1="875" y1="28" x2="125" y2="28" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+            <!-- Down to Row 2 -->
+            <line x1="125" y1="28" x2="125" y2="50" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          {/* Arrow top-right */}
+          <div class="absolute right-[12.5%] top-0 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full bg-primary text-white shadow-md">
+            <Icon name="lucide:chevron-down" size={14} />
+          </div>
+          {/* Arrow bottom-left */}
+          <div class="absolute bottom-1 left-[12.5%] flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full bg-primary text-white shadow-md">
+            <Icon name="lucide:chevron-down" size={14} />
+          </div>
+        </div>
+        {/* Mobile */}
+        <div class="my-4 flex justify-center lg:hidden">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:arrow-down" size={22} class="text-primary" />
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* ROW 2: 8 ←── 7 ←── 6 ←── 5  (reversed)                         */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {processSteps.slice(4, 8).reverse().map((step, idx, arr) => (
+            <div id={`step-${step.step}`}
+              class="flow-step group relative flex justify-center"
+              style="opacity:0;transform:translateY(30px)">
+              <div class="relative flex flex-col items-center gap-2 py-4">
+
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-black text-white shadow-lg transition-all duration-400 group-hover:scale-110 group-hover:shadow-xl">
+                  {step.step}
+                </div>
+
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-all duration-400 group-hover:bg-primary group-hover:shadow-lg">
+                  <Icon name={step.icon} size={22} class="text-primary transition-colors duration-400 group-hover:text-white" />
+                </div>
+
+                <h3 class="text-center text-[13px] font-bold text-base-content leading-tight lg:text-sm">
+                  {step.title}
+                </h3>
+
+                {/* ── POPUP ABOVE ── */}
+                <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-4 w-72 -translate-x-1/2 rounded-2xl border-2 border-primary/25 bg-white p-5 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-5">
+                  <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-primary/25 bg-white"></div>
+                  <p class="text-[13px] leading-relaxed text-base-content/70">{step.detail}</p>
+                </div>
+
+                {/* ← Connector */}
+                {idx < arr.length - 1 && (
+                  <div class="absolute -right-5 top-1/2 z-20 hidden -translate-y-1/2 lg:flex items-center gap-0">
+                    <div class="h-0.5 w-10 bg-primary"></div>
+                    <div class="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow-md">
+                      <Icon name="lucide:chevron-left" size={14} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* CONNECTOR R2 → R3 (right side → center via SVG)                 */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div class="relative my-4 hidden h-14 lg:block">
+          <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1000 56" preserveAspectRatio="none">
+            {/* From card 5 (col 4 center = 87.5%) go down slightly */}
+            <line x1="875" y1="0" x2="875" y2="14" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+            {/* Across to center */}
+            <line x1="875" y1="14" x2="500" y2="14" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+            {/* Down to card 9 */}
+            <line x1="500" y1="14" x2="500" y2="50" stroke="#659287" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          {/* Arrow top-right (start) */}
+          <div class="absolute right-[12.5%] top-0 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full bg-primary text-white shadow-md">
+            <Icon name="lucide:chevron-down" size={14} />
+          </div>
+          {/* Arrow bottom-center (end) */}
+          <div class="absolute bottom-1 left-1/2 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full bg-primary text-white shadow-md">
+            <Icon name="lucide:chevron-down" size={14} />
+          </div>
+        </div>
+        {/* Mobile */}
+        <div class="my-4 flex justify-center lg:hidden">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:arrow-down" size={22} class="text-primary" />
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* ROW 3: 9 — Final                                                  */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <div class="flex justify-center">
+          <div class="w-full sm:max-w-[calc(50%-12px)] lg:max-w-[calc(25%-18px)]">
+            {processSteps.slice(8, 9).map((step) => (
+              <div id={`step-${step.step}`}
+                class="flow-step group relative flex justify-center"
+                style="opacity:0;transform:translateY(30px)">
+                <div class="relative flex flex-col items-center gap-2 py-4">
+
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-sm font-black text-white shadow-lg transition-all duration-400 group-hover:scale-110 group-hover:shadow-xl">
+                    {step.step}
+                  </div>
+
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary/10 transition-all duration-400 group-hover:bg-secondary group-hover:shadow-lg">
+                    <Icon name={step.icon} size={22} class="text-secondary transition-colors duration-400 group-hover:text-white" />
+                  </div>
+
+                  <h3 class="text-center text-[13px] font-bold text-base-content leading-tight lg:text-sm">
+                    {step.title}
+                  </h3>
+
+                  <span class="mt-0.5 inline-flex items-center gap-1 rounded-full bg-secondary/10 px-2.5 py-0.5 text-[10px] font-semibold text-secondary">
+                    <Icon name="lucide:trophy" size={11} />
+                    Selesai
+                  </span>
+
+                  {/* ── POPUP ABOVE ── */}
+                  <div class="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-4 w-72 -translate-x-1/2 rounded-2xl border-2 border-secondary/25 bg-white p-5 opacity-0 shadow-2xl transition-all duration-300 group-hover:opacity-100 group-hover:mb-5">
+                    <div class="absolute -bottom-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-secondary/25 bg-white"></div>
+                    <p class="text-[13px] leading-relaxed text-base-content/70">{step.detail}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════════════ */}
+
+    <!-- ================================================================== -->
+    <!-- CTA PREMIUM BANNER                                                 -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 50% 50%, white 1px, transparent 1px);background-size:50px 50px"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
+        <h2 class="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight">
+          Siap Memulai <span class="text-white/90">Proses Maklon?</span>
+        </h2>
+        <p class="mx-auto mt-6 max-w-3xl text-lg text-white/75 md:text-xl leading-relaxed">
+          Konsultasikan ide produk Anda sekarang. Tim kami siap mendampingi dari tahap awal hingga produk siap jual — tanpa ribet.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href={waLink} target="_blank" rel="noopener noreferrer"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" class="mr-2 h-5 w-5" />
+            Konsultasi via WhatsApp
+          </a>
+          <a href="/layanan"
+            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20">
+            Lihat Layanan Kami
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>
+
+<style>
+  /* Popup stays visible — z-index max, no clipping */
+  .flow-step {
+    overflow: visible !important;
+  }
+  .flow-step > div {
+    overflow: visible !important;
+  }
+</style>
+
+<!-- Staggered scroll reveal animation -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const steps = document.querySelectorAll('.flow-step');
+    if (!steps.length) return;
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const idx = Array.from(steps).indexOf(el);
+            el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.12}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.12}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    steps.forEach(function (el) {
+      observer.observe(el);
+    });
+  });
+</script>

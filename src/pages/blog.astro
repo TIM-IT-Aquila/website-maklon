@@ -1,8 +1,11 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import CTASection from "../components/sections/CTASection.astro";
-import { blogPosts, blogCategories } from "../data/blog";
+import { blogPosts } from "../data/blog";
 import Icon from "../components/ui/Icon.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi seputar bisnis maklon skincare.");
 ---
 
 <MainLayout
@@ -11,126 +14,120 @@ import Icon from "../components/ui/Icon.astro";
 >
   <main>
     <!-- ================================================================== -->
-    <!-- 1. PAGE HEADER                                                     -->
+    <!-- 1. GRID 2 KOLOM — Foto lebar kotak-kotak                           -->
     <!-- ================================================================== -->
-   
+    <section class="mx-auto max-w-7xl px-4 pt-12 pb-20 lg:px-8 lg:pt-20 lg:pb-28">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+        {blogPosts.map((post, i) => {
+          // Variasi tinggi gambar besar & sedang, kotak semua
+          const heights = ["h-64", "h-80", "h-60", "h-96", "h-72", "h-56", "h-80", "h-64"];
+          const imgH = heights[i % heights.length];
 
-    <!-- ================================================================== -->
-    <!-- 2. FILTER KATEGORI                                                 -->
-    <!-- ================================================================== -->
-    <section class="mx-auto max-w-7xl px-4 pt-12 lg:px-8">
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <button class="category-filter btn btn-sm rounded-full btn-primary text-white" data-category="all">
-          Semua
-        </button>
-        {blogCategories.map((cat) => (
-          <button class="category-filter btn btn-sm rounded-full btn-soft btn-primary" data-category={cat}>
-            {cat}
-          </button>
-        ))}
-      </div>
-    </section>
+          return (
+            <div class="blog-card">
+              {/* ── Foto — lebar, rounded, kotak ── */}
+              <a href={"/blog/" + post.slug} class="group block overflow-hidden rounded-2xl shadow-md transition-all duration-400 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
+                <figure class={imgH + " w-full overflow-hidden rounded-2xl"}>
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </figure>
+              </a>
 
-    <!-- ================================================================== -->
-    <!-- 3. GRID ARTIKEL BLOG                                               -->
-    <!-- ================================================================== -->
-    <section class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-      <div id="blog-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map((post) => (
-          <article class="blog-card group card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20" data-category={post.category}>
-            <!-- Image -->
-            <figure class="h-48 overflow-hidden rounded-t-2xl">
-              <img
-                src={post.image}
-                alt={post.title}
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
-            </figure>
+              {/* ── Teks / Deskripsi DI LUAR card ── */}
+              <div class="mt-4 px-1">
+                {/* Date & read time */}
+                <div class="flex items-center gap-2 text-[11px] text-base-content/40">
+                  <Icon name="lucide:calendar" size={12} />
+                  <span>{post.date}</span>
+                  <span>·</span>
+                  <Icon name="lucide:clock" size={12} />
+                  <span>{post.readTime}</span>
+                </div>
 
-            <div class="card-body">
-              <!-- Meta -->
-              <div class="flex items-center gap-3 text-xs text-base-content/50">
-                <span class="badge badge-soft badge-primary badge-sm">{post.category}</span>
-                <span>{post.date}</span>
-                <span>•</span>
-                <span>{post.readTime}</span>
-              </div>
+                {/* Title */}
+                <h3 class="mt-1.5 text-base font-bold leading-snug transition-colors duration-300 hover:text-primary lg:text-lg">
+                  <a href={"/blog/" + post.slug}>
+                    {post.title}
+                  </a>
+                </h3>
 
-              <!-- Title -->
-              <h3 class="card-title mt-2 text-lg transition-colors duration-300 group-hover:text-primary">
-                {post.title}
-              </h3>
+                {/* Short description */}
+                <p class="mt-1.5 text-sm leading-relaxed text-base-content/55 line-clamp-2">
+                  {post.excerpt}
+                </p>
 
-              <!-- Excerpt -->
-              <p class="text-sm leading-relaxed text-base-content/70">
-                {post.excerpt}
-              </p>
-
-              <!-- Tags -->
-              <div class="mt-3 flex flex-wrap gap-1.5">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span class="badge badge-soft badge-ghost badge-sm text-xs">{tag}</span>
-                ))}
-              </div>
-
-              <!-- Read More -->
-              <div class="card-actions mt-4">
-                <a href={`/blog/${post.slug}`} class="btn btn-outline btn-primary btn-sm rounded-full group/btn">
+                {/* Read more */}
+                <a href={"/blog/" + post.slug} class="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary transition-all duration-300 hover:gap-2">
                   Baca Selengkapnya
-                  <Icon name="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  <Icon name="lucide:arrow-right" size={13} />
                 </a>
               </div>
             </div>
-          </article>
-        ))}
+          );
+        })}
       </div>
     </section>
 
     <!-- ================================================================== -->
-    <!-- 4. CTA SECTION                                                     -->
+    <!-- 2. CTA PREMIUM BANNER                                              -->
     <!-- ================================================================== -->
-    <CTASection
-      title="Ingin Konsultasi Langsung?"
-      description="Punya pertanyaan seputar bisnis maklon? Tim kami siap membantu Anda melalui WhatsApp."
-      buttonText="Konsultasi via WhatsApp"
-    />
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 50% 50%, white 1px, transparent 1px);background-size:50px 50px"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 text-center lg:px-8">
+        <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+          <Icon name="lucide:message-circle" size={36} class="text-white" />
+        </div>
+
+        <h2 class="text-3xl font-black text-white md:text-4xl lg:text-5xl leading-tight">
+          Ingin Konsultasi Langsung?
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base text-white/70 md:text-lg leading-relaxed">
+          Punya pertanyaan seputar bisnis maklon? Tim kami siap membantu Anda melalui WhatsApp.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href={waLink} target="_blank" rel="noopener noreferrer"
+            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" size={20} />
+            Konsultasi via WhatsApp
+            <Icon name="lucide:arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </MainLayout>
 
 <script>
-  // Filter blog posts by category
-  const filters = document.querySelectorAll<HTMLElement>(".category-filter");
-  const cards = document.querySelectorAll<HTMLElement>(".blog-card");
+  // IntersectionObserver  staggered reveal on scroll
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
 
-  filters.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const category = btn.dataset.category;
-
-      // Update button active state
-      filters.forEach((b) => {
-        b.classList.remove("btn-primary", "text-white");
-        b.classList.add("btn-soft");
-      });
-      btn.classList.remove("btn-soft");
-      btn.classList.add("btn-primary", "text-white");
-
-      // Filter cards
-      cards.forEach((card) => {
-        if (category === "all" || card.dataset.category === category) {
-          card.style.display = "";
-          // Animate
-          card.style.opacity = "0";
-          card.style.transform = "translateY(10px)";
-          requestAnimationFrame(() => {
-            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          });
-        } else {
-          card.style.display = "none";
-        }
-      });
+  const reveal = (entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const allCards = document.querySelectorAll(".blog-card");
+        const realIdx = Array.from(allCards).indexOf(el);
+        el.style.transition = "all 0.5s cubic-bezier(0.16, 1, 0.3, 1) " + (realIdx * 0.06) + "s";
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        obs.unobserve(el);
+      }
     });
+  };
+
+  const observer = new IntersectionObserver(reveal, observerOptions);
+  document.querySelectorAll(".blog-card").forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
+    observer.observe(el);
   });
 </script>

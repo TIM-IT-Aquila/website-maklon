@@ -1,0 +1,282 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { visionMission, ourStory, teamMembers, companyWorkProcess, trustPlaceholder } from "../data/company";
+import { advantages } from "../data/advantages";
+import { factoryImages, companyImages } from "../data/images";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi tentang maklon skincare.");
+
+const portfolioItems = [
+  { name: "Skincare Brand A", category: "Skincare", image: factoryImages.formulasiLab },
+  { name: "Bodycare Brand B", category: "Bodycare", image: factoryImages.packagingArea },
+  { name: "Cosmetics Brand C", category: "Makeup", image: factoryImages.samplingRoom },
+  { name: "Serum Brand D", category: "Skincare", image: factoryImages.labResearch },
+  { name: "Parfum Brand E", category: "Fragrance", image: factoryImages.qualityControl },
+  { name: "Babycare Brand F", category: "Baby Care", image: factoryImages.productionLine },
+];
+---
+
+<MainLayout
+  title="Perusahaan | Aquila Maklon"
+  description="Mengenal lebih dekat Aquila Maklon — mitra maklon skincare & kosmetik terpercaya di Indonesia."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- 1. INTRO — Foto perusahaan + sejarah singkat                        -->
+    <!-- ================================================================== -->
+    <section class="bg-base-60 pb-6 pt-16 md:pb-10 md:pt-24">
+      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+       
+
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <!-- LEFT: Photo -->
+          <div class="relative overflow-hidden rounded-2xl shadow-lg">
+            <img src={ourStory.image} alt="Tim Aquila Maklon" class="h-[320px] w-full object-cover md:h-[400px]" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            <div class="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold text-primary shadow backdrop-blur-sm">
+              Sejak 2015
+            </div>
+          </div>
+
+          <!-- RIGHT: History / Story -->
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Tentang Kami</span>
+            <h1 class="mt-3 text-3xl font-black md:text-4xl">Mitra Maklon Skincare & Kosmetik Terpercaya</h1>
+            <div class="mt-5 space-y-4">
+              {ourStory.paragraphs.map(function(p) {
+                return <p class="text-sm leading-relaxed text-base-content/65 md:text-base">{p}</p>;
+              })}
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <a href={waConsultLink} target="_blank" rel="noopener noreferrer"
+                class="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <Icon name="mdi:whatsapp" size={16} />
+                Konsultasi Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. VISI & MISI — Dengan gambar di samping                           -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/30 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Visi & Misi</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Komitmen Kami</h2>
+        </div>
+
+        <!-- Vision — text left, image right -->
+        <div class="mt-10 grid items-center gap-8 lg:grid-cols-5">
+          <div class="lg:col-span-3">
+            <div class="rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/[0.04] to-base-100 p-8 md:p-10">
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Visi</span>
+              <p class="mt-4 text-lg leading-relaxed text-base-content/75 italic">
+                "{visionMission.vision}"
+              </p>
+            </div>
+          </div>
+          <div class="lg:col-span-2">
+            <img src={factoryImages.labResearch} alt="Visi Aquila" class="h-48 w-full rounded-2xl object-cover shadow-md md:h-56" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Mission — image left, text right -->
+        <div class="mt-6 grid items-center gap-8 lg:grid-cols-5">
+          <div class="lg:col-span-2 lg:order-1">
+            <img src={factoryImages.qualityControl} alt="Misi Aquila" class="h-48 w-full rounded-2xl object-cover shadow-md md:h-56" loading="lazy" />
+          </div>
+          <div class="lg:col-span-3 lg:order-2">
+            <div class="rounded-2xl border border-base-200/60 bg-base-100 p-8 md:p-10">
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Misi</span>
+              <ul class="mt-4 space-y-3">
+                {visionMission.missions.map(function(m: string, i: number) {
+                  return (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">{i + 1}</span>
+                      <span class="text-sm leading-relaxed text-base-content/70">{m}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. KEUNGGULAN — Foto + deskripsi                                    -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Keunggulan</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Mengapa Memilih Aquila Maklon?</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {advantages.map(function(adv) {
+            return (
+              <div class="group relative overflow-hidden rounded-2xl bg-base-100 shadow-sm ring-1 ring-base-200/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-md hover:ring-primary/15">
+                <figure class="h-44 overflow-hidden">
+                  <img src={adv.image} alt={adv.title} class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                </figure>
+                <div class="p-5">
+                  <h3 class="text-base font-bold tracking-tight">{adv.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-base-content/55">{adv.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. TRUST — Dipercaya brand partner                                  -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/30 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Kepercayaan</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Yang Membuat Kami Berbeda</h2>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          {trustPlaceholder.map(function(t) {
+            return (
+              <div class="group relative overflow-hidden rounded-2xl bg-base-100 ring-1 ring-base-200/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:ring-primary/10">
+                <img src={t.image} alt={t.title} class="h-44 w-full object-cover" loading="lazy" />
+                <div class="p-6">
+                  <h3 class="text-base font-bold">{t.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-base-content/55">{t.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. PORTOFOLIO                                                       -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Portofolio</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Hasil Karya Kami</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {portfolioItems.map(function(item) {
+            return (
+              <div class="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-base-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-md">
+                <img src={item.image} alt={item.name} class="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <div class="absolute bottom-0 left-0 right-0 translate-y-2 p-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span class="rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">{item.category}</span>
+                  <h4 class="mt-1.5 text-base font-bold text-white">{item.name}</h4>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="/portofolio" class="inline-flex items-center gap-2 rounded-full border border-base-300 px-6 py-2.5 text-sm font-medium text-base-content/60 transition-all duration-300 hover:border-primary/30 hover:text-primary">
+            Lihat Semua Portofolio
+            <Icon name="lucide:arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. TEAM                                                             -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/30 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Tim Kami</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Orang di Balik Aquila</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {teamMembers.map(function(member) {
+            return (
+              <div class="group rounded-2xl border border-base-200/40 bg-base-100 p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md">
+                <div class="mx-auto h-20 w-20 overflow-hidden rounded-full ring-4 ring-primary/10 transition-all duration-500 group-hover:ring-primary/25 group-hover:scale-105">
+                  <img src={member.avatar} alt={member.name} class="h-full w-full object-cover" loading="lazy" />
+                </div>
+                <h4 class="mt-4 text-base font-bold">{member.name}</h4>
+                <p class="text-xs font-medium text-primary">{member.role}</p>
+                <p class="mt-2 text-xs leading-relaxed text-base-content/55">{member.bio}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. WORK PROCESS — Horizontal grid, tidak vertikal                    -->
+    <!-- ================================================================== -->
+    <section id="proses-kerja" class="bg-base-100 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Proses Kerja</span>
+          <h2 class="mt-3 text-3xl font-black md:text-4xl">Bagaimana Kami Bekerja</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {companyWorkProcess.map(function(step, i) {
+            return (
+              <div class="group relative flex flex-col items-center rounded-2xl border border-base-200/40 bg-base-100 p-5 text-center shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md">
+                <!-- Step number -->
+                <div class={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br ${step.color} text-base font-bold text-white shadow-md transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg`}>
+                  {step.step}
+                </div>
+                <!-- Content -->
+                <h4 class="mt-3 text-sm font-bold tracking-tight">{step.title}</h4>
+                <p class="mt-1.5 text-xs leading-relaxed text-base-content/50">{step.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 8. CTA                                                              -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary to-emerald-800 py-16">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-white/5 blur-3xl"></div>
+      <div class="mx-auto max-w-3xl px-4 text-center lg:px-8">
+        <h2 class="text-3xl font-black text-white md:text-4xl">Siap Bangun Brand Impian Anda?</h2>
+        <p class="mt-4 text-base leading-relaxed text-white/70">
+          Hubungi kami untuk konsultasi gratis dan mulai perjalanan brand Anda bersama Aquila Maklon. Tim kami siap mendampingi dari awal hingga produk siap jual.
+        </p>
+        <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href={waLink} target="_blank" rel="noopener noreferrer"
+            class="inline-flex h-12 items-center gap-2 rounded-full bg-white px-8 text-sm font-semibold text-primary shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <Icon name="mdi:whatsapp" class="h-4 w-4" />
+            Konsultasi via WhatsApp
+          </a>
+          <a href="/layanan"
+            class="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 px-8 text-sm font-medium text-white transition-all duration-300 hover:border-white/50 hover:bg-white/10">
+            Lihat Layanan Kami
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>

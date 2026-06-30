@@ -38,7 +38,7 @@ export const factoryImages = {
   packagingArea:
     "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
   formulasiLab:
-    "https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=800&q=80",
+    "https://images.unsplash.com/photo-1532187863486-af8a5a5a1e9c?w=800&q=80",
   mikrobiologi:
     "https://images.unsplash.com/photo-1582719471384-894fbb4c94b1?w=800&q=80",
   bahanBaku:
@@ -158,13 +158,13 @@ export const certificationImages = {
   bpom:
     "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80",
   halal:
-    "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80",
+    "https://images.unsplash.com/photo-1569098644584-8800cd4e083c?w=600&q=80",
   cpkb:
     "https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=600&q=80",
   iso:
     "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
   hki:
-    "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80",
+    "https://images.unsplash.com/photo-1589578527966-fdac0f44566e?w=600&q=80",
 };
 
 // --- ABOUT / COMPANY (4:3) ---

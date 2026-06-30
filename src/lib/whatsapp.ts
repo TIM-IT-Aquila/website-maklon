@@ -9,6 +9,7 @@ export interface ConsultationMessageFields {
   email: string;
   produk: string;
   estimasi: string;
+  kategori: string;
   pesan: string;
 }
 
@@ -21,6 +22,7 @@ export function createConsultationMessage(fields: ConsultationMessageFields): st
     `Email: ${fields.email}`,
     `Jenis Produk: ${fields.produk}`,
     `Estimasi: ${fields.estimasi}`,
+    `Kategori Bisnis: ${fields.kategori}`,
     `Pesan: ${fields.pesan}`,
   ].join("\n");
 }

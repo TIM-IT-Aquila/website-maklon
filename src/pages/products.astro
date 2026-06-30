@@ -1,0 +1,164 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
+import { siteConfig } from "../data/site";
+import { createWhatsappLink } from "../lib/whatsapp";
+import { products } from "../data/products";
+
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+
+const categories = [
+  ...new Set(products.map((p) => p.category)),
+];
+---
+
+<MainLayout
+  title="Produk Maklon | Aquila Maklon"
+  description="Berbagai produk yang bisa dibuat melalui jasa maklon, dari skincare hingga kosmetik."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- PRODUCT GALLERY — Clean image-only grid                             -->
+    <!-- ================================================================== -->
+    <section class="bg-base-100 pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+
+        {/* ── Filter bar — dropdown + total count ── */}
+        <div class="mb-8 flex items-center justify-end gap-4">
+          <span class="text-sm font-medium text-base-content/50">
+            <span id="totalCount" class="font-bold text-base-content">{products.length}</span> Produk
+          </span>
+          <select
+            id="categorySelect"
+            class="select select-bordered select-sm rounded-lg text-sm font-medium focus:border-primary focus:outline-none"
+          >
+            <option value="all">Semua Kategori</option>
+            {categories.map((cat) => (
+              <option value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" id="productGrid">
+          {products.map((p, i) => (
+            <div
+              class="product-card group relative overflow-hidden rounded-2xl border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20"
+              data-category={p.category}
+              style="opacity:0;transform:translateY(24px)"
+            >
+              <figure class="relative h-64 overflow-hidden sm:h-72 lg:h-80">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading={i < 8 ? "eager" : "lazy"}
+                />
+                {/* Dark gradient overlay on hover */}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+                {/* Category badge — top */}
+                <div class="absolute left-3 top-3 z-10">
+                  <span class="badge badge-sm bg-white/90 text-[10px] font-bold text-primary backdrop-blur-sm shadow-sm">
+                    {p.category}
+                  </span>
+                </div>
+
+                {/* Product name + CTA button — bottom, always visible */}
+                <div class="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-2 p-4">
+                  <span class="text-xs font-bold text-white drop-shadow-md">
+                    {p.name}
+                  </span>
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-[11px] font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-primary/90"
+                  >
+                    <Icon name="mdi:whatsapp" size={14} />
+                    Maklon Sekarang
+                  </a>
+                </div>
+              </figure>
+            </div>
+          ))}
+        </div>
+
+        
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- CTA PREMIUM BANNER                                                 -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
+      <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 50% 50%, white 1px, transparent 1px);background-size:50px 50px"></div>
+
+      <div class="relative mx-auto max-w-5xl px-4 text-center lg:px-8">
+        <h2 class="text-3xl font-black text-white md:text-4xl lg:text-5xl leading-tight">
+          Ingin Produk Custom <span class="text-white/90">untuk Brand Anda?</span>
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base text-white/70 md:text-lg leading-relaxed">
+          Tim formulasi kami siap mengembangkan produk sesuai konsep brand Anda — dari formula, kemasan, hingga legalitas BPOM.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a href={waLink} target="_blank" rel="noopener noreferrer"
+            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <Icon name="mdi:whatsapp" size={20} />
+            Konsultasi Sekarang
+            <Icon name="lucide:arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════════
+  // Category Filter — dropdown
+  // ═══════════════════════════════════════════════════════════════════
+  const select = document.getElementById('categorySelect') as HTMLSelectElement;
+  const totalSpan = document.getElementById('totalCount');
+  const productCards = document.querySelectorAll<HTMLElement>('.product-card');
+  const totalAll = productCards.length;
+
+  select.addEventListener('change', function() {
+    const cat = select.value;
+    productCards.forEach((card) => {
+      if (cat === 'all' || card.getAttribute('data-category') === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
+  // Total always shows all products
+  if (totalSpan) totalSpan.textContent = String(totalAll);
+
+  // ═══════════════════════════════════════════════════════════════════
+  // IntersectionObserver — staggered reveal for product cards
+  // ═══════════════════════════════════════════════════════════════════
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
+
+  const reveal = (entries: IntersectionObserverEntry[], obs: IntersectionObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        const siblings = Array.from(el.parentElement?.children || []);
+        const idx = siblings.indexOf(el);
+        el.style.transition = `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.06}s`;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        obs.unobserve(el);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(reveal, observerOptions);
+  document.querySelectorAll(".product-card").forEach(el => observer.observe(el));
+</script>
