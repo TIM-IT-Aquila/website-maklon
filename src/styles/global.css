@@ -48,6 +48,43 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-small), serif;
 }
 
+/* ================================================================ */
+/* PORTOFOLIO OVERLAY — tap-to-reveal on touch devices              */
+/* ================================================================ */
+.porto-overlay {
+  transition: opacity 0.4s ease;
+}
+
+.porto-brand-label {
+  transition: opacity 0.4s ease;
+}
+
+.porto-tap-indicator {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop: hover reveals overlay */
+@media (hover: hover) and (pointer: fine) {
+  .porto-card:hover .porto-overlay {
+    display: flex !important;
+    opacity: 1;
+  }
+  .porto-card:hover .porto-brand-label {
+    opacity: 0;
+  }
+  .porto-tap-indicator {
+    display: none;
+  }
+}
+
+/* Touch: show tap indicator */
+@media (hover: none) and (pointer: coarse) {
+  .porto-tap-indicator {
+    opacity: 1;
+  }
+}
+
 /* ===== CUSTOM ANIMATIONS ===== */
 @keyframes fade-in-up {
   from {

@@ -23,6 +23,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
             <div
               class="porto-card group relative overflow-hidden rounded-2xl border border-base-200 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20"
               style="opacity:0;transform:translateY(30px)"
+              data-porto-card
             >
               {/* Tall image */}
               <div class="relative h-72 overflow-hidden sm:h-80 lg:h-96">
@@ -34,12 +35,17 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
                 />
 
                 {/* Brand name at bottom */}
-                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4 transition-opacity duration-400 group-hover:opacity-0">
+                <div class="porto-brand-label absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4">
                   <h3 class="text-sm font-bold leading-tight text-white sm:text-base">{item.brandName}</h3>
                 </div>
 
-                {/* HOVER OVERLAY — white popup with details */}
-                <div class="absolute inset-0 flex flex-col justify-end bg-white/95 p-4 sm:p-5 opacity-0 transition-all duration-400 group-hover:opacity-100">
+                {/* OVERLAY — white popup with details */}
+                <div class="porto-overlay absolute inset-0 flex-col justify-end bg-white/95 p-4 sm:p-5" style="display: none">
+                  {/* Close button for mobile tap */}
+                  <button class="porto-close absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-base-200/80 text-base-content/60 transition-colors hover:bg-base-300 hover:text-base-content sm:hidden" aria-label="Tutup detail" type="button">
+                    <Icon name="lucide:x" size={14} />
+                  </button>
+
                   {/* Brand name */}
                   <h3 class="text-base font-bold text-base-content sm:text-lg leading-tight mb-1">{item.brandName}</h3>
 
@@ -66,6 +72,11 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
                       </div>
                     ))}
                   </div>
+                </div>
+
+                {/* Tap indicator for mobile */}
+                <div class="porto-tap-indicator absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 transition-opacity duration-300 sm:hidden">
+                  <Icon name="lucide:info" size={14} class="text-white" />
                 </div>
               </div>
 
@@ -122,6 +133,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
 </MainLayout>
 
 <script>
+  // Scroll-triggered animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -133,7 +145,89 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
         }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px 50px 0px" }
   );
-  document.querySelectorAll(".porto-card").forEach((el) => observer.observe(el));
+
+  // Tap/click toggle for mobile + desktop
+  document.querySelectorAll("[data-porto-card]").forEach((card) => {
+    observer.observe(card);
+
+    const overlay = card.querySelector(".porto-overlay") as HTMLElement;
+    const brandLabel = card.querySelector(".porto-brand-label") as HTMLElement;
+    const tapIndicator = card.querySelector(".porto-tap-indicator") as HTMLElement;
+    const closeBtn = card.querySelector(".porto-close");
+
+    if (!overlay) return;
+
+    // Show tap indicator on touch devices
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice && tapIndicator) {
+      tapIndicator.style.opacity = "1";
+    }
+
+    function openOverlay() {
+      // Close all other open cards first
+      document.querySelectorAll("[data-porto-card].porto-card-active").forEach((other) => {
+        if (other !== card) closeCard(other as HTMLElement);
+      });
+      card.classList.add("porto-card-active");
+      overlay.style.display = "flex";
+      overlay.style.opacity = "1";
+      if (brandLabel) brandLabel.style.opacity = "0";
+      if (tapIndicator) tapIndicator.style.opacity = "0";
+    }
+
+    function closeOverlay() {
+      card.classList.remove("porto-card-active");
+      overlay.style.display = "";
+      overlay.style.opacity = "";
+      if (brandLabel) brandLabel.style.opacity = "";
+      if (tapIndicator && isTouchDevice) tapIndicator.style.opacity = "1";
+    }
+
+    function closeCard(c: HTMLElement) {
+      c.classList.remove("porto-card-active");
+      const ovl = c.querySelector(".porto-overlay") as HTMLElement;
+      const lbl = c.querySelector(".porto-brand-label") as HTMLElement;
+      const ind = c.querySelector(".porto-tap-indicator") as HTMLElement;
+      if (ovl) { ovl.style.display = ""; ovl.style.opacity = ""; }
+      if (lbl) lbl.style.opacity = "";
+      if (ind && isTouchDevice) ind.style.opacity = "1";
+    }
+
+    card.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("a")) return;
+      if ((e.target as HTMLElement).closest(".porto-close")) return;
+
+      if (card.classList.contains("porto-card-active")) {
+        closeOverlay();
+      } else {
+        openOverlay();
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeOverlay();
+      });
+    }
+  });
+
+  // Close overlay when tapping outside
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest("[data-porto-card]")) {
+      document.querySelectorAll("[data-porto-card].porto-card-active").forEach((card) => {
+        card.classList.remove("porto-card-active");
+        const ovl = card.querySelector(".porto-overlay") as HTMLElement;
+        const lbl = card.querySelector(".porto-brand-label") as HTMLElement;
+        const ind = card.querySelector(".porto-tap-indicator") as HTMLElement;
+        if (ovl) { ovl.style.display = ""; ovl.style.opacity = ""; }
+        if (lbl) lbl.style.opacity = "";
+        const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        if (ind && isTouch) ind.style.opacity = "1";
+      });
+    }
+  });
 </script>

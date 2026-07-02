@@ -3,8 +3,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
-import { companyImages } from "../data/images";
-
 const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 ---
 
@@ -14,7 +12,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 >
   <main>
     <!-- Page Hero -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-28 md:pt-36">
+    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-32 md:pt-40">
       <div class="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-3xl"></div>
 
@@ -77,29 +75,11 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
         </div>
       </div>
 
-      <!-- Map / Office Photo -->
-      <div class="mt-10">
-        <div class="card border border-base-200 bg-base-100 shadow-sm">
-          <div class="card-body p-6">
-            <figure class="relative h-64 w-full overflow-hidden rounded-2xl">
-              <img src={companyImages.building} alt="Aquila Magna Office" class="h-full w-full object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div class="absolute bottom-6 left-6">
-                <p class="text-lg font-semibold text-white">Alamat Kantor</p>
-                <p class="text-sm text-white/80">{siteConfig.address}</p>
-                <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm mt-3 rounded-full px-5 text-white">
-                  Tanya Lokasi via WhatsApp
-                </a>
-              </div>
-            </figure>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Form Konsultasi -->
     <section class="bg-base-200/50 py-16">
-      <div class="mx-auto max-w-4xl px-4 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="text-center mb-12">
           <p class="mb-3 font-semibold tracking-wide text-primary">Form Konsultasi</p>
           <h2 class="text-3xl font-black md:text-4xl">Mulai Konsultasi Produk Anda</h2>

@@ -38,6 +38,29 @@ export const visionMission = {
   ],
 };
 
+export const coreValues = [
+  {
+    title: "Innovation",
+    icon: "lucide:lightbulb",
+    desc: "Terus berinovasi dalam formulasi dan teknologi produksi untuk menghadirkan produk terbaik.",
+  },
+  {
+    title: "Integrity",
+    icon: "lucide:shield-check",
+    desc: "Menjunjung tinggi kejujuran dan transparansi dalam setiap proses dan komunikasi dengan partner.",
+  },
+  {
+    title: "Quality",
+    icon: "lucide:sparkles",
+    desc: "Setiap produk melalui quality control ketat — tidak ada kompromi terhadap kualitas.",
+  },
+  {
+    title: "Partnership",
+    icon: "lucide:handshake",
+    desc: "Kesuksesan brand partner adalah kesuksesan kami. Kami tumbuh dan berkembang bersama.",
+  },
+];
+
 export const ourStory = {
   badge: "Our Story",
   title: "Hadir untuk Membantu Brand Owner",
