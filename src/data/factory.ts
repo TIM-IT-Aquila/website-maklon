@@ -1,4 +1,11 @@
 import { factoryImages } from "./images";
+import type { ContentReviewNote } from "./content-status";
+
+export const factoryContentReview: ContentReviewNote = {
+  status: "needs-verification",
+  owner: "operations",
+  reason: "Highlight fasilitas dan angka statistik perlu divalidasi terhadap kondisi pabrik, kapasitas, dan data operasional aktual.",
+};
 
 export const factoryHighlights = [
   {

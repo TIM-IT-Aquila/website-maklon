@@ -1,0 +1,37 @@
+---
+export interface Props {
+  step: {
+    step: number;
+    title: string;
+    icon: string;
+    desc: string;
+    detail: string;
+  };
+  isLast: boolean;
+  side: "left" | "right";
+}
+
+const { step, isLast, side } = Astro.props;
+const isLeft = side === "left";
+---
+
+<div class={`group relative flex w-full ${isLeft ? 'flex-row' : 'flex-row-reverse'} items-stretch gap-5`}>
+  <!-- Vertical timeline bar + dot + connector -->
+  <div class={`relative flex shrink-0 flex-col items-center ${isLeft ? 'order-1' : 'order-2'}`}>
+    <!-- Step number circle -->
+    <div class="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-base font-black text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+      {step.step}
+    </div>
+    <!-- Vertical line down (for non-last) -->
+    {!isLast ? (
+      <div class="h-full w-0.5 bg-primary/20" style="min-height:24px"></div>
+    ) : null}
+  </div>
+
+  <!-- Card content -->
+  <div class={`flex-1 rounded-2xl border border-base-200/50 bg-base-100 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/20 ${isLeft ? 'order-2 text-left' : 'order-1 text-left'}`}>
+    <h3 class="text-base font-bold text-base-content">{step.title}</h3>
+    <p class="mt-1 text-sm leading-relaxed text-base-content/65">{step.detail}</p>
+  </div>
+</div>
+

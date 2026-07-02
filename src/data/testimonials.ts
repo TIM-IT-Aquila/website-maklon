@@ -1,6 +1,13 @@
 import { avatarImages } from "./images";
+import type { ContentReviewNote } from "./content-status";
 
 // TODO(content): Data testimonial berikut adalah contoh/dummy. Ganti dengan testimonial asli atau tandai sebagai anonim dengan persetujuan klien.
+export const testimonialsContentReview: ContentReviewNote = {
+  status: "placeholder",
+  owner: "marketing",
+  reason: "Testimonial masih contoh/dummy dan perlu diganti dengan kutipan asli atau anonim yang disetujui klien.",
+};
+
 export const testimonials = [
   {
     name: "Rina Amelia",
@@ -19,7 +26,7 @@ export const testimonials = [
   {
     name: "Sari Dewi",
     brand: "Beautypreneur",
-    text: "Akhirnya bisa punya produk sendiri berkat Aquila Maklon. Tim R&D-nya responsif dan sabar menjelaskan. Hasil body lotion-nya laris manis!",
+    text: "Akhirnya bisa punya produk sendiri berkat Aquila Magna. Tim R&D-nya responsif dan sabar menjelaskan. Hasil body lotion-nya laris manis!",
     avatar: avatarImages.woman3,
     rating: 5,
   },

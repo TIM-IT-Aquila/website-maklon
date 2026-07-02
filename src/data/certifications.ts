@@ -1,6 +1,13 @@
 import { certificationImages } from "./images";
+import type { ContentReviewNote } from "./content-status";
 
 // TODO(content): Pastikan setiap sertifikasi/klaim legalitas sesuai dokumen perusahaan yang benar-benar dimiliki atau layanan yang tersedia.
+export const certificationsContentReview: ContentReviewNote = {
+  status: "needs-verification",
+  owner: "legal",
+  reason: "Daftar sertifikasi dan klaim legalitas harus dicocokkan dengan dokumen resmi perusahaan atau layanan yang benar-benar tersedia.",
+};
+
 export const certifications = [
   {
     name: "BPOM",

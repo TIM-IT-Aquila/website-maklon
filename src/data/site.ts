@@ -1,20 +1,29 @@
+import type { ContentReviewNote } from "./content-status";
+
 export const siteConfig = {
-  name: "Aquila Maklon",
+  name: "Aquila Magna",
+  legalName: "CV Aquila Magna",
   tagline: "Skincare & Cosmetics",
   url: "https://tollmanufacturing.id",
   locale: "id_ID",
   defaultOgImage: "/assets/Logo.svg",
   description:
     "Perusahaan jasa maklon skincare dan kosmetik terpercaya. Membantu brand owner pemula maupun profesional mewujudkan produk kecantikan dari konsep hingga siap jual.",
-  // TODO(content): Ganti nomor WhatsApp, email, alamat, dan jam operasional dengan data bisnis final sebelum production launch.
-  waNumber: "6281234567890",
+  waNumber: "6285314903325",
   waText: "Halo, saya ingin konsultasi maklon produk skincare.",
-  email: "hello@tollmanufacturing.id",
-  address: "Jl. Industri Raya No. 45, Jakarta Pusat",
+  email: "Info@tollmanufacturing.id",
+  address: "Jl. Jati Blok Pulo Seger, Plumbon, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45215",
   operationalHours: "Senin - Jumat, 08:00 - 17:00",
+  factoryOwnership: "Pabrik milik sendiri",
 };
 
 // TODO(content): Validasi badge kepercayaan hanya setelah dokumen/sertifikasi resmi tersedia.
+export const trustBadgesContentReview: ContentReviewNote = {
+  status: "needs-verification",
+  owner: "legal",
+  reason: "Badge kepercayaan harus hanya ditampilkan jika dokumen atau sertifikasi resmi benar-benar tersedia.",
+};
+
 export const trustBadges = [
   { label: "BPOM", desc: "Terdaftar BPOM" },
   { label: "HALAL", desc: "Sertifikat Halal" },

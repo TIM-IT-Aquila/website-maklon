@@ -1,4 +1,5 @@
 import { blogImages } from "./images";
+import type { ContentReviewNote } from "./content-status";
 
 export interface BlogPost {
   slug: string;
@@ -14,6 +15,12 @@ export interface BlogPost {
 }
 
 // TODO(content): Artikel berikut masih draft editorial/example. Review fakta, tanggal publikasi, dan klaim bisnis sebelum dipakai sebagai konten final.
+export const blogContentReview: ContentReviewNote = {
+  status: "draft",
+  owner: "marketing",
+  reason: "Artikel masih draft editorial/example dan perlu review fakta, tanggal publikasi, serta klaim bisnis sebelum launch.",
+};
+
 export const blogPosts: BlogPost[] = [
   {
     slug: "panduan-memulai-brand-skincare",
@@ -23,7 +30,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Memulai brand skincare sendiri kini semakin mudah dengan adanya jasa maklon. Langkah pertama yang perlu dilakukan adalah riset pasar untuk memahami kebutuhan konsumen. Selanjutnya, tentukan konsep brand dan produk unggulan yang ingin dibuat. Dengan bantuan maklon, Anda bisa mewujudkan produk berkualitas tanpa perlu memiliki pabrik sendiri.",
     category: "Panduan Bisnis",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-06-20",
     readTime: "5 menit",
     image: blogImages.skincareGuide,
@@ -37,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Jasa maklon menjadi solusi populer bagi pelaku bisnis kosmetik karena berbagai keunggulan. Mulai dari eficiensi biaya produksi, akses ke formulasi profesional, hingga kemudahan perizinan BPOM dan sertifikasi halal. Dengan maklon, brand owner bisa fokus pada pengembangan merek dan pemasaran tanpa repot urusan produksi.",
     category: "Layanan Maklon",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-06-15",
     readTime: "4 menit",
     image: blogImages.maklonBenefit,
@@ -51,7 +58,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Proses maklon skincare dimulai dari konsultasi kebutuhan, dilanjutkan dengan pengembangan formula oleh tim R&D, pembuatan sample, uji stabilitas, produksi massal, quality control, hingga pengemasan dan pengiriman. Setiap tahap dilakukan dengan standar mutu tinggi untuk memastikan produk terbaik.",
     category: "Panduan Bisnis",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-06-10",
     readTime: "6 menit",
     image: blogImages.prosesMaklon,
@@ -65,7 +72,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Setiap produk kosmetik yang beredar di Indonesia wajib memiliki izin BPOM. Selain itu, sertifikasi Halal juga semakin penting mengingat mayoritas konsumen Indonesia adalah muslim. Kedua sertifikasi ini tidak hanya memenuhi regulasi, tetapi juga menjadi nilai jual yang meningkatkan kepercayaan konsumen terhadap brand Anda.",
     category: "Regulasi",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-06-05",
     readTime: "4 menit",
     image: blogImages.sertifikasi,
@@ -79,7 +86,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Memilih jasa maklon yang tepat sangat penting untuk kesuksesan brand Anda. Perhatikan faktor seperti track record, fasilitas produksi, portofolio produk, minimal order, layanan R&D, serta kecepatan respon. Pastikan juga partner maklon Anda memiliki sertifikasi CPKB, BPOM, dan Halal yang lengkap.",
     category: "Tips",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-05-28",
     readTime: "5 menit",
     image: blogImages.tipsMaklon,
@@ -93,7 +100,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Tahun 2026 membawa tren skincare baru seperti clean beauty, personalisasi produk, penggunaan bahan alami, hingga sustainable packaging. Brand owner perlu mengikuti tren ini untuk menciptakan produk yang sesuai dengan permintaan pasar. Maklon yang terpercaya dapat membantu mewujudkan inovasi produk sesuai tren terkini.",
     category: "Tren",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-05-20",
     readTime: "4 menit",
     image: blogImages.trenSkincare,
@@ -107,7 +114,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Banyak yang mengira memulai brand kosmetik butuh modal besar. Nyatanya, dengan sistem maklon Anda bisa memulai dengan modal yang lebih terjangkau. Biaya utama meliputi formulasi dan sampling, produksi batch pertama, kemasan, perizinan BPOM dan Halal, serta biaya branding dan pemasaran. Dengan perencanaan matang, modal mulai dari puluhan juta sudah bisa memulai.",
     category: "Panduan Bisnis",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-05-15",
     readTime: "6 menit",
     image: blogImages.modalBisnis,
@@ -121,7 +128,7 @@ export const blogPosts: BlogPost[] = [
     content:
       "Maklon adalah perusahaan yang memproduksi produk atas nama brand lain, sedangkan brand owner adalah pihak yang memiliki merek dan memasarkan produk. Dalam kemitraan ini, brand owner fokus pada branding dan penjualan, sementara maklon menangani produksi. Model ini sangat cocok untuk pengusaha yang ingin fokus pada pengembangan merek tanpa repot urusan manufaktur.",
     category: "Edukasi",
-    author: "Tim Aquila Maklon",
+    author: "Tim Aquila Magna",
     date: "2026-05-08",
     readTime: "3 menit",
     image: blogImages.edukasi,

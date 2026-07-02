@@ -1,5 +1,5 @@
 // =============================================================================
-// LIBRARY FOTO TERPUSAT — Aquila Maklon
+// LIBRARY FOTO TERPUSAT — Aquila Magna
 // Semua gambar menggunakan foto gratis dari Unsplash / Pexels / Pixabay.
 // Cukup ganti URL di sini untuk menyesuaikan seluruh website.
 // TODO(content): Ganti foto stok eksternal dengan aset brand/fasilitas asli saat materi final tersedia.

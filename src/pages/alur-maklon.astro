@@ -1,0 +1,119 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import { processSteps } from "../data/process";
+---
+
+<MainLayout
+  title="Alur Maklon | Aquila Magna"
+  description="Proses maklon yang terstruktur dari konsultasi hingga produk siap dikirim."
+>
+  <main>
+    <!-- ================================================================== -->
+    <!-- 1. PAGE HEADER                                                     -->
+    <!-- ================================================================== -->
+    <PageHeader
+      title="Alur Proses Maklon"
+      description="Proses maklon yang terarah dari konsultasi hingga produk siap dikirim. Setiap tahap didampingi tim profesional kami."
+      badge="Alur Maklon"
+      breadcrumb="Alur Maklon"
+    />
+
+    <!-- Timeline Proses -->
+    <section class="mx-auto max-w-4xl px-4 py-16 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="mb-3 font-semibold tracking-wide text-primary">Tahapan</p>
+        <h2 class="text-3xl font-black md:text-4xl">Langkah Demi Langkah</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
+          Kami memandu Anda dari awal hingga akhir dengan proses yang jelas dan transparan.
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-8 top-0 hidden h-full w-0.5 bg-primary/20 md:block"></div>
+
+        <div class="space-y-8">
+          {processSteps.map((step) => (
+            <div class="group relative md:flex md:items-start md:gap-8">
+              <div class="z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30">
+                <Icon name={step.icon} size={26} />
+              </div>
+              <div class="mt-4 flex-1 md:mt-0">
+                <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg">
+                  <div class="card-body p-6">
+                    <span class="text-[11px] font-bold tracking-wider text-primary/60">TAHAP {step.step}</span>
+                    <h3 class="card-title text-lg">{step.title}</h3>
+                    <p class="text-sm text-base-content/70">{step.desc}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Factory Process -->
+    <section class="bg-base-200/50 py-16">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="mb-3 font-semibold tracking-wide text-primary">Fasilitas</p>
+          <h2 class="text-3xl font-black md:text-4xl">Fasilitas Produksi</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
+            Didukung fasilitas produksi modern dan tim profesional yang berpengalaman.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
+          <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="card-body items-center text-center p-6">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:microscope" size={32} /></div>
+              <h3 class="card-title mt-3 text-lg">R&D Lab</h3>
+              <p class="mt-2 text-sm text-base-content/70">Riset dan pengembangan formula</p>
+            </div>
+          </div>
+          <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="card-body items-center text-center p-6">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:flask-conical" size={32} /></div>
+              <h3 class="card-title mt-3 text-lg">Sampling</h3>
+              <p class="mt-2 text-sm text-base-content/70">Pembuatan sample produk</p>
+            </div>
+          </div>
+          <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="card-body items-center text-center p-6">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:factory" size={32} /></div>
+              <h3 class="card-title mt-3 text-lg">Production</h3>
+              <p class="mt-2 text-sm text-base-content/70">Produksi massal terstandarisasi</p>
+            </div>
+          </div>
+          <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="card-body items-center text-center p-6">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:shield-check" size={32} /></div>
+              <h3 class="card-title mt-3 text-lg">Quality Control</h3>
+              <p class="mt-2 text-sm text-base-content/70">Pemeriksaan kualitas ketat</p>
+            </div>
+          </div>
+          <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="card-body items-center text-center p-6">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 text-3xl"><Icon name="lucide:package" size={32} /></div>
+              <h3 class="card-title mt-3 text-lg">Ready to Sell</h3>
+              <p class="mt-2 text-sm text-base-content/70">Produk siap dipasarkan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. CTA SECTION                                                     -->
+    <!-- ================================================================== -->
+    <CTASection
+      title="Siap Memulai Proses Maklon?"
+      description="Konsultasikan ide produk Anda sekarang. Tim kami siap mendampingi dari awal hingga produk siap jual."
+      buttonText="Konsultasi via WhatsApp"
+    />
+  </main>
+</MainLayout>

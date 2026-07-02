@@ -29,7 +29,7 @@ const portfolioItems = [
     <!-- 1. INTRO — Foto perusahaan + sejarah singkat                        -->
     <!-- ================================================================== -->
     <section class="bg-base-60 pb-6 pt-16 md:pb-10 md:pt-24">
-      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
        
 
         <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -67,7 +67,7 @@ const portfolioItems = [
     <!-- 2. VISI & MISI — Dengan gambar di samping                           -->
     <!-- ================================================================== -->
     <section class="bg-base-200/30 py-16 md:py-20">
-      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="text-center">
           <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Visi & Misi</span>
           <h2 class="mt-3 text-3xl font-black md:text-4xl">Komitmen Kami</h2>
@@ -201,7 +201,7 @@ const portfolioItems = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 6. TEAM                                                             -->
+    <!-- 6. TEAM — Focus on CEO / Founder                                   -->
     <!-- ================================================================== -->
     <section class="bg-base-200/30 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
@@ -210,19 +210,19 @@ const portfolioItems = [
           <h2 class="mt-3 text-3xl font-black md:text-4xl">Orang di Balik Aquila</h2>
         </div>
 
-        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {teamMembers.map(function(member) {
-            return (
-              <div class="group rounded-2xl border border-base-200/40 bg-base-100 p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md">
-                <div class="mx-auto h-20 w-20 overflow-hidden rounded-full ring-4 ring-primary/10 transition-all duration-500 group-hover:ring-primary/25 group-hover:scale-105">
-                  <img src={member.avatar} alt={member.name} class="h-full w-full object-cover" loading="lazy" />
-                </div>
-                <h4 class="mt-4 text-base font-bold">{member.name}</h4>
-                <p class="text-xs font-medium text-primary">{member.role}</p>
-                <p class="mt-2 text-xs leading-relaxed text-base-content/55">{member.bio}</p>
-              </div>
-            );
-          })}
+        <div class="mt-10 mx-auto max-w-3xl">
+          <div class="group flex flex-col items-center gap-6 rounded-2xl border border-base-200/40 bg-base-100 p-8 shadow-sm transition-all duration-500 hover:border-primary/15 hover:shadow-md sm:flex-row sm:p-10">
+            {/* Photo */}
+            <div class="h-28 w-28 shrink-0 overflow-hidden rounded-2xl ring-4 ring-primary/10 transition-all duration-500 group-hover:ring-primary/25 group-hover:scale-105">
+              <img src={teamMembers[0].avatar} alt={teamMembers[0].name} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            {/* Name + Role + Description */}
+            <div class="flex-1 text-center sm:text-left">
+              <h4 class="text-xl font-bold text-base-content">{teamMembers[0].name}</h4>
+              <p class="text-sm font-semibold text-primary">{teamMembers[0].role}</p>
+              <p class="mt-2 text-base leading-relaxed text-base-content/60">{teamMembers[0].bio}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -231,7 +231,7 @@ const portfolioItems = [
     <!-- 7. WORK PROCESS — Horizontal grid, tidak vertikal                    -->
     <!-- ================================================================== -->
     <section id="proses-kerja" class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="text-center">
           <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/60">Proses Kerja</span>
           <h2 class="mt-3 text-3xl font-black md:text-4xl">Bagaimana Kami Bekerja</h2>

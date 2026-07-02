@@ -1,4 +1,5 @@
 import { portfolioImages } from "./images";
+import type { ContentReviewNote } from "./content-status";
 
 export interface PortfolioItem {
   id: string;
@@ -13,6 +14,12 @@ export interface PortfolioItem {
 }
 
 // TODO(content): Portfolio berikut adalah contoh brand/dummy. Ganti dengan portfolio asli, studi kasus anonim, atau hapus jika belum boleh dipublikasikan.
+export const portfolioContentReview: ContentReviewNote = {
+  status: "placeholder",
+  owner: "marketing",
+  reason: "Item portfolio masih contoh brand/dummy dan belum boleh diposisikan sebagai portfolio asli.",
+};
+
 export const portfolioItems: PortfolioItem[] = [
   {
     id: "glow-labs",
