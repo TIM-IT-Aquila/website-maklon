@@ -1,11 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
-import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
+import WAButton from "../components/ui/WAButton.astro";
 import { products } from "../data/products";
-
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 
 const categories = [
   ...new Set(products.map((p) => p.category)),
@@ -20,7 +17,7 @@ const categories = [
     <!-- ================================================================== -->
     <!-- PRODUCT GALLERY — Clean image-only grid                             -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <section class="bg-base-100 pt-12 pb-14 lg:pt-16 lg:pb-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
 
         {/* ── Filter bar — dropdown + total count ── */}
@@ -68,15 +65,12 @@ const categories = [
                   <span class="text-xs font-bold text-white drop-shadow-md">
                     {p.name}
                   </span>
-                  <a
-                    href={waLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-[11px] font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-primary/90"
-                  >
-                    <Icon name="mdi:whatsapp" size={14} />
-                    Maklon Sekarang
-                  </a>
+                  <WAButton
+                    text="Maklon Sekarang"
+                    variant="primary"
+                    size="sm"
+                    class="!rounded-full !h-auto !px-4 !py-2 !text-[11px]"
+                  />
                 </div>
               </figure>
             </div>
@@ -90,7 +84,7 @@ const categories = [
     <!-- ================================================================== -->
     <!-- CTA PREMIUM BANNER                                                 -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-24">
+    <section class="relative overflow-hidden py-16">
       <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
       <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
@@ -105,12 +99,12 @@ const categories = [
         </p>
 
         <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waLink} target="_blank" rel="noopener noreferrer"
-            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <Icon name="mdi:whatsapp" size={20} />
-            Konsultasi Sekarang
-            <Icon name="lucide:arrow-right" size={18} />
-          </a>
+          <WAButton
+            text="Konsultasi Sekarang"
+            variant="white"
+            size="lg"
+            class="rounded-xl border-2 border-white"
+          />
         </div>
       </div>
     </section>

@@ -11,10 +11,10 @@ import { trustPlaceholder } from "../../data/company";
     description="Kami membangun kepercayaan melalui kualitas, konsistensi, dan komitmen terhadap setiap produk yang kami hasilkan."
   />
 
-  <div class="mt-10 grid gap-8 md:grid-cols-3">
+  <div class="mt-8 grid gap-5 md:grid-cols-3">
     {trustPlaceholder.map((item) => (
       <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-        <div class="card-body items-center text-center p-8">
+        <div class="card-body items-center text-center p-6">
           <div class="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-4xl text-primary">
             <Icon name={item.icon} size={40} />
           </div>
@@ -26,7 +26,7 @@ import { trustPlaceholder } from "../../data/company";
   </div>
 
   <!-- Stats Row -->
-  <div class="mt-12 grid gap-4 rounded-3xl bg-gradient-to-r from-primary/5 to-secondary/5 p-8 md:grid-cols-4">
+  <div class="mt-8 grid gap-4 rounded-3xl bg-gradient-to-r from-primary/5 to-secondary/5 p-6 md:grid-cols-4">
     <div class="text-center">
       <p class="text-3xl font-black text-primary">500+</p>
       <p class="mt-1 text-sm text-base-content/60">Produk Berhasil Dipasarkan</p>

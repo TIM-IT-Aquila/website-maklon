@@ -2,16 +2,12 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
-import { visionMission, ourStory, teamMembers, coreValues } from "../data/company";
+import WAButton from "../components/ui/WAButton.astro";
+import { visionMission, ourStory, coreValues } from "../data/company";
 import { factoryImages, companyImages } from "../data/images";
 import { certifications } from "../data/certifications";
 
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
-const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi maklon skincare.");
-
 const topCerts = certifications.slice(0, 4);
-const leadershipTeam = teamMembers.slice(0, 3);
 
 const metrics = [
   { value: "10+", label: "Tahun Pengalaman" },
@@ -70,12 +66,13 @@ const facilityItems = [
           </p>
 
           <div class="reveal-up mt-8 flex flex-wrap items-center gap-4">
-            <a href={waConsultLink} target="_blank" rel="noopener noreferrer"
-              class="group relative inline-flex h-14 items-center gap-2.5 overflow-hidden rounded-xl bg-white px-8 text-base font-bold text-primary shadow-xl shadow-black/20 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/15">
-              <Icon name="mdi:whatsapp" class="relative z-10 h-5 w-5" />
-              <span class="relative z-10">Konsultasi Gratis</span>
-              <Icon name="lucide:arrow-right" class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            <WAButton
+              text="Konsultasi Gratis"
+              message="Halo, saya ingin konsultasi maklon skincare."
+              variant="white"
+              size="lg"
+              class="rounded-xl shadow-xl shadow-black/20"
+            />
           </div>
         </div>
       </div>
@@ -92,9 +89,9 @@ const facilityItems = [
     <!-- ================================================================== -->
     <!-- 2. ABOUT COMPANY — Split layout: text + image + metrics             -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-24 md:py-32">
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+        <div class="flex flex-col items-center gap-8 lg:flex-row lg:gap-14">
           <!-- LEFT: Image -->
           <div class="reveal-up relative w-full overflow-hidden rounded-3xl lg:w-[45%]">
             <img
@@ -149,7 +146,7 @@ const facilityItems = [
     <!-- ================================================================== -->
     <!-- 3. VISION · MISSION · VALUES — Unified premium cards                -->
     <!-- ================================================================== -->
-    <section class="bg-base-200/40 py-24 md:py-32">
+    <section class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
 
         <!-- Vision + Mission row -->
@@ -193,7 +190,7 @@ const facilityItems = [
         </div>
 
         <!-- Core Values -->
-        <div class="reveal-up mt-14 text-center">
+        <div class="reveal-up mt-10 text-center">
           <span class="text-[10px] font-bold tracking-[0.2em] text-primary/40 uppercase">Nilai Kami</span>
         </div>
 
@@ -214,7 +211,7 @@ const facilityItems = [
     <!-- ================================================================== -->
     <!-- 4. FACILITIES — Gallery + Certification strip                       -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-24 md:py-32">
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <div class="mb-6 flex items-center justify-center gap-3">
@@ -231,7 +228,7 @@ const facilityItems = [
         </div>
 
         <!-- Asymmetric gallery: 1 large + 3 small -->
-        <div class="mt-16 grid gap-5 lg:grid-cols-2">
+        <div class="mt-12 grid gap-5 lg:grid-cols-2">
           <!-- Large featured image (first) -->
           <div class="reveal-up group relative overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg lg:row-span-2">
             <div class="relative h-full min-h-[360px] overflow-hidden">
@@ -263,7 +260,7 @@ const facilityItems = [
         </div>
 
         <!-- Certification strip -->
-        <div class="reveal-up mt-14 overflow-hidden rounded-2xl border border-base-200/50 bg-base-200/30 p-6">
+        <div class="reveal-up mt-10 overflow-hidden rounded-2xl border border-base-200/50 bg-base-200/30 p-6">
           <p class="mb-4 text-center text-[10px] font-bold tracking-[0.2em] text-base-content/30 uppercase">Diakui & Tersertifikasi</p>
           <div class="flex flex-wrap items-center justify-center gap-4">
             {topCerts.map((cert) => (
@@ -289,47 +286,9 @@ const facilityItems = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 5. LEADERSHIP — Premium team cards                                  -->
+    <!-- 5. FINAL CTA — Clean, strong conversion                             -->
     <!-- ================================================================== -->
-    <section class="bg-base-200/40 py-24 md:py-32">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <div class="mb-6 flex items-center justify-center gap-3">
-            <span class="block h-px w-8 bg-primary/30"></span>
-            <span class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Kepemimpinan</span>
-            <span class="block h-px w-8 bg-primary/30"></span>
-          </div>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Di Balik <span class="text-primary">Aquila Magna</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Tim profesional dengan pengalaman puluhan tahun di industri kecantikan.
-          </p>
-        </div>
-
-        <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {leadershipTeam.map((member) => (
-            <div class="reveal-up group relative overflow-hidden rounded-3xl border border-base-200/60 bg-white p-8 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/15 hover:shadow-xl">
-              <!-- Avatar -->
-              <div class="mx-auto h-28 w-28 overflow-hidden rounded-full ring-4 ring-base-200 transition-all duration-500 group-hover:ring-primary/20 group-hover:scale-105">
-                <img src={member.avatar} alt={member.name} class="h-full w-full object-cover" loading="lazy" />
-              </div>
-
-              <!-- Info -->
-              <h3 class="mt-5 text-lg font-bold">{member.name}</h3>
-              <p class="text-sm font-semibold text-primary">{member.role}</p>
-              <div class="mx-auto mt-3 h-0.5 w-10 rounded-full bg-primary/15 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/30"></div>
-              <p class="mt-4 text-sm leading-relaxed text-base-content/50">{member.bio}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 6. FINAL CTA — Clean, strong conversion                             -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-28 md:py-36">
+    <section class="relative overflow-hidden py-20 md:py-24">
       <div class="absolute inset-0 bg-gradient-to-br from-[#0a1a15] via-primary to-emerald-950"></div>
       <div class="pointer-events-none absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 40px 40px;"></div>
       <!-- Decorative blurs -->
@@ -350,12 +309,13 @@ const facilityItems = [
         </p>
 
         <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waConsultLink} target="_blank" rel="noopener noreferrer"
-            class="group relative inline-flex h-14 items-center gap-2.5 overflow-hidden rounded-xl bg-white px-10 text-base font-bold text-primary shadow-2xl shadow-black/20 transition-all duration-500 hover:scale-105">
-            <Icon name="mdi:whatsapp" class="relative z-10 h-5 w-5" />
-            <span class="relative z-10">Konsultasi via WhatsApp</span>
-            <Icon name="lucide:arrow-right" class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          <WAButton
+            text="Konsultasi via WhatsApp"
+            message="Halo, saya ingin konsultasi maklon skincare."
+            variant="white"
+            size="lg"
+            class="rounded-xl shadow-2xl shadow-black/20"
+          />
           <a href="/layanan"
             class="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-white/20 bg-white/5 px-10 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/35 hover:bg-white/8">
             Lihat Layanan Kami

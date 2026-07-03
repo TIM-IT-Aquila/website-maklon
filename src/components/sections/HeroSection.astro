@@ -1,10 +1,8 @@
 ---
 import Icon from "../ui/Icon.astro";
 import { siteConfig } from "../../data/site";
-import { createWhatsappLink } from "../../lib/whatsapp";
+import WAButton from "../ui/WAButton.astro";
 import { heroImages } from "../../data/images";
-
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 
 const slides = [
   {
@@ -64,20 +62,17 @@ const slides = [
       </h1>
 
       <!-- Description -->
-      <p class="mx-auto mt-6 max-w-3xl animate-fade-in-up text-lg leading-relaxed text-white/80 md:text-xl" id="hero-desc" style="animation-delay: 0.1s">
+      <p class="mx-auto mt-4 max-w-3xl animate-fade-in-up text-lg leading-relaxed text-white/80 md:text-xl" id="hero-desc" style="animation-delay: 0.1s">
         Kami membantu proses maklon dari konsultasi, formulasi, produksi, legalitas, hingga produk siap jual.
       </p>
 
       <!-- Buttons -->
-      <div class="mt-10 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row" style="animation-delay: 0.2s">
-        <a
-          href={waLink}
-          target="_blank" rel="noopener noreferrer"
-          class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-        >
-          <Icon name="mdi:whatsapp" class="mr-2 h-5 w-5" />
-          Konsultasi via WhatsApp
-        </a>
+      <div class="mt-8 flex animate-fade-in-up flex-col items-center justify-center gap-3 sm:flex-row" style="animation-delay: 0.2s">
+        <WAButton
+          variant="white"
+          size="lg"
+          class="rounded-full border-2 border-white"
+        />
         <a
           href="/outsourcing-flow"
           class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
@@ -87,7 +82,7 @@ const slides = [
       </div>
 
       <!-- Trust Badges -->
-      <div class="mt-12 flex animate-fade-in-up flex-wrap items-center justify-center gap-6" style="animation-delay: 0.3s">
+      <div class="mt-8 flex animate-fade-in-up flex-wrap items-center justify-center gap-4" style="animation-delay: 0.3s">
         <div class="flex items-center gap-2 text-white/70">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           <span class="text-sm font-medium">BPOM Terdaftar</span>

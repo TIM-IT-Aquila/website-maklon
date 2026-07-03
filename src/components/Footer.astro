@@ -1,19 +1,14 @@
 ---
 import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
+import WAButton from "../components/ui/WAButton.astro";
 import { navItems } from "../data/nav";
-
-const waLink = createWhatsappLink(
-  siteConfig.waNumber,
-  siteConfig.waText
-);
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-base-300 bg-base-200/50">
-  <div class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-    <div class="grid gap-8 md:grid-cols-4">
+  <div class="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-4">
       <!-- Brand Premium -->
       <div class="md:col-span-1">
         <a href="/" class="group flex items-center gap-3 transition-all duration-500 hover:opacity-85">
@@ -32,7 +27,7 @@ const currentYear = new Date().getFullYear();
       <!-- Navigation -->
       <div>
         <h4 class="mb-4 text-sm font-bold uppercase tracking-wider text-base-content/50">Navigasi</h4>
-        <ul class="space-y-3">
+        <ul class="space-y-2">
           {navItems.map((item) => (
             <li>
               {item.href ? (
@@ -40,10 +35,10 @@ const currentYear = new Date().getFullYear();
                   {item.label}
                 </a>
               ) : (
-                <div class="space-y-2">
+                <div class="space-y-1.5">
                   <p class="text-xs font-semibold uppercase tracking-wider text-base-content/40">{item.label}</p>
                   {item.children && (
-                    <ul class="space-y-2">
+                    <ul class="space-y-1.5">
                       {item.children.map((child) => (
                         <li>
                           <a href={child.href} class="text-sm text-base-content/60 transition-colors hover:text-primary">
@@ -63,11 +58,15 @@ const currentYear = new Date().getFullYear();
       <!-- Contact -->
       <div>
         <h4 class="mb-4 text-sm font-bold uppercase tracking-wider text-base-content/50">Kontak</h4>
-        <ul class="space-y-3 text-sm text-base-content/60">
+        <ul class="space-y-2 text-sm text-base-content/60">
           <li>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-primary">
-              WhatsApp: {siteConfig.waNumber}
-            </a>
+            <WAButton
+              text={`WhatsApp: ${siteConfig.waNumber}`}
+              variant="text-link"
+              size="sm"
+              hideIcon
+              class="!p-0 !h-auto !text-sm !font-normal"
+            />
           </li>
           <li>
             <a href={`mailto:${siteConfig.email}`} class="transition-colors hover:text-primary">
@@ -85,17 +84,16 @@ const currentYear = new Date().getFullYear();
         <p class="mb-4 text-sm text-base-content/60">
           Konsultasikan ide produk Anda secara gratis. Tim kami siap membantu.
         </p>
-        <a
-          href={waLink}
-          target="_blank" rel="noopener noreferrer"
-          class="btn btn-primary bg-primary border-primary rounded-full px-6 text-white shadow-md hover:brightness-110"
-        >
-          Konsultasi Gratis
-        </a>
+        <WAButton
+          text="Konsultasi Gratis"
+          variant="primary"
+          size="sm"
+          class="rounded-full"
+        />
       </div>
     </div>
 
-    <div class="mt-10 border-t border-base-300 pt-6 text-center text-sm text-base-content/40">
+    <div class="mt-8 border-t border-base-300 pt-5 text-center text-sm text-base-content/40">
       &copy; {currentYear} {siteConfig.name}. All rights reserved.
     </div>
   </div>

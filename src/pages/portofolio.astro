@@ -1,11 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
-import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
+import WAButton from "../components/ui/WAButton.astro";
 import { portfolioItems } from "../data/portofolio";
-
-const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untuk memulai brand skincare bersama Aquila Maklon.");
 ---
 
 <MainLayout
@@ -16,7 +13,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
     <!-- ================================================================== -->
     <!-- 1. PORTOFOLIO — Image only, 4 columns, hover shows details         -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <section class="bg-base-100 pt-12 pb-14 lg:pt-16 lg:pb-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
           {portfolioItems.map((item) => (
@@ -81,17 +78,13 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
               </div>
 
               {/* CTA button below image */}
-              <a
-                href={createWhatsappLink(
-                  siteConfig.waNumber,
-                  `Halo, saya tertarik dengan portofolio ${item.brandName}. Saya ingin konsultasi untuk membuat produk serupa.`
-                )}
-                target="_blank" rel="noopener noreferrer"
-                class="flex items-center justify-center gap-1.5 border-t border-base-100 bg-primary/5 px-3 py-2.5 text-xs font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
-              >
-                Konsultasi Produk Serupa
-                <Icon name="lucide:arrow-right" size={12} class="transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              <WAButton
+                text="Konsultasi Produk Serupa"
+                message={`Halo, saya tertarik dengan portofolio ${item.brandName}. Saya ingin konsultasi untuk membuat produk serupa.`}
+                variant="primary"
+                size="sm"
+                class="!rounded-none !bg-primary/5 !text-primary !shadow-none hover:!bg-primary hover:!text-white border-t border-base-100"
+              />
             </div>
           ))}
         </div>
@@ -101,7 +94,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
     <!-- ================================================================== -->
     <!-- 2. CTA PREMIUM BANNER                                               -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-24">
+    <section class="relative overflow-hidden py-16">
       <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary/80"></div>
       <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
@@ -120,12 +113,13 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya tertarik untu
         </p>
 
         <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waLink} target="_blank" rel="noopener noreferrer"
-            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <Icon name="mdi:whatsapp" size={20} />
-            Konsultasi via WhatsApp
-            <Icon name="lucide:arrow-right" size={18} />
-          </a>
+          <WAButton
+            text="Konsultasi via WhatsApp"
+            message="Halo, saya tertarik untuk memulai brand skincare bersama Aquila Maklon."
+            variant="white"
+            size="lg"
+            class="rounded-xl border-2 border-white"
+          />
         </div>
       </div>
     </section>

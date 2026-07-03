@@ -12,13 +12,13 @@ import { processSteps } from "../../data/process";
       description="Proses maklon yang mudah dan terstruktur dari konsultasi hingga produk jadi."
     />
 
-    <div class="relative mt-10">
+    <div class="relative mt-8">
       {/* Timeline line */}
       <div class="absolute left-6 top-0 hidden h-full w-0.5 bg-gradient-to-b from-primary/30 to-primary/10 md:block"></div>
 
-      <div class="space-y-8">
+      <div class="space-y-6">
         {processSteps.map((step) => (
-          <div class="group relative md:flex md:items-start md:gap-8">
+          <div class="group relative md:flex md:items-start md:gap-6">
             {/* Step number with icon */}
             <div class="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30 md:static">
               <Icon name={step.icon} size={20} />

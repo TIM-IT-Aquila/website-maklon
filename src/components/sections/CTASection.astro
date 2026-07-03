@@ -1,7 +1,6 @@
 ---
 import { siteConfig } from "../../data/site";
-import { createWhatsappLink } from "../../lib/whatsapp";
-import Icon from "../ui/Icon.astro";
+import WAButton from "../ui/WAButton.astro";
 
 interface Props {
   title?: string;
@@ -16,28 +15,25 @@ const {
   buttonText = "Konsultasi via WhatsApp",
   waMessage = "Halo, saya ingin konsultasi maklon skincare.",
 } = Astro.props;
-
-const waLink = createWhatsappLink(siteConfig.waNumber, waMessage);
 ---
 
-<section class="bg-primary py-20">
+<section class="bg-primary py-14">
   <div class="mx-auto max-w-4xl px-4 text-center lg:px-8">
     <h2 class="text-3xl font-black text-white md:text-4xl">
       {title}
     </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-lg text-white/80">
+    <p class="mx-auto mt-3 max-w-2xl text-lg text-white/80">
       {description}
     </p>
 
-    <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <a
-        href={waLink}
-        target="_blank" rel="noopener noreferrer"
-        class="btn btn-lg rounded-full border-2 border-white bg-white px-10 text-primary shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-white/90"
-      >
-        <Icon name="mdi:whatsapp" class="mr-2 h-5 w-5" />
-        {buttonText}
-      </a>
+    <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      <WAButton
+        text={buttonText}
+        message={waMessage}
+        variant="white"
+        size="lg"
+        class="rounded-full border-2 border-white"
+      />
     </div>
   </div>
 </section>

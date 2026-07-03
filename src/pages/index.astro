@@ -1,6 +1,7 @@
 ---
 import Icon from "../components/ui/Icon.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import WAButton from "../components/ui/WAButton.astro";
 import { siteConfig } from "../data/site";
 import { createWhatsappLink } from "../lib/whatsapp";
 import { advantages } from "../data/advantages";
@@ -12,8 +13,6 @@ import { faqs } from "../data/faqs";
 import { categoryImages, factoryImages, processImages, productImages, heroImages } from "../data/images";
 import { certifications } from "../data/certifications";
 
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
-const waKonsultasi = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi mengenai maklon skincare/kosmetik.");
 const processPreviewSteps = processSteps.slice(0, 5);
 const topProducts = products.slice(0, 8);
 const categories = categoryImages.slice(0, 6);
@@ -44,7 +43,7 @@ const comparisons = [
 ---
 
 <MainLayout
-  title="Aquila Magna – Jasa Maklon Skincare & Kosmetik Terpercaya"
+  title="Aquila Magna – Jasa Skincare & Kosmetik Terpercaya"
   description={siteConfig.description}
 >
   <main class="overflow-x-hidden">
@@ -91,12 +90,13 @@ const comparisons = [
           </p>
 
           <div class="mt-8 flex flex-wrap items-center gap-4">
-            <a href={waKonsultasi} target="_blank" rel="noopener noreferrer"
-              class="group relative inline-flex h-14 items-center gap-2.5 overflow-hidden rounded-xl bg-white px-8 text-base font-bold text-primary shadow-xl shadow-black/20 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/15">
-              <Icon name="mdi:whatsapp" class="relative z-10 h-5 w-5" />
-              <span class="relative z-10">Konsultasi Gratis</span>
-              <Icon name="lucide:arrow-right" class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            <WAButton
+              text="Konsultasi Gratis"
+              message="Halo, saya ingin konsultasi mengenai maklon skincare/kosmetik."
+              variant="white"
+              size="lg"
+              class="rounded-xl shadow-xl shadow-black/20"
+            />
             <a href="/alur-maklon"
               class="group inline-flex h-14 items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-white/10">
               Lihat Alur Maklon
@@ -132,7 +132,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 2. CATEGORY — Grid showcase                                       -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-24 md:py-32">
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <div class="mb-6 flex items-center justify-center gap-3">
@@ -148,12 +148,12 @@ const comparisons = [
           </p>
         </div>
 
-        <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat) => {
             const waCat = createWhatsappLink(siteConfig.waNumber, `Halo, saya tertarik dengan produk kategori ${cat.name}. Bisa info lebih lanjut?`);
             return (
               <a href={waCat} target="_blank" rel="noopener noreferrer"
-                class="reveal-up group relative block overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
+                class="touch-card reveal-up group relative block overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
               >
                 <div class="relative aspect-[4/5] w-full overflow-hidden">
                   <img src={cat.image} alt={cat.name} class="h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105" loading="lazy" />
@@ -161,8 +161,13 @@ const comparisons = [
                   <div class="absolute bottom-0 left-0 right-0 p-5">
                     <h3 class="text-lg font-bold text-white drop-shadow-md">{cat.name}</h3>
                   </div>
+                  <!-- Touch badge (mobile only) -->
+                  <div class="touch-badge absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white backdrop-blur-md opacity-0 transition-opacity duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2Zm0 0l5 5"/></svg>
+                    Ketuk
+                  </div>
                   <!-- Hover overlay -->
-                  <div class="absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 backdrop-blur-[1px] transition-all duration-500 group-hover:opacity-100">
+                  <div class="touch-overlay absolute inset-0 flex items-center justify-center bg-black/45 opacity-0 backdrop-blur-[1px] transition-all duration-500 group-hover:opacity-100">
                     <span class="translate-y-3 rounded-xl bg-white px-6 py-2.5 text-sm font-bold text-primary shadow-lg transition-transform duration-500 group-hover:translate-y-0">
                       Konsultasi {cat.name}
                     </span>
@@ -178,7 +183,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 3. STATS — Animated counters                                        -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-primary py-16 md:py-20">
+    <section class="relative overflow-hidden bg-primary py-12 md:py-16">
       <!-- Decorative overlay -->
       <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary to-primary/90"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
@@ -203,7 +208,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 4. LAYANAN — Service cards with image hover overlay                 -->
     <!-- ================================================================== -->
-    <section id="layanan" class="bg-base-200/40 py-24 md:py-32">
+    <section id="layanan" class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <div class="mb-6 flex items-center justify-center gap-3">
@@ -215,16 +220,16 @@ const comparisons = [
             Solusi Lengkap untuk Brand Kecantikan Anda
           </h2>
           <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg">
-            Dari skincare hingga parfum — semua bisa kami produksi dengan standar kualitas tinggi.
+            Dari skincare hingga baby care — semua bisa kami produksi dengan standar kualitas tinggi.
           </p>
         </div>
 
-        <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((svc) => {
             const waService = createWhatsappLink(siteConfig.waNumber, `Halo, saya tertarik dengan layanan ${svc.title}. Bisa info lebih lanjut?`);
             return (
               <a href={waService} target="_blank" rel="noopener noreferrer"
-                class="reveal-up group relative block overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
+                class="touch-card reveal-up group relative block overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
               >
                 <div class="relative aspect-[4/5] w-full overflow-hidden">
                   <img src={svc.image} alt={svc.title} class="h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105" loading="lazy" />
@@ -232,8 +237,13 @@ const comparisons = [
                   <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent p-5">
                     <h3 class="text-lg font-bold text-white drop-shadow-md">{svc.title}</h3>
                   </div>
+                  <!-- Touch badge (mobile only) -->
+                  <div class="touch-badge absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white backdrop-blur-md opacity-0 transition-opacity duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2Zm0 0l5 5"/></svg>
+                    Ketuk
+                  </div>
                   <!-- Hover overlay -->
-                  <div class="absolute inset-0 flex flex-col justify-center bg-black/55 p-6 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:opacity-100">
+                  <div class="touch-overlay absolute inset-0 flex flex-col justify-center bg-black/55 p-6 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:opacity-100">
                     <div class="translate-y-3 transition-transform duration-500 group-hover:translate-y-0">
                       <p class="text-sm leading-relaxed text-white/90">{svc.desc}</p>
                       {svc.examples && svc.examples.length > 0 && (
@@ -267,7 +277,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 5. KEUNGGULAN — Split layout: image left + cards right              -->
     <!-- ================================================================== -->
-    <section id="keunggulan" class="bg-base-100 py-24 md:py-32">
+    <section id="keunggulan" class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -309,7 +319,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 6. PRODUCT SHOWCASE — Modern hover cards                            -->
     <!-- ================================================================== -->
-    <section id="produk" class="bg-base-200/40 py-24 md:py-32">
+    <section id="produk" class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -320,7 +330,7 @@ const comparisons = [
           </p>
         </div>
 
-        <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {topProducts.map((product) => (
             <div class="reveal-up group relative overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/15 hover:shadow-lg">
               <div class="relative h-48 overflow-hidden">
@@ -352,7 +362,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 7. PROCESS — Interactive timeline + mobile carousel                 -->
     <!-- ================================================================== -->
-    <section id="alur" class="bg-base-100 py-24 md:py-32">
+    <section id="alur" class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <div class="mb-6 flex items-center justify-center gap-3">
@@ -498,7 +508,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 8. FACTORY GALLERY — Image cards w/ overlay                         -->
     <!-- ================================================================== -->
-    <section class="bg-base-200/40 py-24 md:py-32">
+    <section class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -510,7 +520,7 @@ const comparisons = [
         </div>
 
         <!-- Asymmetric masonry: 1 large featured + grid of smaller cards -->
-        <div class="mt-16 grid gap-5 lg:grid-cols-2">
+        <div class="mt-12 grid gap-5 lg:grid-cols-2">
           <!-- Large featured image (first item) -->
           <div class="reveal-up group relative overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg lg:row-span-2">
             <div class="relative h-full min-h-[360px] overflow-hidden">
@@ -546,7 +556,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 9. COMPARISON — Premium table                                        -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-24 md:py-32">
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-4xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -636,7 +646,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 11. TESTIMONIAL — Card carousel                                      -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-24 md:py-32">
+    <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -690,7 +700,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 12. FAQ — Accordion                                                  -->
     <!-- ================================================================== -->
-    <section class="bg-base-200/40 py-24 md:py-32">
+    <section class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-3xl px-4 lg:px-8">
         <div class="reveal-up mx-auto max-w-2xl text-center">
           <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
@@ -723,7 +733,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <!-- 13. FINAL CTA — Full-width banner                                   -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-24 md:py-32">
+    <section class="relative overflow-hidden py-16 md:py-20">
       <div class="absolute inset-0 bg-gradient-to-br from-[#0a1a15] via-primary to-emerald-950"></div>
       <div class="pointer-events-none absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 40px 40px;"></div>
 
@@ -741,12 +751,13 @@ const comparisons = [
         </p>
 
         <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waKonsultasi} target="_blank" rel="noopener noreferrer"
-            class="group relative inline-flex h-14 items-center gap-2.5 overflow-hidden rounded-xl bg-white px-10 text-base font-bold text-primary shadow-2xl shadow-black/20 transition-all duration-500 hover:scale-105">
-            <Icon name="mdi:whatsapp" class="relative z-10 h-5 w-5" />
-            <span class="relative z-10">Konsultasi via WhatsApp</span>
-            <Icon name="lucide:arrow-right" class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          <WAButton
+            text="Konsultasi via WhatsApp"
+            message="Halo, saya ingin konsultasi mengenai maklon skincare/kosmetik."
+            variant="white"
+            size="lg"
+            class="rounded-xl shadow-2xl shadow-black/20"
+          />
           <a href="/tentang-kami"
             class="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-white/20 bg-white/5 px-10 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/35 hover:bg-white/8">
             Pelajari Lebih Lanjut
@@ -1009,7 +1020,44 @@ const comparisons = [
   startTesti();
 
   // ====================================================================
-  // 7. SCROLL REVEAL ANIMATIONS
+  // 7. TOUCH CARD TAP-TO-REVEAL (mobile only)
+  // ====================================================================
+  let tappedCard: HTMLElement | null = null;
+
+  document.querySelectorAll<HTMLElement>('.touch-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Only intercept on touch devices (coarse pointer)
+      if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+      if (this === tappedCard) {
+        // Second tap — allow navigation to WhatsApp
+        tappedCard = null;
+        return;
+      }
+
+      // First tap — prevent link, show overlay
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Hide previously tapped card
+      if (tappedCard) tappedCard.classList.remove('tapped');
+
+      this.classList.add('tapped');
+      tappedCard = this;
+    });
+  });
+
+  // Close tapped card when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!tappedCard) return;
+    if (!tappedCard.contains(e.target as Node)) {
+      tappedCard.classList.remove('tapped');
+      tappedCard = null;
+    }
+  });
+
+  // ====================================================================
+  // 8. SCROLL REVEAL ANIMATIONS
   // ====================================================================
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

@@ -10,7 +10,4 @@ export const products = [
   { name: "Body Scrub", category: "Bodycare", icon: "lucide:waves", desc: "Eksfoliator untuk kulit halus dan bersinar", image: productImages.bodyScrub },
   { name: "Shampoo", category: "Haircare", icon: "lucide:scissors", desc: "Sampo untuk berbagai jenis rambut", image: productImages.shampoo },
   { name: "Conditioner", category: "Haircare", icon: "lucide:leaf", desc: "Kondisioner untuk rambut lembut dan sehat", image: productImages.conditioner },
-  { name: "Parfum", category: "Fragrance", icon: "lucide:flower-2", desc: "Wewangian eksklusif untuk brand Anda", image: productImages.parfum },
-  { name: "Lip Cream", category: "Makeup", icon: "lucide:spray-can", desc: "Lip cream dengan warna tahan lama", image: productImages.lipCream },
-  { name: "Cushion", category: "Makeup", icon: "lucide:palette", desc: "Foundation cushion dengan coverage sempurna", image: productImages.cushion },
 ];

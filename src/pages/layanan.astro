@@ -3,14 +3,13 @@ import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import Icon from "../components/ui/Icon.astro";
-import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
+import WAButton from "../components/ui/WAButton.astro";
 import { services } from "../data/services";
 ---
 
 <MainLayout
   title="Layanan Maklon | Aquila Magna"
-  description="Layanan maklon lengkap untuk skincare, bodycare, haircare, parfum, makeup, dan baby care."
+  description="Layanan maklon lengkap untuk skincare, bodycare, haircare, dan baby care."
 >
   <main>
     <!-- ================================================================== -->
@@ -26,10 +25,6 @@ import { services } from "../data/services";
     <section class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((svc) => {
-          const waLinkProduct = createWhatsappLink(
-            siteConfig.waNumber,
-            `Halo, saya ingin konsultasi maklon untuk ${svc.title}. Saya tertarik dengan produk ${svc.title}.`
-          );
           return (
             <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
               <div class="card-body">
@@ -41,7 +36,13 @@ import { services } from "../data/services";
                   <p class="mt-1 text-sm text-base-content/60">{svc.examples}</p>
                 </div>
                 <div class="card-actions mt-4">
-                  <a href={waLinkProduct} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-full px-5 text-white">Konsultasikan Produk Ini</a>
+                  <WAButton
+                    text="Konsultasikan Produk Ini"
+                    message={`Halo, saya ingin konsultasi maklon untuk ${svc.title}. Saya tertarik dengan produk ${svc.title}.`}
+                    variant="primary"
+                    size="sm"
+                    class="rounded-full"
+                  />
                 </div>
               </div>
             </div>

@@ -1,12 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
-import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
+import WAButton from "../components/ui/WAButton.astro";
 import { processSteps } from "../data/process";
-
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
-const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin memulai proses maklon.");
 ---
 
 <MainLayout
@@ -17,7 +13,7 @@ const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin 
     <!-- ================================================================== -->
     <!-- SECTION HEADER                                                     -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 pb-4 pt-16 lg:pb-6 lg:pt-24">
+    <section class="bg-base-100 pb-4 pt-12 lg:pb-6 lg:pt-16">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
         <div class="flex flex-col items-center text-center">
           <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-base-200/40 px-5 py-2">
@@ -37,7 +33,7 @@ const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin 
     <!-- ================================================================== -->
     <!-- ZIGZAG TIMELINE — Alternating left/right + center line              -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 pb-20 lg:pb-28">
+    <section class="bg-base-100 pb-14 lg:pb-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
 
         {/* Desktop: zigzag with center line */}
@@ -130,13 +126,14 @@ const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin 
         </div>
 
         {/* Bottom CTA */}
-        <div class="mt-14 text-center lg:mt-20">
+        <div class="mt-10 text-center lg:mt-14">
           <p class="text-sm text-base-content/50">Tertarik memulai proses maklon?</p>
-          <a href={waConsultLink} target="_blank" rel="noopener noreferrer"
-            class="mt-3 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            <Icon name="mdi:whatsapp" size={16} />
-            Mulai Konsultasi
-          </a>
+          <WAButton
+            text="Mulai Konsultasi"
+            message="Halo, saya ingin memulai proses maklon."
+            variant="primary"
+            class="mt-3 rounded-full shadow-md"
+          />
         </div>
 
       </div>
@@ -145,7 +142,7 @@ const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin 
     <!-- ================================================================== -->
     <!-- CTA PREMIUM BANNER                                                 -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-24">
+    <section class="relative overflow-hidden py-16">
       <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary"></div>
       <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
@@ -160,11 +157,12 @@ const waConsultLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin 
         </p>
 
         <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waLink} target="_blank" rel="noopener noreferrer"
-            class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white bg-white px-10 text-base text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <Icon name="mdi:whatsapp" class="mr-2 h-5 w-5" />
-            Konsultasi via WhatsApp
-          </a>
+          <WAButton
+            text="Konsultasi via WhatsApp"
+            variant="white"
+            size="lg"
+            class="rounded-full border-2 border-white"
+          />
           <a href="/layanan"
             class="btn btn-lg h-14 min-h-14 rounded-full border-2 border-white/30 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20">
             Lihat Layanan Kami

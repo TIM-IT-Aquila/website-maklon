@@ -2,8 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+import WAButton from "../components/ui/WAButton.astro";
 ---
 
 <MainLayout
@@ -12,7 +11,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 >
   <main>
     <!-- Page Hero -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-32 md:pt-40">
+    <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-12 pt-24 md:pt-32">
       <div class="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-3xl"></div>
 
@@ -41,9 +40,12 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100 text-3xl"><Icon name="mdi:whatsapp" size={32} class="text-green-600" /></div>
             <h3 class="card-title mt-3">WhatsApp</h3>
             <p class="mt-1 text-sm text-base-content/60">{siteConfig.waNumber}</p>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm mt-3 rounded-full px-5 text-white">
-              Chat Sekarang
-            </a>
+            <WAButton
+              text="Chat Sekarang"
+              variant="primary"
+              size="sm"
+              class="mt-3 rounded-full"
+            />
           </div>
         </div>
 
@@ -122,8 +124,6 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
                     <option value="Skincare">Skincare</option>
                     <option value="Bodycare">Bodycare</option>
                     <option value="Haircare">Haircare</option>
-                    <option value="Parfum">Parfum / Fragrance</option>
-                    <option value="Makeup">Makeup / Kosmetik</option>
                     <option value="Baby Care">Baby Care</option>
                     <option value="Lainnya">Lainnya</option>
                   </select>

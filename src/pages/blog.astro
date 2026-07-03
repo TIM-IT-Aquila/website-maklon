@@ -2,10 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { blogPosts } from "../data/blog";
 import Icon from "../components/ui/Icon.astro";
-import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
-
-const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsultasi seputar bisnis maklon skincare.");
+import WAButton from "../components/ui/WAButton.astro";
 ---
 
 <MainLayout
@@ -16,7 +13,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     <!-- ================================================================== -->
     <!-- 1. GRID 2 KOLOM — Foto lebar kotak-kotak                           -->
     <!-- ================================================================== -->
-    <section class="mx-auto max-w-7xl px-4 pt-12 pb-20 lg:px-8 lg:pt-20 lg:pb-28">
+    <section class="mx-auto max-w-7xl px-4 pt-8 pb-14 lg:px-8 lg:pt-14 lg:pb-20">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
         {blogPosts.map((post, i) => {
           // Variasi tinggi gambar besar & sedang, kotak semua
@@ -75,7 +72,7 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
     <!-- ================================================================== -->
     <!-- 2. CTA PREMIUM BANNER                                              -->
     <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-24">
+    <section class="relative overflow-hidden py-16">
       <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-emerald-800"></div>
       <div class="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
@@ -94,12 +91,13 @@ const waLink = createWhatsappLink(siteConfig.waNumber, "Halo, saya ingin konsult
         </p>
 
         <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a href={waLink} target="_blank" rel="noopener noreferrer"
-            class="btn btn-lg h-14 min-h-14 rounded-xl border-2 border-white bg-white px-10 text-base font-bold text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <Icon name="mdi:whatsapp" size={20} />
-            Konsultasi via WhatsApp
-            <Icon name="lucide:arrow-right" size={18} />
-          </a>
+          <WAButton
+            text="Konsultasi via WhatsApp"
+            message="Halo, saya ingin konsultasi seputar bisnis maklon skincare."
+            variant="white"
+            size="lg"
+            class="rounded-xl border-2 border-white"
+          />
         </div>
       </div>
     </section>

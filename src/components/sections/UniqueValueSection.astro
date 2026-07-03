@@ -2,24 +2,19 @@
 import Icon from "../ui/Icon.astro";
 import { siteConfig } from "../../data/site";
 import { advantages } from "../../data/advantages";
-import { createWhatsappLink } from "../../lib/whatsapp";
-
-const waLink = createWhatsappLink(
-  siteConfig.waNumber,
-  siteConfig.waText
-);
+import WAButton from "../ui/WAButton.astro";
 ---
 
 <section id="keunikan" class="bg-base-200/50 py-16">
   <div class="mx-auto max-w-7xl px-4 lg:px-8">
-    <div class="grid items-start gap-12 md:grid-cols-2">
+    <div class="grid items-start gap-8 md:grid-cols-2">
       <!-- Left: Text -->
       <div>
         <p class="mb-3 font-semibold tracking-wide text-primary">Keunikan Perusahaan</p>
         <h2 class="text-3xl font-black md:text-4xl">
           Kenapa Harus Memilih Kami?
         </h2>
-        <p class="mt-6 leading-relaxed text-base-content/70">
+        <p class="mt-4 leading-relaxed text-base-content/70">
           Kami tidak hanya memproduksi produk, tapi mendampingi Anda dari nol hingga 
           produk siap dipasarkan. Dengan pengalaman dan tim profesional, setiap tahapan 
           maklon dirancang agar mudah, transparan, dan berkualitas.
@@ -28,13 +23,11 @@ const waLink = createWhatsappLink(
           Dari pendampingan ide, formulasi custom, desain kemasan profesional, hingga 
           pengurusan legalitas BPOM dan Halal — semua bisa Anda dapatkan dalam satu tempat.
         </p>
-        <a
-          href={waLink}
-          target="_blank" rel="noopener noreferrer"
-          class="btn btn-primary mt-6 rounded-full px-6 text-white shadow-md transition-all duration-300 hover:shadow-lg"
-        >
-          Konsultasi Sekarang
-        </a>
+        <WAButton
+          text="Konsultasi Sekarang"
+          variant="primary"
+          class="mt-6 rounded-full"
+        />
       </div>
 
       <!-- Right: Advantage Cards -->

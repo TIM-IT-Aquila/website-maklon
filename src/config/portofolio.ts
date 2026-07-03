@@ -39,18 +39,6 @@ export const portfolioItems: PortfolioItem[] = [
     image: portfolioImages.bodycareBrand,
   },
   {
-    id: "luxe-parfum",
-    brandName: "Luxe Parfum",
-    category: "Fragrance",
-    description:
-      "Brand parfum dengan aroma eksklusif dan premium untuk kalangan muda urban.",
-    products: ["EDP Parfum", "Body Mist", "Roll On Parfum"],
-    highlights: ["Aroma tahan lama hingga 8 jam", "Botol kaca premium", "Varian eksklusif limited edition"],
-    icon: "lucide:flower-2",
-    color: "from-pink-400 to-rose-600",
-    image: portfolioImages.fragranceBrand,
-  },
-  {
     id: "pure-baby",
     brandName: "Pure Baby",
     category: "Baby Care",
@@ -61,18 +49,6 @@ export const portfolioItems: PortfolioItem[] = [
     icon: "lucide:baby",
     color: "from-sky-400 to-blue-500",
     image: portfolioImages.babycareBrand,
-  },
-  {
-    id: "glamour-queen",
-    brandName: "Glamour Queen",
-    category: "Makeup",
-    description:
-      "Brand makeup dengan pigmen tinggi, warna-warna kekinian, dan harga terjangkau.",
-    products: ["Lip Cream", "Cushion Foundation", "Eyeshadow Palette", "Blush On"],
-    highlights: ["Pigmentasi tinggi", "Varian warna lengkap", "Formula transfer-proof"],
-    icon: "lucide:spray-can",
-    color: "from-purple-400 to-violet-600",
-    image: portfolioImages.makeupBrand,
   },
   {
     id: "hair-lust",

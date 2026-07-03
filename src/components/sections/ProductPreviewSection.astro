@@ -11,13 +11,13 @@ import { products } from "../../data/products";
     description="Berbagai produk skincare, bodycare, haircare, dan kosmetik siap diproduksi untuk brand Anda."
   />
 
-  <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     {products.slice(0, 6).map((product) => (
       <ProductCard product={product} />
     ))}
   </div>
 
-  <div class="mt-10 text-center">
+  <div class="mt-6 text-center">
     <a href="/produk-maklon" class="btn btn-soft rounded-full px-8">
       Lihat Produk Maklon
     </a>

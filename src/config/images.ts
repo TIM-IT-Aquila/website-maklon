@@ -1,8 +1,8 @@
 // =============================================================================
 // LIBRARY FOTO TERPUSAT — Aquila Maklon
-// Semua gambar menggunakan foto gratis dari Unsplash / Pexels / Pixabay.
-// Cukup ganti URL di sini untuk menyesuaikan seluruh website.
-// TODO(content): Ganti foto stok eksternal dengan aset brand/fasilitas asli saat materi final tersedia.
+// Semua gambar menggunakan placeholder SVG lokal buatan sendiri.
+// Produk putih polos berlabel "YOUR BRAND" — tidak ada gambar stok berlisensi.
+// Cukup ganti file SVG di public/assets/placeholders/ dengan foto asli brand saat sudah tersedia.
 // =============================================================================
 
 // --- HERO & BANNER (landscape 16:9, 1600px wide) ---
@@ -78,12 +78,6 @@ export const productImages = {
     "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=600&q=80",
   conditioner:
     "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&q=80",
-  parfum:
-    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80",
-  lipCream:
-    "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&q=80",
-  cushion:
-    "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&q=80",
   // Service-related
   skincareService:
     "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
@@ -91,10 +85,6 @@ export const productImages = {
     "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80",
   haircareService:
     "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&q=80",
-  parfumService:
-    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80",
-  makeupService:
-    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80",
   babyCareService:
     "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&q=80",
 };
@@ -143,12 +133,8 @@ export const portfolioImages = {
     "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
   bodycareBrand:
     "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80",
-  fragranceBrand:
-    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&q=80",
   babycareBrand:
     "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&q=80",
-  makeupBrand:
-    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
   haircareBrand:
     "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=800&q=80",
 };

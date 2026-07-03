@@ -23,20 +23,6 @@ export const services = [
     image: productImages.haircareService,
   },
   {
-    title: "Maklon Parfum",
-    desc: "Ciptakan wangi eksklusif untuk brand parfum Anda sendiri.",
-    examples: "Parfum, Body Mist, Aroma Diffuser, Room Spray",
-    icon: "lucide:flower",
-    image: productImages.parfumService,
-  },
-  {
-    title: "Maklon Makeup",
-    desc: "Produk riasan wajah dengan kualitas premium dan pigmentasi tinggi.",
-    examples: "Lip Cream, Cushion, Foundation, Eyeshadow, Blush On",
-    icon: "lucide:palette",
-    image: productImages.makeupService,
-  },
-  {
     title: "Maklon Baby Care",
     desc: "Produk perawatan bayi yang aman, lembut, dan sudah teruji dermatologis.",
     examples: "Baby Lotion, Baby Wash, Baby Oil, Baby Cream",

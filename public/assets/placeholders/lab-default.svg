@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f0ec"/>
+      <stop offset="100%" style="stop-color:#f0f8f4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <!-- Lab flask -->
+  <path d="M360 380 L360 250 L310 180 L490 180 L440 250 L440 380 Z" fill="white" stroke="#659287" stroke-width="2.5"/>
+  <ellipse cx="400" cy="380" rx="90" ry="50" fill="white" stroke="#659287" stroke-width="2.5"/>
+  <line x1="360" y1="250" x2="310" y2="180" stroke="#659287" stroke-width="2.5"/>
+  <line x1="440" y1="250" x2="490" y2="180" stroke="#659287" stroke-width="2.5"/>
+  <!-- Liquid -->
+  <ellipse cx="400" cy="380" rx="75" ry="40" fill="#659287" opacity="0.15"/>
+  <text x="400" y="425" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#659287" text-anchor="middle" opacity="0.6">Laboratorium R&D</text>
+</svg>

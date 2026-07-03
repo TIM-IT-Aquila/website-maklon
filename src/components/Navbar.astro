@@ -1,11 +1,10 @@
 ---
 import { siteConfig } from "../data/site";
-import { createWhatsappLink } from "../lib/whatsapp";
 import { navItems } from "../data/nav";
 import Icon from "./ui/Icon.astro";
+import WAButton from "./ui/WAButton.astro";
 
 const currentPath = Astro.url.pathname;
-const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 
 function isActivePath(href: string): boolean {
   if (href === "/") return currentPath === "/";
@@ -19,11 +18,12 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
 ---
 
 <header class="sticky top-0 z-50 border-b border-base-300/40 bg-white/90 backdrop-blur-2xl transition-all duration-300">
-  <div class="navbar mx-auto max-w-7xl px-4 lg:px-8">
-    <!-- ================================================================== -->
-    <!-- KIRI: LOGO ICON                                                    -->
-    <!-- ================================================================== -->
-    <div class="navbar-start">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="navbar">
+      <!-- ================================================================== -->
+      <!-- KIRI: LOGO ICON                                                    -->
+      <!-- ================================================================== -->
+      <div class="navbar-start">
       <a href="/" class="group flex items-center transition-all duration-500 hover:opacity-90" aria-label="Aquila Magna">
         <img src="/assets/Logo.svg" alt="Aquila Magna" class="h-7 w-auto sm:h-8" />
       </a>
@@ -128,78 +128,195 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
     <!-- KANAN: DESKTOP CTA + MOBILE HAMBURGER                              -->
     <!-- ================================================================== -->
     <div class="navbar-end flex items-center gap-2">
-      <!-- Desktop CTA -->
-      <a
-        href={waLink}
-        target="_blank" rel="noopener noreferrer"
-        class="btn hidden h-10 rounded-full border-none bg-primary px-5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:brightness-110 hover:shadow-lg hover:scale-105 md:inline-flex"
-      >
-        <Icon name="mdi:whatsapp" class="mr-1.5 h-4 w-4" />
-        Konsultasi Gratis
-      </a>
+      <!-- Desktop CTA - hanya tampil di desktop -->
+      <div class="hidden lg:block">
+        <WAButton
+          text="Konsultasi Gratis"
+          size="sm"
+          variant="primary"
+          class="rounded-full"
+        />
+      </div>
 
       <!-- Hamburger Mobile -->
-      <div class="dropdown dropdown-end lg:hidden">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-sm" aria-label="Buka menu">
-          <Icon name="menu" class="h-5 w-5 text-base-content/70" />
-        </div>
-
-        <!-- Mobile Menu Dropdown - Full Width -->
-        <ul tabindex="0" class="menu menu-sm dropdown-content z-50 mx-0 mt-1 w-screen gap-0.5 rounded-none border-x-0 border-t border-base-200 bg-white px-4 pb-6 pt-16 shadow-xl shadow-black/10" style="position:fixed;left:0;right:0;top:60px">
-          {navItems.map((item) => {
-            if (item.children) {
-              const hasActiveChild = isChildActive(item.children);
-              return (
-                <li>
-                  <details open={hasActiveChild}>
-                    <summary class={`rounded-xl px-4 py-2.5 ${hasActiveChild ? "font-semibold text-primary" : "font-medium text-base-content/80"}`}>
-                      <span class="text-sm">{item.label}</span>
-                      <Icon name="chevron-down" class="h-3 w-3 opacity-50" />
-                    </summary>
-                    <ul class="ml-2 border-l-2 border-primary/15 bg-base-200/30 rounded-xl p-2">
-                      {item.children.map((child) => (
-                        <li>
-                          <a
-                            href={child.href}
-                            class={`flex items-start gap-3 rounded-xl px-4 py-2.5 transition-all duration-200 ${isActivePath(child.href) ? "bg-primary/10 font-semibold text-primary" : "text-base-content/70 hover:bg-primary/5 hover:text-primary"}`}
-                          >
-                            {child.icon && (
-                              <div class={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
-                                isActivePath(child.href)
-                                  ? "bg-primary/15 text-primary"
-                                  : "bg-base-200/60 text-base-content/50"
-                              } transition-all duration-200`}>
-                                <Icon name={child.icon} class="h-3.5 w-3.5" />
-                              </div>
-                            )}
-                            <div>
-                              <span class="text-sm font-semibold">{child.label}</span>
-                              {child.description && (
-                                <span class="mt-0.5 block text-xs font-normal text-base-content/40">{child.description}</span>
-                              )}
-                            </div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </li>
-              );
-            }
-            const active = isActivePath(item.href!);
-            return (
-              <li>
-                <a
-                  href={item.href}
-                  class={`rounded-xl px-4 py-2.5 transition-all duration-200 ${active ? "bg-primary/10 font-semibold text-primary" : "text-base-content/70 hover:bg-primary/5 hover:text-primary"}`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <button id="mobile-menu-btn" class="btn btn-ghost btn-sm lg:hidden" aria-label="Buka menu" type="button">
+        <span id="menu-icon-open"><Icon name="lucide:menu" class="h-5 w-5 text-base-content/70" /></span>
+        <span id="menu-icon-close" class="hidden"><Icon name="lucide:x" class="h-5 w-5 text-base-content/70" /></span>
+      </button>
+    </div>
     </div>
   </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu-hidden fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-full bg-black/40 backdrop-blur-sm lg:hidden" style="display:none;">
+    <nav class="h-full overflow-y-auto bg-white shadow-xl">
+      <ul class="flex flex-col gap-0.5 px-4 pb-10 pt-4">
+        {navItems.map((item) => {
+          if (item.children) {
+            const hasActiveChild = isChildActive(item.children);
+            return (
+              <li>
+                <details class="mobile-submenu" open={hasActiveChild}>
+                  <summary class={`flex cursor-pointer items-center justify-between rounded-xl px-4 py-3 ${hasActiveChild ? "font-semibold text-primary bg-primary/5" : "font-medium text-base-content/80"}`}>
+                    <span class="text-sm">{item.label}</span>
+                  </summary>
+                  <ul class="ml-2 mt-1 rounded-xl bg-base-200/40 p-2">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class={`flex items-start gap-3 rounded-xl px-4 py-2.5 transition-all duration-200 ${isActivePath(child.href) ? "bg-primary/10 font-semibold text-primary" : "text-base-content/70 hover:bg-primary/5 hover:text-primary"}`}
+                        >
+                          {child.icon && (
+                            <div class={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
+                              isActivePath(child.href)
+                                ? "bg-primary/15 text-primary"
+                                : "bg-base-200/60 text-base-content/50"
+                            } transition-all duration-200`}>
+                              <Icon name={child.icon} class="h-3.5 w-3.5" />
+                            </div>
+                          )}
+                          <div>
+                            <span class="text-sm font-semibold">{child.label}</span>
+                            {child.description && (
+                              <span class="mt-0.5 block text-xs font-normal text-base-content/40">{child.description}</span>
+                            )}
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              </li>
+            );
+          }
+          const active = isActivePath(item.href!);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class={`block rounded-xl px-4 py-3 transition-all duration-200 ${active ? "bg-primary/10 font-semibold text-primary" : "text-base-content/70 hover:bg-primary/5 hover:text-primary"}`}
+              >
+                <span class="text-sm">{item.label}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<style>
+  /* Smooth submenu expand/collapse animation */
+  details > ul {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.3s ease;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  details[open] > ul {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  /* Style the summary arrow nicely */
+  details > summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details > summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    opacity: 0.4;
+  }
+
+  details[open] > summary::after {
+    transform: rotate(-135deg);
+  }
+
+  /* Mobile menu entrance animation */
+  .mobile-menu-hidden {
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-menu-visible {
+    display: block !important;
+    animation: menuFadeIn 0.3s ease forwards;
+  }
+
+  @keyframes menuFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (menuBtn && mobileMenu && iconOpen && iconClose) {
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      mobileMenu!.style.display = 'block';
+      mobileMenu!.classList.add('mobile-menu-visible');
+      iconOpen!.classList.add('hidden');
+      iconClose!.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      mobileMenu!.style.display = 'none';
+      mobileMenu!.classList.remove('mobile-menu-visible');
+      iconOpen!.classList.remove('hidden');
+      iconClose!.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    // Close on overlay click
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenu();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) closeMenu();
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu());
+    });
+  }
+</script>

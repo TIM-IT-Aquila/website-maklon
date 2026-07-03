@@ -83,6 +83,17 @@ h1, h2, h3, h4, h5, h6 {
   .porto-tap-indicator {
     opacity: 1;
   }
+  /* Tap-to-reveal overlay on touch devices */
+  .touch-card.tapped .touch-overlay {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+  .touch-card .touch-badge {
+    opacity: 1;
+  }
+  .touch-card.tapped .touch-badge {
+    opacity: 0;
+  }
 }
 
 /* ===== CUSTOM ANIMATIONS ===== */
