@@ -21,6 +21,6 @@ export function generateSEOHeaders({ title, description, canonical, image, type 
   };
 }
 
-export function formatPageTitle(pageName: string, siteName: string = "Aquila Magna"): string {
+export function formatPageTitle(pageName: string, siteName: string = "Magna"): string {
   return `${pageName} | ${siteName}`;
 }

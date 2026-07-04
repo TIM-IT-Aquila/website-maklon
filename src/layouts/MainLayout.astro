@@ -24,7 +24,7 @@ const {
 const resolveUrl = (pathOrUrl: string) => new URL(pathOrUrl, siteConfig.url).toString();
 const canonicalUrl = resolveUrl(canonical ?? Astro.url.pathname);
 const ogImageUrl = resolveUrl(image);
-const logoUrl = resolveUrl("/assets/Logo.svg");
+const logoUrl = resolveUrl("/assets/Logo-magna.svg");
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -55,7 +55,6 @@ const organizationJsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />

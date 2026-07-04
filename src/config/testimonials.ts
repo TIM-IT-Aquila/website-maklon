@@ -5,7 +5,7 @@ export const testimonials = [
   {
     name: "Rina Amelia",
     brand: "Founder Brand A",
-    text: "Proses maklonnya sangat membantu. Tim Aquila mendampingi dari awal sampai produk jadi. Formula serum wajah saya sesuai dengan yang diinginkan.",
+    text: "Proses maklonnya sangat membantu. Tim Magna mendampingi dari awal sampai produk jadi. Formula serum wajah saya sesuai dengan yang diinginkan.",
     avatar: avatarImages.woman1,
     rating: 5,
   },
@@ -19,7 +19,7 @@ export const testimonials = [
   {
     name: "Sari Dewi",
     brand: "Beautypreneur",
-    text: "Akhirnya bisa punya produk sendiri berkat Aquila Maklon. Tim R&D-nya responsif dan sabar menjelaskan. Hasil body lotion-nya laris manis!",
+    text: "Akhirnya bisa punya produk sendiri berkat Magna. Tim R&D-nya responsif dan sabar menjelaskan. Hasil body lotion-nya laris manis!",
     avatar: avatarImages.woman3,
     rating: 5,
   },

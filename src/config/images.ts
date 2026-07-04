@@ -1,5 +1,5 @@
 // =============================================================================
-// LIBRARY FOTO TERPUSAT — Aquila Maklon
+// LIBRARY FOTO TERPUSAT — Magna
 // Semua gambar menggunakan placeholder SVG lokal buatan sendiri.
 // Produk putih polos berlabel "YOUR BRAND" — tidak ada gambar stok berlisensi.
 // Cukup ganti file SVG di public/assets/placeholders/ dengan foto asli brand saat sudah tersedia.

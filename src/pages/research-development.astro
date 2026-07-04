@@ -95,18 +95,18 @@ const rdMetricStats = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════
-// Comparison table — Aquila Magna vs Typical Maklon
+// Comparison table — Magna vs Typical Maklon
 // ═══════════════════════════════════════════════════════════════════════
 const comparisonRows = [
-  { aspect: "Custom Formula", aquila: "100% eksklusif — dikembangkan dari nol sesuai brief brand", typical: "Formula template terbatas — pilih dari katalog yang ada", aquilaIcon: "lucide:crown", typicalIcon: "lucide:copy" },
-  { aspect: "Trend Research", aquila: "Riset pasar & tren global — data-driven formulation", typical: "Mengikuti tren umum — tanpa analisis pasar mendalam", aquilaIcon: "lucide:trending-up", typicalIcon: "lucide:activity" },
-  { aspect: "Stability Testing", aquila: "3 bulan uji stabilitas dipercepat — multi suhu & cycling test", typical: "Uji stabilitas minimal — sering hanya uji organoleptik", aquilaIcon: "lucide:thermometer", typicalIcon: "lucide:thermometer-sun" },
-  { aspect: "Active Optimization", aquila: "Optimasi konsentrasi & delivery system — enkapsulasi liposom", typical: "Formulasi standar — tanpa optimasi bahan aktif spesifik", aquilaIcon: "lucide:sparkles", typicalIcon: "lucide:settings" },
+  { aspect: "Custom Formula", magna: "100% eksklusif — dikembangkan dari nol sesuai brief brand", typical: "Formula template terbatas — pilih dari katalog yang ada", magnaIcon: "lucide:crown", typicalIcon: "lucide:copy" },
+  { aspect: "Trend Research", magna: "Riset pasar & tren global — data-driven formulation", typical: "Mengikuti tren umum — tanpa analisis pasar mendalam", magnaIcon: "lucide:trending-up", typicalIcon: "lucide:activity" },
+  { aspect: "Stability Testing", magna: "3 bulan uji stabilitas dipercepat — multi suhu & cycling test", typical: "Uji stabilitas minimal — sering hanya uji organoleptik", magnaIcon: "lucide:thermometer", typicalIcon: "lucide:thermometer-sun" },
+  { aspect: "Active Optimization", magna: "Optimasi konsentrasi & delivery system — enkapsulasi liposom", typical: "Formulasi standar — tanpa optimasi bahan aktif spesifik", magnaIcon: "lucide:sparkles", typicalIcon: "lucide:settings" },
 ];
 ---
 
 <MainLayout
-  title="Research & Development | Aquila Maklon"
+  title="Research & Development | Magna"
   description="Research & Development skincare & kosmetik. Tim R&D profesional siap mengembangkan formula inovatif & eksklusif untuk brand Anda."
 >
   <main class="overflow-hidden">
@@ -402,7 +402,7 @@ const comparisonRows = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 6. COMPARISON — Aquila Magna R&D vs Typical Maklon                  -->
+    <!-- 6. COMPARISON — Magna R&D vs Typical Maklon                  -->
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-5xl px-4 lg:px-8">
@@ -425,7 +425,7 @@ const comparisonRows = [
                   <th class="px-5 py-5 text-left text-xs font-bold uppercase tracking-[0.2em] text-base-content/40">Aspek</th>
                   <th class="px-5 py-5 text-left text-xs font-bold uppercase tracking-[0.2em]">
                     <span class="flex items-center gap-2 text-primary">
-                      <Icon name="lucide:crown" size={14} /> Aquila Magna R&D
+                      <Icon name="lucide:crown" size={14} /> Magna R&D
                     </span>
                   </th>
                   <th class="px-5 py-5 text-left text-xs font-bold uppercase tracking-[0.2em]">
@@ -442,9 +442,9 @@ const comparisonRows = [
                     <td class="px-5 py-4">
                       <div class="flex items-center gap-2.5">
                         <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                          <Icon name={row.aquilaIcon} size={13} class="text-primary" />
+                          <Icon name={row.magnaIcon} size={13} class="text-primary" />
                         </div>
-                        <span class="text-sm text-base-content/65">{row.aquila}</span>
+                        <span class="text-sm text-base-content/65">{row.magna}</span>
                       </div>
                     </td>
                     <td class="px-5 py-4">
@@ -492,7 +492,7 @@ const comparisonRows = [
         <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <WAButton
             text="Konsultasi Sekarang"
-            message="Halo, saya tertarik dengan layanan R&D Aquila Maklon. Saya ingin konsultasi tentang pengembangan formula eksklusif untuk brand saya."
+            message="Halo, saya tertarik dengan layanan R&D Magna. Saya ingin konsultasi tentang pengembangan formula eksklusif untuk brand saya."
             variant="white"
             size="lg"
             class="rounded-xl border-2 border-white"

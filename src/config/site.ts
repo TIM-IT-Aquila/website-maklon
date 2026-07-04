@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "Aquila Maklon",
+  name: "Maklon",
   tagline: "Skincare & Cosmetics",
   url: "https://tollmanufacturing.id",
   locale: "id_ID",
-  defaultOgImage: "/assets/Logo.svg",
+  defaultOgImage: "/assets/Logo-magna.svg",
   description:
     "Perusahaan jasa maklon skincare dan kosmetik terpercaya. Membantu brand owner pemula maupun profesional mewujudkan produk kecantikan dari konsep hingga siap jual.",
   // TODO(content): Ganti nomor WhatsApp, email, alamat, dan jam operasional dengan data bisnis final sebelum production launch.

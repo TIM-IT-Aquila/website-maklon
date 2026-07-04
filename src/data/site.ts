@@ -1,12 +1,12 @@
 import type { ContentReviewNote } from "./content-status";
 
 export const siteConfig = {
-  name: "Aquila Magna",
-  legalName: "CV Aquila Magna",
+  name: "Magna",
+  legalName: "CV Magna",
   tagline: "Skincare & Cosmetics",
   url: "https://tollmanufacturing.id",
   locale: "id_ID",
-  defaultOgImage: "/assets/Logo.svg",
+  defaultOgImage: "/assets/Logo-magna.svg",
   description:
     "Perusahaan jasa maklon skincare dan kosmetik terpercaya. Membantu brand owner pemula maupun profesional mewujudkan produk kecantikan dari konsep hingga siap jual.",
   waNumber: "6285314903325",
