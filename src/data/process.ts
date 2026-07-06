@@ -72,7 +72,7 @@ export const processSteps: ProcessStep[] = [
     title: "Produksi Massal",
     icon: "lucide:factory",
     desc: "Produksi skala besar dengan standar CPKB dan GMP.",
-    detail: "Setelah sample final disetujui dan legalitas terbit, produksi massal dimulai. Fasilitas kami mengikuti standar CPKB (Cara Pembuatan Kosmetik yang Baik) dan GMP. Setiap batch diproduksi dengan presisi tinggi dan pengawasan mutu berlapis.",
+    detail: "Setelah sample final disetujui dan legalitas terbit, produksi massal dimulai. Fasilitas kami mengikuti standar CPKB (Cara Produksi yang Baik) dan GMP. Setiap batch diproduksi dengan presisi tinggi dan pengawasan mutu berlapis.",
     imageKey: "produksi",
   },
   {

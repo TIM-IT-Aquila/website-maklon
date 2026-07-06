@@ -10,7 +10,7 @@ export const companyPurpose = [
   {
     icon: "lucide:flask-conical",
     title: "Untuk Memperkenalkan Layanan",
-    desc: "Menampilkan secara lengkap layanan maklon yang tersedia — dari skincare, bodycare, kosmetik, hingga custom formula — agar calon customer mudah memahami.",
+    desc: "Menampilkan secara lengkap layanan maklon yang tersedia — dari skincare, bodycare, hingga custom formula — agar calon customer mudah memahami.",
     image: factoryImages.labResearch,
   },
   {
@@ -65,7 +65,7 @@ export const ourStory = {
   badge: "Our Story",
   title: "Hadir untuk Membantu Brand Owner",
   paragraphs: [
-    "Kami hadir untuk membantu para pemilik brand yang ingin membuat produk skincare dan kosmetik tanpa harus memiliki pabrik sendiri. Dengan layanan maklon profesional, setiap ide produk dapat diwujudkan dari konsep hingga siap jual.",
+    "Kami hadir untuk membantu para pemilik brand yang ingin membuat produk skincare tanpa harus memiliki pabrik sendiri. Dengan layanan maklon profesional, setiap ide produk dapat diwujudkan dari konsep hingga siap jual.",
     "Berawal dari keprihatinan melihat banyak brand lokal kesulitan menemukan partner produksi yang tepat, kami membangun sistem maklon yang transparan, terpercaya, dan berkualitas. Kini, kami telah membantu puluhan brand mewujudkan produk impian mereka.",
     "Dari konsultasi awal hingga produk sampai di tangan customer, kami dampingi setiap langkahnya. Tim R&D, produksi, dan legalitas kami siap mendukung Anda.",
   ],
@@ -75,7 +75,7 @@ export const ourStory = {
 export const trustPlaceholder = [
   {
     title: "Dipercaya untuk Pengembangan",
-    desc: "Dipercaya dalam pengembangan berbagai jenis produk kecantikan mulai dari skincare, bodycare, hingga kosmetik dengan formula yang disesuaikan.",
+    desc: "Dipercaya dalam pengembangan berbagai jenis produk kecantikan mulai dari skincare dan bodycare dengan formula yang disesuaikan.",
     icon: "lucide:handshake",
     image: factoryImages.formulasiLab,
   },
@@ -98,7 +98,7 @@ export const teamMembers = [
     name: "Dr. Anita Wijaya",
     role: "CEO & Founder",
     avatar: avatarImages.founder,
-    bio: "Lebih dari 15 tahun pengalaman di industri kosmetik dan formulasi skincare.",
+    bio: "Lebih dari 15 tahun pengalaman di industri skincare dan formulasi skincare.",
     social: { linkedin: "#", twitter: "#" },
   },
   {

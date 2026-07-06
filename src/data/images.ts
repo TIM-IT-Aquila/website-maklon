@@ -9,39 +9,39 @@ const P = "/assets/placeholders";
 
 // --- HERO & BANNER (landscape 16:9) ---
 export const heroImages = {
-  skincareLab:     `${P}/product-hero.svg`,
-  skincareProduction: `${P}/product-hero.svg`,
-  packagingReady:  `${P}/product-hero.svg`,
-  factoryProduction: `${P}/factory-default.svg`,
-  labResearch:     `${P}/lab-default.svg`,
-  legalDocument:   `${P}/product-hero.svg`,
-  skincareHero:    `${P}/product-hero.svg`,
-  formulasiHero:   `${P}/lab-default.svg`,
+  skincareLab:     "/assets/hero-home/skincarelab.jpg",
+  skincareProduction: "/assets/hero-home/skincareproduction.jpg",
+  packagingReady:  "/assets/hero-home/skincareproduction.jpg",
+  factoryProduction: "/assets/hero-home/factoryproduction.jpg",
+  labResearch:     "/assets/hero-home/labreserch.jpg",
+  legalDocument:   "/assets/hero-home/legaldokument.jpg",
+  skincareHero:    "/assets/hero-home/skincarelab.jpg",
+  formulasiHero:   "/assets/hero-home/skincareproduction.jpg",
 };
 
 // --- LAB & FACTORY (4:3 ratio) ---
 export const factoryImages = {
-  labResearch:     `${P}/lab-default.svg`,
-  productionLine:  `${P}/factory-default.svg`,
-  qualityControl:  `${P}/lab-default.svg`,
-  samplingRoom:    `${P}/lab-default.svg`,
-  packagingArea:   `${P}/factory-default.svg`,
-  formulasiLab:    `${P}/lab-default.svg`,
-  mikrobiologi:    `${P}/lab-default.svg`,
-  bahanBaku:       `${P}/factory-default.svg`,
+  labResearch:     "/assets/hero-home/labreserch.jpg",
+  productionLine:  "/assets/hero-home/factoryproduction.jpg",
+  qualityControl:  "/assets/hero-home/labreserch.jpg",
+  samplingRoom:    "/assets/hero-home/skincarelab.jpg",
+  packagingArea:   "/assets/hero-home/factoryproduction.jpg",
+  formulasiLab:    "/assets/hero-home/labreserch.jpg",
+  mikrobiologi:    "/assets/hero-home/labreserch.jpg",
+  bahanBaku:       "/assets/hero-home/factoryproduction.jpg",
 };
 
 // --- PROSES MAKLON (16:9, untuk interactive slider) ---
 export const processImages = {
-  konsultasi: `${P}/product-hero.svg`,
-  riset:      `${P}/lab-default.svg`,
-  sample:     `${P}/product-square.svg`,
-  revisi:     `${P}/lab-default.svg`,
-  desain:     `${P}/product-hero.svg`,
-  legalitas:  `${P}/product-hero.svg`,
-  produksi:   `${P}/factory-default.svg`,
-  qc:         `${P}/lab-default.svg`,
-  pengiriman: `${P}/factory-default.svg`,
+  konsultasi: "/assets/hero-home/skincarelab.jpg",
+  riset:      "/assets/hero-home/labreserch.jpg",
+  sample:     "/assets/hero-home/labreserch.jpg",
+  revisi:     "/assets/hero-home/skincarelab.jpg",
+  desain:     "/assets/hero-home/skincareproduction.jpg",
+  legalitas:  "/assets/hero-home/legaldokument.jpg",
+  produksi:   "/assets/hero-home/factoryproduction.jpg",
+  qc:         "/assets/hero-home/labreserch.jpg",
+  pengiriman: "/assets/hero-home/factoryproduction.jpg",
 };
 
 // --- SKINCARE PRODUCTS (square, untuk card) ---
@@ -64,22 +64,22 @@ export const productImages = {
 
 // --- KATEGORI PRODUK (square) ---
 export const categoryImages = [
-  { name: "Skincare",  image: `${P}/product-square.svg` },
-  { name: "Bodycare",  image: `${P}/product-square.svg` },
-  { name: "Haircare",  image: `${P}/product-square.svg` },
-  { name: "Baby Care", image: `${P}/product-square.svg` },
+  { name: "Skincare",  image: "/assets/kategori/skincare.png" },
+  { name: "Bodycare",  image: "/assets/kategori/bodycare.png" },
+  { name: "Haircare",  image: "/assets/kategori/haircare.png" },
+  { name: "Baby Care", image: "/assets/kategori/babycare.png" },
 ];
 
 // --- BLOG / ARTIKEL (16:9 landscape) ---
 export const blogImages = {
-  skincareGuide:  `${P}/product-hero.svg`,
-  maklonBenefit:  `${P}/factory-default.svg`,
-  prosesMaklon:   `${P}/product-hero.svg`,
-  sertifikasi:    `${P}/product-hero.svg`,
-  tipsMaklon:     `${P}/product-hero.svg`,
-  trenSkincare:   `${P}/product-hero.svg`,
-  modalBisnis:    `${P}/product-hero.svg`,
-  edukasi:        `${P}/product-hero.svg`,
+  skincareGuide:  "/assets/kategori/skincare.png",
+  maklonBenefit:  "/assets/hero-home/factoryproduction.jpg",
+  prosesMaklon:   "/assets/hero-home/skincarelab.jpg",
+  sertifikasi:    "/assets/desain legalitas.jpg",
+  tipsMaklon:     "/assets/konsultasi konsep.jpg",
+  trenSkincare:   "/assets/kategori/skincare.png",
+  modalBisnis:    "/assets/reset formulasi.jpg",
+  edukasi:        "/assets/hero-home/labreserch.jpg",
 };
 
 // --- TESTIMONIAL / AVATAR (persegi) ---

@@ -8,7 +8,7 @@
 // --- HERO & BANNER (landscape 16:9, 1600px wide) ---
 export const heroImages = {
   skincareLab:
-    "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1600&q=80",
+    "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1600&q=80", 
   skincareProduction:
     "https://images.unsplash.com/photo-1570194065650-d99fb4ee8e39?w=1600&q=80",
   packagingReady:

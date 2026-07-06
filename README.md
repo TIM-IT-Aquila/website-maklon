@@ -1,6 +1,6 @@
 # Website Maklon
 
-Website company profile dan katalog layanan maklon skincare/kosmetik berbasis Astro static site.
+Website company profile dan katalog layanan maklon skincare berbasis Astro static site.
 
 ## Stack
 

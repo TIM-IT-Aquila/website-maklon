@@ -22,7 +22,7 @@ export const factoryHighlights = [
   },
   {
     title: "Support Brand Baru",
-    description: "Cocok untuk pemilik brand yang baru memulai bisnis skincare atau kosmetik dengan pendampingan penuh.",
+    description: "Cocok untuk pemilik brand yang baru memulai bisnis skincare dengan pendampingan penuh.",
     icon: "lucide:rocket",
     image: factoryImages.samplingRoom,
   },

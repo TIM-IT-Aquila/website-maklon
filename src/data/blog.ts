@@ -38,17 +38,17 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "keunggulan-jasa-maklon",
-    title: "5 Keunggulan Menggunakan Jasa Maklon untuk Brand Kosmetik",
+    title: "5 Keunggulan Menggunakan Jasa Maklon untuk Brand Skincare",
     excerpt:
-      "Kenapa banyak brand kosmetik memilih jasa maklon? Berikut lima keunggulan utama yang bisa Anda dapatkan.",
+      "Kenapa banyak brand skincare memilih jasa maklon? Berikut lima keunggulan utama yang bisa Anda dapatkan.",
     content:
-      "Jasa maklon menjadi solusi populer bagi pelaku bisnis kosmetik karena berbagai keunggulan. Mulai dari eficiensi biaya produksi, akses ke formulasi profesional, hingga kemudahan perizinan BPOM dan sertifikasi halal. Dengan maklon, brand owner bisa fokus pada pengembangan merek dan pemasaran tanpa repot urusan produksi.",
+      "Jasa maklon menjadi solusi populer bagi pelaku bisnis skincare karena berbagai keunggulan. Mulai dari eficiensi biaya produksi, akses ke formulasi profesional, hingga kemudahan perizinan BPOM dan sertifikasi halal. Dengan maklon, brand owner bisa fokus pada pengembangan merek dan pemasaran tanpa repot urusan produksi.",
     category: "Layanan Maklon",
     author: "Tim Magna",
     date: "2026-06-15",
     readTime: "4 menit",
     image: blogImages.maklonBenefit,
-    tags: ["jasa maklon", "keunggulan", "kosmetik", "produksi"],
+    tags: ["jasa maklon", "keunggulan", "skincare", "produksi"],
   },
   {
     slug: "cara-urut-maklon-skincare",
@@ -66,17 +66,17 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "pentingnya-sertifikasi-bpom",
-    title: "Pentingnya Sertifikasi BPOM dan Halal untuk Produk Kosmetik",
+    title: "Pentingnya Sertifikasi BPOM dan Halal untuk Produk Skincare",
     excerpt:
       "Sertifikasi BPOM dan Halal bukan sekadar legalitas, tapi juga meningkatkan kepercayaan konsumen pada brand Anda.",
     content:
-      "Setiap produk kosmetik yang beredar di Indonesia wajib memiliki izin BPOM. Selain itu, sertifikasi Halal juga semakin penting mengingat mayoritas konsumen Indonesia adalah muslim. Kedua sertifikasi ini tidak hanya memenuhi regulasi, tetapi juga menjadi nilai jual yang meningkatkan kepercayaan konsumen terhadap brand Anda.",
+      "Setiap produk skincare yang beredar di Indonesia wajib memiliki izin BPOM. Selain itu, sertifikasi Halal juga semakin penting mengingat mayoritas konsumen Indonesia adalah muslim. Kedua sertifikasi ini tidak hanya memenuhi regulasi, tetapi juga menjadi nilai jual yang meningkatkan kepercayaan konsumen terhadap brand Anda.",
     category: "Regulasi",
     author: "Tim Magna",
     date: "2026-06-05",
     readTime: "4 menit",
     image: blogImages.sertifikasi,
-    tags: ["BPOM", "sertifikasi halal", "legalitas", "kosmetik"],
+    tags: ["BPOM", "sertifikasi halal", "legalitas", "skincare"],
   },
   {
     slug: "tips-memilih-jasa-maklon",
@@ -107,18 +107,18 @@ export const blogPosts: BlogPost[] = [
     tags: ["tren", "skincare 2026", "inovasi", "produk"],
   },
   {
-    slug: "modal-memulai-brand-kosmetik",
-    title: "Berapa Modal untuk Memulai Brand Kosmetik dengan Sistem Maklon?",
+    slug: "modal-memulai-brand-skincare",
+    title: "Berapa Modal untuk Memulai Brand Skincare dengan Sistem Maklon?",
     excerpt:
-      "Simak estimasi modal yang dibutuhkan untuk memulai brand kosmetik menggunakan jasa maklon, dari skala kecil hingga menengah.",
+      "Simak estimasi modal yang dibutuhkan untuk memulai brand skincare menggunakan jasa maklon, dari skala kecil hingga menengah.",
     content:
-      "Banyak yang mengira memulai brand kosmetik butuh modal besar. Nyatanya, dengan sistem maklon Anda bisa memulai dengan modal yang lebih terjangkau. Biaya utama meliputi formulasi dan sampling, produksi batch pertama, kemasan, perizinan BPOM dan Halal, serta biaya branding dan pemasaran. Dengan perencanaan matang, modal mulai dari puluhan juta sudah bisa memulai.",
+      "Banyak yang mengira memulai brand skincare butuh modal besar. Nyatanya, dengan sistem maklon Anda bisa memulai dengan modal yang lebih terjangkau. Biaya utama meliputi formulasi dan sampling, produksi batch pertama, kemasan, perizinan BPOM dan Halal, serta biaya branding dan pemasaran. Dengan perencanaan matang, modal mulai dari puluhan juta sudah bisa memulai.",
     category: "Panduan Bisnis",
     author: "Tim Magna",
     date: "2026-05-15",
     readTime: "6 menit",
     image: blogImages.modalBisnis,
-    tags: ["modal", "bisnis kosmetik", "biaya maklon", "startup"],
+    tags: ["modal", "bisnis skincare", "biaya maklon", "startup"],
   },
   {
     slug: "perbedaan-maklon-dan-brand-own",

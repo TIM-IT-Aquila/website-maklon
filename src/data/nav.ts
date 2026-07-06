@@ -25,9 +25,10 @@ export const navItems: NavItem[] = [
   {
     label: "Services",
     children: [
-      { label: "OEM / ODM", href: "/oem-odm", description: "Jasa maklon skincare & kosmetik", icon: "mdi:factory" },
+      { label: "OEM / ODM", href: "/oem-odm", description: "Jasa maklon skincare", icon: "mdi:factory" },
       { label: "RED", href: "/research-development", description: "Research & product development", icon: "mdi:flask" },
       { label: "Merek & Paten", href: "/merek-paten", description: "Pendaftaran merek & HKI", icon: "mdi:file-certificate" },
+      { label: "Halal", href: "/halal", description: "Sertifikasi halal produk", icon: "mdi:check-circle" },
     ],
   },
   { label: "Products", href: "/products" },

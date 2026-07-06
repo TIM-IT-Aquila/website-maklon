@@ -8,7 +8,7 @@ export const siteConfig = {
   locale: "id_ID",
   defaultOgImage: "/assets/Logo-magna.svg",
   description:
-    "Perusahaan jasa maklon skincare dan kosmetik terpercaya. Membantu brand owner pemula maupun profesional mewujudkan produk kecantikan dari konsep hingga siap jual.",
+    "Perusahaan jasa maklon skincare terpercaya. Membantu brand owner pemula maupun profesional mewujudkan produk kecantikan dari konsep hingga siap jual.",
   waNumber: "6285314903325",
   waText: "Halo, saya ingin konsultasi maklon produk skincare.",
   email: "Info@tollmanufacturing.id",
@@ -27,6 +27,6 @@ export const trustBadgesContentReview: ContentReviewNote = {
 export const trustBadges = [
   { label: "BPOM", desc: "Terdaftar BPOM" },
   { label: "HALAL", desc: "Sertifikat Halal" },
-  { label: "CPKB", desc: "Cara Produksi Kosmetik Baik" },
+  { label: "CPKB", desc: "Cara Produksi yang Baik" },
   { label: "ISO", desc: "ISO 9001:2015" },
 ];

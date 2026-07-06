@@ -13,7 +13,7 @@ export const certifications = [
     name: "BPOM",
     fullName: "Badan Pengawas Obat dan Makanan",
     icon: "lucide:clipboard-check",
-    desc: "Produk terdaftar dan diawasi oleh BPOM, menjamin keamanan dan kualitas produk kosmetik untuk dipasarkan secara legal di seluruh Indonesia.",
+    desc: "Produk terdaftar dan diawasi oleh BPOM, menjamin keamanan dan kualitas produk untuk dipasarkan secara legal di seluruh Indonesia.",
     year: "2024",
     number: "NA 18240100123",
     image: certificationImages.bpom,
@@ -29,7 +29,7 @@ export const certifications = [
   },
   {
     name: "CPKB",
-    fullName: "Cara Produksi Kosmetik yang Baik",
+    fullName: "Cara Produksi yang Baik",
     icon: "lucide:factory",
     desc: "Standar produksi nasional yang menjamin konsistensi mutu dan keamanan di setiap tahap formulasi hingga pengemasan.",
     year: "2024",
@@ -59,7 +59,7 @@ export const certifications = [
 export const legalServices = [
   {
     title: "Registrasi BPOM",
-    desc: "Kami membantu proses pendaftaran produk kosmetik ke BPOM, dari persiapan dokumen hingga approval.",
+    desc: "Kami membantu proses pendaftaran produk skincare ke BPOM, dari persiapan dokumen hingga approval.",
     icon: "lucide:clipboard-check",
   },
   {

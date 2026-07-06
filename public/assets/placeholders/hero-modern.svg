@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg4" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8c49a"/>
+      <stop offset="100%" style="stop-color:#8fb87d"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg4)"/>
+  <rect width="1600" height="900" fill="url(#centerGlow)"/>
+  <!-- Modern geometric pattern -->
+  <polygon points="0,0 200,0 0,200" fill="#ffffff" opacity="0.02"/>
+  <polygon points="1400,900 1600,900 1600,700" fill="#ffffff" opacity="0.02"/>
+  <polygon points="1600,0 1600,100 1500,0" fill="#ffffff" opacity="0.025"/>
+  <polygon points="0,900 100,900 0,800" fill="#ffffff" opacity="0.025"/>
+  <!-- Soft blur circles -->
+  <circle cx="300" cy="200" r="150" fill="#ffffff" opacity="0.04"/>
+  <circle cx="1300" cy="650" r="200" fill="#ffffff" opacity="0.04"/>
+  <circle cx="800" cy="450" r="250" fill="#ffffff" opacity="0.02"/>
+</svg>

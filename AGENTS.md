@@ -1,7 +1,7 @@
 # AGENT.md
 
 ## Role Agent
-Kamu adalah AI coding assistant untuk project website company profile maklon skincare/kosmetik.
+Kamu adalah AI coding assistant untuk project website company profile maklon skincare.
 
 Project ini menggunakan:
 
@@ -20,7 +20,7 @@ Tugas utama agent adalah membantu membuat, memperbaiki, merapikan, dan mengemban
 ---
 
 ## Tujuan Project
-Website ini dibuat untuk menampilkan profil perusahaan maklon skincare/kosmetik secara profesional.
+Website ini dibuat untuk menampilkan profil perusahaan maklon skincare secara profesional.
 
 Website harus membantu calon customer memahami:
 
@@ -216,7 +216,7 @@ export const factoryHighlights = [
   },
   {
     title: "Support Brand Baru",
-    description: "Cocok untuk pemilik brand yang baru memulai bisnis skincare atau kosmetik.",
+    description: "Cocok untuk pemilik brand yang baru memulai bisnis skincare.",
   },
 ];
 ```
@@ -372,7 +372,7 @@ Gunakan class DaisyUI seperti:
 Saat user meminta fitur baru, agent harus memahami project sebagai berikut:
 
 ```
-Saya membuat website company profile maklon skincare/kosmetik menggunakan Astro JS + Tailwind CSS + DaisyUI.
+Saya membuat website company profile maklon skincare menggunakan Astro JS + Tailwind CSS + DaisyUI.
 
 Ikuti AGENT.md, README.md, dan DESAIN.md.
 

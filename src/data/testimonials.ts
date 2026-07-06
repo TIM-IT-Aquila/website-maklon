@@ -32,7 +32,7 @@ export const testimonials = [
   },
   {
     name: "Budi Santoso",
-    brand: "Founder Brand Kosmetik",
+    brand: "Founder Brand Skincare",
     text: "Pelayanan sangat profesional dan tepat waktu. Dari awal konsultasi sampai produk jadi, semua berjalan lancar. Legalitas BPOM dan Halal juga diurus dengan baik.",
     avatar: avatarImages.man1,
     rating: 5,
