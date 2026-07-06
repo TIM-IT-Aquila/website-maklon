@@ -75,18 +75,18 @@ const currentYear = new Date().getFullYear();
       <!-- Kontak & CTA -->
       <div>
         <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Kontak</h4>
-        <ul class="space-y-2.5 text-sm text-base-content/60">
+        <ul class="space-y-2.5 text-sm">
           <li>
             <WAButton
               text={`WhatsApp: ${siteConfig.waNumber}`}
-              variant="text-link"
+              variant="text-link-black"
               size="sm"
               hideIcon
               class="!p-0 !h-auto !text-sm !font-normal"
             />
           </li>
           <li>
-            <a href={`mailto:${siteConfig.email}`} class="transition-colors hover:text-primary">
+            <a href={`mailto:${siteConfig.email}`} class="text-base-content transition-colors hover:text-primary">
               {siteConfig.email}
             </a>
           </li>

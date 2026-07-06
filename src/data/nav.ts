@@ -20,6 +20,7 @@ export const navItems: NavItem[] = [
       { label: "Sertifikasi", href: "/certification", description: "Sertifikasi & legalitas produk", icon: "mdi:check-decagram" },
       { label: "Alur Maklon", href: "/outsourcing-flow", description: "Tahapan proses maklon", icon: "mdi:sign-direction" },
       { label: "Kontak", href: "/contact", description: "Hubungi tim Magna", icon: "mdi:phone" },
+      { label: "CSR", href: "/csr", description: "Komitmen lingkungan & sosial", icon: "mdi:leaf" },
     ],
   },
   {

@@ -11,7 +11,7 @@ interface Props {
   /** Nomor WA. Default: siteConfig.waNumber */
   phone?: string;
   /** Variasi style */
-  variant?: "primary" | "primary-outline" | "white" | "ghost" | "floating" | "text-link";
+  variant?: "primary" | "primary-outline" | "white" | "ghost" | "floating" | "text-link" | "text-link-black";
   /** Ukuran */
   size?: "sm" | "md" | "lg" | "xl";
   /** Sembunyikan icon WhatsApp */
@@ -54,6 +54,7 @@ const variantClasses = {
   "ghost": "text-base-content/60 hover:text-primary hover:bg-primary/[0.03]",
   "floating": "bg-primary text-white shadow-xl shadow-primary/20 ring-1 ring-white/20 hover:scale-110 hover:brightness-110 hover:shadow-2xl hover:shadow-primary/30",
   "text-link": "text-base-content/60 hover:text-primary",
+  "text-link-black": "text-base-content transition-colors hover:text-primary",
 };
 
 const iconSize = {
