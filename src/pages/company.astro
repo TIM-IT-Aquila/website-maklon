@@ -198,27 +198,29 @@ const facilityItems = [
             <h2 class="mt-2 text-3xl font-black md:text-4xl">Prinsip yang <span class="text-primary">Kami Pegang</span></h2>
           </div>
 
-          <!-- Background hijau dengan animasi marquee -->
-          <div class="relative overflow-hidden rounded-3xl bg-primary py-12 md:py-16">
+          <!-- Background hijau full-width seperti CTA -->
+          <div class="relative overflow-hidden rounded-3xl bg-primary py-10 md:py-14">
             <!-- Decorative -->
             <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
             <div class="pointer-events-none absolute -left-20 -top-20 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl"></div>
             <div class="pointer-events-none absolute -right-20 -bottom-20 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl"></div>
 
-            <div class="overflow-hidden">
-              <div class="flex animate-scroll-left gap-6" style="--scroll-speed: 20s; width: max-content;">
-                {[...coreValues, ...coreValues, ...coreValues].map((val, i) => (
-                  <div
-                    class="group flex w-[240px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10"
-                    style="animation-delay: 0s"
-                  >
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
-                      <Icon name={val.icon} class="h-6 w-6" />
+            <div class="mx-auto max-w-7xl px-4 lg:px-8">
+              <div class="overflow-hidden">
+                <div class="flex animate-scroll-left gap-6" style="--scroll-speed: 20s; width: max-content;">
+                  {[...coreValues, ...coreValues, ...coreValues].map((val, i) => (
+                    <div
+                      class="group flex w-[240px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10"
+                      style="animation-delay: 0s"
+                    >
+                      <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
+                        <Icon name={val.icon} class="h-6 w-6" />
+                      </div>
+                      <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
+                      <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
                     </div>
-                    <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
-                    <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
