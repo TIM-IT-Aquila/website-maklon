@@ -1,0 +1,381 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Icon from "../components/ui/Icon.astro";
+import WAButton from "../components/ui/WAButton.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import { siteConfig } from "../data/site";
+
+// ─── Data Statis ─────────────────────────────────────────────────────
+const stats = [
+  { value: "100%", label: "Produk Halal Terjamin", icon: "lucide:badge-check" },
+  { value: "Terakreditasi", label: "Lembaga Sertifikasi Resmi", icon: "lucide:landmark" },
+  { value: "Audit Ketat", label: "Bahan & Proses Produksi", icon: "lucide:search-check" },
+  { value: "Sejak 2023", label: "Melayani Sertifikasi Halal", icon: "lucide:calendar-check" },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    icon: "lucide:clipboard-list",
+    title: "Konsultasi & Assesmen",
+    desc: "Tim kami mengidentifikasi kebutuhan sertifikasi halal produk Anda dan menentukan lembaga sertifikasi yang sesuai.",
+  },
+  {
+    step: "02",
+    icon: "lucide:file-text",
+    title: "Persiapan Dokumen",
+    desc: "Kami menyiapkan dokumen teknis, daftar bahan baku, diagram alir proses, dan sistem jaminan halal.",
+  },
+  {
+    step: "03",
+    icon: "lucide:factory",
+    title: "Audit Fasilitas",
+    desc: "Tim auditor dari lembaga sertifikasi halal melakukan verifikasi ke pabrik untuk memastikan kesesuaian.",
+  },
+  {
+    step: "04",
+    icon: "lucide:microscope",
+    title: "Uji Lab & Verifikasi",
+    desc: "Sampel produk diuji untuk memastikan tidak ada kandungan haram atau najis dalam bahan dan proses.",
+  },
+  {
+    step: "05",
+    icon: "lucide:award",
+    title: "Sertifikat Terbit",
+    desc: "Sertifikat Halal resmi diterbitkan — produk Anda legal, terpercaya, dan siap dipasarkan.",
+  },
+];
+
+const benefits = [
+  {
+    icon: "lucide:trending-up",
+    title: "Jangkauan Pasar Lebih Luas",
+    desc: "Mayoritas konsumen Indonesia adalah muslim. Sertifikat Halal membuka akses ke 87% populasi yang memprioritaskan produk halal.",
+  },
+  {
+    icon: "lucide:shield-check",
+    title: "Kepercayaan Konsumen",
+    desc: "Label halal meningkatkan kredibilitas dan kepercayaan konsumen terhadap keamanan serta kualitas produk Anda.",
+  },
+  {
+    icon: "lucide:store",
+    title: "Wajib Masuk Ritel Modern",
+    desc: "Semakin banyak ritel modern dan e-commerce mewajibkan sertifikat halal sebagai syarat untuk memasarkan produk.",
+  },
+  {
+    icon: "lucide:gem",
+    title: "Nilai Tambah Brand",
+    desc: "Produk bersertifikat halal memiliki nilai jual lebih tinggi dan diferensiasi yang kuat di pasar skincare.",
+  },
+  {
+    icon: "lucide:globe",
+    title: "Peluang Ekspor",
+    desc: "Sertifikasi halal diakui secara global, membuka peluang ekspor ke negara-negara dengan populasi muslim besar.",
+  },
+  {
+    icon: "lucide:heart-handshake",
+    title: "Ketenangan Hati",
+    desc: "Dengan produk bersertifikat halal, Anda dan konsumen memiliki ketenangan akan kehalalan dan keamanan produk.",
+  },
+];
+
+const faqItems = [
+  {
+    q: "Apa itu sertifikasi halal?",
+    a: "Sertifikasi halal adalah pengakuan resmi bahwa suatu produk telah memenuhi syarat kehalalan sesuai syariat Islam, baik dari segi bahan, proses produksi, hingga penyimpanan.",
+  },
+  {
+    q: "Apakah produk skincare wajib bersertifikat halal?",
+    a: "Berdasarkan Undang-Undang, produk kosmetik yang beredar di Indonesia diwajibkan memiliki sertifikat halal secara bertahap. Segeraurus dari sekarang agar brand Anda siap menghadapi regulasi.",
+  },
+  {
+    q: "Berapa lama proses sertifikasi halal?",
+    a: "Estimasi proses sertifikasi halal sekitar 2–4 bulan, tergantung kesiapan dokumen, jadwal audit, dan lembaga sertifikasi yang dipilih.",
+  },
+  {
+    q: "Apa saja yang diaudit dalam sertifikasi halal?",
+    a: "Audit meliputi bahan baku, bahan penolong, proses produksi, peralatan, penyimpanan, transportasi, hingga sistem jaminan halal di perusahaan Anda.",
+  },
+  {
+    q: "Apakah bisa bantu dari awal sampai sertifikat terbit?",
+    a: "Tentu! Kami mendampingi Anda dari konsultasi awal, persiapan dokumen, pendampingan audit, hingga sertifikat halal resmi diterbitkan.",
+  },
+];
+
+const whyCards = [
+  {
+    icon: "lucide:users",
+    title: "Tim Berpengalaman",
+    desc: "Tim legal kami telah berpengalaman menangani puluhan sertifikasi halal untuk berbagai produk kosmetik.",
+  },
+  {
+    icon: "lucide:network",
+    title: "Jaringan Luas",
+    desc: "Kami bekerja sama dengan lembaga sertifikasi halal resmi dan terakreditasi untuk hasil terbaik.",
+  },
+  {
+    icon: "lucide:zap",
+    title: "Proses Cepat",
+    desc: "Sistem dokumen yang rapi dan pengalaman yang matang membuat proses lebih efisien dan cepat.",
+  },
+  {
+    icon: "lucide:headphones",
+    title: "Pendampingan Penuh",
+    desc: "Kami mendampingi di setiap tahap — dari persiapan hingga sertifikat terbit di tangan Anda.",
+  },
+];
+---
+
+<MainLayout
+  title="Sertifikasi Halal | Magna"
+  description="Urus sertifikasi halal produk skincare Anda bersama Magna. Proses cepat, lembaga resmi, pendampingan penuh."
+>
+  <main class="overflow-x-hidden">
+
+    <!-- ================================================================== -->
+    <!-- 1. HERO — Big, bold, premium                                      -->
+    <!-- ================================================================== -->
+    <section class="relative flex min-h-[75vh] items-center overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-white">
+      <!-- Decorative -->
+      <div class="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-emerald-500/5 blur-[120px]"></div>
+      <div class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-emerald-500/5 blur-[100px]"></div>
+
+      <div class="relative mx-auto w-full max-w-7xl px-4 py-20 lg:px-8">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <!-- Kiri: Teks -->
+          <div>
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5">
+              <Icon name="lucide:badge-check" size={14} class="text-emerald-600" />
+              <span class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700">SERTIFIKASI HALAL</span>
+            </div>
+
+            <h1 class="text-[clamp(2rem,5vw,3.75rem)] font-black leading-[1.08] tracking-tight">
+              Produk Halal,<br />
+              <span class="text-emerald-600">Berkah & Terpercaya</span>
+            </h1>
+
+            <p class="mt-5 max-w-xl text-base leading-relaxed text-base-content/55 md:text-lg">
+              Sertifikasi halal bukan sekadar label — ini adalah bukti komitmen terhadap kualitas, keamanan, dan nilai spiritual yang diyakini konsumen Anda.
+            </p>
+
+            <p class="mt-3 max-w-xl text-sm text-base-content/40">
+              Kami membantu pengurusan sertifikasi halal produk skincare Anda dari awal hingga sertifikat resmi terbit.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <WAButton
+                text="Konsultasi Halal"
+                variant="primary"
+                size="lg"
+                class="rounded-full shadow-lg shadow-emerald-500/20"
+              />
+              <a
+                href="#proses"
+                class="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-base-300 bg-white px-7 text-sm font-medium text-base-content/60 transition-all duration-300 hover:border-emerald-200 hover:text-emerald-600 hover:-translate-y-0.5"
+              >
+                Lihat Proses
+                <Icon name="lucide:arrow-down" size={16} />
+              </a>
+            </div>
+          </div>
+
+          <!-- Kanan: Visual card premium -->
+          <div class="relative hidden lg:block">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-emerald-700 p-1 shadow-2xl shadow-emerald-500/20">
+              <div class="rounded-[calc(1.5rem-4px)] bg-white p-8">
+                <div class="flex flex-col items-center text-center">
+                  <div class="flex h-24 w-24 items-center justify-center rounded-full bg-emerald-100">
+                    <Icon name="lucide:badge-check" size={52} class="text-emerald-600" />
+                  </div>
+                  <h3 class="mt-5 text-2xl font-black">Sertifikasi Halal</h3>
+                  <p class="mt-2 text-sm text-base-content/50">Produk skincare halal, aman, dan terpercaya untuk semua kalangan.</p>
+                  <div class="mt-6 grid w-full grid-cols-2 gap-3">
+                    <div class="rounded-xl bg-emerald-50 p-4 text-center">
+                      <p class="text-lg font-black text-emerald-600">100%</p>
+                      <p class="text-[11px] text-base-content/40">Bebas Bahan Haram</p>
+                    </div>
+                    <div class="rounded-xl bg-emerald-50 p-4 text-center">
+                      <p class="text-lg font-black text-emerald-600">✓</p>
+                      <p class="text-[11px] text-base-content/40">Lembaga Resmi</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Decorative dot pattern -->
+            <div class="absolute -bottom-6 -right-6 -z-10 h-32 w-32 opacity-20" style="background-image: radial-gradient(circle at 25% 25%, #059669 1px, transparent 1px); background-size: 12px 12px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. STATS ROW — Clean numbers                                       -->
+    <!-- ================================================================== -->
+    <section class="border-y border-base-200/60 bg-white">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="grid grid-cols-2 gap-px bg-base-200/40 md:grid-cols-4">
+          {stats.map((s) => (
+            <div class="flex flex-col items-center justify-center bg-white px-4 py-8 text-center md:py-10">
+              <Icon name={s.icon} size={28} class="text-emerald-500" />
+              <p class="mt-2 text-xl font-black md:text-2xl">{s.value}</p>
+              <p class="mt-0.5 text-xs text-base-content/40 md:text-sm">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. PROSES SERTIFIKASI                                              -->
+    <!-- ================================================================== -->
+    <section id="proses" class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold text-emerald-700">
+            <Icon name="lucide:list-checks" size={13} />
+            Proses Sertifikasi
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Alur Sertifikasi Halal</h2>
+          <p class="mt-2 text-base-content/55">
+            Proses yang jelas, transparan, dan terstruktur untuk memudahkan Anda.
+          </p>
+        </div>
+
+        <div class="relative mt-12">
+          <!-- Timeline line -->
+          <div class="absolute left-6 top-0 hidden h-full w-0.5 bg-gradient-to-b from-emerald-400/40 to-emerald-200/10 md:block"></div>
+
+          <div class="space-y-6">
+            {processSteps.map((step) => (
+              <div class="group relative md:flex md:items-start md:gap-6">
+                <div class="z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-base font-bold text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-emerald-500/30 md:static">
+                  <Icon name={step.icon} size={20} />
+                </div>
+                <div class="mt-3 md:mt-0 md:flex-1">
+                  <div class="rounded-2xl border border-base-200/60 bg-white p-5 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-emerald-200/60 group-hover:shadow-md">
+                    <span class="text-[11px] font-bold tracking-wider text-emerald-500/60">TAHAP {step.step}</span>
+                    <h3 class="mt-1 text-lg font-bold">{step.title}</h3>
+                    <p class="mt-0.5 text-sm text-base-content/60">{step.desc}</p>
+                  </div>
+                </div>
+                <div class="hidden md:block md:w-1/4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. MANFAAT SERTIFIKASI HALAL                                       -->
+    <!-- ================================================================== -->
+    <section class="bg-emerald-50/40 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-4 py-1.5 text-xs font-semibold text-emerald-700">
+            <Icon name="lucide:sparkles" size={13} />
+            Keuntungan
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Mengapa Harus Sertifikasi Halal?</h2>
+          <p class="mt-2 text-base-content/55">
+            Lebih dari sekadar label — ini adalah investasi untuk masa depan brand Anda.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((b) => (
+            <div class="group rounded-2xl border border-base-200/60 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200/60 hover:shadow-md">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                <Icon name={b.icon} size={24} />
+              </div>
+              <h3 class="mt-4 font-bold">{b.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-base-content/55">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. KENAPA PILIH KAMI                                               -->
+    <!-- ================================================================== -->
+    <section class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="grid items-center gap-10 lg:grid-cols-5 lg:gap-14">
+          <!-- Kiri: Teks -->
+          <div class="lg:col-span-2">
+            <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold text-emerald-700">
+              <Icon name="lucide:star" size={13} />
+              Keunggulan
+            </span>
+            <h2 class="mt-4 text-3xl font-black md:text-4xl">Kenapa Pilih Magna?</h2>
+            <p class="mt-2 text-base-content/55">
+              Kami tidak hanya mengurus dokumen — kami memastikan setiap proses berjalan lancar, cepat, dan tepat sasaran.
+            </p>
+          </div>
+
+          <!-- Kanan: Cards -->
+          <div class="grid gap-4 sm:grid-cols-2 lg:col-span-3">
+            {whyCards.map((c) => (
+              <div class="rounded-xl border border-base-200/60 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200/60 hover:shadow-md">
+                <div class="flex items-start gap-4">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
+                    <Icon name={c.icon} size={20} />
+                  </div>
+                  <div>
+                    <h3 class="font-bold">{c.title}</h3>
+                    <p class="mt-0.5 text-sm text-base-content/55">{c.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. FAQ ACCORDION                                                   -->
+    <!-- ================================================================== -->
+    <section class="bg-base-200/30 py-16 md:py-20">
+      <div class="mx-auto max-w-3xl px-4 lg:px-8">
+        <div class="text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-base-200 bg-white px-4 py-1.5 text-xs font-semibold text-base-content/60">
+            <Icon name="lucide:help-circle" size={13} />
+            FAQ
+          </span>
+          <h2 class="mt-4 text-3xl font-black md:text-4xl">Pertanyaan Umum</h2>
+          <p class="mt-2 text-base-content/55">
+            Jawaban cepat untuk pertanyaan yang sering diajukan.
+          </p>
+        </div>
+
+        <div class="mt-8 space-y-3">
+          {faqItems.map((item, i) => (
+            <details class="group overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-300 open:border-emerald-200/60">
+              <summary class="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-base-content/80 transition-colors [.group-open_&]:text-emerald-700">
+                <span>{item.q}</span>
+                <Icon name="lucide:chevron-down" size={18} class="shrink-0 text-base-content/30 transition-transform duration-300 [.group-open_&]:rotate-180" />
+              </summary>
+              <div class="px-5 pb-4">
+                <p class="text-sm leading-relaxed text-base-content/55">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. CTA                                                             -->
+    <!-- ================================================================== -->
+    <CTASection
+      title="Siap Urus Sertifikasi Halal?"
+      description="Konsultasikan kebutuhan sertifikasi halal produk Anda bersama tim legal kami. Gratis!"
+      buttonText="Konsultasi via WhatsApp"
+      waMessage="Halo, saya ingin konsultasi sertifikasi halal untuk produk skincare."
+    />
+
+  </main>
+</MainLayout>

@@ -95,10 +95,10 @@ export const avatarImages = {
 
 // --- PORTOFOLIO / BRAND (4:3) ---
 export const portfolioImages = {
-  skincareBrand:  `${P}/product-hero.svg`,
-  bodycareBrand:  `${P}/product-square.svg`,
-  babycareBrand:  `${P}/product-square.svg`,
-  haircareBrand:  `${P}/product-square.svg`,
+  skincareBrand:  "/assets/portofolio/portofolio1.png",
+  bodycareBrand:  "/assets/portofolio/portofolio2.png",
+  babycareBrand:  "/assets/portofolio/portofolio3.png",
+  haircareBrand:  "/assets/portofolio/portofolio4.jpg",
 };
 
 // --- SERTIFIKASI / LEGALITAS (icon-style, square) ---
@@ -112,10 +112,10 @@ export const certificationImages = {
 
 // --- ABOUT / COMPANY (4:3) ---
 export const companyImages = {
-  office:   `${P}/factory-default.svg`,
-  team:     `${P}/lab-default.svg`,
-  building: `${P}/factory-default.svg`,
-  labTeam:  `${P}/lab-default.svg`,
+  office:   "/assets/hero-home/skincarelab.jpg",
+  team:     "/assets/hero-home/skincareproduction.jpg",
+  building: "/assets/hero-home/factoryproduction.jpg",
+  labTeam:  "/assets/hero-home/labreserch.jpg",
 };
 
 // --- R&D INNOVATIONS (4:3) ---

@@ -129,14 +129,10 @@ export const avatarImages = {
 
 // --- PORTOFOLIO / BRAND (4:3, 800px) ---
 export const portfolioImages = {
-  skincareBrand:
-    "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
-  bodycareBrand:
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80",
-  babycareBrand:
-    "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&q=80",
-  haircareBrand:
-    "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=800&q=80",
+  skincareBrand:  "/assets/portofolio/portofolio1.png",
+  bodycareBrand:  "/assets/portofolio/portofolio2.png",
+  babycareBrand:  "/assets/portofolio/portofolio3.png",
+  haircareBrand:  "/assets/portofolio/portofolio4.jpg",
 };
 
 // --- SERTIFIKASI / LEGALITAS (icon-style, 600px square) ---
