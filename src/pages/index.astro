@@ -1,5 +1,6 @@
 ---
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { siteConfig } from "../data/site";
@@ -8,8 +9,8 @@ import { advantages } from "../data/advantages";
 import { services } from "../data/services";
 import { processSteps } from "../data/process";
 import { products } from "../data/products";
-import { testimonials } from "../data/testimonials";
 import { faqs } from "../data/faqs";
+import { brandPartners, brandPartnersRowTwo } from "../data/brandPartners";
 import { categoryImages, factoryImages, processImages, productImages, heroImages } from "../data/images";
 import { certifications } from "../data/certifications";
 
@@ -25,12 +26,12 @@ const heroSlides = [
 ];
 
 const galleryItems = [
-  { label: "Laboratorium R&D", image: factoryImages.labResearch, icon: "lucide:flask-conical" },
-  { label: "Ruang QC", image: factoryImages.qualityControl, icon: "lucide:microscope" },
-  { label: "Lini Produksi", image: factoryImages.productionLine, icon: "lucide:factory" },
-  { label: "Area Pengemasan", image: factoryImages.packagingArea, icon: "lucide:package" },
-  { label: "Ruang Sampling", image: factoryImages.samplingRoom, icon: "lucide:beaker" },
-  { label: "Gudang Bahan Baku", image: factoryImages.bahanBaku, icon: "lucide:warehouse" },
+  { label: "Laboratorium R&D", image: factoryImages.labResearch, icon: "lucide:flask-conical", layout: "featured" as const },
+  { label: "Ruang QC", image: factoryImages.qualityControl, icon: "lucide:microscope", layout: "square" as const },
+  { label: "Lini Produksi", image: factoryImages.productionLine, icon: "lucide:factory", layout: "square" as const },
+  { label: "Area Pengemasan", image: factoryImages.packagingArea, icon: "lucide:package", layout: "square" as const },
+  { label: "Ruang Sampling", image: factoryImages.samplingRoom, icon: "lucide:beaker", layout: "square" as const },
+  { label: "Gudang Bahan Baku", image: factoryImages.bahanBaku, icon: "lucide:warehouse", layout: "wide" as const },
 ];
 
 const comparisons = [
@@ -68,14 +69,7 @@ const comparisons = [
       <!-- Content -->
       <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
         <div class="max-w-2xl">
-          <!-- Live badge -->
-          <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1.5 backdrop-blur-lg">
-            <span class="relative flex h-2 w-2">
-              <span class="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span class="relative h-2 w-2 rounded-full bg-emerald-400"></span>
-            </span>
-            <span class="text-[11px] font-bold tracking-[0.16em] text-white/80 uppercase">Maklon Skincare Terpercaya — CPKB & GMP</span>
-          </div>
+          
 
           <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
             Partner Maklon #1<br />
@@ -103,14 +97,6 @@ const comparisons = [
               <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
-
-          <!-- Trust badges -->
-          <div class="mt-8 flex flex-wrap items-center gap-4 text-[11px] text-white/40">
-            <span class="flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-emerald-400"></span>500+ Formula</span>
-            <span class="flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-emerald-400"></span>BPOM & Halal</span>
-            <span class="flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-emerald-400"></span>MOQ Fleksibel</span>
-            <span class="flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-emerald-400"></span>Konsultasi Gratis</span>
-          </div>
         </div>
       </div>
 
@@ -132,19 +118,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <div class="mb-6 flex items-center justify-center gap-3">
-            <span class="block h-px w-8 bg-primary/30"></span>
-            <span class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Kategori</span>
-            <span class="block h-px w-8 bg-primary/30"></span>
-          </div>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Kategori Produk
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg">
-            Dari skincare hingga baby care — semua bisa diproduksi dalam satu tempat.
-          </p>
-        </div>
+        <SectionHeader label="Kategori" variant="minimal" title="Jelajahi Rangkaian Produk Kami" />
 
         <div class="mt-12 grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
           {categories.map((cat) => {
@@ -206,19 +180,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <section id="layanan" class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <div class="mb-6 flex items-center justify-center gap-3">
-            <span class="block h-px w-8 bg-primary/30"></span>
-            <span class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Layanan</span>
-            <span class="block h-px w-8 bg-primary/30"></span>
-          </div>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Solusi Lengkap untuk Brand Kecantikan Anda
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg">
-            Dari skincare hingga baby care — semua bisa kami produksi dengan standar kualitas tinggi.
-          </p>
-        </div>
+        <SectionHeader label="Layanan" variant="minimal" title="Solusi Lengkap untuk Brand Kecantikan Anda" />
 
         <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((svc) => {
@@ -260,14 +222,9 @@ const comparisons = [
     <!-- ================================================================== -->
     <section id="keunggulan" class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Kenapa <span class="text-primary">Magna?</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Setiap detail kami perhatikan — dari formula hingga pengiriman.
-          </p>
-        </div>
+        <SectionHeader label="Keunggulan" variant="minimal">
+          <span slot="title">Kenapa <span class="text-primary">Magna?</span></span>
+        </SectionHeader>
 
         <div class="mt-16 flex flex-col gap-8 lg:flex-row">
           <!-- Left: Featured image -->
@@ -302,14 +259,9 @@ const comparisons = [
     <!-- ================================================================== -->
     <section id="produk" class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Produk yang Bisa <span class="text-primary">Kami Buat</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Berbagai kategori produk kecantikan siap diproduksi sesuai kebutuhan brand Anda.
-          </p>
-        </div>
+        <SectionHeader label="Produk" variant="minimal">
+          <span slot="title">Produk yang Bisa <span class="text-primary">Kami Buat</span></span>
+        </SectionHeader>
 
         <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {topProducts.map((product) => {
@@ -352,17 +304,7 @@ const comparisons = [
     <!-- ================================================================== -->
     <section id="alur" class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <div class="mb-6 flex items-center justify-center gap-3">
-            <span class="block h-px w-8 bg-primary/30"></span>
-            <span class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Alur</span>
-            <span class="block h-px w-8 bg-primary/30"></span>
-          </div>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">Proses Mudah & Transparan</h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg">
-            Dari konsultasi hingga produk sampai — semua jelas dan terarah.
-          </p>
-        </div>
+        <SectionHeader label="Alur" variant="minimal" title="Proses Mudah & Transparan" />
 
         <!-- DESKTOP: Interactive timeline -->
         <div class="mt-14 hidden gap-8 lg:flex">
@@ -498,54 +440,39 @@ const comparisons = [
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Pabrik <span class="text-primary">Modern</span> & Terstandar
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Didukung fasilitas produksi berstandar CPKB dengan teknologi terkini.
-          </p>
-        </div>
+        <SectionHeader label="Fasilitas" variant="minimal">
+          <span slot="title">Pabrik <span class="text-primary">Modern</span> & Terstandar</span>
+        </SectionHeader>
 
-        <!-- Asymmetric masonry: 1 large featured + grid of smaller cards -->
-        <div class="mt-12 grid gap-5 lg:grid-cols-3">
-          <!-- Large featured image (first item) - spans 2 cols -->
-          <div class="reveal-up group relative col-span-full overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-700 hover:-translate-y-1 hover:border-primary/15 hover:shadow-xl lg:col-span-2 lg:row-span-2">
-            <div class="relative h-full min-h-[300px] overflow-hidden lg:min-h-[480px]">
-              <img src={galleryItems[0].image} alt={galleryItems[0].label} class="h-full w-full object-cover transition-all duration-[800ms] group-hover:scale-110" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-              <!-- Animated badge -->
-              <div class="animate-fade-in absolute left-4 top-4 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-bold tracking-wider text-white backdrop-blur-md uppercase">
-                <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-green-400 mr-2 align-middle"></span>
-                Fasilitas Unggulan
-              </div>
-              <div class="absolute bottom-6 left-6 right-6 flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-md transition-all duration-500 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/30">
-                  <Icon name={galleryItems[0].icon} class="h-5 w-5" />
-                </div>
-                <div>
-                  <span class="text-sm font-bold text-white drop-shadow-md">{galleryItems[0].label}</span>
-                  <p class="mt-0.5 text-xs text-white/60">Lihat detail &rarr;</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Remaining 5 items in a 2-col grid on right -->
-          {galleryItems.slice(1).map((item) => (
-            <div class="reveal-up group relative overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg">
-              <div class="relative h-44 overflow-hidden">
-                <img src={item.image} alt={item.label} class="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90"></div>
-                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2.5">
-                  <div class="flex items-center gap-2.5">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 text-white backdrop-blur-sm transition-all duration-500 group-hover:bg-primary group-hover:shadow-md">
-                      <Icon name={item.icon} class="h-4 w-4" />
-                    </div>
-                    <span class="text-sm font-bold text-white drop-shadow-md">{item.label}</span>
+        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          {galleryItems.map((item) => (
+            <div
+              class:list={[
+                "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
+                item.layout === "featured" && "sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col",
+                item.layout === "wide" && "sm:col-span-2 lg:col-span-4",
+              ]}
+            >
+              <div
+                class:list={[
+                  "relative overflow-hidden",
+                  item.layout === "featured" && "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-0 lg:flex-1 lg:h-full xl:min-h-[420px]",
+                  item.layout === "square" && "aspect-square sm:aspect-[5/4]",
+                  item.layout === "wide" && "aspect-[16/9] sm:aspect-[21/9]",
+                ]}
+              >
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-primary">
+                    <Icon name={item.icon} class="h-4 w-4" />
                   </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/50 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
+                  <h3 class="text-sm font-bold text-white">{item.label}</h3>
                 </div>
               </div>
             </div>
@@ -559,14 +486,9 @@ const comparisons = [
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-6xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Yang Membedakan <span class="text-primary">Kami</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Kami hadir sebagai solusi maklon yang benar-benar memudahkan brand owner.
-          </p>
-        </div>
+        <SectionHeader label="Perbandingan" variant="minimal">
+          <span slot="title">Yang Membedakan <span class="text-primary">Kami</span></span>
+        </SectionHeader>
 
         <div class="reveal-up mt-12 overflow-hidden rounded-2xl border-2 border-primary/20 bg-white shadow-[0_8px_30px_-4px_rgba(101,146,135,0.15)]">
           <!-- Header -->
@@ -604,79 +526,86 @@ const comparisons = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 10. SERTIFIKASI — Simple marquee                                   -->
+    <!-- 10. SERTIFIKASI — Grid gambar sederhana                             -->
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-primary py-16 md:py-20">
-      <!-- Decorative pattern -->
       <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
       <div class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
 
-      <div class="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <!-- Marquee animasi berjalan -->
-        <div class="overflow-hidden">
-          <div class="flex animate-scroll-left gap-6" style="--scroll-speed: 25s; width: max-content;">
-            {[...certifications.slice(0, 5), ...certifications.slice(0, 5)].map((cert) => (
-              <div class="group flex w-[200px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-5 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10">
-                <!-- Icon -->
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
-                  <Icon name={cert.icon} class="h-6 w-6" />
-                </div>
-                <!-- Name -->
-                <h3 class="mt-3 text-sm font-bold text-white">{cert.name}</h3>
-                <p class="mt-1 text-[11px] text-white/50">{cert.fullName}</p>
-                <div class="mt-2 inline-block rounded-full border border-white/15 bg-white/5 px-3 py-0.5 text-[10px] font-semibold text-white/60">
-                  {cert.year}
-                </div>
+      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <SectionHeader label="Sertifikasi" variant="minimal" tone="light" title="Percayalah dengan Kami" />
+
+        <div class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          {certifications.map((cert) => (
+            <div class="reveal-up group text-center">
+              <div class="overflow-hidden rounded-xl border border-white/15 bg-white/10 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-white/25 group-hover:bg-white/15 group-hover:shadow-lg">
+                <img
+                  src={cert.image}
+                  alt={cert.name}
+                  class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
-            ))}
-          </div>
+              <h3 class="mt-3 text-sm font-bold text-white">{cert.name}</h3>
+            </div>
+          ))}
         </div>
 
-        <!-- CTA -->
-        <div class="mt-8 text-center">
+        <div class="mt-10 text-center">
           <a href="/sertifikasi" class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-primary hover:shadow-lg">
             Lihat Semua Sertifikasi
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <Icon name="lucide:arrow-right" class="h-4 w-4" />
           </a>
         </div>
       </div>
     </section>
 
     <!-- ================================================================== -->
-    <!-- 11. TESTIMONIAL — Clean grid cards                                 -->
+    <!-- 11. BRAND PARTNER — Logo marquee                                     -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-16 md:py-20">
+    <section class="overflow-hidden bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Dipercaya <span class="text-primary">Brand Partner</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Mereka sudah merasakan kemudahan bermitra dengan kami.
-          </p>
+        <SectionHeader label="Brand Partner" variant="minimal">
+          <span slot="title">Brand yang Telah <span class="text-primary">Bekerja Sama</span></span>
+        </SectionHeader>
+      </div>
+
+      <div class="mt-12 space-y-6">
+        <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div class="flex w-max animate-scroll-left items-center gap-10 md:gap-14" style="--scroll-speed: 45s">
+            {[...brandPartners, ...brandPartners].map((brand) => (
+              <div
+                class="brand-logo-item group flex shrink-0 items-center justify-center rounded-2xl border border-base-200/50 bg-white/60 px-8 py-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:bg-white hover:shadow-md"
+                style={`--brand-scale: ${brand.scale}; --brand-opacity: ${brand.opacity}`}
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  class="h-9 w-auto max-w-[120px] object-contain grayscale transition-all duration-500 group-hover:grayscale-0 md:h-11"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((item) => (
-            <div class="flex flex-col rounded-2xl border border-base-200/60 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md">
-              <div class="flex items-center gap-3">
-                <div class="avatar placeholder">
-                  <div class="w-9 rounded-full bg-primary/10 text-primary">
-                    <span class="text-sm font-bold">{item.name.charAt(0)}</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-sm font-bold">{item.name}</p>
-                  <p class="text-xs text-primary/50">{item.brand}</p>
-                </div>
+        <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div class="flex w-max animate-scroll-right items-center gap-10 md:gap-14" style="--scroll-speed: 50s">
+            {[...brandPartnersRowTwo, ...brandPartnersRowTwo].map((brand) => (
+              <div
+                class="brand-logo-item group flex shrink-0 items-center justify-center rounded-2xl border border-base-200/50 bg-white/60 px-8 py-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:bg-white hover:shadow-md"
+                style={`--brand-scale: ${brand.scale}; --brand-opacity: ${brand.opacity}`}
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  class="h-8 w-auto max-w-[110px] object-contain grayscale transition-all duration-500 group-hover:grayscale-0 md:h-10"
+                  loading="lazy"
+                />
               </div>
-              <div class="relative mt-4 flex-1">
-                <Icon name="lucide:quote" class="absolute -left-1 -top-1 h-5 w-5 text-primary/8" />
-                <p class="relative pl-4 text-sm leading-relaxed text-base-content/55">"{item.text}"</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -686,14 +615,9 @@ const comparisons = [
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
       <div class="mx-auto max-w-3xl px-4 lg:px-8">
-        <div class="reveal-up mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl leading-tight">
-            Pertanyaan <span class="text-primary">Umum</span>
-          </h2>
-          <p class="mt-5 text-base leading-relaxed text-base-content/50 md:text-lg max-w-xl mx-auto">
-            Hal-hal yang sering ditanyakan seputar layanan maklon kami.
-          </p>
-        </div>
+        <SectionHeader label="FAQ" variant="minimal">
+          <span slot="title">Pertanyaan <span class="text-primary">Umum</span></span>
+        </SectionHeader>
 
         <div class="mt-16 space-y-3">
           {faqs.slice(0, 6).map((faq, idx) => (
@@ -710,38 +634,6 @@ const comparisons = [
               </div>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 13. FINAL CTA — Full-width banner                                   -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden py-16 md:py-20">
-      <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary to-primary/80"></div>
-      <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-      <div class="reveal-up relative mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <h2 class="text-4xl font-black text-white md:text-5xl lg:text-6xl">
-          Saatnya Wujudkan Brand Impian Anda
-        </h2>
-        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55 md:text-lg">
-          Mulai dari <span class="font-semibold text-white/80">konsultasi gratis</span> — kami siap bantu dari nol sampai produk jadi.
-        </p>
-
-        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <WAButton
-            text="Konsultasi via WhatsApp"
-            message="Halo, saya ingin konsultasi mengenai maklon skincare."
-            variant="white"
-            size="lg"
-            class="rounded-xl shadow-2xl shadow-black/20"
-          />
-          <a href="/company-profile.pdf" target="_blank"
-            class="inline-flex h-14 items-center gap-2.5 rounded-xl border-2 border-white/20 bg-white/5 px-8 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/35 hover:bg-white/10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download Company Profile
-          </a>
         </div>
       </div>
     </section>
@@ -1090,6 +982,17 @@ const comparisons = [
   .bg-dot-pattern {
     background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  .brand-logo-item {
+    transform: scale(var(--brand-scale, 1));
+    opacity: var(--brand-opacity, 0.7);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .brand-logo-item:hover {
+    opacity: 1;
+    transform: scale(calc(var(--brand-scale, 1) * 1.06));
   }
 </style>
 

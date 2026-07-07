@@ -101,13 +101,13 @@ export const portfolioImages = {
   haircareBrand:  "/assets/portofolio/portofolio4.jpg",
 };
 
-// --- SERTIFIKASI / LEGALITAS (icon-style, square) ---
+// --- SERTIFIKASI / LEGALITAS (sementara pakai Unsplash, ganti dengan foto sertifikat asli nanti) ---
 export const certificationImages = {
-  bpom:  `${P}/product-square.svg`,
-  halal: `${P}/product-square.svg`,
-  cpkb:  `${P}/lab-default.svg`,
-  iso:   `${P}/product-square.svg`,
-  hki:   `${P}/product-square.svg`,
+  bpom:  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
+  halal: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
+  cpkb:  "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=600&q=80",
+  iso:   "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80",
+  hki:   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80",
 };
 
 // --- ABOUT / COMPANY (4:3) ---

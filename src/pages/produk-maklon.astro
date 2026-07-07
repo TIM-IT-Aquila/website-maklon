@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
-import CTASection from "../components/sections/CTASection.astro";
 import Icon from "../components/ui/Icon.astro";
 import { products } from "../data/products";
 
@@ -71,15 +70,5 @@ const categories = [
         </div>
       </div>
     </section>
-
-    <!-- ================================================================== -->
-    <!-- 4. CTA SECTION                                                     -->
-    <!-- ================================================================== -->
-    <CTASection
-      title="Tertarik dengan Produk Tertentu?"
-      description="Konsultasikan dengan tim kami untuk mengetahui produk apa yang paling cocok untuk brand Anda."
-      buttonText="Konsultasi via WhatsApp"
-      waMessage="Halo, saya tertarik dengan produk maklon. Bisakah saya konsultasi?"
-    />
   </main>
 </MainLayout>

@@ -1,19 +1,61 @@
 ---
 interface Props {
   tag?: string;
-  title: string;
+  label?: string;
+  title?: string;
   description?: string;
   centered?: boolean;
+  align?: "center" | "left";
+  variant?: "default" | "minimal";
+  tone?: "default" | "light";
+  class?: string;
 }
 
-const { tag, title, description, centered = true } = Astro.props;
+const {
+  tag,
+  label,
+  title,
+  description,
+  centered = true,
+  align = centered ? "center" : "left",
+  variant = "default",
+  tone = "default",
+  class: className,
+} = Astro.props;
+
+const displayLabel = label ?? tag;
 ---
 
-<div class={`mb-8 ${centered ? "text-center" : ""}`}>
-  {tag && (
-    <p class="mb-2 font-semibold tracking-wide text-primary">{tag}</p>
+<div
+  class:list={[
+    variant === "minimal" && align === "center" && "reveal-up mx-auto max-w-2xl text-center",
+    variant === "minimal" && align === "left" && "reveal-up max-w-none text-left",
+    variant === "default" && `mb-8 ${centered ? "text-center" : ""}`,
+    className,
+  ]}
+>
+  {variant === "minimal" && displayLabel && (
+    <div class:list={["mb-6 flex items-center gap-3", align === "center" ? "justify-center" : "justify-start"]}>
+      <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]}></span>
+      <span class:list={["text-[11px] font-semibold tracking-[0.2em] uppercase", tone === "light" ? "text-white/60" : "text-primary/60"]}>{displayLabel}</span>
+      <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]}></span>
+    </div>
   )}
-  <h2 class="text-3xl font-black md:text-4xl">{title}</h2>
+
+  {variant === "default" && displayLabel && (
+    <p class="mb-2 font-semibold tracking-wide text-primary">{displayLabel}</p>
+  )}
+
+  <h2
+    class:list={[
+      variant === "minimal" && "text-3xl font-black leading-tight md:text-4xl lg:text-5xl",
+      variant === "default" && "text-3xl font-black md:text-4xl",
+      tone === "light" && "text-white",
+    ]}
+  >
+    <slot name="title">{title}</slot>
+  </h2>
+
   {description && (
     <p class="mx-auto mt-3 max-w-2xl text-base-content/70 md:text-lg">
       {description}

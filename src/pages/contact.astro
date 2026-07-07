@@ -1,272 +1,277 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import { siteConfig } from "../data/site";
-import WAButton from "../components/ui/WAButton.astro";
+import { contactLocations } from "../data/contact";
+import { createWhatsappLink } from "../lib/whatsapp";
 
-const locations = [
-  {
-    id: "office",
-    name: "Kantor Pusat",
-    address: "Jl. Pembangunan, No. 27, Kel. Lemahabang, Kec. Indramayu, Kab. Indramayu, 45211",
-    hours: "Senin – Jumat, 08:00 – 17:00",
-    embedUrl: `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7931.043933889201!2d108.33063!3d-6.326336!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ebbc9899e4317%3A0xeb4d191287580629!2sAquila%20Herb%20Office!5e0!3m2!1sid!2sus!4v1783067412296!5m2!1sid!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin`,
-  },
-  {
-    id: "factory",
-    name: "Pabrik Produksi",
-    address: "Jl. Jati Blok Pulo Seger, Desa Plumbon, Kec. Indramayu, Kab. Indramayu, 45215",
-    hours: "Senin – Sabtu, 07:00 – 16:00",
-    embedUrl: `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7930.3221323914995!2d108.307375!3d-6.373197!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6eb9930bbc50e3%3A0x80b295fb0705270b!2sAquila%20New%20Factory!5e0!3m2!1sid!2sus!4v1783067287940!5m2!1sid!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin`,
-  },
-];
+const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
+const displayWa = `+${siteConfig.waNumber.replace(/^(\d{2})(\d{3})(\d{4})(\d+)$/, "$1 $2-$3-$4")}`;
+
+const inputClass =
+  "block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5";
 ---
 
 <MainLayout
   title="Kontak | Magna Maklon"
   description="Hubungi tim Magna untuk konsultasi maklon skincare. Kantor di Indramayu, Jawa Barat."
 >
-
   <main class="overflow-x-hidden">
 
-    <!-- ================================================================== -->
-    <!-- 1. HERO + FORM — Compact, sejajar, elegan                          -->
-    <!-- ================================================================== -->
-    <section class="relative bg-gradient-to-b from-base-200/30 via-base-100 to-base-100 pb-16 pt-20 md:pb-20 md:pt-28">
+    <!-- Kontak + Form -->
+    <section class="bg-base-100 py-14 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <SectionHeader
+          label="Kontak"
+          variant="minimal"
+          class="mb-8 md:mb-10"
+        >
+          <span slot="title">Hubungi <span class="text-primary">Tim Magna</span></span>
+        </SectionHeader>
 
-        <!-- Header ringkas -->
-        <div class="mx-auto mb-10 max-w-2xl text-center md:mb-14">
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-primary/15 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary">
-            <span class="relative flex h-1.5 w-1.5">
-              <span class="absolute inset-0 animate-ping rounded-full bg-primary/60"></span>
-              <span class="relative h-1.5 w-1.5 rounded-full bg-primary"></span>
-            </span>
-            Free Consultation
-          </span>
-          <h1 class="mt-4 text-3xl font-black tracking-tight md:text-4xl lg:text-5xl">
-            Hubungi Tim Magna
-          </h1>
-          <p class="mx-auto mt-2 max-w-lg text-sm text-base-content/50 md:text-base">
-            Konsultasikan kebutuhan maklon skincare Anda bersama tim kami.
-          </p>
-          <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-            <span class="inline-flex items-center gap-1 rounded-full border border-base-200 bg-white px-3 py-1 text-[11px] font-semibold text-base-content/50">
-              <Icon name="lucide:zap" size={11} />
-              Fast Response
-            </span>
-            <span class="inline-flex items-center gap-1 rounded-full border border-base-200 bg-white px-3 py-1 text-[11px] font-semibold text-base-content/50">
-              <Icon name="lucide:clock" size={11} />
-              Business Hours
-            </span>
-          </div>
-        </div>
+        <div class="grid items-start gap-8 lg:grid-cols-5 lg:gap-10">
+          <!-- Sidebar info -->
+          <aside class="lg:sticky lg:top-24 lg:col-span-2">
+            <div class="rounded-2xl border border-base-200/80 bg-white p-6 shadow-sm">
+              <p class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Informasi</p>
+              <h2 class="mt-2 text-lg font-black text-base-content">Cara Menghubungi Kami</h2>
 
-        <!-- Grid: Info kiri + Form kanan -->
-        <div class="mx-auto max-w-5xl">
+              <ul class="mt-5 space-y-4">
+                <li class="flex items-start gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Icon name="mdi:whatsapp" size={18} />
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">WhatsApp</p>
+                    <p class="text-sm font-bold text-base-content/85">{displayWa}</p>
+                    <div class="mt-1.5 flex flex-wrap gap-2">
+                      <a href={waLink} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-primary hover:underline">
+                        Buka chat
+                      </a>
+                      <button type="button" id="copyWaBtn" data-number={displayWa} class="text-xs font-semibold text-base-content/45 hover:text-primary">
+                        Salin nomor
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Icon name="lucide:mail" size={16} />
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">Email</p>
+                    <a href={`mailto:${siteConfig.email}`} class="break-all text-sm font-bold text-base-content/85 hover:text-primary">
+                      {siteConfig.email}
+                    </a>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Icon name="lucide:clock" size={16} />
+                  </span>
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">Jam Operasional</p>
+                    <p class="text-sm font-bold text-base-content/85">{siteConfig.operationalHours}</p>
+                    <p class="mt-0.5 text-xs text-base-content/45">Indramayu, Jawa Barat</p>
+                  </div>
+                </li>
+              </ul>
 
-          <!-- Info cards row -->
-          <div class="mb-8 grid gap-3 sm:grid-cols-3">
-            <div class="flex items-center gap-3 rounded-xl border border-base-200/60 bg-white p-4 shadow-xs">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Icon name="mdi:whatsapp" size={20} />
-              </div>
-              <div class="min-w-0">
-                <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">WhatsApp</p>
-                <p class="truncate text-sm font-bold text-base-content/80">{siteConfig.waNumber}</p>
+              <div class="mt-5 rounded-xl bg-primary/5 px-4 py-3 text-xs leading-relaxed text-base-content/55">
+                <span class="font-semibold text-base-content/70">Tips:</span> untuk respon tercepat, gunakan WhatsApp. Tim kami biasanya membalas dalam 1×24 jam kerja.
               </div>
             </div>
-            <div class="flex items-center gap-3 rounded-xl border border-base-200/60 bg-white p-4 shadow-xs">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <Icon name="lucide:mail" size={20} />
+          </aside>
+
+          <!-- Form -->
+          <div class="lg:col-span-3" id="form-konsultasi">
+            <div class="rounded-2xl border border-base-200/80 bg-white p-6 shadow-sm md:p-8">
+              <div class="mb-6">
+                <p class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Konsultasi</p>
+                <h2 class="mt-2 text-xl font-black text-base-content md:text-2xl">
+                  Form <span class="text-primary">Konsultasi Maklon</span>
+                </h2>
+                <p class="mt-1.5 text-sm text-base-content/55">
+                  Isi data berikut — kami akan menerima pesan Anda langsung di WhatsApp.
+                </p>
               </div>
-              <div class="min-w-0">
-                <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">Email</p>
-                <p class="truncate text-sm font-bold text-base-content/80">{siteConfig.email}</p>
-              </div>
+
+              <form class="space-y-8" data-wa-number={siteConfig.waNumber} id="consultForm" novalidate>
+                <!-- Grup 1 -->
+                <fieldset class="space-y-4">
+                  <legend class="mb-1 flex items-center gap-2 text-sm font-bold text-base-content">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs text-primary">1</span>
+                    Data Diri
+                  </legend>
+
+                  <div>
+                    <label for="nama" class="mb-1.5 block text-sm font-semibold">
+                      Nama Lengkap <span class="text-error">*</span>
+                    </label>
+                    <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Contoh: Budi Santoso" class={inputClass} />
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="nama">Nama wajib diisi.</p>
+                  </div>
+
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label for="wa" class="mb-1.5 block text-sm font-semibold">
+                        Nomor WhatsApp <span class="text-error">*</span>
+                      </label>
+                      <input type="tel" id="wa" name="wa" required autocomplete="tel" inputmode="tel" placeholder="08xx-xxxx-xxxx" class={inputClass} />
+                      <p class="mt-1 text-[11px] text-base-content/40">Pastikan nomor aktif untuk dihubungi kembali.</p>
+                      <p class="field-error mt-1 hidden text-xs text-error" data-for="wa">Nomor WhatsApp wajib diisi.</p>
+                    </div>
+                    <div>
+                      <label for="email" class="mb-1.5 block text-sm font-semibold">
+                        Email <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
+                      </label>
+                      <input type="email" id="email" name="email" autocomplete="email" placeholder="contoh@email.com" class={inputClass} />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Grup 2 -->
+                <fieldset class="space-y-4">
+                  <legend class="mb-1 flex items-center gap-2 text-sm font-bold text-base-content">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs text-primary">2</span>
+                    Kebutuhan Produk
+                  </legend>
+
+                  <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label for="produk" class="mb-1.5 block text-sm font-semibold">
+                        Jenis Produk <span class="text-error">*</span>
+                      </label>
+                      <select id="produk" name="produk" required class={inputClass}>
+                        <option value="" disabled selected>Pilih jenis produk</option>
+                        <option value="Skincare">Skincare</option>
+                        <option value="Bodycare">Bodycare</option>
+                        <option value="Haircare">Haircare</option>
+                        <option value="Baby Care">Baby Care</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+                      <p class="field-error mt-1 hidden text-xs text-error" data-for="produk">Pilih jenis produk.</p>
+                    </div>
+                    <div>
+                      <label for="estimasi" class="mb-1.5 block text-sm font-semibold">
+                        Estimasi Produksi <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
+                      </label>
+                      <select id="estimasi" name="estimasi" class={inputClass}>
+                        <option value="" disabled selected>Pilih estimasi</option>
+                        <option value="500-1000 pcs">500 – 1.000 pcs</option>
+                        <option value="1000-5000 pcs">1.000 – 5.000 pcs</option>
+                        <option value="5000-10000 pcs">5.000 – 10.000 pcs</option>
+                        <option value="10000+ pcs">10.000+ pcs</option>
+                        <option value="Belum tahu">Belum tahu</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="pesan" class="mb-1.5 flex items-center justify-between">
+                      <span class="text-sm font-semibold">Pesan Tambahan</span>
+                      <span class="text-[11px] text-base-content/30" id="char-count">0 / 500</span>
+                    </label>
+                    <textarea
+                      id="pesan" name="pesan" rows={4} maxlength={500}
+                      placeholder="Ceritakan ide produk, target pasar, atau pertanyaan Anda..."
+                      class={`${inputClass} resize-y leading-relaxed`}
+                    ></textarea>
+                  </div>
+                </fieldset>
+
+                <div class="space-y-3 border-t border-base-200/60 pt-6">
+                  <button
+                    type="submit"
+                    id="submitBtn"
+                    class="flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    <Icon name="mdi:whatsapp" size={18} />
+                    <span id="submitBtnText">Kirim via WhatsApp</span>
+                  </button>
+                  <p class="text-center text-[11px] text-base-content/40">
+                    Dengan mengirim form, Anda akan diarahkan ke WhatsApp dengan pesan yang sudah terisi.
+                  </p>
+                </div>
+              </form>
             </div>
-            <div class="flex items-center gap-3 rounded-xl border border-base-200/60 bg-white p-4 shadow-xs">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
-                <Icon name="lucide:map-pin" size={20} />
-              </div>
-              <div class="min-w-0">
-                <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">Lokasi</p>
-                <p class="truncate text-sm font-bold text-base-content/80">{siteConfig.address}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Form Card -->
-          <div class="rounded-2xl border border-base-200/80 bg-white p-6 shadow-sm md:p-8">
-            <div class="mb-6">
-              <p class="text-[11px] font-bold uppercase tracking-[0.15em] text-primary">Konsultasi Gratis</p>
-              <h2 class="mt-1 text-xl font-black md:text-2xl">Ceritakan Kebutuhan Anda</h2>
-              <p class="mt-0.5 text-sm text-base-content/45">
-                Isi form — tim kami akan merespon dalam <span class="font-semibold text-base-content/70">1×24 jam</span>.
-              </p>
-            </div>
-
-            <form class="space-y-5" data-wa-number={siteConfig.waNumber} id="consultForm">
-              <!-- Nama -->
-              <div>
-                <label for="nama" class="mb-1.5 block text-sm font-semibold">
-                  Nama Lengkap <span class="text-error">*</span>
-                </label>
-                <input
-                  type="text" id="nama" name="nama" required
-                  placeholder="Masukkan nama lengkap Anda"
-                  class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5"
-                />
-              </div>
-
-              <!-- WhatsApp & Email -->
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="wa" class="mb-1.5 block text-sm font-semibold">
-                    WhatsApp <span class="text-error">*</span>
-                  </label>
-                  <input
-                    type="tel" id="wa" name="wa" required
-                    placeholder="0812-3456-7890"
-                    class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5"
-                  />
-                </div>
-                <div>
-                  <label for="email" class="mb-1.5 block text-sm font-semibold">Email</label>
-                  <input
-                    type="email" id="email" name="email"
-                    placeholder="contoh@email.com"
-                    class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5"
-                  />
-                </div>
-              </div>
-
-              <!-- Produk & MOQ/Budget -->
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="produk" class="mb-1.5 block text-sm font-semibold">
-                    Jenis Produk <span class="text-error">*</span>
-                  </label>
-                  <select id="produk" name="produk" required
-                    class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all focus:border-primary/40 focus:ring-4 focus:ring-primary/5">
-                    <option value="" disabled selected>Pilih jenis produk</option>
-                    <option value="Skincare">Skincare</option>
-                    <option value="Bodycare">Bodycare</option>
-                    <option value="Haircare">Haircare</option>
-                    <option value="Baby Care">Baby Care</option>
-                    <option value="Lainnya">Lainnya</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="estimasi" class="mb-1.5 block text-sm font-semibold">Estimasi / Budget</label>
-                  <select id="estimasi" name="estimasi"
-                    class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all focus:border-primary/40 focus:ring-4 focus:ring-primary/5">
-                    <option value="" disabled selected>Pilih estimasi</option>
-                    <option value="500-1000 pcs">500 – 1.000 pcs</option>
-                    <option value="1000-5000 pcs">1.000 – 5.000 pcs</option>
-                    <option value="5000-10000 pcs">5.000 – 10.000 pcs</option>
-                    <option value="10000+ pcs">10.000+ pcs</option>
-                    <option value="Belum tahu">Belum tahu</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Pesan -->
-              <div>
-                <label for="pesan" class="mb-1.5 flex items-center justify-between">
-                  <span class="text-sm font-semibold">Pesan</span>
-                  <span class="text-[11px] text-base-content/30">Opsional</span>
-                </label>
-                <textarea
-                  id="pesan" name="pesan" rows={4}
-                  placeholder="Ceritakan tentang ide atau kebutuhan produk Anda..."
-                  class="block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm leading-relaxed outline-none transition-all resize-y placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5"
-                ></textarea>
-                <p class="mt-1 text-right text-[11px] text-base-content/30" id="char-count">0 / 500 karakter</p>
-              </div>
-
-              <!-- Submit -->
-              <button type="submit"
-                class="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
-              >
-                <Icon name="mdi:whatsapp" size={18} class="relative z-10" />
-                <span class="relative z-10">Kirim via WhatsApp</span>
-              </button>
-            </form>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================================================================== -->
-    <!-- 3. LOCATIONS — Cards (left) + Interactive Map (right)              -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/30 pb-12 pt-4 md:pb-16">
+    <!-- Lokasi -->
+    <section id="lokasi" class="scroll-mt-24 border-t border-base-200/60 bg-base-200/30 py-14 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <!-- Section header -->
-        <div class="mb-8 md:mb-10">
-          <p class="text-[11px] font-bold uppercase tracking-[0.15em] text-primary">Lokasi</p>
-          <h2 class="mt-1 text-2xl font-black md:text-3xl">Temukan Kami</h2>
-          <p class="mt-1 text-sm text-base-content/50">Kantor, pabrik, dan cabang kami siap melayani Anda.</p>
+        <SectionHeader label="Lokasi" variant="minimal" class="mb-8 md:mb-10">
+          <span slot="title">Temukan <span class="text-primary">Kami</span></span>
+        </SectionHeader>
+
+        <!-- Pill switcher -->
+        <div
+          class="mx-auto mb-5 flex max-w-md rounded-xl border border-base-200/60 bg-white p-1 shadow-xs"
+          id="locationPills"
+          role="tablist"
+          aria-label="Pilih lokasi"
+        >
+          {contactLocations.map((loc, idx) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={idx === 0 ? "true" : "false"}
+              aria-controls="locationMapPanel"
+              id={`location-tab-${loc.id}`}
+              data-map={loc.embedUrl}
+              data-maps={loc.mapsUrl}
+              data-id={loc.id}
+              data-name={loc.name}
+              class:list={[
+                "location-pill flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-xs font-bold transition-all sm:text-sm",
+                idx === 0 ? "bg-primary text-white shadow-sm" : "text-base-content/55 hover:bg-base-100 hover:text-primary",
+              ]}
+            >
+              <Icon name={loc.icon} size={16} />
+              <span class="truncate">{loc.name}</span>
+            </button>
+          ))}
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-5">
-          <!-- LEFT: Location Cards -->
-          <div class="space-y-3 lg:col-span-2" id="locationCards">
-            {locations.map((loc, idx) => (
-              <button
-                type="button"
-                data-map={loc.embedUrl}
-                data-id={loc.id}
-                class:list={[
-                  "location-card group w-full rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md",
-                  idx === 0 ? "border-primary/30 bg-white shadow-sm" : "border-base-200/60 bg-white/70",
-                ]}
-              >
-                <div class="flex items-start gap-4">
-                  <div
-                    class:list={[
-                      "mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors",
-                      idx === 0 ? "bg-primary/10 text-primary" : "bg-base-200/80 text-base-content/40 group-hover:bg-primary/8 group-hover:text-primary",
-                    ]}
-                  >
-                    <Icon name={loc.id === "office" ? "lucide:building-2" : loc.id === "factory" ? "lucide:factory" : "lucide:map-pin"} size={20} />
-                  </div>
-                  <div>
-                    <p
-                      class:list={[
-                        "text-sm font-bold transition-colors",
-                        idx === 0 ? "text-primary" : "text-base-content/80 group-hover:text-primary",
-                      ]}
-                    >
-                      {loc.name}
-                    </p>
-                    <p class="mt-0.5 text-xs leading-relaxed text-base-content/45">{loc.address}</p>
-                    <div class="mt-2 inline-flex items-center gap-1 text-[11px] text-base-content/35">
-                      <Icon name="lucide:clock" size={11} />
-                      {loc.hours}
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
+        <!-- Peta -->
+        <div class="overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm">
+          <div class="flex items-center justify-between gap-3 border-b border-base-200/60 px-4 py-3">
+            <p class="truncate text-sm font-semibold text-base-content/70">
+              <span id="locationMapLabel">{contactLocations[0].name}</span>
+            </p>
+            <a
+              id="locationMapLink"
+              href={contactLocations[0].mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-white"
+            >
+              <Icon name="lucide:navigation" size={14} />
+              Petunjuk Arah
+            </a>
           </div>
-
-          <!-- RIGHT: Interactive Map -->
-          <div class="lg:col-span-3">
-            <div class="overflow-hidden rounded-3xl border border-base-200/60 bg-white shadow-sm">
-              <div class="relative h-[350px] md:h-[420px] lg:h-[480px]" id="locationMap">
-                <iframe
-                  id="locationMapFrame"
-                  src={locations[0].embedUrl}
-                  width="100%" height="100%" style="border:0;"
-                  allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Peta Lokasi"
-                  class="absolute inset-0 h-full w-full"
-                ></iframe>
-              </div>
-            </div>
+          <div
+            class="relative aspect-[16/10] min-h-[240px] sm:min-h-[320px]"
+            id="locationMapPanel"
+            role="tabpanel"
+            aria-labelledby="location-tab-office"
+          >
+            <iframe
+              id="locationMapFrame"
+              src={contactLocations[0].embedUrl}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Peta ${contactLocations[0].name}`}
+              class="absolute inset-0 h-full w-full"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -275,91 +280,136 @@ const locations = [
   </main>
 </MainLayout>
 
-<!-- ==================================================================== -->
-<!-- Client-side: form submission + interactive map switching              -->
-<!-- ==================================================================== -->
 <script>
   import { createConsultationMessage, createWhatsappLink } from "../lib/whatsapp";
 
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener("DOMContentLoaded", () => {
+    // Salin nomor WA
+    const copyBtn = document.getElementById("copyWaBtn");
+    copyBtn?.addEventListener("click", async () => {
+      const number = copyBtn.getAttribute("data-number") || "";
+      try {
+        await navigator.clipboard.writeText(number);
+        const original = copyBtn.textContent;
+        copyBtn.textContent = "Tersalin!";
+        setTimeout(() => { copyBtn.textContent = original; }, 2000);
+      } catch {
+        copyBtn.textContent = "Gagal menyalin";
+      }
+    });
 
-    // --- Character counter ---
-    const pesanTextarea = document.getElementById('pesan') as HTMLTextAreaElement | null;
-    const charCount = document.getElementById('char-count');
-    if (pesanTextarea && charCount) {
-      pesanTextarea.addEventListener('input', () => {
-        const len = pesanTextarea.value.length;
-        charCount.textContent = `${len} / 500 karakter`;
-        charCount.style.color = len > 450 ? '#c76b6b' : '';
+    // Character counter
+    const pesanTextarea = document.getElementById("pesan") as HTMLTextAreaElement | null;
+    const charCount = document.getElementById("char-count");
+    pesanTextarea?.addEventListener("input", () => {
+      const len = pesanTextarea.value.length;
+      if (charCount) {
+        charCount.textContent = `${len} / 500`;
+        charCount.classList.toggle("text-error", len > 450);
+        charCount.classList.toggle("text-base-content/30", len <= 450);
+      }
+    });
+
+    // Form validation + submit
+    const form = document.getElementById("consultForm") as HTMLFormElement | null;
+    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+    const submitBtnText = document.getElementById("submitBtnText");
+
+    const showError = (id: string, show: boolean) => {
+      const el = document.querySelector(`.field-error[data-for="${id}"]`);
+      const input = document.getElementById(id);
+      el?.classList.toggle("hidden", !show);
+      input?.classList.toggle("border-error/50", show);
+      input?.classList.toggle("ring-2", show);
+      input?.classList.toggle("ring-error/10", show);
+    };
+
+    const validateForm = () => {
+      let valid = true;
+      const required = ["nama", "wa", "produk"];
+      required.forEach((id) => {
+        const field = document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null;
+        const empty = !field?.value.trim();
+        showError(id, empty);
+        if (empty) valid = false;
+      });
+      return valid;
+    };
+
+    ["nama", "wa", "produk"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", () => showError(id, false));
+      document.getElementById(id)?.addEventListener("change", () => showError(id, false));
+    });
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+        const firstInvalid = form.querySelector(".field-error:not(.hidden)");
+        (firstInvalid?.previousElementSibling as HTMLElement)?.focus?.()
+          || (firstInvalid?.parentElement?.querySelector("input, select") as HTMLElement)?.focus?.();
+        return;
+      }
+
+      const waNumber = form.getAttribute("data-wa-number");
+      const getValue = (id: string) => {
+        const field = document.getElementById(id);
+        return field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement
+          ? field.value
+          : "";
+      };
+
+      submitBtn?.setAttribute("disabled", "true");
+      if (submitBtnText) submitBtnText.textContent = "Membuka WhatsApp...";
+
+      const message = createConsultationMessage({
+        nama: getValue("nama"),
+        wa: getValue("wa"),
+        email: getValue("email"),
+        produk: getValue("produk"),
+        estimasi: getValue("estimasi"),
+        kategori: "",
+        pesan: getValue("pesan"),
+      });
+
+      window.open(createWhatsappLink(waNumber || "", message), "_blank", "noopener,noreferrer");
+
+      setTimeout(() => {
+        submitBtn?.removeAttribute("disabled");
+        if (submitBtnText) submitBtnText.textContent = "Kirim via WhatsApp";
+      }, 2000);
+    });
+
+    // Location pill switcher
+    const pills = document.querySelectorAll<HTMLButtonElement>(".location-pill");
+    const mapFrame = document.getElementById("locationMapFrame") as HTMLIFrameElement | null;
+    const mapLabel = document.getElementById("locationMapLabel");
+    const mapLink = document.getElementById("locationMapLink") as HTMLAnchorElement | null;
+    const mapPanel = document.getElementById("locationMapPanel");
+
+    function activateLocation(pill: HTMLButtonElement) {
+      const mapUrl = pill.getAttribute("data-map");
+      const mapsUrl = pill.getAttribute("data-maps");
+      const locId = pill.getAttribute("data-id");
+      const locName = pill.getAttribute("data-name");
+
+      if (mapFrame && mapUrl) mapFrame.src = mapUrl;
+      if (mapLabel && locName) mapLabel.textContent = locName;
+      if (mapLink && mapsUrl) mapLink.href = mapsUrl;
+      if (mapFrame && locName) mapFrame.title = `Peta ${locName}`;
+      if (mapPanel && locId) mapPanel.setAttribute("aria-labelledby", `location-tab-${locId}`);
+
+      pills.forEach((p) => {
+        const isActive = p === pill;
+        p.setAttribute("aria-selected", isActive ? "true" : "false");
+        p.classList.toggle("bg-primary", isActive);
+        p.classList.toggle("text-white", isActive);
+        p.classList.toggle("shadow-sm", isActive);
+        p.classList.toggle("text-base-content/55", !isActive);
       });
     }
 
-    // --- Form submission ---
-    const form = document.getElementById('consultForm');
-    if (form) {
-      const waNumber = form.getAttribute('data-wa-number');
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const getValue = (id: string) => {
-          const field = document.getElementById(id);
-          return field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement ? field.value : '';
-        };
-        const fields = {
-          nama: getValue('nama'),
-          wa: getValue('wa'),
-          email: getValue('email'),
-          produk: getValue('produk'),
-          estimasi: getValue('estimasi'),
-          kategori: '',
-          pesan: getValue('pesan'),
-        };
-        const message = createConsultationMessage(fields);
-        window.open(createWhatsappLink(waNumber || '', message), '_blank', 'noopener,noreferrer');
-      });
-    }
-
-    // --- Interactive location card → map switching ---
-    const cards = document.querySelectorAll('.location-card');
-    const mapFrame = document.getElementById('locationMapFrame') as HTMLIFrameElement | null;
-
-    cards.forEach((card) => {
-      card.addEventListener('click', function () {
-        const btn = card as HTMLElement;
-        const mapUrl = btn.getAttribute('data-map');
-        if (mapFrame && mapUrl) {
-          mapFrame.src = mapUrl;
-        }
-
-        // Reset all cards to default state
-        cards.forEach((c) => {
-          c.classList.remove('border-primary/30', 'bg-white');
-          c.classList.add('border-base-200/60', 'bg-white/70');
-          const iconWrap = c.querySelector('.flex.h-10.w-10');
-          if (iconWrap) {
-            iconWrap.classList.remove('bg-primary/10', 'text-primary');
-            iconWrap.classList.add('bg-base-200/80', 'text-base-content/40');
-          }
-          const nameEl = c.querySelector('p.text-sm');
-          if (nameEl) {
-            nameEl.classList.remove('text-primary');
-            nameEl.classList.add('text-base-content/80');
-          }
-        });
-
-        // Activate clicked card
-        btn.classList.remove('border-base-200/60', 'bg-white/70');
-        btn.classList.add('border-primary/30', 'bg-white');
-        const activeIcon = btn.querySelector('.flex.h-10.w-10');
-        if (activeIcon) {
-          activeIcon.classList.remove('bg-base-200/80', 'text-base-content/40');
-          activeIcon.classList.add('bg-primary/10', 'text-primary');
-        }
-        const activeName = btn.querySelector('p.text-sm');
-        if (activeName) {
-          activeName.classList.remove('text-base-content/80');
-          activeName.classList.add('text-primary');
-        }
-      });
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => activateLocation(pill));
     });
   });
 </script>

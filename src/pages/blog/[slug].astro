@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import CTASection from "../../components/sections/CTASection.astro";
 import { blogPosts } from "../../data/blog";
 import Icon from "../../components/ui/Icon.astro";
 
@@ -64,11 +63,5 @@ const { post } = Astro.props;
         ))}
       </footer>
     </article>
-
-    <CTASection
-      title="Siap Konsultasi Produk Maklon?"
-      description="Diskusikan kebutuhan produk dan legalitas brand Anda bersama tim kami."
-      buttonText="Konsultasi via WhatsApp"
-    />
   </main>
 </MainLayout>

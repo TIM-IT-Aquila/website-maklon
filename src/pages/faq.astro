@@ -2,7 +2,6 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
 import { faqs } from "../data/faqs";
-import WAButton from "../components/ui/WAButton.astro";
 ---
 
 <MainLayout
@@ -33,14 +32,6 @@ import WAButton from "../components/ui/WAButton.astro";
         ))}
       </div>
 
-      <div class="mt-12 text-center p-8 rounded-3xl bg-base-200/50">
-        <p class="text-lg font-semibold">Masih Punya Pertanyaan?</p>
-        <p class="mt-2 text-base-content/70">Jangan ragu untuk menghubungi tim kami. Kami siap membantu Anda.</p>
-        <WAButton
-          text="Konsultasi via WhatsApp"
-          variant="primary"
-          class="mt-4 rounded-full"
-        />
       </div>
     </section>
   </main>
