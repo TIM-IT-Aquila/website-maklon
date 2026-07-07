@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
-import { certifications, legalServices, trustCards } from "../data/certifications";
+import { certifications, trustCards } from "../data/certifications";
 import { factoryImages } from "../data/images";
 
 // Badge colours for each cert
@@ -179,45 +179,6 @@ const certColors = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 3. LEGAL SERVICES — Interactive cards with progress                -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/50 py-16">
-      <div class="pointer-events-none absolute -left-60 -bottom-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Layanan Legalitas" variant="minimal" title="Kami Bantu Proses Legalitas Anda" />
-
-        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {legalServices.map((ls, i) => (
-            <div
-              class="group card border border-base-200 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-xl"
-              style={`--delay: ${i * 100}ms`}
-            >
-              <div class="card-body p-7">
-                <div class="flex items-start gap-5">
-                  <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-3xl transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
-                    <Icon name={ls.icon} size={32} />
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="card-title text-lg">{ls.title}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-base-content/70">{ls.desc}</p>
-                    <!-- Progress indicator -->
-                    <div class="mt-4 flex items-center gap-2">
-                      <div class="h-1.5 flex-1 rounded-full bg-base-200 overflow-hidden">
-                        <div class="h-full w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 group-hover:w-full"></div>
-                      </div>
-                      <span class="text-[10px] font-semibold text-primary opacity-0 transition-opacity duration-500 group-hover:opacity-100">Siap</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
     <!-- 4. TRUST / WHY LEGALITY — Animated cards                          -->
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16">
@@ -244,44 +205,6 @@ const certColors = [
               </div>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 5. TIMELINE / PROCESS FLOW — How we handle legality               -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/50 py-16">
-      <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Alur Legalitas" variant="minimal" title="Proses Pengurusan Legalitas" />
-
-        <div class="mt-10 mx-auto max-w-4xl">
-          <div class="relative">
-            <!-- Connecting line -->
-            <div class="absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-primary/20 hidden md:block"></div>
-
-            <div class="space-y-8">
-              {[
-                { step: "01", icon: "lucide:clipboard-check", title: "Konsultasi & Assessment", desc: "Kami identifikasi kebutuhan legalitas produk Anda dan tentukan sertifikasi yang diperlukan." },
-                { step: "02", icon: "lucide:file-text", title: "Persiapan Dokumen", desc: "Tim legal kami menyiapkan seluruh dokumen teknis dan administrasi yang dibutuhkan." },
-                { step: "03", icon: "lucide:send", title: "Pendaftaran & Pengajuan", desc: "Dokumen didaftarkan ke lembaga berwenang — BPOM, MUI, Kemenkumham, dll." },
-                { step: "04", icon: "lucide:badge-check", title: "Approval & Sertifikat Terbit", desc: "Sertifikat resmi terbit dan produk Anda siap dipasarkan secara legal." },
-              ].map((item) => (
-                <div class="group flex items-start gap-6">
-                  <div class="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-lg font-bold text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl">
-                    <Icon name={item.icon} size={28} />
-                  </div>
-                  <div class="flex-1 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:border-primary/20 group-hover:shadow-lg">
-                    <span class="text-xs font-bold tracking-widest text-primary">{item.step}</span>
-                    <h3 class="mt-1 text-lg font-bold">{item.title}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-base-content/70">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

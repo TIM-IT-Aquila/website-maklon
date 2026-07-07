@@ -10,172 +10,236 @@ const waLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 const displayWa = `+${siteConfig.waNumber.replace(/^(\d{2})(\d{3})(\d{4})(\d+)$/, "$1 $2-$3-$4")}`;
 
 const inputClass =
-  "block w-full rounded-xl border border-base-200 bg-base-50 px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/25 focus:border-primary/40 focus:ring-4 focus:ring-primary/5";
+  "block w-full rounded-xl border border-base-200 bg-white px-4 py-3 text-sm outline-none transition-all placeholder:text-base-content/30 focus:border-primary/50 focus:ring-4 focus:ring-primary/5";
+
+const contactItems = [
+  {
+    icon: "mdi:whatsapp",
+    label: "WhatsApp",
+    value: displayWa,
+    href: waLink,
+    external: true,
+    action: "Chat sekarang",
+  },
+  {
+    icon: "lucide:mail",
+    label: "Email",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+    external: false,
+    action: "Kirim email",
+  },
+  {
+    icon: "lucide:clock",
+    label: "Jam Operasional",
+    value: siteConfig.operationalHours,
+    href: null,
+    external: false,
+    action: null,
+  },
+];
 ---
 
 <MainLayout
   title="Kontak | Magna Maklon"
   description="Hubungi tim Magna untuk konsultasi maklon skincare. Kantor di Indramayu, Jawa Barat."
 >
-  <main class="overflow-x-hidden">
-
+  <main class="overflow-x-hidden bg-base-100">
     <!-- Kontak + Form -->
-    <section class="bg-base-100 py-14 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader
-          label="Kontak"
-          variant="minimal"
-          class="mb-8 md:mb-10"
-        >
+    <section class="py-12 md:py-16">
+      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+        <SectionHeader label="Kontak" variant="minimal" class="mb-10">
           <span slot="title">Hubungi <span class="text-primary">Tim Magna</span></span>
         </SectionHeader>
 
-        <div class="grid items-start gap-8 lg:grid-cols-5 lg:gap-10">
-          <!-- Sidebar info -->
-          <aside class="lg:sticky lg:top-24 lg:col-span-2">
-            <div class="rounded-2xl border border-base-200/80 bg-white p-6 shadow-sm">
-              <p class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Informasi</p>
-              <h2 class="mt-2 text-lg font-black text-base-content">Cara Menghubungi Kami</h2>
-
-              <ul class="mt-5 space-y-4">
-                <li class="flex items-start gap-3">
-                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Icon name="mdi:whatsapp" size={18} />
-                  </span>
-                  <div class="min-w-0 flex-1">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">WhatsApp</p>
-                    <p class="text-sm font-bold text-base-content/85">{displayWa}</p>
-                    <div class="mt-1.5 flex flex-wrap gap-2">
-                      <a href={waLink} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-primary hover:underline">
-                        Buka chat
-                      </a>
-                      <button type="button" id="copyWaBtn" data-number={displayWa} class="text-xs font-semibold text-base-content/45 hover:text-primary">
-                        Salin nomor
-                      </button>
+        <div class="grid gap-6 lg:grid-cols-12 lg:gap-8">
+          <!-- Info kontak -->
+          <aside class="lg:col-span-4">
+            <div class="space-y-3">
+              {contactItems.map((item) => (
+                <div class="rounded-2xl border border-base-200/80 bg-white p-4 shadow-sm">
+                  <div class="flex items-start gap-3">
+                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon name={item.icon} size={18} />
+                    </span>
+                    <div class="min-w-0 flex-1">
+                      <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">
+                        {item.label}
+                      </p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.external ? "_blank" : undefined}
+                          rel={item.external ? "noopener noreferrer" : undefined}
+                          class="mt-0.5 block break-all text-sm font-bold text-base-content hover:text-primary"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p class="mt-0.5 text-sm font-bold text-base-content">{item.value}</p>
+                      )}
+                      {item.action && item.href && (
+                        <a
+                          href={item.href}
+                          target={item.external ? "_blank" : undefined}
+                          rel={item.external ? "noopener noreferrer" : undefined}
+                          class="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+                        >
+                          {item.action}
+                          <Icon name="lucide:arrow-right" size={12} />
+                        </a>
+                      )}
                     </div>
                   </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Icon name="lucide:mail" size={16} />
-                  </span>
-                  <div class="min-w-0">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">Email</p>
-                    <a href={`mailto:${siteConfig.email}`} class="break-all text-sm font-bold text-base-content/85 hover:text-primary">
-                      {siteConfig.email}
-                    </a>
-                  </div>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Icon name="lucide:clock" size={16} />
-                  </span>
-                  <div>
-                    <p class="text-xs font-semibold uppercase tracking-wide text-base-content/40">Jam Operasional</p>
-                    <p class="text-sm font-bold text-base-content/85">{siteConfig.operationalHours}</p>
-                    <p class="mt-0.5 text-xs text-base-content/45">Indramayu, Jawa Barat</p>
-                  </div>
-                </li>
-              </ul>
+                </div>
+              ))}
 
-              <div class="mt-5 rounded-xl bg-primary/5 px-4 py-3 text-xs leading-relaxed text-base-content/55">
-                <span class="font-semibold text-base-content/70">Tips:</span> untuk respon tercepat, gunakan WhatsApp. Tim kami biasanya membalas dalam 1×24 jam kerja.
+              <div class="rounded-2xl border border-primary/15 bg-primary/[0.04] p-4">
+                <p class="text-xs leading-relaxed text-base-content/60">
+                  <span class="font-semibold text-primary">Tips:</span> gunakan WhatsApp untuk respon tercepat. Tim kami biasanya membalas dalam 1×24 jam kerja.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white shadow-sm shadow-primary/20 transition-all hover:bg-primary/90"
+                  >
+                    <Icon name="mdi:whatsapp" size={16} />
+                    Chat WhatsApp
+                  </a>
+                  <button
+                    type="button"
+                    id="copyWaBtn"
+                    data-number={displayWa}
+                    class="inline-flex items-center gap-2 rounded-xl border border-base-200 bg-white px-4 py-2 text-xs font-semibold text-base-content/70 transition-all hover:border-primary/30 hover:text-primary"
+                  >
+                    <Icon name="lucide:copy" size={14} />
+                    <span id="copyWaLabel">Salin nomor</span>
+                  </button>
+                </div>
               </div>
             </div>
           </aside>
 
           <!-- Form -->
-          <div class="lg:col-span-3" id="form-konsultasi">
-            <div class="rounded-2xl border border-base-200/80 bg-white p-6 shadow-sm md:p-8">
-              <div class="mb-6">
-                <p class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">Konsultasi</p>
-                <h2 class="mt-2 text-xl font-black text-base-content md:text-2xl">
+          <div class="lg:col-span-8" id="form-konsultasi">
+            <div class="rounded-2xl border border-base-200/80 bg-white p-5 shadow-sm md:p-7">
+              <div class="mb-6 border-b border-base-200/70 pb-5">
+                <h2 class="text-lg font-black text-base-content md:text-xl">
                   Form <span class="text-primary">Konsultasi Maklon</span>
                 </h2>
+                <p class="mt-1 text-sm text-base-content/50">
+                  Isi data berikut — pesan akan terkirim otomatis ke WhatsApp kami.
+                </p>
               </div>
 
-              <form class="space-y-5" data-wa-number={siteConfig.waNumber} id="consultForm" novalidate>
-                <fieldset class="space-y-4">
-                  <div>
-                    <label for="nama" class="mb-1.5 block text-sm font-semibold">
+              <form class="space-y-6" data-wa-number={siteConfig.waNumber} id="consultForm" novalidate>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="sm:col-span-2">
+                    <label for="nama" class="mb-1.5 block text-sm font-semibold text-base-content/80">
                       Nama Lengkap <span class="text-error">*</span>
                     </label>
-                    <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Contoh: Budi Santoso" class={inputClass} />
+                    <input
+                      type="text"
+                      id="nama"
+                      name="nama"
+                      required
+                      autocomplete="name"
+                      placeholder="Contoh: Budi Santoso"
+                      class={inputClass}
+                    />
                     <p class="field-error mt-1 hidden text-xs text-error" data-for="nama">Nama wajib diisi.</p>
                   </div>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label for="wa" class="mb-1.5 block text-sm font-semibold">
-                        Nomor WhatsApp <span class="text-error">*</span>
-                      </label>
-                      <input type="tel" id="wa" name="wa" required autocomplete="tel" inputmode="tel" placeholder="08xx-xxxx-xxxx" class={inputClass} />
-                      <p class="mt-1 text-[11px] text-base-content/40">Pastikan nomor aktif untuk dihubungi kembali.</p>
-                      <p class="field-error mt-1 hidden text-xs text-error" data-for="wa">Nomor WhatsApp wajib diisi.</p>
-                    </div>
-                    <div>
-                      <label for="email" class="mb-1.5 block text-sm font-semibold">
-                        Email <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
-                      </label>
-                      <input type="email" id="email" name="email" autocomplete="email" placeholder="contoh@email.com" class={inputClass} />
-                    </div>
-                  </div>
-                </fieldset>
-
-                <fieldset class="space-y-4">
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label for="produk" class="mb-1.5 block text-sm font-semibold">
-                        Jenis Produk <span class="text-error">*</span>
-                      </label>
-                      <select id="produk" name="produk" required class={inputClass}>
-                        <option value="" disabled selected>Pilih jenis produk</option>
-                        <option value="Skincare">Skincare</option>
-                        <option value="Bodycare">Bodycare</option>
-                        <option value="Haircare">Haircare</option>
-                        <option value="Baby Care">Baby Care</option>
-                        <option value="Lainnya">Lainnya</option>
-                      </select>
-                      <p class="field-error mt-1 hidden text-xs text-error" data-for="produk">Pilih jenis produk.</p>
-                    </div>
-                    <div>
-                      <label for="estimasi" class="mb-1.5 block text-sm font-semibold">
-                        Estimasi Produksi <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
-                      </label>
-                      <select id="estimasi" name="estimasi" class={inputClass}>
-                        <option value="" disabled selected>Pilih estimasi</option>
-                        <option value="500-1000 pcs">500 – 1.000 pcs</option>
-                        <option value="1000-5000 pcs">1.000 – 5.000 pcs</option>
-                        <option value="5000-10000 pcs">5.000 – 10.000 pcs</option>
-                        <option value="10000+ pcs">10.000+ pcs</option>
-                        <option value="Belum tahu">Belum tahu</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label for="wa" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                      Nomor WhatsApp <span class="text-error">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="wa"
+                      name="wa"
+                      required
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="08xx-xxxx-xxxx"
+                      class={inputClass}
+                    />
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="wa">Nomor WhatsApp wajib diisi.</p>
                   </div>
 
                   <div>
+                    <label for="email" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                      Email
+                      <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autocomplete="email"
+                      placeholder="contoh@email.com"
+                      class={inputClass}
+                    />
+                  </div>
+
+                  <div>
+                    <label for="produk" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                      Jenis Produk <span class="text-error">*</span>
+                    </label>
+                    <select id="produk" name="produk" required class={inputClass}>
+                      <option value="" disabled selected>Pilih jenis produk</option>
+                      <option value="Skincare">Skincare</option>
+                      <option value="Bodycare">Bodycare</option>
+                      <option value="Haircare">Haircare</option>
+                      <option value="Baby Care">Baby Care</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="produk">Pilih jenis produk.</p>
+                  </div>
+
+                  <div>
+                    <label for="estimasi" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                      Estimasi Produksi
+                      <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
+                    </label>
+                    <select id="estimasi" name="estimasi" class={inputClass}>
+                      <option value="" disabled selected>Pilih estimasi</option>
+                      <option value="500-1000 pcs">500 – 1.000 pcs</option>
+                      <option value="1000-5000 pcs">1.000 – 5.000 pcs</option>
+                      <option value="5000-10000 pcs">5.000 – 10.000 pcs</option>
+                      <option value="10000+ pcs">10.000+ pcs</option>
+                      <option value="Belum tahu">Belum tahu</option>
+                    </select>
+                  </div>
+
+                  <div class="sm:col-span-2">
                     <label for="pesan" class="mb-1.5 flex items-center justify-between">
-                      <span class="text-sm font-semibold">Pesan Tambahan</span>
-                      <span class="text-[11px] text-base-content/30" id="char-count">0 / 500</span>
+                      <span class="text-sm font-semibold text-base-content/80">Pesan Tambahan</span>
+                      <span class="text-[11px] text-base-content/35" id="char-count">0 / 500</span>
                     </label>
                     <textarea
-                      id="pesan" name="pesan" rows={4} maxlength={500}
+                      id="pesan"
+                      name="pesan"
+                      rows={4}
+                      maxlength={500}
                       placeholder="Ceritakan ide produk, target pasar, atau pertanyaan Anda..."
                       class={`${inputClass} resize-y leading-relaxed`}
                     ></textarea>
                   </div>
-                </fieldset>
+                </div>
 
-                <div class="space-y-3 border-t border-base-200/60 pt-6">
+                <div class="border-t border-base-200/70 pt-5">
                   <button
                     type="submit"
                     id="submitBtn"
-                    class="flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    class="flex w-full items-center justify-center gap-2.5 rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:min-w-[220px]"
                   >
                     <Icon name="mdi:whatsapp" size={18} />
                     <span id="submitBtnText">Kirim via WhatsApp</span>
                   </button>
-                  <p class="text-center text-[11px] text-base-content/40">
+                  <p class="mt-3 text-xs text-base-content/40">
                     Dengan mengirim form, Anda akan diarahkan ke WhatsApp dengan pesan yang sudah terisi.
                   </p>
                 </div>
@@ -187,103 +251,157 @@ const inputClass =
     </section>
 
     <!-- Lokasi -->
-    <section id="lokasi" class="scroll-mt-24 border-t border-base-200/60 bg-base-200/30 py-14 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Lokasi" variant="minimal" class="mb-8 md:mb-10">
+    <section id="lokasi" class="scroll-mt-24 border-t border-base-200/60 bg-base-200/30 py-12 md:py-16">
+      <div class="mx-auto max-w-6xl px-4 lg:px-8">
+        <SectionHeader
+          label="Lokasi"
+          variant="minimal"
+          align="left"
+          class="location-header mb-6 md:mb-8"
+        >
           <span slot="title">Temukan <span class="text-primary">Kami</span></span>
         </SectionHeader>
 
-        <!-- Pill switcher -->
-        <div
-          class="mx-auto mb-5 flex max-w-md rounded-xl border border-base-200/60 bg-white p-1 shadow-xs"
-          id="locationPills"
-          role="tablist"
-          aria-label="Pilih lokasi"
-        >
-          {contactLocations.map((loc, idx) => (
-            <button
-              type="button"
-              role="tab"
-              aria-selected={idx === 0 ? "true" : "false"}
-              aria-controls="locationMapPanel"
-              id={`location-tab-${loc.id}`}
-              data-map={loc.embedUrl}
-              data-maps={loc.mapsUrl}
-              data-id={loc.id}
-              data-name={loc.name}
-              class:list={[
-                "location-pill flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-xs font-bold transition-all sm:text-sm",
-                idx === 0 ? "bg-primary text-white shadow-sm" : "text-base-content/55 hover:bg-base-100 hover:text-primary",
-              ]}
-            >
-              <Icon name={loc.icon} size={16} />
-              <span class="truncate">{loc.name}</span>
-            </button>
-          ))}
-        </div>
-
-        <!-- Peta -->
-        <div class="overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm">
-          <div class="flex items-center justify-between gap-3 border-b border-base-200/60 px-4 py-3">
-            <p class="truncate text-sm font-semibold text-base-content/70">
-              <span id="locationMapLabel">{contactLocations[0].name}</span>
-            </p>
-            <a
-              id="locationMapLink"
-              href={contactLocations[0].mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-white"
-            >
-              <Icon name="lucide:navigation" size={14} />
-              Petunjuk Arah
-            </a>
-          </div>
+        <div class="overflow-hidden rounded-2xl border border-base-200/80 bg-white shadow-sm">
+          <!-- Tab lokasi — full width, rapi di mobile -->
           <div
-            class="relative aspect-[16/10] min-h-[240px] sm:min-h-[320px]"
-            id="locationMapPanel"
-            role="tabpanel"
-            aria-labelledby="location-tab-office"
+            class="grid grid-cols-2 gap-1 border-b border-base-200/70 bg-base-50/60 p-1.5"
+            id="locationPills"
+            role="tablist"
+            aria-label="Pilih lokasi"
           >
-            <iframe
-              id="locationMapFrame"
-              src={contactLocations[0].embedUrl}
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title={`Peta ${contactLocations[0].name}`}
-              class="absolute inset-0 h-full w-full"
-            ></iframe>
+            {contactLocations.map((loc, idx) => (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={idx === 0 ? "true" : "false"}
+                aria-controls="locationMapPanel"
+                id={`location-tab-${loc.id}`}
+                data-map={loc.embedUrl}
+                data-maps={loc.mapsUrl}
+                data-id={loc.id}
+                data-name={loc.name}
+                data-address={loc.address}
+                data-hours={loc.hours}
+                data-icon={loc.icon}
+                class:list={[
+                  "location-pill flex flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-center transition-all sm:flex-row sm:gap-2 sm:px-4 sm:py-3",
+                  idx === 0
+                    ? "bg-primary text-white shadow-sm"
+                    : "bg-white text-base-content/55 hover:bg-primary/5 hover:text-primary",
+                ]}
+              >
+                <Icon name={loc.icon} size={18} class="shrink-0" />
+                <span class="text-[11px] font-bold leading-tight sm:hidden">{loc.shortName}</span>
+                <span class="hidden text-sm font-bold leading-tight sm:inline">{loc.name}</span>
+              </button>
+            ))}
+          </div>
+
+          <div class="flex flex-col lg:grid lg:grid-cols-5">
+            <!-- Peta — tampil dulu di mobile -->
+            <div class="order-1 lg:order-2 lg:col-span-3">
+              <div
+                class="relative aspect-[16/11] w-full min-h-[220px] sm:aspect-[16/10] sm:min-h-[280px] lg:min-h-[340px] lg:aspect-auto lg:h-full"
+                id="locationMapPanel"
+                role="tabpanel"
+                aria-labelledby="location-tab-office"
+              >
+                <iframe
+                  id="locationMapFrame"
+                  src={contactLocations[0].embedUrl}
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title={`Peta ${contactLocations[0].name}`}
+                  class="absolute inset-0 h-full w-full"
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- Detail alamat -->
+            <div class="order-2 border-t border-base-200/70 p-4 sm:p-5 lg:order-1 lg:col-span-2 lg:border-r lg:border-t-0">
+              <div class="flex items-start gap-3">
+                <span id="locationIconWrap" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Icon name={contactLocations[0].icon} size={20} />
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[11px] font-semibold uppercase tracking-wider text-primary/60">Lokasi</p>
+                  <h3 id="locationName" class="mt-1 text-base font-bold text-base-content sm:text-lg">
+                    {contactLocations[0].name}
+                  </h3>
+                </div>
+              </div>
+
+              <div class="mt-4 space-y-3">
+                <div class="flex items-start gap-2.5">
+                  <Icon name="lucide:map-pin" size={16} class="mt-0.5 shrink-0 text-primary/70" />
+                  <p id="locationAddress" class="text-sm leading-relaxed text-base-content/65">
+                    {contactLocations[0].address}
+                  </p>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <Icon name="lucide:clock" size={16} class="mt-0.5 shrink-0 text-primary/70" />
+                  <p id="locationHours" class="text-sm text-base-content/65">{contactLocations[0].hours}</p>
+                </div>
+              </div>
+
+              <a
+                id="locationMapLink"
+                href={contactLocations[0].mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white shadow-sm shadow-primary/15 transition-all hover:bg-primary/90"
+              >
+                <Icon name="lucide:navigation" size={16} />
+                Buka di Google Maps
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 </MainLayout>
+
+<style>
+  @media (min-width: 768px) {
+    .location-header {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 42rem;
+      text-align: center;
+    }
+
+    .location-header :global(> div:first-child) {
+      justify-content: center;
+    }
+  }
+</style>
 
 <script>
   import { createConsultationMessage, createWhatsappLink } from "../lib/whatsapp";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Salin nomor WA
     const copyBtn = document.getElementById("copyWaBtn");
+    const copyLabel = document.getElementById("copyWaLabel");
     copyBtn?.addEventListener("click", async () => {
       const number = copyBtn.getAttribute("data-number") || "";
       try {
         await navigator.clipboard.writeText(number);
-        const original = copyBtn.textContent;
-        copyBtn.textContent = "Tersalin!";
-        setTimeout(() => { copyBtn.textContent = original; }, 2000);
+        if (copyLabel) {
+          const original = copyLabel.textContent;
+          copyLabel.textContent = "Tersalin!";
+          setTimeout(() => { if (copyLabel) copyLabel.textContent = original; }, 2000);
+        }
       } catch {
-        copyBtn.textContent = "Gagal menyalin";
+        if (copyLabel) copyLabel.textContent = "Gagal menyalin";
       }
     });
 
-    // Character counter
     const pesanTextarea = document.getElementById("pesan") as HTMLTextAreaElement | null;
     const charCount = document.getElementById("char-count");
     pesanTextarea?.addEventListener("input", () => {
@@ -291,11 +409,10 @@ const inputClass =
       if (charCount) {
         charCount.textContent = `${len} / 500`;
         charCount.classList.toggle("text-error", len > 450);
-        charCount.classList.toggle("text-base-content/30", len <= 450);
+        charCount.classList.toggle("text-base-content/35", len <= 450);
       }
     });
 
-    // Form validation + submit
     const form = document.getElementById("consultForm") as HTMLFormElement | null;
     const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
     const submitBtnText = document.getElementById("submitBtnText");
@@ -311,8 +428,7 @@ const inputClass =
 
     const validateForm = () => {
       let valid = true;
-      const required = ["nama", "wa", "produk"];
-      required.forEach((id) => {
+      ["nama", "wa", "produk"].forEach((id) => {
         const field = document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null;
         const empty = !field?.value.trim();
         showError(id, empty);
@@ -364,24 +480,40 @@ const inputClass =
       }, 2000);
     });
 
-    // Location pill switcher
     const pills = document.querySelectorAll<HTMLButtonElement>(".location-pill");
     const mapFrame = document.getElementById("locationMapFrame") as HTMLIFrameElement | null;
-    const mapLabel = document.getElementById("locationMapLabel");
     const mapLink = document.getElementById("locationMapLink") as HTMLAnchorElement | null;
     const mapPanel = document.getElementById("locationMapPanel");
+    const locationName = document.getElementById("locationName");
+    const locationAddress = document.getElementById("locationAddress");
+    const locationHours = document.getElementById("locationHours");
+    const locationIconWrap = document.getElementById("locationIconWrap");
 
     function activateLocation(pill: HTMLButtonElement) {
       const mapUrl = pill.getAttribute("data-map");
       const mapsUrl = pill.getAttribute("data-maps");
       const locId = pill.getAttribute("data-id");
       const locName = pill.getAttribute("data-name");
+      const locAddress = pill.getAttribute("data-address");
+      const locHours = pill.getAttribute("data-hours");
 
       if (mapFrame && mapUrl) mapFrame.src = mapUrl;
-      if (mapLabel && locName) mapLabel.textContent = locName;
       if (mapLink && mapsUrl) mapLink.href = mapsUrl;
       if (mapFrame && locName) mapFrame.title = `Peta ${locName}`;
       if (mapPanel && locId) mapPanel.setAttribute("aria-labelledby", `location-tab-${locId}`);
+      if (locationName && locName) locationName.textContent = locName;
+      if (locationAddress && locAddress) locationAddress.textContent = locAddress;
+      if (locationHours && locHours) locationHours.textContent = locHours;
+      if (locationIconWrap) {
+        const iconInPill = pill.querySelector("svg");
+        locationIconWrap.innerHTML = "";
+        if (iconInPill) {
+          const clone = iconInPill.cloneNode(true) as SVGElement;
+          clone.setAttribute("width", "20");
+          clone.setAttribute("height", "20");
+          locationIconWrap.appendChild(clone);
+        }
+      }
 
       pills.forEach((p) => {
         const isActive = p === pill;
@@ -389,7 +521,10 @@ const inputClass =
         p.classList.toggle("bg-primary", isActive);
         p.classList.toggle("text-white", isActive);
         p.classList.toggle("shadow-sm", isActive);
+        p.classList.toggle("bg-white", !isActive);
         p.classList.toggle("text-base-content/55", !isActive);
+        p.classList.toggle("hover:bg-primary/5", !isActive);
+        p.classList.toggle("hover:text-primary", !isActive);
       });
     }
 

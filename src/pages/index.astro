@@ -19,10 +19,30 @@ const topProducts = products.slice(0, 8);
 const categories = categoryImages.slice(0, 6);
 
 const heroSlides = [
-  { image: heroImages.skincareLab, label: "Laboratorium Modern", subtitle: "Formulasi presisi dengan teknologi terkini" },
-  { image: heroImages.skincareProduction, label: "Produksi Berkualitas", subtitle: "Standar CPKB & GMP terjaga ketat" },
-  { image: heroImages.packagingReady, label: "Siap Dikemas & Kirim", subtitle: "Produk jadi langsung siap distribusi" },
-  { image: heroImages.labResearch, label: "Riset & Inovasi", subtitle: "500+ formula siap dikustomisasi" },
+  {
+    image: heroImages.skincareLab,
+    titleMain: "Laboratorium Modern",
+    titleAccent: "untuk Formulasi Presisi",
+    description: "Teknologi riset terkini dan tim ahli R&D siap mengembangkan formula unik untuk brand kecantikan Anda.",
+  },
+  {
+    image: heroImages.skincareProduction,
+    titleMain: "Produksi Berkualitas",
+    titleAccent: "Standar CPKB & GMP",
+    description: "Setiap tahap produksi diawasi ketat agar produk skincare premium Anda aman, konsisten, dan siap dipasarkan.",
+  },
+  {
+    image: heroImages.packagingReady,
+    titleMain: "Siap Dikemas & Kirim",
+    titleAccent: "Langsung Distribusi",
+    description: "Produk jadi dengan kemasan rapi dan legal — siap dikirim ke seluruh Indonesia tanpa repot urusan logistik.",
+  },
+  {
+    image: heroImages.labResearch,
+    titleMain: "Riset & Inovasi",
+    titleAccent: "500+ Formula Siap Pakai",
+    description: "Pilih dari ratusan formula teruji atau kustomisasi sesuai kebutuhan — dari konsultasi hingga produk siap jual.",
+  },
 ];
 
 const galleryItems = [
@@ -69,19 +89,25 @@ const comparisons = [
       <!-- Content -->
       <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
         <div class="max-w-2xl">
-          
+          <div class="relative min-h-[180px] md:min-h-[200px]">
+            {heroSlides.map((slide, idx) => (
+              <div
+                class="hero-text absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                class:list={{ "opacity-100": idx === 0, "opacity-0 pointer-events-none": idx !== 0 }}
+              >
+                <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
+                  {slide.titleMain}<br />
+                  <span class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent">
+                    {slide.titleAccent}
+                  </span>
+                </h1>
 
-          <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
-            Partner Maklon #1<br />
-            <span class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent">
-              untuk Brand Kecantikan Anda
-            </span>
-          </h1>
-
-          <p class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base">
-            <span class="font-semibold text-white/75">500+ formula siap pakai</span> — dari konsultasi, formulasi, produksi, 
-            legalitas BPOM & Halal, hingga produk siap jual. Tanpa minimal order besar.
-          </p>
+                <p class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base">
+                  {slide.description}
+                </p>
+              </div>
+            ))}
+          </div>
 
           <div class="mt-7 flex flex-wrap items-center gap-3">
             <WAButton
@@ -648,13 +674,6 @@ const comparisons = [
   // ====================================================================
   // DATA
   // ====================================================================
-  const heroSlidesData = [
-    { label: "Laboratorium Modern", subtitle: "Formulasi presisi dengan teknologi terkini" },
-    { label: "Produksi Berkualitas", subtitle: "Standar CPKB & GMP terjaga ketat" },
-    { label: "Siap Dikemas & Kirim", subtitle: "Produk jadi langsung siap distribusi" },
-    { label: "Riset & Inovasi", subtitle: "500+ formula siap dikustomisasi" },
-  ];
-
   const processStepsData = [
     { step: 1, title: "Konsultasi Konsep", icon: "lucide:message-circle", desc: "Diskusikan ide produk, konsep, dan target pasar secara gratis bersama tim konsultan kami." },
     { step: 2, title: "Riset & Formulasi", icon: "lucide:flask-conical", desc: "Tim R&D melakukan riset dan mengembangkan formula custom sesuai kebutuhan brand Anda." },
@@ -667,13 +686,17 @@ const comparisons = [
   // 1. HERO SLIDER
   // ====================================================================
   let heroIdx = 0;
-  const heroTotal = heroSlidesData.length;
+  const heroTotal = document.querySelectorAll<HTMLElement>(".hero-slide").length;
   let heroTimer: ReturnType<typeof setInterval> | undefined;
 
   function goHero(idx: number) {
     heroIdx = idx;
     document.querySelectorAll<HTMLElement>(".hero-slide").forEach((s, i) => {
       s.style.opacity = i === idx ? "1" : "0";
+    });
+    document.querySelectorAll<HTMLElement>(".hero-text").forEach((t, i) => {
+      t.style.opacity = i === idx ? "1" : "0";
+      t.classList.toggle("pointer-events-none", i !== idx);
     });
     document.querySelectorAll<HTMLElement>(".hero-dot").forEach((d, i) => {
       if (i === idx) { d.className = "hero-dot h-3 w-10 rounded-full bg-white transition-all duration-500"; }

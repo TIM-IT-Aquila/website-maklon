@@ -1,6 +1,7 @@
 export type ContactLocation = {
   id: string;
   name: string;
+  shortName: string;
   address: string;
   hours: string;
   icon: string;
@@ -12,6 +13,7 @@ export const contactLocations: ContactLocation[] = [
   {
     id: "office",
     name: "Kantor Pusat",
+    shortName: "Kantor",
     address: "Jl. Pembangunan, No. 27, Kel. Lemahabang, Kec. Indramayu, Kab. Indramayu, 45211",
     hours: "Senin – Jumat, 08:00 – 17:00",
     icon: "lucide:building-2",
@@ -22,6 +24,7 @@ export const contactLocations: ContactLocation[] = [
   {
     id: "factory",
     name: "Pabrik Produksi",
+    shortName: "Pabrik",
     address: "Jl. Jati Blok Pulo Seger, Desa Plumbon, Kec. Indramayu, Kab. Indramayu, 45215",
     hours: "Senin – Sabtu, 07:00 – 16:00",
     icon: "lucide:factory",

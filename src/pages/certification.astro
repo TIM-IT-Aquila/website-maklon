@@ -2,17 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
-import { certifications, legalServices } from "../data/certifications";
-import WAButton from "../components/ui/WAButton.astro";
-
-// Alur legalitas — compact 5 steps
-const legalSteps = [
-  { step: "01", icon: "lucide:clipboard-check", title: "Konsultasi & Assessment", desc: "Identifikasi kebutuhan legalitas dan tentukan jenis sertifikasi yang diperlukan untuk produk Anda." },
-  { step: "02", icon: "lucide:file-text", title: "Persiapan Dokumen Teknis", desc: "Tim legal menyiapkan formulasi, COA, spesifikasi, dan dokumen pendukung lainnya." },
-  { step: "03", icon: "lucide:send", title: "Pendaftaran ke Lembaga", desc: "Pengajuan ke BPOM, MUI, Kemenkumham, atau lembaga berwenang lainnya." },
-  { step: "04", icon: "lucide:search-check", title: "Audit & Verifikasi", desc: "Proses audit fasilitas, sampel, dan dokumen oleh lembaga terkait." },
-  { step: "05", icon: "lucide:badge-check", title: "Sertifikat Terbit", desc: "Sertifikat resmi terbit — produk legal dan siap dipasarkan di seluruh Indonesia." },
-];
+import { certifications } from "../data/certifications";
 ---
 
 <MainLayout
@@ -90,130 +80,11 @@ const legalSteps = [
         </div>
       </div>
     </section>
-
-    <!-- ================================================================== -->
-    <!-- 2. LAYANAN LEGALITAS — Auto-sliding Marquee                       -->
-    <!-- ================================================================== -->
-    <section class="relative overflow-hidden bg-base-200/40 py-16 lg:py-20">
-      <div class="pointer-events-none absolute -left-60 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/[0.04] blur-3xl"></div>
-      <div class="pointer-events-none absolute -right-40 top-0 h-[350px] w-[350px] rounded-full bg-secondary/[0.03] blur-3xl"></div>
-
-      <div class="mx-auto max-w-5xl px-4 lg:px-8">
-        <SectionHeader label="Layanan Legalitas" variant="minimal" title="Kami Bantu Proses Legalitas Anda" />
-
-        <!-- Row 1 — slide left -->
-        <div class="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div class="flex animate-scroll-left gap-4" style="--scroll-speed:25s">
-            {[...legalServices, ...legalServices].map((svc) => (
-              <div class="group w-72 shrink-0 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary/15 hover:shadow-lg">
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 transition-all duration-500 group-hover:scale-110 group-hover:from-primary/20 group-hover:to-secondary/20">
-                  <Icon name={svc.icon} size={24} />
-                </div>
-                <h4 class="text-base font-bold text-base-content">{svc.title}</h4>
-                <p class="mt-2 text-sm leading-relaxed text-base-content/55">{svc.desc}</p>
-                <div class="mt-4 h-1 w-full rounded-full bg-base-200 overflow-hidden">
-                  <div class="h-full w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 group-hover:w-full"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Row 2 — slide right -->
-        <div class="mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div class="flex animate-scroll-right gap-4" style="--scroll-speed:30s">
-            {[...legalServices].reverse().map((svc) => (
-              <div class="group w-72 shrink-0 rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-secondary/15 hover:shadow-lg">
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/10 to-primary/10 transition-all duration-500 group-hover:scale-110 group-hover:from-secondary/20 group-hover:to-primary/20">
-                  <Icon name={svc.icon} size={24} />
-                </div>
-                <h4 class="text-base font-bold text-base-content">{svc.title}</h4>
-                <p class="mt-2 text-sm leading-relaxed text-base-content/55">{svc.desc}</p>
-                <div class="mt-4 h-1 w-full rounded-full bg-base-200 overflow-hidden">
-                  <div class="h-full w-0 rounded-full bg-gradient-to-r from-secondary to-primary transition-all duration-700 group-hover:w-full"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <!-- 3. ALUR LEGALITAS — Timeline simpel & elegan                      -->
-    <!-- ================================================================== -->
-    <section class="bg-base-100 py-16 lg:py-20">
-      <div class="mx-auto max-w-5xl px-4 lg:px-8">
-        <SectionHeader label="Alur Legalitas" variant="minimal" title="Proses Pengurusan Legalitas" />
-
-        {/* Desktop: Zig-zag timeline */}
-        <div class="mt-10 hidden lg:block">
-          <div class="relative">
-            <div class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary/20 via-primary to-secondary/30 rounded-full"></div>
-            <div class="space-y-0">
-              {legalSteps.map((item, i) => {
-                const isLeft = i % 2 === 0;
-                return (
-                  <div class={`timeline-step relative flex items-center ${isLeft ? '' : 'justify-end'}`} style="min-height:130px;opacity:0;transform:translateY(24px)">
-                    {/* Center dot */}
-                    <div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                      <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-base font-black text-white shadow-lg transition-all duration-500 hover:scale-125 hover:shadow-xl">
-                        {item.step}
-                      </div>
-                    </div>
-
-                    {isLeft ? (
-                      <div class="mr-[calc(50%+40px)] group w-full max-w-md text-right">
-                        <div class="relative rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg">
-                          <div class="absolute -right-2 top-1/2 h-4 w-4 -translate-y-1/2 rotate-45 border-r border-t border-base-200 bg-base-100"></div>
-                          <span class="text-[10px] font-bold tracking-[0.3em] text-primary">{item.step}</span>
-                          <h3 class="mt-1 text-base font-bold text-base-content">{item.title}</h3>
-                          <p class="mt-1.5 text-sm leading-relaxed text-base-content/55">{item.desc}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div class="ml-[calc(50%+40px)] group w-full max-w-md">
-                        <div class="relative rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg">
-                          <div class="absolute -left-2 top-1/2 h-4 w-4 -translate-y-1/2 rotate-45 border-b border-l border-base-200 bg-base-100"></div>
-                          <span class="text-[10px] font-bold tracking-[0.3em] text-primary">{item.step}</span>
-                          <h3 class="mt-1 text-base font-bold text-base-content">{item.title}</h3>
-                          <p class="mt-1.5 text-sm leading-relaxed text-base-content/55">{item.desc}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: vertical timeline */}
-        <div class="mt-12 lg:hidden">
-          <div class="relative">
-            {legalSteps.map((item, i) => (
-              <div class="group relative flex gap-4 pb-6">
-                {i < legalSteps.length - 1 && (
-                  <div class="absolute left-[23px] top-12 h-full w-0.5 bg-gradient-to-b from-primary/30 to-transparent"></div>
-                )}
-                <div class="relative z-10 flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-sm font-black text-white shadow-md transition-all duration-500 group-hover:scale-110">
-                  {item.step}
-                </div>
-                <div class="flex-1 rounded-xl border border-base-200 bg-base-100 px-4 py-3.5 shadow-sm transition-all duration-500 group-hover:-translate-x-0.5 group-hover:border-primary/15">
-                  <h4 class="text-sm font-bold text-base-content">{item.title}</h4>
-                  <p class="mt-1 text-sm leading-relaxed text-base-content/55">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 </MainLayout>
 
 <script>
-  // Staggered reveal animation for cert cards & timeline steps
+  // Staggered reveal animation for cert cards
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -232,15 +103,8 @@ const legalSteps = [
     { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
   );
 
-  // Certificate cards
   document.querySelectorAll(".cert-card").forEach((el, i) => {
     el.setAttribute("data-delay", String(i * 80));
-    observer.observe(el);
-  });
-
-  // Timeline steps
-  document.querySelectorAll(".timeline-step").forEach((el, i) => {
-    el.setAttribute("data-delay", String(i * 100));
     observer.observe(el);
   });
 </script>
