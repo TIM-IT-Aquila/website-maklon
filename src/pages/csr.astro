@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { csrItems } from "../data/csr";
 ---
@@ -29,9 +30,6 @@ import { csrItems } from "../data/csr";
           Komitmen Kami untuk<br />
           <span class="text-white/70">Masa Depan</span>
         </h1>
-        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/55 md:text-lg">
-          Kami percaya bahwa bisnis yang baik harus membawa dampak positif — bagi lingkungan, masyarakat, dan generasi mendatang.
-        </p>
       </div>
     </section>
 
@@ -40,14 +38,9 @@ import { csrItems } from "../data/csr";
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-black md:text-4xl leading-tight">
-            Tanggung Jawab <span class="text-primary">Kami</span>
-          </h2>
-          <p class="mt-4 text-base leading-relaxed text-base-content/50">
-            Dari lingkungan hingga sosial — berikut komitmen nyata yang kami jalankan.
-          </p>
-        </div>
+        <SectionHeader label="CSR" variant="minimal">
+          <span slot="title">Tanggung Jawab <span class="text-primary">Kami</span></span>
+        </SectionHeader>
 
         <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {csrItems.map((item, i) => (
@@ -80,12 +73,7 @@ import { csrItems } from "../data/csr";
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16">
       <div class="mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <h2 class="text-2xl font-black md:text-3xl">
-          Ingin Tahu Lebih Lanjut?
-        </h2>
-        <p class="mt-4 text-base leading-relaxed text-base-content/50">
-          Kami dengan senang hati berbagi informasi lebih detail tentang praktik keberlanjutan kami.
-        </p>
+        <SectionHeader label="Kontak" variant="minimal" title="Ingin Tahu Lebih Lanjut?" />
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
           <WAButton
             text="Hubungi Kami"

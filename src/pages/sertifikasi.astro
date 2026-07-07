@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { certifications, legalServices, trustCards } from "../data/certifications";
 import { factoryImages } from "../data/images";
@@ -184,13 +185,7 @@ const certColors = [
       <div class="pointer-events-none absolute -left-60 -bottom-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Layanan Legalitas</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Kami Bantu Proses Legalitas Anda</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Tim legal kami siap mendampingi setiap tahap pengurusan dokumen dan sertifikasi produk Anda.
-          </p>
-        </div>
+        <SectionHeader label="Layanan Legalitas" variant="minimal" title="Kami Bantu Proses Legalitas Anda" />
 
         <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {legalServices.map((ls, i) => (
@@ -227,13 +222,7 @@ const certColors = [
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Kepercayaan</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Mengapa Legalitas Itu Penting?</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Sertifikasi dan legalitas bukan sekadar formalitas — ini adalah investasi kepercayaan untuk brand Anda.
-          </p>
-        </div>
+        <SectionHeader label="Kepercayaan" variant="minimal" title="Mengapa Legalitas Itu Penting?" />
 
         <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {trustCards.map((tc) => (
@@ -266,13 +255,7 @@ const certColors = [
       <div class="pointer-events-none absolute -right-60 -top-60 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Alur Legalitas</span>
-          <h2 class="text-3xl font-black md:text-4xl lg:text-5xl">Proses Pengurusan Legalitas</h2>
-          <p class="mt-4 text-base-content/70 md:text-lg">
-            Alur yang jelas dan transparan dalam setiap tahap pengurusan sertifikasi produk Anda.
-          </p>
-        </div>
+        <SectionHeader label="Alur Legalitas" variant="minimal" title="Proses Pengurusan Legalitas" />
 
         <div class="mt-10 mx-auto max-w-4xl">
           <div class="relative">

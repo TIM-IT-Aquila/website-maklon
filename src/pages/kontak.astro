@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import { siteConfig } from "../data/site";
 import WAButton from "../components/ui/WAButton.astro";
 ---
@@ -23,11 +24,7 @@ import WAButton from "../components/ui/WAButton.astro";
             <span class="text-base-content/80 font-medium">Kontak</span>
           </nav>
 
-          <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">Kontak</span>
-          <h1 class="text-4xl font-black md:text-5xl lg:text-6xl">Kontak Kami</h1>
-          <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-base-content/70 md:text-xl">
-            Siap memulai? Hubungi kami untuk konsultasi. Tim kami siap membantu Anda mewujudkan produk impian.
-          </p>
+          <SectionHeader label="Kontak" variant="minimal" title="Kontak Kami" />
         </div>
       </div>
     </section>
@@ -82,13 +79,7 @@ import WAButton from "../components/ui/WAButton.astro";
     <!-- Form Konsultasi -->
     <section class="bg-base-200/50 py-16">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="mb-3 font-semibold tracking-wide text-primary">Form Konsultasi</p>
-          <h2 class="text-3xl font-black md:text-4xl">Mulai Konsultasi Produk Anda</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
-            Isi form di bawah dan tim kami akan menghubungi Anda untuk konsultasi lebih lanjut.
-          </p>
-        </div>
+        <SectionHeader label="Form Konsultasi" variant="minimal" title="Mulai Konsultasi Produk Anda" class="mb-12" />
 
         <div class="card border border-base-200 bg-base-100 shadow-lg">
           <div class="card-body p-6 md:p-10">

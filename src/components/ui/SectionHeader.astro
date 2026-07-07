@@ -15,10 +15,10 @@ const {
   tag,
   label,
   title,
-  description,
+  description: _description,
   centered = true,
   align = centered ? "center" : "left",
-  variant = "default",
+  variant = "minimal",
   tone = "default",
   class: className,
 } = Astro.props;
@@ -56,9 +56,4 @@ const displayLabel = label ?? tag;
     <slot name="title">{title}</slot>
   </h2>
 
-  {description && (
-    <p class="mx-auto mt-3 max-w-2xl text-base-content/70 md:text-lg">
-      {description}
-    </p>
-  )}
 </div>

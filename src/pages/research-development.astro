@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { rdStats, rdPhases, rdFacilities, rdInnovations } from "../data/research-development";
 import { heroImages, factoryImages } from "../data/images";
@@ -195,16 +196,7 @@ const comparisonRows = [
       <div class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-secondary/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:sparkles" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">KAPABILITAS R&D</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Kemampuan Riset & Pengembangan</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Dari riset pasar hingga optimasi formula — semuanya dilakukan oleh tim ahli di laboratorium modern.
-          </p>
-        </div>
+        <SectionHeader label="Kapabilitas R&D" variant="minimal" title="Kemampuan Riset & Pengembangan" />
 
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rdCapabilities.map((cap) => (
@@ -236,16 +228,7 @@ const comparisonRows = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
-            <Icon name="lucide:git-branch" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">WORKFLOW R&D</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Alur Pengembangan Formula</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Proses terstruktur dari ide hingga formula siap produksi — transparan dan terukur.
-          </p>
-        </div>
+        <SectionHeader label="Workflow R&D" variant="minimal" title="Alur Pengembangan Formula" />
 
         {/* Desktop: Horizontal timeline */}
         <div class="mt-12 hidden lg:block">
@@ -327,16 +310,7 @@ const comparisonRows = [
       <div class="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-primary/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:droplets" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">BAHAN AKTIF</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Ingredient Innovation</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Bahan aktif premium terkurasi untuk formulasi yang aman, efektif, dan sesuai tren terkini.
-          </p>
-        </div>
+        <SectionHeader label="Bahan Aktif" variant="minimal" title="Ingredient Innovation" />
 
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {ingredients.map((ing) => (
@@ -377,16 +351,7 @@ const comparisonRows = [
       <div class="pointer-events-none absolute -bottom-20 -left-20 h-[300px] w-[300px] rounded-full bg-white/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2 backdrop-blur-sm">
-            <Icon name="lucide:bar-chart-3" size={16} class="text-white/70" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-white/60">R&D BY THE NUMBERS</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black text-white md:text-4xl tracking-tight">Terbukti oleh Data</h2>
-          <p class="mt-3 max-w-xl text-white/50 md:text-lg">
-            Angka berbicara — komitmen kami terhadap riset dan inovasi tercermin dari pencapaian berikut.
-          </p>
-        </div>
+        <SectionHeader label="R&D by the Numbers" variant="minimal" tone="light" title="Terbukti oleh Data" />
 
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {rdMetricStats.map((stat) => (
@@ -406,16 +371,7 @@ const comparisonRows = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-5xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
-            <Icon name="lucide:git-compare" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">PERBANDINGAN</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Kenapa R&D Kami Berbeda</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Bandingkan pendekatan R&D kami dengan maklon pada umumnya.
-          </p>
-        </div>
+        <SectionHeader label="Perbandingan" variant="minimal" title="Kenapa R&D Kami Berbeda" />
 
         <div class="mt-10 overflow-hidden rounded-2xl border border-base-200 bg-white shadow-lg">
           <div class="overflow-x-auto">

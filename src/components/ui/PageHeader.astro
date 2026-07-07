@@ -6,7 +6,8 @@ interface Props {
   breadcrumb?: string;
 }
 
-const { title, description, badge, breadcrumb } = Astro.props;
+const { title, description: _description, badge, breadcrumb } = Astro.props;
+const displayLabel = badge || breadcrumb || title;
 ---
 
 <section class="relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200 pb-16 pt-28 md:pt-36">
@@ -22,19 +23,13 @@ const { title, description, badge, breadcrumb } = Astro.props;
         <span class="text-base-content/80 font-medium">{breadcrumb || title}</span>
       </nav>
 
-      {badge && (
-        <span class="badge badge-soft badge-primary mb-4 px-4 py-2 text-xs tracking-wider">
-          {badge}
-        </span>
-      )}
+      <div class="mb-6 flex items-center justify-center gap-3">
+        <span class="block h-px w-8 bg-primary/30"></span>
+        <span class="text-[11px] font-semibold tracking-[0.2em] text-primary/60 uppercase">{displayLabel}</span>
+        <span class="block h-px w-8 bg-primary/30"></span>
+      </div>
 
       <h1 class="text-4xl font-black md:text-5xl lg:text-6xl">{title}</h1>
-
-      {description && (
-        <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-base-content/70 md:text-xl">
-          {description}
-        </p>
-      )}
     </div>
   </div>
 </section>

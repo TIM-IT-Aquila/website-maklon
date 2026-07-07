@@ -1,5 +1,6 @@
 ---
 import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 import { siteConfig } from "../../data/site";
 import { testimonials } from "../../data/testimonials";
 import WAButton from "../ui/WAButton.astro";
@@ -9,10 +10,9 @@ import WAButton from "../ui/WAButton.astro";
   <div class="mx-auto max-w-7xl px-4 lg:px-8">
     <div class="grid items-center gap-8 md:grid-cols-2">
       <div>
-        <p class="mb-3 font-semibold tracking-wide text-primary">Tentang Kami</p>
-        <h2 class="text-3xl font-black md:text-4xl">
-          Mitra Maklon Terpercaya untuk Brand Kecantikan Anda
-        </h2>
+        <SectionHeader label="Tentang Kami" variant="minimal" align="left" centered={false}>
+          <span slot="title">Mitra Maklon Terpercaya untuk Brand Kecantikan Anda</span>
+        </SectionHeader>
         <p class="mt-4 text-base-content/70 leading-relaxed">
           {siteConfig.description} Dengan pengalaman bertahun-tahun, kami telah membantu 
           ratusan brand owner mewujudkan produk kecantikan impian mereka.

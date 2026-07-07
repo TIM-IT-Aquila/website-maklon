@@ -1,18 +1,13 @@
 ---
 import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 import { factoryHighlights } from "../../data/factory";
 import { processSteps } from "../../data/process";
 ---
 
 <section id="alur" class="bg-base-200/50 py-16">
   <div class="mx-auto max-w-7xl px-4 lg:px-8">
-    <div class="text-center mb-8">
-      <p class="mb-3 font-semibold tracking-wide text-primary">Alur Maklon</p>
-      <h2 class="text-3xl font-black md:text-4xl">Proses Produksi Maklon</h2>
-      <p class="mx-auto mt-3 max-w-2xl text-base-content/70 md:text-lg">
-        Sistem maklon yang terstruktur dari konsultasi hingga produk siap dipasarkan.
-      </p>
-    </div>
+    <SectionHeader label="Alur" variant="minimal" title="Proses Produksi Maklon" class="mb-8" />
 
     <!-- Process Timeline -->
     <div class="relative">

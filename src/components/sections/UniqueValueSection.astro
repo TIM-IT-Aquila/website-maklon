@@ -1,5 +1,6 @@
 ---
 import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 import { siteConfig } from "../../data/site";
 import { advantages } from "../../data/advantages";
 import WAButton from "../ui/WAButton.astro";
@@ -10,10 +11,7 @@ import WAButton from "../ui/WAButton.astro";
     <div class="grid items-start gap-8 md:grid-cols-2">
       <!-- Left: Text -->
       <div>
-        <p class="mb-3 font-semibold tracking-wide text-primary">Keunikan Perusahaan</p>
-        <h2 class="text-3xl font-black md:text-4xl">
-          Kenapa Harus Memilih Kami?
-        </h2>
+        <SectionHeader label="Keunikan Perusahaan" variant="minimal" align="left" centered={false} title="Kenapa Harus Memilih Kami?" />
         <p class="mt-4 leading-relaxed text-base-content/70">
           Kami tidak hanya memproduksi produk, tapi mendampingi Anda dari nol hingga 
           produk siap dipasarkan. Dengan pengalaman dan tim profesional, setiap tahapan 

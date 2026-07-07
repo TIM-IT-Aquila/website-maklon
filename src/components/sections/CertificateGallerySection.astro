@@ -3,6 +3,7 @@
 // Just image + description, tight spacing, staggered scroll animation.
 
 import { certifications } from "../../data/certifications";
+import SectionHeader from "../ui/SectionHeader.astro";
 
 // Prepare certs data as JSON string for client-side script
 const certsJson = JSON.stringify(
@@ -20,16 +21,12 @@ const certsJson = JSON.stringify(
   <div class="pointer-events-none absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-primary/[0.03] blur-3xl"></div>
 
   <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-    <!-- Section header — compact -->
-    <div class="mx-auto max-w-2xl text-center" data-animate>
-      <span class="badge badge-soft badge-primary mb-3 px-4 py-1.5 text-[11px] font-bold tracking-[0.2em]">Sertifikat & Lisensi</span>
-      <h2 class="text-2xl font-black md:text-3xl lg:text-4xl leading-tight">
-        Sertifikasi <span class="text-primary">Resmi</span> yang Kami Miliki
-      </h2>
-    </div>
+    <SectionHeader label="Sertifikat & Lisensi" variant="minimal" class="mb-8">
+      <span slot="title">Sertifikasi <span class="text-primary">Resmi</span> yang Kami Miliki</span>
+    </SectionHeader>
 
     <!-- CERTIFICATE CARDS — Clean: image + description only -->
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="cert-gallery">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="cert-gallery">
       {certifications.map((cert, i) => (
         <div
           class="cert-card group cursor-pointer"

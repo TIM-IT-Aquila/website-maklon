@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import { processSteps } from "../data/process";
 ---
 
@@ -22,13 +23,7 @@ import { processSteps } from "../data/process";
 
     <!-- Timeline Proses -->
     <section class="mx-auto max-w-4xl px-4 py-16 lg:px-8">
-      <div class="text-center mb-12">
-        <p class="mb-3 font-semibold tracking-wide text-primary">Tahapan</p>
-        <h2 class="text-3xl font-black md:text-4xl">Langkah Demi Langkah</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
-          Kami memandu Anda dari awal hingga akhir dengan proses yang jelas dan transparan.
-        </p>
-      </div>
+      <SectionHeader label="Tahapan" variant="minimal" title="Langkah Demi Langkah" class="mb-12" />
 
       <div class="relative">
         <!-- Timeline Line -->
@@ -58,13 +53,7 @@ import { processSteps } from "../data/process";
     <!-- Factory Process -->
     <section class="bg-base-200/50 py-16">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="mb-3 font-semibold tracking-wide text-primary">Fasilitas</p>
-          <h2 class="text-3xl font-black md:text-4xl">Fasilitas Produksi</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
-            Didukung fasilitas produksi modern dan tim profesional yang berpengalaman.
-          </p>
-        </div>
+        <SectionHeader label="Fasilitas" variant="minimal" title="Fasilitas Produksi" class="mb-12" />
 
         <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
           <div class="card border border-secondary/30 bg-secondary/10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">

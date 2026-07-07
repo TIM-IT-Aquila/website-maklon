@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { oemOdmStats, oemInfo, oemSteps, odmInfo, odmSteps, oemOdmAdvantages } from "../data/oem-odm";
 import { products } from "../data/products";
@@ -190,16 +191,7 @@ const oemOdmFaqs = [
       <div class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-secondary/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:git-compare" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">PERBANDINGAN</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">OEM vs ODM — Pilih yang Tepat</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Pahami perbedaan keduanya untuk menentukan layanan yang paling sesuai dengan kebutuhan brand Anda.
-          </p>
-        </div>
+        <SectionHeader label="Perbandingan" variant="minimal" title="OEM vs ODM — Pilih yang Tepat" />
 
         <div class="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
           {comparisonCards.map((card) => (
@@ -275,13 +267,7 @@ const oemOdmFaqs = [
 
           <!-- Text -->
           <div class="order-first lg:order-last">
-            <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 mb-4">
-              <Icon name="lucide:factory" size={14} class="text-primary" />
-              <span class="text-[11px] font-semibold tracking-[0.2em] text-primary">OEM</span>
-            </div>
-            <h2 class="text-2xl font-black md:text-3xl tracking-tight">{oemInfo.title}</h2>
-            <p class="mt-1 text-base font-bold text-primary/80">{oemInfo.subtitle}</p>
-            <p class="mt-4 leading-relaxed text-base-content/55 md:text-lg">{oemInfo.description}</p>
+            <SectionHeader label="OEM" variant="minimal" align="left" centered={false} title={oemInfo.title} />
             <div class="mt-6 space-y-3">
               {oemInfo.highlights.map((h) => (
                 <div class="flex items-start gap-3 rounded-xl bg-primary/[0.04] px-4 py-3">
@@ -299,13 +285,7 @@ const oemOdmFaqs = [
         <div class="reveal grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <!-- Text -->
           <div>
-            <div class="inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/5 px-4 py-1.5 mb-4">
-              <Icon name="lucide:lightbulb" size={14} class="text-secondary" />
-              <span class="text-[11px] font-semibold tracking-[0.2em] text-secondary">ODM</span>
-            </div>
-            <h2 class="text-2xl font-black md:text-3xl tracking-tight">{odmInfo.title}</h2>
-            <p class="mt-1 text-base font-bold text-secondary/80">{odmInfo.subtitle}</p>
-            <p class="mt-4 leading-relaxed text-base-content/55 md:text-lg">{odmInfo.description}</p>
+            <SectionHeader label="ODM" variant="minimal" align="left" centered={false} title={odmInfo.title} />
             <div class="mt-6 space-y-3">
               {odmInfo.highlights.map((h) => (
                 <div class="flex items-start gap-3 rounded-xl bg-secondary/[0.04] px-4 py-3">
@@ -341,16 +321,7 @@ const oemOdmFaqs = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
-            <Icon name="lucide:git-branch" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">ALUR KERJA</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Bagaimana Prosesnya?</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Dua jalur berbeda — satu tujuan: produk berkualitas siap edar dengan brand Anda.
-          </p>
-        </div>
+        <SectionHeader label="Alur Kerja" variant="minimal" title="Bagaimana Prosesnya?" />
 
         <div class="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-10">
           {/* OEM Flow */}
@@ -457,16 +428,7 @@ const oemOdmFaqs = [
       <div class="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-secondary/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:sparkles" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">KENAPA KAMI</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Kenapa Pilih Magna?</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Kami berkomitmen memberikan layanan terbaik — dari fasilitas, tim ahli, hingga dukungan legalitas lengkap.
-          </p>
-        </div>
+        <SectionHeader label="Kenapa Kami" variant="minimal" title="Kenapa Pilih Magna?" />
 
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {whyChoose.map((item) => (
@@ -492,16 +454,7 @@ const oemOdmFaqs = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
-            <Icon name="lucide:shopping-bag" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">PRODUK</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Kategori Produk Maklon</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Beragam produk yang bisa Anda produksi dengan brand sendiri — dari skincare hingga baby care.
-          </p>
-        </div>
+        <SectionHeader label="Produk" variant="minimal" title="Kategori Produk Maklon" />
 
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {productCategories.map((cat) => (
@@ -529,16 +482,7 @@ const oemOdmFaqs = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-200/50 py-12 lg:py-16">
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:info" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">INFORMASI PENTING</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">MOQ, Lead Time & Legalitas</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Transparansi adalah prioritas kami. Berikut informasi penting sebelum memulai produksi.
-          </p>
-        </div>
+        <SectionHeader label="Informasi Penting" variant="minimal" title="MOQ, Lead Time & Legalitas" />
 
         <div class="mt-10 grid gap-6 md:grid-cols-3">
           {moqLeadData.map((item) => (
@@ -560,16 +504,7 @@ const oemOdmFaqs = [
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-base-100 py-16 lg:py-20">
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2">
-            <Icon name="lucide:table" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">DETAIL</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Tabel Perbandingan OEM vs ODM</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Lihat perbedaan detail untuk membantu Anda memilih layanan yang tepat.
-          </p>
-        </div>
+        <SectionHeader label="Detail" variant="minimal" title="Tabel Perbandingan OEM vs ODM" />
 
         <div class="mt-10 overflow-hidden rounded-2xl border border-base-200 bg-white shadow-lg">
           <div class="overflow-x-auto">
@@ -629,16 +564,7 @@ const oemOdmFaqs = [
       <div class="pointer-events-none absolute -right-40 top-1/2 h-[400px] w-[400px] rounded-full bg-primary/[0.03] blur-3xl"></div>
 
       <div class="relative mx-auto max-w-3xl px-4 lg:px-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-3 rounded-full border border-base-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-sm">
-            <Icon name="lucide:help-circle" size={16} class="text-primary" />
-            <span class="text-[11px] font-semibold tracking-[0.25em] text-primary">FAQ</span>
-          </div>
-          <h2 class="mt-5 text-3xl font-black md:text-4xl tracking-tight">Pertanyaan Umum OEM/ODM</h2>
-          <p class="mt-3 max-w-xl text-base-content/55 md:text-lg">
-            Jawaban untuk pertanyaan yang paling sering ditanyakan seputar layanan OEM & ODM kami.
-          </p>
-        </div>
+        <SectionHeader label="FAQ" variant="minimal" title="Pertanyaan Umum OEM/ODM" />
 
         <div class="mt-10 space-y-3">
           {oemOdmFaqs.map((faq, i) => (

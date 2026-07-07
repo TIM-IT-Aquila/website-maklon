@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
 import Icon from "../components/ui/Icon.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { services } from "../data/services";
@@ -53,13 +54,7 @@ import { services } from "../data/services";
     <!-- One Stop Service -->
     <section class="bg-base-200/50 py-16">
       <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <div class="text-center mb-12">
-          <p class="mb-3 font-semibold tracking-wide text-primary">One Stop Service</p>
-          <h2 class="text-3xl font-black md:text-4xl">Layanan Lengkap dari Awal hingga Akhir</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-base-content/70 md:text-lg">
-            Semua kebutuhan maklon Anda tersedia dalam satu tempat, dari konsultasi hingga produk siap jual.
-          </p>
-        </div>
+        <SectionHeader label="One Stop Service" variant="minimal" title="Layanan Lengkap dari Awal hingga Akhir" class="mb-12" />
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
