@@ -5,6 +5,11 @@ import type {
   VaultDocument,
 } from "../lib/merek-paten-legal";
 
+export const merekPatenHero = {
+  image: "/assets/hero-home/legaldokument.jpg",
+  alt: "Dokumen legalitas merek, BPOM, dan sertifikasi halal skincare",
+};
+
 export const legalPillars: LegalPillar[] = [
   {
     id: "haki",

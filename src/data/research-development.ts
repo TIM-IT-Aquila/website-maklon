@@ -1,3 +1,8 @@
+export const rdHero = {
+  image: "/assets/hero-home/labreserch.jpg",
+  alt: "Laboratorium riset dan pengembangan formula skincare Magna",
+};
+
 export const rdStats = [
   { label: "Produk Dikembangkan", value: "300+" },
   { label: "Tahun Riset", value: "10+" },

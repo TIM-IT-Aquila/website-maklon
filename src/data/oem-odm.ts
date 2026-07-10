@@ -1,5 +1,10 @@
 import { oemOdmImages, factoryImages } from "./images";
 
+export const oemOdmHero = {
+  image: "/assets/hero-home/skincareproduction.jpg",
+  alt: "Produksi skincare OEM dan ODM — Magna",
+};
+
 export const oemOdmStats = [
   { label: "Produk Berhasil Diproduksi", value: "500+" },
   { label: "Tahun Pengalaman", value: "10+" },

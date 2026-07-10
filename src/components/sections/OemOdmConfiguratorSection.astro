@@ -1,9 +1,9 @@
 ---
 import Icon from "../ui/Icon.astro";
-import SectionHeader from "../ui/SectionHeader.astro";
+import PageHero from "../ui/PageHero.astro";
 import WAButton from "../ui/WAButton.astro";
 import { siteConfig } from "../../data/site";
-import { oemOdmStats } from "../../data/oem-odm";
+import { oemOdmStats, oemOdmHero } from "../../data/oem-odm";
 import {
   oemFormulaCatalog,
   textureOptions,
@@ -18,34 +18,28 @@ import { defaultConfiguratorState } from "../../lib/oem-odm-configurator";
 
 <section
   id="oem-odm-studio"
-  class="relative overflow-hidden bg-gradient-to-b from-base-100 via-primary/[0.02] to-base-200/30 pt-20 pb-12 lg:pt-24 lg:pb-16"
+  class="relative overflow-hidden bg-gradient-to-b from-base-100 via-primary/[0.02] to-base-200/30"
   data-oem-odm-configurator
 >
-  <div class="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-primary/[0.06] blur-3xl"></div>
-  <div class="pointer-events-none absolute -right-32 top-40 h-80 w-80 rounded-full bg-secondary/[0.04] blur-3xl"></div>
-
-  <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-    <!-- Compact intro -->
-    <div class="mx-auto max-w-3xl text-center">
-      <SectionHeader label="OEM & ODM Studio" variant="minimal">
-        <span slot="title">
-          Rancang Produk <span class="text-primary">Skincare</span> Anda
+  <PageHero
+    image={oemOdmHero.image}
+    alt={oemOdmHero.alt}
+    titleMain="Rancang Produk"
+    titleAccent="Skincare Anda"
+  >
+    <p slot="description" class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base">
+      Rancang preferensi formula dan kemasan Anda — lalu kirim ringkasan ke tim kami untuk konsultasi dan penawaran harga via WhatsApp.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {oemOdmStats.slice(0, 3).map((stat) => (
+        <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-sm">
+          <strong class="text-white">{stat.value}</strong> {stat.label}
         </span>
-      </SectionHeader>
-      <p class="mt-3 text-sm leading-relaxed text-base-content/55 md:text-base">
-        Rancang preferensi formula dan kemasan Anda — lalu kirim ringkasan ke tim kami untuk konsultasi dan penawaran harga via WhatsApp.
-      </p>
-
-      <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
-        {oemOdmStats.slice(0, 3).map((stat) => (
-          <span class="rounded-full border border-base-200 bg-white/80 px-3 py-1 text-xs font-medium text-base-content/60 shadow-sm">
-            <strong class="text-primary">{stat.value}</strong> {stat.label}
-          </span>
-        ))}
-      </div>
+      ))}
     </div>
+  </PageHero>
 
-    <!-- Mode switcher -->
+  <div class="relative mx-auto max-w-7xl px-4 pb-12 pt-8 lg:px-8 lg:pb-16">
     <div class="mt-8 flex justify-center">
       <div role="tablist" class="tabs tabs-box w-full max-w-2xl bg-white/90 p-1 shadow-md">
         <button

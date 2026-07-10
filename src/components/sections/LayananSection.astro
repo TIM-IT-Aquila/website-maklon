@@ -1,5 +1,6 @@
 ---
 import Icon from "../ui/Icon.astro";
+import PageHero from "../ui/PageHero.astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 import WAButton from "../ui/WAButton.astro";
 import { services } from "../../data/services";
@@ -7,27 +8,27 @@ import {
   businessHighlights,
   specializedServices,
   oneStopServices,
+  layananHero,
 } from "../../data/layanan-page";
 ---
 
 <section id="layanan" class="overflow-hidden" data-layanan-section>
-  <div class="relative bg-base-100 pt-20 pb-10 lg:pt-24 lg:pb-12">
-    <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-      <SectionHeader label="Layanan" variant="minimal">
-        <span slot="title">Solusi Maklon <span class="text-primary">Lengkap</span></span>
-      </SectionHeader>
-
-      <div class="reveal-up mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {businessHighlights.map((item) => (
-          <div class="rounded-2xl border border-base-200 bg-white px-4 py-4 text-center shadow-sm">
-            <Icon name={item.icon} size={18} class="mx-auto text-primary" />
-            <p class="mt-2 text-lg font-black text-primary">{item.value}</p>
-            <p class="mt-0.5 text-[11px] font-medium text-base-content/50">{item.label}</p>
-          </div>
-        ))}
-      </div>
+  <PageHero
+    image={layananHero.image}
+    alt={layananHero.alt}
+    titleMain="Solusi Maklon"
+    titleAccent="Lengkap"
+  >
+    <div class="mt-6 grid grid-cols-2 gap-2 sm:max-w-md">
+      {businessHighlights.map((item) => (
+        <div class="rounded-xl border border-white/15 bg-white/10 px-3 py-3 backdrop-blur-sm">
+          <Icon name={item.icon} size={16} class="text-white/70" />
+          <p class="mt-1.5 text-base font-black text-white">{item.value}</p>
+          <p class="mt-0.5 text-[10px] font-medium text-white/60">{item.label}</p>
+        </div>
+      ))}
     </div>
-  </div>
+  </PageHero>
 
   <div class="bg-base-200/40 py-14 md:py-16">
     <div class="mx-auto max-w-7xl px-4 lg:px-8">

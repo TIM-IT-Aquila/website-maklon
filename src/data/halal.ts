@@ -1,3 +1,10 @@
+export const halalHero = {
+  image: "/assets/hero-home/legaldokument.jpg",
+  alt: "Dokumen legalitas dan sertifikasi halal produk skincare Magna",
+};
+
+export const halalBadges = ["BPJPH", "SJPH", "SIHALAL"] as const;
+
 export const halalGuarantees = [
   {
     id: "ingredients",

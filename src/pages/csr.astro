@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
+import PageHero from "../components/ui/PageHero.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { csrItems, csrHero } from "../data/csr";
 ---
@@ -11,26 +12,12 @@ import { csrItems, csrHero } from "../data/csr";
 >
   <main class="overflow-x-hidden">
 
-    <!-- HERO CSR -->
-    <section class="relative flex min-h-[55vh] items-center overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <img
-          src={csrHero.image}
-          alt={csrHero.alt}
-          class="h-full w-full object-cover"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-primary/40"></div>
-      </div>
-
-      <div class="relative z-10 mx-auto w-full max-w-4xl px-4 py-20 text-center lg:px-8">
-        <SectionHeader label="CSR & Sustainability" variant="minimal" tone="light">
-          <span slot="title">
-            Komitmen Kami untuk <span class="text-white/80">Masa Depan</span>
-          </span>
-        </SectionHeader>
-      </div>
-    </section>
+    <PageHero
+      image={csrHero.image}
+      alt={csrHero.alt}
+      titleMain="Komitmen Kami untuk"
+      titleAccent="Masa Depan"
+    />
 
     <!-- ================================================================== -->
     <!-- CSR GRID                                                            -->

@@ -1,0 +1,37 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+  titleMain: string;
+  titleAccent: string;
+  id?: string;
+  class?: string;
+}
+
+const { image, alt, titleMain, titleAccent, id, class: className } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["relative flex h-[65vh] min-h-[520px] items-center overflow-hidden", className]}
+>
+  <div class="absolute inset-0 z-0">
+    <img src={image} alt={alt} class="h-full w-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/65"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
+        {titleMain}<br />
+        <span class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent">
+          {titleAccent}
+        </span>
+      </h1>
+
+      <slot name="description" />
+
+      <slot />
+    </div>
+  </div>
+</section>

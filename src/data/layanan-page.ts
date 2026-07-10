@@ -1,3 +1,8 @@
+export const layananHero = {
+  image: "/assets/hero-home/factoryproduction.jpg",
+  alt: "Fasilitas produksi Magna — layanan maklon skincare lengkap",
+};
+
 export const businessHighlights = [
   { icon: "lucide:package", label: "MOQ Skincare", value: "500 pcs" },
   { icon: "lucide:package-open", label: "MOQ Bodycare", value: "1.000 pcs" },
