@@ -14,7 +14,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "About us",
+    label: "About Us",
     children: [
       { label: "Perusahaan", href: "/company", description: "Profil & visi misi perusahaan", icon: "mdi:office-building" },
       { label: "Sertifikasi", href: "/certification", description: "Sertifikasi & legalitas produk", icon: "mdi:check-decagram" },
@@ -26,6 +26,7 @@ export const navItems: NavItem[] = [
   {
     label: "Services",
     children: [
+      { label: "Semua Layanan", href: "/layanan", description: "Ringkasan layanan maklon", icon: "mdi:view-grid" },
       { label: "OEM / ODM", href: "/oem-odm", description: "Jasa maklon skincare", icon: "mdi:factory" },
       { label: "R&D", href: "/research-development", description: "Research & product development", icon: "mdi:flask" },
       { label: "Merek & Paten", href: "/merek-paten", description: "Pendaftaran merek & HKI", icon: "mdi:file-certificate" },

@@ -1,113 +1,13 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import PageHeader from "../components/ui/PageHeader.astro";
-import SectionHeader from "../components/ui/SectionHeader.astro";
-import Icon from "../components/ui/Icon.astro";
-import WAButton from "../components/ui/WAButton.astro";
-import { services } from "../data/services";
+import LayananSection from "../components/sections/LayananSection.astro";
 ---
 
 <MainLayout
   title="Layanan Maklon | Magna"
-  description="Layanan maklon lengkap untuk skincare, bodycare, haircare, dan baby care."
+  description="Layanan maklon lengkap skincare, bodycare, haircare — MOQ fleksibel, R&D, legalitas, dan produksi one-stop service."
 >
-  <main>
-    <!-- ================================================================== -->
-    <!-- 1. PAGE HEADER                                                     -->
-    <!-- ================================================================== -->
-    <PageHeader
-      title="Layanan Maklon"
-      description="Perusahaan menyediakan layanan maklon lengkap dari ide hingga produk siap jual. Kami siap membantu Anda di setiap tahap."
-      badge="Layanan"
-    />
-
-    <!-- Card Layanan -->
-    <section class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((svc) => {
-          return (
-            <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20">
-              <div class="card-body">
-                <div class="mb-2 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl text-primary"><Icon name={svc.icon} size={28} /></div>
-                <h3 class="card-title text-xl">{svc.title}</h3>
-                <p class="text-base-content/70">{svc.desc}</p>
-                <div class="mt-3 rounded-xl bg-base-200/50 px-4 py-3">
-                  <p class="text-xs font-semibold uppercase tracking-wider text-primary">Contoh produk:</p>
-                  <p class="mt-1 text-sm text-base-content/60">{svc.examples}</p>
-                </div>
-                <div class="card-actions mt-4">
-                  <WAButton
-                    text="Konsultasikan Produk Ini"
-                    message={`Halo, saya ingin konsultasi maklon untuk ${svc.title}. Saya tertarik dengan produk ${svc.title}.`}
-                    variant="primary"
-                    size="sm"
-                    class="rounded-full"
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- One Stop Service -->
-    <section class="bg-base-200/50 py-16">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="One Stop Service" variant="minimal" title="Layanan Lengkap dari Awal hingga Akhir" class="mb-12" />
-
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">💡</div>
-              <h3 class="card-title mt-3">Konsultasi Konsep</h3>
-              <p class="mt-2 text-sm text-base-content/70">Diskusikan ide produk dan konsep yang Anda inginkan</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">🧪</div>
-              <h3 class="card-title mt-3">Formulasi Custom</h3>
-              <p class="mt-2 text-sm text-base-content/70">Formula dikembangkan sesuai kebutuhan dan tren pasar</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">🧪</div>
-              <h3 class="card-title mt-3">Sample Produk</h3>
-              <p class="mt-2 text-sm text-base-content/70">Sample dibuat untuk evaluasi sebelum produksi massal</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">🎨</div>
-              <h3 class="card-title mt-3">Desain Kemasan</h3>
-              <p class="mt-2 text-sm text-base-content/70">Kemasan produk dirancang sesuai brand dan konsep</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">📜</div>
-              <h3 class="card-title mt-3">Bantuan Legalitas</h3>
-              <p class="mt-2 text-sm text-base-content/70">BPOM, Halal, HKI diurus tim legal kami</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">🏭</div>
-              <h3 class="card-title mt-3">Produksi Massal</h3>
-              <p class="mt-2 text-sm text-base-content/70">Produksi dalam jumlah besar dengan standar kualitas</p>
-            </div>
-          </div>
-          <div class="card border border-base-200 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="card-body items-center text-center p-6">
-              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">✅</div>
-              <h3 class="card-title mt-3">Quality Control</h3>
-              <p class="mt-2 text-sm text-base-content/70">Setiap produk diperiksa kualitasnya sebelum dikirim</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <main class="overflow-hidden">
+    <LayananSection />
   </main>
 </MainLayout>

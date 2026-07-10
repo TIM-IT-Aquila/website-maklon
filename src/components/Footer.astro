@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear();
         <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Perusahaan</h4>
         <ul class="space-y-2.5">
           {navItems
-            .filter((item) => item.label === "About us")
+            .filter((item) => item.label === "About Us")
             .flatMap((item) => item.children || [])
             .map((child) => (
               <li>

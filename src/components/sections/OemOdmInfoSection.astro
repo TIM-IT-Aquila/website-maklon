@@ -1,0 +1,163 @@
+---
+import Icon from "../ui/Icon.astro";
+import WAButton from "../ui/WAButton.astro";
+import {
+  comparisonRows,
+  oemFlow,
+  odmFlow,
+  oemOdmFaqs,
+  trustHighlights,
+} from "../../data/oem-odm-page";
+---
+
+<section id="oem-odm-info" class="border-t border-base-200 bg-base-200/40 py-14 lg:py-16">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <!-- Trust bar -->
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {trustHighlights.map((item) => (
+        <div class="flex items-center gap-3 rounded-2xl border border-base-200 bg-white px-4 py-3 shadow-sm">
+          <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+            <Icon name={item.icon} size={16} class="text-primary" />
+          </div>
+          <div class="min-w-0">
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-base-content/40">{item.label}</p>
+            <p class="truncate text-sm font-bold text-base-content">{item.value}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tabbed info -->
+    <div class="mt-8 overflow-hidden rounded-3xl border border-base-200 bg-white shadow-lg">
+      <div role="tablist" class="tabs tabs-bordered bg-base-100/50 px-2 pt-2">
+        <button type="button" role="tab" class="tab tab-active font-semibold" data-info-tab="compare">
+          Perbandingan
+        </button>
+        <button type="button" role="tab" class="tab font-semibold" data-info-tab="flow">
+          Alur Kerja
+        </button>
+        <button type="button" role="tab" class="tab font-semibold" data-info-tab="faq">
+          FAQ
+        </button>
+      </div>
+
+      <!-- Compare panel -->
+      <div class="p-5 lg:p-8" data-info-panel="compare">
+        <div class="overflow-x-auto">
+          <table class="table table-zebra">
+            <thead>
+              <tr class="text-xs uppercase tracking-wider text-base-content/50">
+                <th>Aspek</th>
+                <th class="text-primary">OEM</th>
+                <th class="text-secondary">ODM</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr>
+                  <td class="font-semibold">{row.aspect}</td>
+                  <td class="text-sm text-base-content/65">{row.oem}</td>
+                  <td class="text-sm text-base-content/65">{row.odm}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Flow panel -->
+      <div class="hidden p-5 lg:p-8" data-info-panel="flow">
+        <div class="mb-4 flex justify-center">
+          <div class="tabs tabs-box tabs-sm">
+            <button type="button" class="tab tab-active" data-flow-tab="oem">OEM</button>
+            <button type="button" class="tab" data-flow-tab="odm">ODM</button>
+          </div>
+        </div>
+
+        <div data-flow-panel="oem">
+          <ol class="steps steps-vertical w-full sm:steps-horizontal">
+            {oemFlow.map((step) => (
+              <li class="step step-primary" data-content={String(step.step)}>
+                <div class="mt-2 text-left sm:mt-4">
+                  <p class="text-sm font-bold">{step.title}</p>
+                  <p class="text-xs text-base-content/50">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="hidden" data-flow-panel="odm">
+          <ol class="steps steps-vertical w-full sm:steps-horizontal">
+            {odmFlow.map((step) => (
+              <li class="step step-secondary" data-content={String(step.step)}>
+                <div class="mt-2 text-left sm:mt-4">
+                  <p class="text-sm font-bold">{step.title}</p>
+                  <p class="text-xs text-base-content/50">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <!-- FAQ panel -->
+      <div class="hidden space-y-2 p-5 lg:p-8" data-info-panel="faq">
+        {oemOdmFaqs.map((faq, i) => (
+          <details class="group rounded-xl border border-base-200 bg-base-100/50 [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                {i + 1}
+              </span>
+              <span class="flex-1 text-sm font-semibold">{faq.q}</span>
+              <Icon name="lucide:chevron-down" size={16} class="text-base-content/30 transition-transform group-open:rotate-180" />
+            </summary>
+            <p class="px-4 pb-4 pl-14 text-sm leading-relaxed text-base-content/55">{faq.a}</p>
+          </details>
+        ))}
+        <p class="pt-2 text-center text-sm text-base-content/45">
+          Masih ada pertanyaan?
+          <WAButton
+            text="Chat tim kami"
+            variant="text-link"
+            message="Halo, saya ingin konsultasi layanan OEM/ODM."
+            size="sm"
+            hideIcon
+            class="!inline !p-0 !h-auto !text-sm !font-semibold"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const infoRoot = document.getElementById("oem-odm-info");
+  if (infoRoot) {
+    const infoTabs = infoRoot.querySelectorAll<HTMLButtonElement>("[data-info-tab]");
+    const infoPanels = infoRoot.querySelectorAll<HTMLElement>("[data-info-panel]");
+
+    infoTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.infoTab;
+        infoTabs.forEach((t) => t.classList.toggle("tab-active", t === tab));
+        infoPanels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.dataset.infoPanel !== target);
+        });
+      });
+    });
+
+    const flowTabs = infoRoot.querySelectorAll<HTMLButtonElement>("[data-flow-tab]");
+    const flowPanels = infoRoot.querySelectorAll<HTMLElement>("[data-flow-panel]");
+
+    flowTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.flowTab;
+        flowTabs.forEach((t) => t.classList.toggle("tab-active", t === tab));
+        flowPanels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.dataset.flowPanel !== target);
+        });
+      });
+    });
+  }
+</script>

@@ -1,0 +1,143 @@
+---
+import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import WAButton from "../ui/WAButton.astro";
+import { services } from "../../data/services";
+import {
+  businessHighlights,
+  specializedServices,
+  oneStopServices,
+} from "../../data/layanan-page";
+---
+
+<section id="layanan" class="overflow-hidden" data-layanan-section>
+  <div class="relative bg-base-100 pt-20 pb-10 lg:pt-24 lg:pb-12">
+    <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Layanan" variant="minimal">
+        <span slot="title">Solusi Maklon <span class="text-primary">Lengkap</span></span>
+      </SectionHeader>
+
+      <div class="reveal-up mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {businessHighlights.map((item) => (
+          <div class="rounded-2xl border border-base-200 bg-white px-4 py-4 text-center shadow-sm">
+            <Icon name={item.icon} size={18} class="mx-auto text-primary" />
+            <p class="mt-2 text-lg font-black text-primary">{item.value}</p>
+            <p class="mt-0.5 text-[11px] font-medium text-base-content/50">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-base-200/40 py-14 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Layanan Spesialis" variant="minimal" title="Pilih Jalur Layanan Anda" />
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {specializedServices.map((svc) => (
+          <a
+            href={svc.href}
+            class="reveal-up group rounded-2xl border border-base-200/70 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+          >
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+              <Icon name={svc.icon} size={18} />
+            </div>
+            <h3 class="mt-3 text-sm font-bold text-base-content">{svc.title}</h3>
+            <p class="mt-1 text-xs leading-relaxed text-base-content/55">{svc.desc}</p>
+            <span class="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary">
+              Lihat halaman
+              <Icon name="lucide:arrow-right" size={12} />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-base-100 py-14 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Kategori Produk" variant="minimal" title="Maklon per Kategori" />
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((svc) => (
+          <div class="reveal-up rounded-2xl border border-base-200 bg-white p-5 shadow-sm">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Icon name={svc.icon} size={18} />
+            </div>
+            <h3 class="mt-3 text-sm font-bold">{svc.title}</h3>
+            <p class="mt-1 text-xs leading-relaxed text-base-content/55">{svc.desc}</p>
+            <p class="mt-3 rounded-lg bg-base-200/50 px-3 py-2 text-[11px] text-base-content/55">
+              <span class="font-semibold text-primary">Contoh:</span> {svc.examples}
+            </p>
+            <WAButton
+              text="Konsultasi"
+              message={`Halo, saya ingin konsultasi maklon untuk ${svc.title}.`}
+              variant="primary-outline"
+              size="sm"
+              class="mt-4 w-full !rounded-xl"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-base-200/40 py-14 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="One Stop Service" variant="minimal" title="Dari Konsep hingga Produk Jadi" />
+
+      <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {oneStopServices.map((item) => (
+          <div class="reveal-up flex items-start gap-3 rounded-2xl border border-base-200/70 bg-white p-4 shadow-sm">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <Icon name={item.icon} size={16} />
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-base-content">{item.title}</h3>
+              <p class="mt-0.5 text-xs text-base-content/50">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/oem-odm" class="btn btn-primary btn-lg rounded-2xl shadow-lg shadow-primary/15">
+          Studio OEM/ODM — Konsultasi via WhatsApp
+          <Icon name="lucide:arrow-right" size={16} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initLayananReveal() {
+    const root = document.querySelector("[data-layanan-section]");
+    if (!root) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const delay = Number(el.dataset.revealDelay ?? 0);
+          el.style.transition = `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`;
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    root.querySelectorAll<HTMLElement>(".reveal-up").forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(16px)";
+      el.dataset.revealDelay = String((i % 8) * 40);
+      observer.observe(el);
+    });
+  }
+
+  initLayananReveal();
+  document.addEventListener("astro:page-load", initLayananReveal);
+</script>

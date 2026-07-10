@@ -1,3 +1,8 @@
+export const csrHero = {
+  image: "/assets/hero-home/factoryproduction.jpg",
+  alt: "Fasilitas produksi Magna — komitmen sustainability",
+};
+
 export const csrItems = [
   {
     title: "Pengelolaan Limbah Produksi",

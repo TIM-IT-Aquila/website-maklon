@@ -1,0 +1,244 @@
+---
+import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+import { siteConfig } from "../../data/site";
+import {
+  halalGuarantees,
+  halalCertificationSteps,
+  halalFaqs,
+  halalWaMessage,
+} from "../../data/halal";
+import { createHalalConsultMessage } from "../../lib/halal";
+import { createWhatsappLink } from "../../lib/whatsapp";
+
+const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
+---
+
+<section
+  id="halal-certification"
+  class="overflow-hidden bg-gradient-to-b from-base-200/40 via-base-100 to-primary/5"
+  data-halal-section
+>
+  <!-- Hero -->
+  <div class="relative pt-20 pb-10 lg:pt-24 lg:pb-12">
+    <div class="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-primary/[0.07] blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-32 top-1/3 h-80 w-80 rounded-full bg-accent/[0.06] blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Sertifikasi Halal" variant="minimal">
+        <span slot="title">
+          Premium <span class="text-primary">Islamic Beauty</span> Tech
+        </span>
+      </SectionHeader>
+
+      <div class="reveal-up mx-auto mt-8 flex flex-wrap items-center justify-center gap-2">
+        <span class="badge badge-outline border-primary/20 bg-white/80 text-primary">BPJPH</span>
+        <span class="badge badge-outline border-primary/20 bg-white/80 text-primary">SJPH</span>
+        <span class="badge badge-outline border-primary/20 bg-white/80 text-primary">SIHALAL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jaminan Halal -->
+  <div class="bg-base-200/30 py-14 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Jaminan Halal" variant="minimal" title="3 Pilar Keamanan Produk Halal" />
+
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {halalGuarantees.map((item) => (
+          <button
+            type="button"
+            class="reveal-up group card border border-primary/10 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+            data-halal-modal-trigger="guarantee"
+            data-halal-modal-id={item.id}
+          >
+            <div class="card-body gap-3 p-6">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <Icon name={item.icon} size={22} />
+              </div>
+              <h3 class="text-base font-bold text-base-content">{item.title}</h3>
+              <p class="text-sm leading-relaxed text-base-content/55">{item.desc}</p>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                Lihat detail
+                <Icon name="lucide:arrow-right" size={12} />
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Alur pengurusan -->
+  <div class="bg-base-100 py-14 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <SectionHeader label="Alur Pengurusan" variant="minimal" title="Timeline Sertifikasi Halal" />
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {halalCertificationSteps.map((step) => (
+          <button
+            type="button"
+            class="reveal-up group rounded-2xl border border-primary/10 bg-gradient-to-br from-white to-primary/5 p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+            data-halal-modal-trigger="step"
+            data-halal-modal-id={step.step}
+          >
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
+              {step.step}
+            </div>
+            <div class="mt-3 flex items-center gap-1.5">
+              <Icon name={step.icon} size={14} class="text-primary" />
+              <h3 class="text-xs font-bold leading-snug text-base-content">{step.title}</h3>
+            </div>
+            <p class="mt-2 line-clamp-2 text-[11px] leading-relaxed text-base-content/50">{step.desc}</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="bg-base-200/30 py-14 md:py-16">
+    <div class="mx-auto max-w-3xl px-4 lg:px-8">
+      <SectionHeader label="FAQ" variant="minimal">
+        <span slot="title">Pertanyaan <span class="text-primary">Umum Halal</span></span>
+      </SectionHeader>
+
+      <div class="mt-10 space-y-3">
+        {halalFaqs.map((faq, i) => (
+          <details
+            class="reveal-up group rounded-2xl border border-primary/10 bg-white shadow-sm transition-all duration-300 open:border-primary/20 open:shadow-md [&_summary::-webkit-details-marker]:hidden"
+            open={i === 0}
+          >
+            <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 list-none">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                {i + 1}
+              </span>
+              <span class="flex-1 text-sm font-bold text-base-content/80">{faq.q}</span>
+              <Icon name="lucide:chevron-down" size={16} class="shrink-0 text-base-content/25 transition-transform duration-300 group-open:rotate-180" />
+            </summary>
+            <p class="px-5 pb-5 pl-14 text-sm leading-relaxed text-base-content/55">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <dialog class="modal modal-bottom sm:modal-middle" data-halal-modal>
+    <div class="modal-box max-w-lg rounded-3xl border border-primary/10 p-0 shadow-2xl">
+      <div class="rounded-t-3xl bg-gradient-to-br from-primary/10 via-white to-base-200/40 p-6">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white shadow-md">
+              <Icon name="lucide:badge-check" size={20} />
+            </div>
+            <h3 class="text-lg font-black text-base-content" data-halal-modal-title>Detail</h3>
+          </div>
+          <form method="dialog">
+            <button type="submit" class="btn btn-sm btn-circle btn-ghost" aria-label="Tutup">
+              <Icon name="lucide:x" size={16} />
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="space-y-4 p-6">
+        <p class="text-sm leading-relaxed text-base-content/65" data-halal-modal-desc></p>
+        <a
+          href={defaultWaLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-soft btn-primary btn-block rounded-xl"
+          data-halal-modal-wa
+        >
+          <Icon name="lucide:message-circle" size={16} />
+          Konsultasikan Produk Skincare Halal via WhatsApp
+        </a>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button type="submit" aria-label="Tutup modal">close</button>
+    </form>
+  </dialog>
+</section>
+
+<script>
+  import {
+    halalGuarantees,
+    halalCertificationSteps,
+  } from "../../data/halal";
+  import { createHalalConsultMessage } from "../../lib/halal";
+  import { createWhatsappLink } from "../../lib/whatsapp";
+  import { siteConfig } from "../../data/site";
+
+  type ModalKind = "guarantee" | "step";
+
+  function initHalalSection() {
+    const root = document.querySelector<HTMLElement>("[data-halal-section]");
+    if (!root) return;
+
+    const modal = root.querySelector<HTMLDialogElement>("[data-halal-modal]");
+    const modalTitle = root.querySelector<HTMLElement>("[data-halal-modal-title]");
+    const modalDesc = root.querySelector<HTMLElement>("[data-halal-modal-desc]");
+    const modalWa = root.querySelector<HTMLAnchorElement>("[data-halal-modal-wa]");
+
+    function openModal(kind: ModalKind, id: string | number) {
+      if (!modal || !modalTitle || !modalDesc) return;
+
+      if (kind === "guarantee") {
+        const item = halalGuarantees.find((g) => g.id === id);
+        if (!item) return;
+        modalTitle.textContent = item.title;
+        modalDesc.textContent = item.detail;
+        if (modalWa) {
+          modalWa.href = createWhatsappLink(siteConfig.waNumber, createHalalConsultMessage(item.title));
+        }
+      }
+
+      if (kind === "step") {
+        const step = halalCertificationSteps.find((s) => s.step === Number(id));
+        if (!step) return;
+        modalTitle.textContent = step.title;
+        modalDesc.textContent = step.detail;
+        if (modalWa) {
+          modalWa.href = createWhatsappLink(siteConfig.waNumber, createHalalConsultMessage(step.title));
+        }
+      }
+
+      modal.showModal();
+    }
+
+    root.querySelectorAll<HTMLElement>("[data-halal-modal-trigger]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const kind = trigger.dataset.halalModalTrigger as ModalKind;
+        const id = trigger.dataset.halalModalId ?? "";
+        openModal(kind, kind === "step" ? Number(id) : id);
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const delay = Number(el.dataset.revealDelay ?? 0);
+          el.style.transition = `opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          revealObserver.unobserve(el);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -32px 0px" },
+    );
+
+    root.querySelectorAll<HTMLElement>(".reveal-up").forEach((el, i) => {
+      if (el.style.opacity === "1") return;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      if (!el.dataset.revealDelay) el.dataset.revealDelay = String((i % 8) * 50);
+      revealObserver.observe(el);
+    });
+  }
+
+  initHalalSection();
+  document.addEventListener("astro:page-load", initHalalSection);
+</script>
