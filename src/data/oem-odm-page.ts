@@ -41,9 +41,4 @@ export const oemOdmFaqs = [
   },
 ];
 
-export const trustHighlights = [
-  { icon: "lucide:package", label: "MOQ Fleksibel", value: "500+ pcs" },
-  { icon: "lucide:clock", label: "Lead Time", value: "30–90 hari" },
-  { icon: "lucide:scroll-text", label: "Legalitas", value: "BPOM + Halal" },
-  { icon: "lucide:shield-check", label: "Quality", value: "QC 3 Tahap" },
-];
+

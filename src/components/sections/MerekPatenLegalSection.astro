@@ -36,14 +36,8 @@ const defaultPillar = legalPillars.find((p) => p.id === defaultActivePillarId) ?
     <p slot="description" class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base">
       Kami mengurus HAKI, izin edar BPOM, dan sertifikasi halal — Anda fokus membangun dan memasarkan brand skincare Anda.
     </p>
-    <div class="mt-6 grid grid-cols-3 gap-2 sm:max-w-md">
-      {legalPillars.map((pillar) => (
-        <div class="rounded-xl border border-white/15 bg-white/10 px-3 py-3 text-center backdrop-blur-sm">
-          <p class="text-base font-black text-white">{pillar.statValue}</p>
-          <p class="mt-0.5 text-[10px] font-medium text-white/60">{pillar.shortTitle}</p>
-        </div>
-      ))}
-    </div>
+  
+    
   </PageHero>
 
   <div class="relative mx-auto max-w-7xl px-4 pb-16 pt-10 lg:px-8 lg:pb-20">
