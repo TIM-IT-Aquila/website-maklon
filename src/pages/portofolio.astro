@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
+import TestimonialSection from "../components/sections/TestimonialSection.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { portfolioItems } from "../data/portofolio";
 ---
@@ -10,7 +11,7 @@ import { portfolioItems } from "../data/portofolio";
   title="Portofolio | Magna"
   description="Lihat portofolio brand-brand yang telah bekerja sama dengan Magna dalam produksi skincare."
 >
-  <main>
+  <main data-portfolio>
     <!-- ================================================================== -->
     <!-- 1. PORTOFOLIO — Image only, 4 columns, hover shows details         -->
     <!-- ================================================================== -->
@@ -21,103 +22,152 @@ import { portfolioItems } from "../data/portofolio";
         </SectionHeader>
 
         <div class="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-          {portfolioItems.map((item) => (
-            <div
-              class="porto-card group relative overflow-hidden rounded-2xl border border-base-200 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20"
-              style="opacity:0;transform:translateY(30px)"
-              data-porto-card
-            >
-              {/* Tall image */}
-              <div class="relative h-72 overflow-hidden sm:h-80 lg:h-96">
-                <img
-                  src={item.image}
-                  alt={item.brandName}
-                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+          {
+            portfolioItems.map((item) => (
+              <div
+                class="porto-card group relative overflow-hidden rounded-2xl border border-base-200 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20"
+                style="opacity:0;transform:translateY(30px)"
+                data-porto-card
+              >
+                {/* Tall image */}
+                <div class="relative h-72 overflow-hidden sm:h-80 lg:h-96">
+                  <img
+                    src={item.image}
+                    alt={item.brandName}
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
 
-                {/* Brand name at bottom */}
-                <div class="porto-brand-label absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4">
-                  <h3 class="text-sm font-bold leading-tight text-white sm:text-base">{item.brandName}</h3>
-                </div>
-
-                {/* OVERLAY — white popup with details */}
-                <div class="porto-overlay absolute inset-0 flex-col justify-end bg-white/95 p-4 sm:p-5" style="display: none">
-                  {/* Close button for mobile tap */}
-                  <button class="porto-close absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-base-200/80 text-base-content/60 transition-colors hover:bg-base-300 hover:text-base-content sm:hidden" aria-label="Tutup detail" type="button">
-                    <Icon name="lucide:x" size={14} />
-                  </button>
-
-                  {/* Brand name */}
-                  <h3 class="text-base font-bold text-base-content sm:text-lg leading-tight mb-1">{item.brandName}</h3>
-
-                  {/* Description */}
-                  <p class="text-xs leading-relaxed text-base-content/65 line-clamp-3 mb-3">{item.description}</p>
-
-                  {/* Products tags */}
-                  <div class="flex flex-wrap gap-1 mb-3">
-                    {item.products.slice(0, 4).map((product) => (
-                      <span class="rounded-full border border-base-200 bg-base-200/50 px-2 py-0.5 text-[10px] font-medium text-base-content/55">
-                        {product}
-                      </span>
-                    ))}
+                  {/* Brand name at bottom */}
+                  <div class="porto-brand-label absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4">
+                    <h3 class="text-sm font-bold leading-tight text-white sm:text-base">
+                      {item.brandName}
+                    </h3>
                   </div>
 
-                  {/* Highlights */}
-                  <div class="space-y-1 mb-4">
-                    {item.highlights.slice(0, 2).map((highlight) => (
-                      <div class="flex items-start gap-1.5">
-                        <div class="mt-0.5 flex h-3 w-3 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                          <Icon name="lucide:check" size={8} class="text-primary" />
+                  {/* OVERLAY — white popup with details */}
+                  <div
+                    class="porto-overlay absolute inset-0 flex-col justify-end bg-white/95 p-4 sm:p-5"
+                    style="display: none"
+                  >
+                    {/* Close button for mobile tap */}
+                    <button
+                      class="porto-close absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-base-200/80 text-base-content/60 transition-colors hover:bg-base-300 hover:text-base-content sm:hidden"
+                      aria-label="Tutup detail"
+                      type="button"
+                    >
+                      <Icon name="lucide:x" size={14} />
+                    </button>
+
+                    {/* Brand name */}
+                    <h3 class="text-base font-bold text-base-content sm:text-lg leading-tight mb-1">
+                      {item.brandName}
+                    </h3>
+
+                    {/* Description */}
+                    <p class="text-xs leading-relaxed text-base-content/65 line-clamp-3 mb-3">
+                      {item.description}
+                    </p>
+
+                    {/* Products tags */}
+                    <div class="flex flex-wrap gap-1 mb-3">
+                      {item.products.slice(0, 4).map((product) => (
+                        <span class="rounded-full border border-base-200 bg-base-200/50 px-2 py-0.5 text-[10px] font-medium text-base-content/55">
+                          {product}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Highlights */}
+                    <div class="space-y-1 mb-4">
+                      {item.highlights.slice(0, 2).map((highlight) => (
+                        <div class="flex items-start gap-1.5">
+                          <div class="mt-0.5 flex h-3 w-3 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                            <Icon name="lucide:check" size={8} class="text-primary" />
+                          </div>
+                          <span class="text-[10px] text-base-content/65 leading-tight">
+                            {highlight}
+                          </span>
                         </div>
-                        <span class="text-[10px] text-base-content/65 leading-tight">{highlight}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Tap indicator for mobile */}
+                  <div class="porto-tap-indicator absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 transition-opacity duration-300 sm:hidden">
+                    <Icon name="lucide:info" size={14} class="text-white" />
                   </div>
                 </div>
 
-                {/* Tap indicator for mobile */}
-                <div class="porto-tap-indicator absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 transition-opacity duration-300 sm:hidden">
-                  <Icon name="lucide:info" size={14} class="text-white" />
-                </div>
+                {/* CTA button below image */}
+                <WAButton
+                  text="Konsultasi Produk Serupa"
+                  message={`Halo, saya tertarik dengan portofolio ${item.brandName}. Saya ingin konsultasi untuk membuat produk serupa.`}
+                  variant="primary"
+                  size="sm"
+                  class="!rounded-none !bg-primary/5 !text-primary !shadow-none hover:!bg-primary hover:!text-white border-t border-base-100"
+                />
               </div>
-
-              {/* CTA button below image */}
-              <WAButton
-                text="Konsultasi Produk Serupa"
-                message={`Halo, saya tertarik dengan portofolio ${item.brandName}. Saya ingin konsultasi untuk membuat produk serupa.`}
-                variant="primary"
-                size="sm"
-                class="!rounded-none !bg-primary/5 !text-primary !shadow-none hover:!bg-primary hover:!text-white border-t border-base-100"
-              />
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
+
+    <TestimonialSection />
   </main>
 </MainLayout>
 
+<style>
+  .porto-overlay,
+  .porto-brand-label,
+  .porto-tap-indicator {
+    transition: opacity 0.3s ease;
+  }
+
+  .porto-overlay {
+    display: none;
+    opacity: 0;
+  }
+
+  .porto-tap-indicator {
+    opacity: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .porto-card:hover .porto-overlay {
+      display: flex !important;
+      opacity: 1;
+    }
+
+    .porto-card:hover .porto-brand-label {
+      opacity: 0;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .porto-tap-indicator {
+      opacity: 1;
+    }
+  }
+</style>
+
 <script>
-  // Scroll-triggered animation
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.style.transition = "all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s";
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px 50px 0px" }
-  );
+  import { observeReveal } from "../scripts/reveal";
+
+  const root = document.querySelector<HTMLElement>("[data-portfolio]")!;
+  const portfolioCards = root.querySelectorAll<HTMLElement>("[data-porto-card]");
+
+  observeReveal(portfolioCards, {
+    delay: () => 100,
+    duration: 500,
+    rootMargin: "0px 0px 50px 0px",
+    threshold: 0.1,
+    translateY: "30px",
+  });
 
   // Tap/click toggle for mobile + desktop
-  document.querySelectorAll("[data-porto-card]").forEach((card) => {
-    observer.observe(card);
-
+  portfolioCards.forEach((card) => {
     const overlay = card.querySelector(".porto-overlay") as HTMLElement;
     const brandLabel = card.querySelector(".porto-brand-label") as HTMLElement;
     const tapIndicator = card.querySelector(".porto-tap-indicator") as HTMLElement;
@@ -133,7 +183,7 @@ import { portfolioItems } from "../data/portofolio";
 
     function openOverlay() {
       // Close all other open cards first
-      document.querySelectorAll("[data-porto-card].porto-card-active").forEach((other) => {
+      root.querySelectorAll<HTMLElement>("[data-porto-card].porto-card-active").forEach((other) => {
         if (other !== card) closeCard(other as HTMLElement);
       });
       card.classList.add("porto-card-active");
@@ -156,7 +206,10 @@ import { portfolioItems } from "../data/portofolio";
       const ovl = c.querySelector(".porto-overlay") as HTMLElement;
       const lbl = c.querySelector(".porto-brand-label") as HTMLElement;
       const ind = c.querySelector(".porto-tap-indicator") as HTMLElement;
-      if (ovl) { ovl.style.display = "none"; ovl.style.opacity = ""; }
+      if (ovl) {
+        ovl.style.display = "none";
+        ovl.style.opacity = "";
+      }
       if (lbl) lbl.style.opacity = "";
       if (ind && isTouchDevice) ind.style.opacity = "1";
     }
@@ -181,15 +234,18 @@ import { portfolioItems } from "../data/portofolio";
   });
 
   // Close overlay when tapping outside
-  document.addEventListener("click", (e) => {
+  root.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (!target.closest("[data-porto-card]")) {
-      document.querySelectorAll("[data-porto-card].porto-card-active").forEach((card) => {
+      root.querySelectorAll<HTMLElement>("[data-porto-card].porto-card-active").forEach((card) => {
         card.classList.remove("porto-card-active");
         const ovl = card.querySelector(".porto-overlay") as HTMLElement;
         const lbl = card.querySelector(".porto-brand-label") as HTMLElement;
         const ind = card.querySelector(".porto-tap-indicator") as HTMLElement;
-        if (ovl) { ovl.style.display = "none"; ovl.style.opacity = ""; }
+        if (ovl) {
+          ovl.style.display = "none";
+          ovl.style.opacity = "";
+        }
         if (lbl) lbl.style.opacity = "";
         const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
         if (ind && isTouch) ind.style.opacity = "1";

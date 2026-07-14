@@ -12,6 +12,7 @@ interface Props {
   image?: string;
   canonical?: string;
   type?: "website" | "article";
+  showGlobalCta?: boolean;
 }
 
 const {
@@ -20,12 +21,13 @@ const {
   image = siteConfig.defaultOgImage,
   canonical,
   type = "website",
+  showGlobalCta = true,
 } = Astro.props;
 
 const resolveUrl = (pathOrUrl: string) => new URL(pathOrUrl, siteConfig.url).toString();
 const canonicalUrl = resolveUrl(canonical ?? Astro.url.pathname);
 const ogImageUrl = resolveUrl(image);
-const logoUrl = resolveUrl("/assets/Logo-magna.svg");
+const logoUrl = resolveUrl(siteConfig.logo);
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -85,7 +87,7 @@ const organizationJsonLd = {
     <Navbar />
     <FloatingWA />
     <slot />
-    <CTASection />
+    {showGlobalCta && <CTASection />}
     <Footer />
   </body>
 </html>

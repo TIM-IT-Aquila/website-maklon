@@ -1,5 +1,4 @@
 import { blogImages } from "./images";
-import type { ContentReviewNote } from "./content-status";
 
 export interface BlogPost {
   slug: string;
@@ -13,13 +12,6 @@ export interface BlogPost {
   image: string;
   tags: string[];
 }
-
-// TODO(content): Artikel berikut masih draft editorial/example. Review fakta, tanggal publikasi, dan klaim bisnis sebelum dipakai sebagai konten final.
-export const blogContentReview: ContentReviewNote = {
-  status: "draft",
-  owner: "marketing",
-  reason: "Artikel masih draft editorial/example dan perlu review fakta, tanggal publikasi, serta klaim bisnis sebelum launch.",
-};
 
 export const blogPosts: BlogPost[] = [
   {
@@ -134,8 +126,4 @@ export const blogPosts: BlogPost[] = [
     image: blogImages.edukasi,
     tags: ["maklon", "brand owner", "model bisnis", "edukasi"],
   },
-];
-
-export const blogCategories = [
-  ...new Set(blogPosts.map((p) => p.category)),
 ];

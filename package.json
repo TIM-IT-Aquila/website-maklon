@@ -10,6 +10,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
+    "format": "prettier --write \"src/**/*.{css,ts}\" astro.config.mjs package.json CODE_STYLE.md",
+    "format:check": "prettier --check \"src/**/*.{css,ts}\" astro.config.mjs package.json CODE_STYLE.md",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "prettier": "^3.9.5",
     "typescript": "^6.0.3"
   }
 }

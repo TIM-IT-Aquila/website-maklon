@@ -1,12 +1,4 @@
 import { certificationImages } from "./images";
-import type { ContentReviewNote } from "./content-status";
-
-// TODO(content): Pastikan setiap sertifikasi/klaim legalitas sesuai dokumen perusahaan yang benar-benar dimiliki atau layanan yang tersedia.
-export const certificationsContentReview: ContentReviewNote = {
-  status: "needs-verification",
-  owner: "legal",
-  reason: "Daftar sertifikasi dan klaim legalitas harus dicocokkan dengan dokumen resmi perusahaan atau layanan yang benar-benar tersedia.",
-};
 
 export const certifications = [
   {
@@ -53,56 +45,5 @@ export const certifications = [
     year: "2025",
     number: "IDM001234567",
     image: certificationImages.hki,
-  },
-];
-
-export const legalServices = [
-  {
-    title: "Registrasi BPOM",
-    desc: "Kami membantu proses pendaftaran produk skincare ke BPOM, dari persiapan dokumen hingga approval.",
-    icon: "lucide:clipboard-check",
-  },
-  {
-    title: "Sertifikasi Halal",
-    desc: "Bekerja sama dengan lembaga sertifikasi halal terpercaya untuk menjamin kehalalan produk Anda.",
-    icon: "lucide:badge-check",
-  },
-  {
-    title: "Pengurusan HKI / Merek",
-    desc: "Membantu pendaftaran hak kekayaan intelektual dan merek dagang agar brand Anda terlindungi.",
-    icon: "lucide:shield",
-  },
-  {
-    title: "Persiapan Dokumen Produk",
-    desc: "Tim kami menyiapkan seluruh dokumen teknis dan administrasi yang diperlukan untuk legalitas produk.",
-    icon: "lucide:file-text",
-  },
-  {
-    title: "Kesesuaian Standar Produksi",
-    desc: "Memastikan proses produksi dan fasilitas pabrik memenuhi standar CPKB dan regulasi terkait.",
-    icon: "lucide:search",
-  },
-];
-
-export const trustCards = [
-  {
-    icon: "lucide:shield-check",
-    title: "Aman Dipasarkan",
-    desc: "Produk dengan sertifikasi resmi lebih aman dan terpercaya di mata konsumen.",
-  },
-  {
-    icon: "lucide:handshake",
-    title: "Meningkatkan Kepercayaan",
-    desc: "Legalitas lengkap membuat brand Anda lebih dipercaya oleh pelanggan dan distributor.",
-  },
-  {
-    icon: "lucide:sparkles",
-    title: "Tampil Profesional",
-    desc: "Produk bersertifikasi mencerminkan brand yang profesional dan bertanggung jawab.",
-  },
-  {
-    icon: "lucide:rocket",
-    title: "Siap Masuk Pasar",
-    desc: "Dengan legalitas lengkap, produk siap dipasarkan di berbagai platform dan toko.",
   },
 ];

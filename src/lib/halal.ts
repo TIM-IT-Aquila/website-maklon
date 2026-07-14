@@ -1,6 +1,4 @@
-import { halalWaMessage } from "../data/halal";
-
-export function createHalalConsultMessage(extra?: string): string {
-  if (!extra) return halalWaMessage;
-  return `${halalWaMessage}\n\nCatatan: ${extra}`;
+export function createHalalConsultMessage(message: string, extra?: string): string {
+  if (!extra) return message;
+  return `${message}\n\nCatatan: ${extra}`;
 }

@@ -3,7 +3,6 @@ interface Props {
   tag?: string;
   label?: string;
   title?: string;
-  description?: string;
   centered?: boolean;
   align?: "center" | "left";
   variant?: "default" | "minimal";
@@ -15,7 +14,6 @@ const {
   tag,
   label,
   title,
-  description: _description,
   centered = true,
   align = centered ? "center" : "left",
   variant = "minimal",
@@ -34,17 +32,33 @@ const displayLabel = label ?? tag;
     className,
   ]}
 >
-  {variant === "minimal" && displayLabel && (
-    <div class:list={["mb-6 flex items-center gap-3", align === "center" ? "justify-center" : "justify-start"]}>
-      <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]}></span>
-      <span class:list={["text-[11px] font-semibold tracking-[0.2em] uppercase", tone === "light" ? "text-white/60" : "text-primary/60"]}>{displayLabel}</span>
-      <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]}></span>
-    </div>
-  )}
+  {
+    variant === "minimal" && displayLabel && (
+      <div
+        class:list={[
+          "mb-6 flex items-center gap-3",
+          align === "center" ? "justify-center" : "justify-start",
+        ]}
+      >
+        <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]} />
+        <span
+          class:list={[
+            "text-[11px] font-semibold tracking-[0.2em] uppercase",
+            tone === "light" ? "text-white/60" : "text-primary/60",
+          ]}
+        >
+          {displayLabel}
+        </span>
+        <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]} />
+      </div>
+    )
+  }
 
-  {variant === "default" && displayLabel && (
-    <p class="mb-2 font-semibold tracking-wide text-primary">{displayLabel}</p>
-  )}
+  {
+    variant === "default" && displayLabel && (
+      <p class="mb-2 font-semibold tracking-wide text-primary">{displayLabel}</p>
+    )
+  }
 
   <h2
     class:list={[
@@ -55,5 +69,4 @@ const displayLabel = label ?? tag;
   >
     <slot name="title">{title}</slot>
   </h2>
-
 </div>

@@ -8,7 +8,7 @@
   --color-primary-content: #ffffff;
   --color-secondary: #835f11;
   --color-secondary-content: #ffffff;
-  --color-accent: #7BA89A;
+  --color-accent: #7ba89a;
   --color-accent-content: #0f1f1a;
   --color-neutral: #1a2f28;
   --color-neutral-content: #e8f0ec;
@@ -28,72 +28,45 @@
 @theme {
   --color-primary: #659287;
   --color-secondary: #835f11;
-  --color-brand-white: #FFFFFF;
+  --color-brand-white: #ffffff;
   --color-brown: #835f11;
-  --color-brown-hover: #6B4E0E;
+  --color-brown-hover: #6b4e0e;
   --font-heading: "Arsenal", sans-serif;
   --font-body: "Karla", sans-serif;
   --font-small: "Josefin Slab", serif;
+}
+
+:root {
+  --page-section-space: 3rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-section-space: 4rem;
+  }
+}
+
+/* Ritme vertikal konsisten untuk section utama yang berurutan.
+   Hero dan section pembuka mempertahankan proporsi desainnya sendiri. */
+main > section + section {
+  padding-block: var(--page-section-space);
 }
 
 body {
   font-family: var(--font-body), sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading), sans-serif;
 }
 
 .small-text {
   font-family: var(--font-small), serif;
-}
-
-/* ================================================================ */
-/* PORTOFOLIO OVERLAY — tap-to-reveal on touch devices              */
-/* ================================================================ */
-.porto-overlay {
-  transition: opacity 0.4s ease;
-}
-
-.porto-brand-label {
-  transition: opacity 0.4s ease;
-}
-
-.porto-tap-indicator {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Desktop: hover reveals overlay */
-@media (hover: hover) and (pointer: fine) {
-  .porto-card:hover .porto-overlay {
-    display: flex !important;
-    opacity: 1;
-  }
-  .porto-card:hover .porto-brand-label {
-    opacity: 0;
-  }
-  .porto-tap-indicator {
-    display: none;
-  }
-}
-
-/* Touch: show tap indicator */
-@media (hover: none) and (pointer: coarse) {
-  .porto-tap-indicator {
-    opacity: 1;
-  }
-  /* Tap-to-reveal overlay on touch devices */
-  .touch-card.tapped .touch-overlay {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-  .touch-card .touch-badge {
-    opacity: 1;
-  }
-  .touch-card.tapped .touch-badge {
-    opacity: 0;
-  }
 }
 
 /* ===== CUSTOM ANIMATIONS ===== */
@@ -148,28 +121,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s ease-in-out infinite;
-}
-
-/* Infinite scroll animations for gallery */
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes scroll-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-.animate-scroll-left {
-  animation: scroll-left var(--scroll-speed, 30s) linear infinite;
-}
-
-.animate-scroll-right {
-  animation: scroll-right var(--scroll-speed, 35s) linear infinite;
 }
 
 .animate-scroll-left:hover,
@@ -182,8 +136,14 @@ html {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {

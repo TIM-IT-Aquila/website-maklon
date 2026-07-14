@@ -1,0 +1,135 @@
+---
+import ServiceCard from "../components/cards/ServiceCard.astro";
+import TestimonialSection from "../components/sections/TestimonialSection.astro";
+import Icon from "../components/ui/Icon.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import WAButton from "../components/ui/WAButton.astro";
+import {
+  businessHighlights,
+  layananHero,
+  oneStopServices,
+  specializedServices,
+} from "../data/layanan-page";
+import { services } from "../data/services";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Layanan Maklon Skincare | Magna"
+  description="Layanan maklon skincare, bodycare, haircare, dan baby care dari riset formula hingga produk siap distribusi."
+>
+  <main class="overflow-x-hidden">
+    <PageHero
+      id="layanan"
+      image={layananHero.image}
+      alt={layananHero.alt}
+      titleMain="Layanan Maklon"
+      titleAccent="Dari Ide hingga Siap Jual"
+    >
+      <p
+        slot="description"
+        class="mt-4 max-w-xl text-sm leading-relaxed text-white/70 md:text-base"
+      >
+        Wujudkan brand kecantikan Anda melalui pendampingan terintegrasi, mulai dari konsultasi,
+        formulasi, legalitas, hingga produksi.
+      </p>
+
+      <div class="mt-7">
+        <WAButton
+          text="Konsultasi Gratis"
+          message="Halo, saya ingin konsultasi layanan maklon skincare."
+          variant="white"
+          class="shadow-xl shadow-black/20"
+        />
+      </div>
+    </PageHero>
+
+    <section class="relative z-10 -mt-8 px-4 lg:px-8">
+      <div
+        class="mx-auto grid max-w-6xl grid-cols-2 overflow-hidden rounded-2xl border border-base-200 bg-base-100 shadow-xl shadow-base-content/10 md:grid-cols-4"
+      >
+        {
+          businessHighlights.map((highlight) => (
+            <div class="flex items-center gap-3 border-base-200 p-4 last:border-0 md:border-r md:p-5">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Icon name={highlight.icon} class="h-5 w-5" />
+              </div>
+              <div>
+                <p class="text-sm font-black text-base-content">{highlight.value}</p>
+                <p class="text-[10px] font-semibold tracking-wide text-base-content/50 uppercase">
+                  {highlight.label}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="bg-base-100 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <SectionHeader label="Kategori Produk" title="Maklon untuk Setiap Kebutuhan Brand" />
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service) => <ServiceCard service={service} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-base-200/45 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <SectionHeader label="Layanan Spesialis" title="Dukungan yang Dibutuhkan Brand Anda" />
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            specializedServices.map((service) => (
+              <a
+                href={service.href}
+                class="group rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              >
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                  <Icon name={service.icon} class="h-6 w-6" />
+                </div>
+                <h3 class="mt-5 text-lg font-bold">{service.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-base-content/60">{service.desc}</p>
+                <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                  Pelajari layanan
+                  <Icon
+                    name="lucide:arrow-right"
+                    class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-base-100 py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <SectionHeader label="One-stop Service" title="Kami Dampingi di Setiap Tahap" />
+
+        <div class="relative mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            oneStopServices.map((service, index) => (
+              <div class="relative rounded-2xl border border-base-200 bg-base-100 p-5 transition-shadow hover:shadow-md">
+                <span class="absolute right-5 top-5 text-3xl font-black text-primary/10">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Icon name={service.icon} class="h-5 w-5" />
+                </div>
+                <h3 class="mt-4 text-base font-bold">{service.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-base-content/60">{service.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <TestimonialSection />
+  </main>
+</MainLayout>

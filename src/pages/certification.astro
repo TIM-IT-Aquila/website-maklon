@@ -9,14 +9,16 @@ import { certifications } from "../data/certifications";
   title="Sertifikasi | Magna"
   description="Sertifikasi & legalitas produk maklon: BPOM, Halal, CPKB, ISO, dan HKI — lengkap, transparan, terpercaya."
 >
-  <main>
+  <main data-certification>
     <!-- ================================================================== -->
     <!-- 1. SECTION HEADER + CERTIFICATE CARDS                              -->
     <!-- ================================================================== -->
     <section class="bg-base-100 pt-12 pb-4 lg:pt-16 lg:pb-6">
       <div class="mx-auto max-w-5xl px-4 lg:px-8">
         <SectionHeader label="Sertifikat & Lisensi Resmi" variant="minimal">
-          <span slot="title">Sertifikasi <span class="text-primary">Resmi</span> yang Kami Miliki</span>
+          <span slot="title"
+            >Sertifikasi <span class="text-primary">Resmi</span> yang Kami Miliki</span
+          >
         </SectionHeader>
       </div>
     </section>
@@ -25,58 +27,62 @@ import { certifications } from "../data/certifications";
     <section class="bg-base-100 pb-14 lg:pb-20">
       <div class="mx-auto max-w-6xl px-4 lg:px-8">
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((cert, i) => (
-            <div
-              class="cert-card group flex flex-col overflow-hidden rounded-3xl border border-base-200/80 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:border-primary/20"
-              style="opacity:0;transform:translateY(30px)"
-            >
-              {/* Certificate Image — museum frame style */}
-              <div class="relative overflow-hidden bg-base-200/30 p-4 pb-0">
-                {/* Frame border */}
-                <div class="relative overflow-hidden rounded-2xl border-[6px] border-base-100 bg-base-100 shadow-inner">
-                  <div class="aspect-[3/4] overflow-hidden">
-                    <img
-                      src={cert.image}
-                      alt={`Sertifikat ${cert.name}`}
-                      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
+          {
+            certifications.map((cert) => (
+              <div
+                class="cert-card group flex flex-col overflow-hidden rounded-3xl border border-base-200/80 bg-base-100 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:border-primary/20"
+                style="opacity:0;transform:translateY(30px)"
+              >
+                {/* Certificate Image — museum frame style */}
+                <div class="relative overflow-hidden bg-base-200/30 p-4 pb-0">
+                  {/* Frame border */}
+                  <div class="relative overflow-hidden rounded-2xl border-[6px] border-base-100 bg-base-100 shadow-inner">
+                    <div class="aspect-[3/4] overflow-hidden">
+                      <img
+                        src={cert.image}
+                        alt={`Sertifikat ${cert.name}`}
+                        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    {/* Glossy overlay */}
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
                   </div>
-                  {/* Glossy overlay */}
-                  <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"></div>
+                  {/* Ornamental corner accents */}
+                  <div class="absolute left-5 top-5 h-4 w-4 rounded-br-md border-l-2 border-t-2 border-primary/30" />
+                  <div class="absolute right-5 top-5 h-4 w-4 rounded-bl-md border-r-2 border-t-2 border-primary/30" />
+                  <div class="absolute bottom-1 left-5 h-4 w-4 rounded-tr-md border-l-2 border-b-2 border-primary/30" />
+                  <div class="absolute bottom-1 right-5 h-4 w-4 rounded-tl-md border-r-2 border-b-2 border-primary/30" />
                 </div>
-                {/* Ornamental corner accents */}
-                <div class="absolute left-5 top-5 h-4 w-4 rounded-br-md border-l-2 border-t-2 border-primary/30"></div>
-                <div class="absolute right-5 top-5 h-4 w-4 rounded-bl-md border-r-2 border-t-2 border-primary/30"></div>
-                <div class="absolute bottom-1 left-5 h-4 w-4 rounded-tr-md border-l-2 border-b-2 border-primary/30"></div>
-                <div class="absolute bottom-1 right-5 h-4 w-4 rounded-tl-md border-r-2 border-b-2 border-primary/30"></div>
-              </div>
 
-              {/* Details */}
-              <div class="flex flex-1 flex-col p-5">
-                <div class="flex flex-wrap items-center gap-2">
-                  <span class="badge badge-soft badge-primary px-2.5 py-1.5 text-[10px] font-bold tracking-wider">
-                    {cert.name}
-                  </span>
-                  <span class="text-[11px] font-medium text-base-content/35 tracking-wider">
-                    {cert.year}
-                  </span>
+                {/* Details */}
+                <div class="flex flex-1 flex-col p-5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="badge badge-soft badge-primary px-2.5 py-1.5 text-[10px] font-bold tracking-wider">
+                      {cert.name}
+                    </span>
+                    <span class="text-[11px] font-medium text-base-content/35 tracking-wider">
+                      {cert.year}
+                    </span>
+                  </div>
+                  <h3 class="mt-2 text-sm font-bold text-base-content leading-snug">
+                    {cert.fullName}
+                  </h3>
+                  <div class="mt-1 flex items-center gap-1.5">
+                    <Icon name="lucide:hash" size={11} class="text-base-content/25" />
+                    <span class="text-[11px] font-mono text-base-content/40 tracking-wide">
+                      {cert.number}
+                    </span>
+                  </div>
+                  <p class="mt-2.5 flex-1 text-xs leading-relaxed text-base-content/50 line-clamp-3">
+                    {cert.desc}
+                  </p>
+                  {/* Hover accent line */}
+                  <div class="mt-3 h-0.5 w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 group-hover:w-20" />
                 </div>
-                <h3 class="mt-2 text-sm font-bold text-base-content leading-snug">
-                  {cert.fullName}
-                </h3>
-                <div class="mt-1 flex items-center gap-1.5">
-                  <Icon name="lucide:hash" size={11} class="text-base-content/25" />
-                  <span class="text-[11px] font-mono text-base-content/40 tracking-wide">{cert.number}</span>
-                </div>
-                <p class="mt-2.5 flex-1 text-xs leading-relaxed text-base-content/50 line-clamp-3">
-                  {cert.desc}
-                </p>
-                {/* Hover accent line */}
-                <div class="mt-3 h-0.5 w-0 rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-700 group-hover:w-20"></div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
@@ -84,27 +90,14 @@ import { certifications } from "../data/certifications";
 </MainLayout>
 
 <script>
-  // Staggered reveal animation for cert cards
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const delay = parseFloat(el.dataset.delay || "0");
-          setTimeout(() => {
-            el.style.transition = "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)";
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          }, delay);
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
-  );
+  import { observeReveal } from "../scripts/reveal";
 
-  document.querySelectorAll(".cert-card").forEach((el, i) => {
-    el.setAttribute("data-delay", String(i * 80));
-    observer.observe(el);
+  const certificationRoot = document.querySelector<HTMLElement>("[data-certification]")!;
+
+  observeReveal(certificationRoot.querySelectorAll<HTMLElement>(".cert-card"), {
+    delay: (index) => index * 80,
+    duration: 700,
+    rootMargin: "0px 0px -30px 0px",
+    threshold: 0.15,
   });
 </script>

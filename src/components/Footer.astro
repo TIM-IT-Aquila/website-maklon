@@ -1,9 +1,11 @@
 ---
 import { siteConfig } from "../data/site";
-import WAButton from "../components/ui/WAButton.astro";
+import WAButton from "./ui/WAButton.astro";
 import { navItems } from "../data/nav";
 
 const currentYear = new Date().getFullYear();
+const companyNavItems = navItems.find((item) => item.id === "company")?.children ?? [];
+const serviceNavItems = navItems.find((item) => item.id === "services")?.children ?? [];
 ---
 
 <footer class="border-t border-base-300 bg-base-200/50">
@@ -11,11 +13,12 @@ const currentYear = new Date().getFullYear();
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
       <!-- Brand Premium -->
       <div class="lg:col-span-1">
-        <a href="/" class="group flex items-center gap-3 transition-all duration-500 hover:opacity-85">
-          <img src="/assets/Logo-magna.svg" alt="Magna" class="h-10 w-auto" />
-          <div class="leading-tight">
-            
-          </div>
+        <a
+          href="/"
+          class="group flex items-center gap-3 transition-all duration-500 hover:opacity-85"
+        >
+          <img src={siteConfig.logo} alt={siteConfig.name} class="h-10 w-auto" />
+          <div class="leading-tight"></div>
         </a>
         <p class="mt-4 text-sm leading-relaxed text-base-content/70">
           {siteConfig.description}
@@ -24,55 +27,74 @@ const currentYear = new Date().getFullYear();
 
       <!-- Pages -->
       <div>
-        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Halaman</h4>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">
+          Halaman
+        </h4>
         <ul class="space-y-2.5">
-          {navItems.filter((item) => item.href).map((item) => (
-            <li>
-              <a href={item.href} class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary">
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {
+            navItems
+              .filter((item) => item.href)
+              .map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+          }
         </ul>
       </div>
 
       <!-- Perusahaan -->
       <div>
-        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Perusahaan</h4>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">
+          Perusahaan
+        </h4>
         <ul class="space-y-2.5">
-          {navItems
-            .filter((item) => item.label === "About Us")
-            .flatMap((item) => item.children || [])
-            .map((child) => (
+          {
+            companyNavItems.map((child) => (
               <li>
-                <a href={child.href} class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary">
+                <a
+                  href={child.href}
+                  class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary"
+                >
                   {child.label}
                 </a>
               </li>
-            ))}
+            ))
+          }
         </ul>
       </div>
 
       <!-- Services -->
       <div>
-        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Layanan</h4>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">
+          Layanan
+        </h4>
         <ul class="space-y-2.5">
-          {navItems
-            .filter((item) => item.label === "Services")
-            .flatMap((item) => item.children || [])
-            .map((child) => (
+          {
+            serviceNavItems.map((child) => (
               <li>
-                <a href={child.href} class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary">
+                <a
+                  href={child.href}
+                  class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary"
+                >
                   {child.label}
                 </a>
               </li>
-            ))}
+            ))
+          }
         </ul>
       </div>
 
       <!-- Kontak & CTA -->
       <div>
-        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">Kontak</h4>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">
+          Kontak
+        </h4>
         <ul class="space-y-2.5 text-sm">
           <li>
             <WAButton
@@ -84,24 +106,23 @@ const currentYear = new Date().getFullYear();
             />
           </li>
           <li>
-            <a href={`mailto:${siteConfig.email}`} class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="text-sm font-semibold text-base-content/70 transition-colors hover:text-primary"
+            >
               {siteConfig.email}
             </a>
           </li>
         </ul>
         <div class="mt-6">
-          <WAButton
-            text="Konsultasi Gratis"
-            variant="primary"
-            size="sm"
-            class="rounded-full"
-          />
+          <WAButton text="Konsultasi Gratis" variant="primary" size="sm" class="rounded-full" />
         </div>
       </div>
     </div>
 
     <div class="mt-10 border-t border-base-300 pt-6 text-center text-sm text-base-content/40">
-      &copy; {currentYear} {siteConfig.name}. All rights reserved.
+      &copy; {currentYear}
+      {siteConfig.name}. All rights reserved.
     </div>
   </div>
 </footer>

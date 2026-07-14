@@ -1,5 +1,4 @@
 import { portfolioImages } from "./images";
-import type { ContentReviewNote } from "./content-status";
 
 export interface PortfolioItem {
   id: string;
@@ -13,13 +12,6 @@ export interface PortfolioItem {
   image: string;
 }
 
-// TODO(content): Portfolio berikut adalah contoh brand/dummy. Ganti dengan portfolio asli, studi kasus anonim, atau hapus jika belum boleh dipublikasikan.
-export const portfolioContentReview: ContentReviewNote = {
-  status: "placeholder",
-  owner: "marketing",
-  reason: "Item portfolio masih contoh brand/dummy dan belum boleh diposisikan sebagai portfolio asli.",
-};
-
 export const portfolioItems: PortfolioItem[] = [
   {
     id: "glow-labs",
@@ -28,7 +20,11 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Brand skincare lokal yang fokus pada produk brightening dengan bahan aktif niacinamide dan vitamin C.",
     products: ["Facial Wash", "Toner Brightening", "Serum Vitamin C", "Day Cream SPF"],
-    highlights: ["Produk best seller di e-commerce", "Kemasan premium", "Formula ringan dan cepat menyerap"],
+    highlights: [
+      "Produk best seller di e-commerce",
+      "Kemasan premium",
+      "Formula ringan dan cepat menyerap",
+    ],
     icon: "lucide:sparkles",
     color: "from-amber-400 to-orange-500",
     image: portfolioImages.skincareBrand,
@@ -49,10 +45,13 @@ export const portfolioItems: PortfolioItem[] = [
     id: "pure-baby",
     brandName: "Pure Baby",
     category: "Baby Care",
-    description:
-      "Brand perawatan bayi yang aman, lembut, dan teruji dermatologis untuk si kecil.",
+    description: "Brand perawatan bayi yang aman, lembut, dan teruji dermatologis untuk si kecil.",
     products: ["Baby Lotion", "Baby Wash", "Baby Oil", "Baby Cream"],
-    highlights: ["Hypoallergenic & dermatologically tested", "Bebas alkohol dan pewangi sintetis", "Terdaftar BPOM"],
+    highlights: [
+      "Hypoallergenic & dermatologically tested",
+      "Bebas alkohol dan pewangi sintetis",
+      "Terdaftar BPOM",
+    ],
     icon: "lucide:baby",
     color: "from-sky-400 to-blue-500",
     image: portfolioImages.babycareBrand,
@@ -61,8 +60,7 @@ export const portfolioItems: PortfolioItem[] = [
     id: "hair-lust",
     brandName: "Hair Lust",
     category: "Haircare",
-    description:
-      "Brand perawatan rambut untuk berbagai jenis rambut dengan formula salon quality.",
+    description: "Brand perawatan rambut untuk berbagai jenis rambut dengan formula salon quality.",
     products: ["Shampoo", "Conditioner", "Hair Mask", "Hair Serum"],
     highlights: ["Formula salon quality", "Untuk semua tipe rambut", "Sulfur & paraben free"],
     icon: "lucide:scissors",
@@ -93,8 +91,4 @@ export const portfolioItems: PortfolioItem[] = [
     color: "from-teal-400 to-cyan-600",
     image: portfolioImages.skincareBrand,
   },
-];
-
-export const portfolioCategories = [
-  ...new Set(portfolioItems.map((item) => item.category)),
 ];

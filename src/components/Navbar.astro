@@ -1,6 +1,6 @@
 ---
-import { siteConfig } from "../data/site";
 import { navItems } from "../data/nav";
+import { siteConfig } from "../data/site";
 import Icon from "./ui/Icon.astro";
 import WAButton from "./ui/WAButton.astro";
 
@@ -17,7 +17,10 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
 }
 ---
 
-<header class="sticky top-0 z-50 border-b border-base-300/40 bg-white/90 backdrop-blur-2xl transition-all duration-300">
+<header
+  data-navbar
+  class="sticky top-0 z-50 border-b border-base-300/40 bg-white/90 backdrop-blur-2xl transition-all duration-300"
+>
   <div class="mx-auto max-w-7xl px-4 lg:px-8">
     <div class="navbar">
       <!-- ================================================================== -->
@@ -25,7 +28,7 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
       <!-- ================================================================== -->
       <div class="navbar-start">
       <a href="/" class="group flex items-center transition-all duration-500 hover:opacity-90" aria-label="Magna">
-        <img src="/assets/Logo-magna.svg" alt="Magna" class="h-7 w-auto sm:h-8" />
+        <img src={siteConfig.logo} alt={siteConfig.name} class="h-7 w-auto sm:h-8" />
       </a>
     </div>
     <!-- ================================================================== -->
@@ -273,10 +276,11 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
 </style>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
+  const navbar = document.querySelector<HTMLElement>('[data-navbar]');
+  const menuBtn = navbar?.querySelector<HTMLButtonElement>('#mobile-menu-btn');
+  const mobileMenu = navbar?.querySelector<HTMLElement>('#mobile-menu');
+  const iconOpen = navbar?.querySelector<HTMLElement>('#menu-icon-open');
+  const iconClose = navbar?.querySelector<HTMLElement>('#menu-icon-close');
 
   if (menuBtn && mobileMenu && iconOpen && iconClose) {
     let isOpen = false;

@@ -11,7 +11,14 @@ interface Props {
   /** Nomor WA. Default: siteConfig.waNumber */
   phone?: string;
   /** Variasi style */
-  variant?: "primary" | "primary-outline" | "white" | "ghost" | "floating" | "text-link" | "text-link-black";
+  variant?:
+    | "primary"
+    | "primary-outline"
+    | "white"
+    | "ghost"
+    | "floating"
+    | "text-link"
+    | "text-link-black";
   /** Ukuran */
   size?: "sm" | "md" | "lg" | "xl";
   /** Sembunyikan icon WhatsApp */
@@ -48,11 +55,15 @@ const sizeClasses = {
 
 // ── Variant classes ──
 const variantClasses = {
-  "primary": "bg-primary text-white shadow-md shadow-primary/15 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:brightness-110",
-  "primary-outline": "border border-primary/30 bg-white text-primary shadow-sm hover:bg-primary/[0.03] hover:border-primary/50 hover:-translate-y-0.5 hover:shadow-md",
-  "white": "bg-white text-primary shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-0.5 hover:scale-105",
-  "ghost": "text-base-content/60 hover:text-primary hover:bg-primary/[0.03]",
-  "floating": "bg-primary text-white shadow-xl shadow-primary/20 ring-1 ring-white/20 hover:scale-110 hover:brightness-110 hover:shadow-2xl hover:shadow-primary/30",
+  primary:
+    "bg-primary text-white shadow-md shadow-primary/15 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:brightness-110",
+  "primary-outline":
+    "border border-primary/30 bg-white text-primary shadow-sm hover:bg-primary/[0.03] hover:border-primary/50 hover:-translate-y-0.5 hover:shadow-md",
+  white:
+    "bg-white text-primary shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-0.5 hover:scale-105",
+  ghost: "text-base-content/60 hover:text-primary hover:bg-primary/[0.03]",
+  floating:
+    "bg-primary text-white shadow-xl shadow-primary/20 ring-1 ring-white/20 hover:scale-110 hover:brightness-110 hover:shadow-2xl hover:shadow-primary/30",
   "text-link": "text-base-content/60 hover:text-primary",
   "text-link-black": "text-base-content transition-colors hover:text-primary",
 };
@@ -78,16 +89,28 @@ const linkAttrs = {
 };
 ---
 
-{!asButton && (
-  <a {...linkAttrs} aria-label={iconOnly ? `WhatsApp: ${text}` : text}>
-    {!hideIcon && iconNameToUse && <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />}
-    {!iconOnly && <span>{text}</span>}
-  </a>
-)}
+{
+  !asButton && (
+    <a {...linkAttrs} aria-label={iconOnly ? `WhatsApp: ${text}` : text}>
+      {!hideIcon && iconNameToUse && (
+        <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />
+      )}
+      {!iconOnly && <span>{text}</span>}
+    </a>
+  )
+}
 
-{asButton && (
-  <button {...linkAttrs} onclick={`window.open('${waLink}', '_blank', 'noopener,noreferrer')`} aria-label={text}>
-    {!hideIcon && iconNameToUse && <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />}
-    {!iconOnly && <span>{text}</span>}
-  </button>
-)}
+{
+  asButton && (
+    <button
+      {...linkAttrs}
+      onclick={`window.open('${waLink}', '_blank', 'noopener,noreferrer')`}
+      aria-label={text}
+    >
+      {!hideIcon && iconNameToUse && (
+        <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />
+      )}
+      {!iconOnly && <span>{text}</span>}
+    </button>
+  )
+}

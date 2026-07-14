@@ -2,34 +2,22 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
-import { siteConfig } from "../data/site";
 import WAButton from "../components/ui/WAButton.astro";
-import { visionMission, ourStory, coreValues } from "../data/company";
+import {
+  companyMetrics,
+  coreValues,
+  facilityGalleryItems,
+  ourStory,
+  visionMission,
+} from "../data/company";
 import { factoryImages, companyImages } from "../data/images";
-
-const metrics = [
-  { value: "10+", label: "Tahun Pengalaman" },
-  { value: "200+", label: "Brand Partner" },
-  { value: "500+", label: "Formula Siap Pakai" },
-  { value: "50+", label: "Tenaga Ahli" },
-];
-
-const galleryItems = [
-  { label: "Laboratorium R&D", image: factoryImages.labResearch, icon: "lucide:flask-conical", layout: "featured" as const },
-  { label: "Ruang QC", image: factoryImages.qualityControl, icon: "lucide:microscope", layout: "square" as const },
-  { label: "Lini Produksi", image: factoryImages.productionLine, icon: "lucide:factory", layout: "square" as const },
-  { label: "Area Pengemasan", image: factoryImages.packagingArea, icon: "lucide:package", layout: "square" as const },
-  { label: "Ruang Sampling", image: factoryImages.samplingRoom, icon: "lucide:beaker", layout: "square" as const },
-  { label: "Gudang Bahan Baku", image: factoryImages.bahanBaku, icon: "lucide:warehouse", layout: "wide" as const },
-];
 ---
 
 <MainLayout
   title="Tentang Perusahaan | Magna"
   description="Mengenal lebih dekat Magna — mitra maklon skincare terpercaya di Indonesia dengan fasilitas berstandar CPKB."
 >
-  <main class="overflow-x-hidden">
-
+  <main data-company class="overflow-x-hidden">
     <!-- ================================================================== -->
     <!-- 1. HERO COMPANY — Full-width image, premium overlay                 -->
     <!-- ================================================================== -->
@@ -48,9 +36,13 @@ const galleryItems = [
       <!-- Content -->
       <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
         <div class="max-w-2xl">
-          <h1 class="reveal-up text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
+          <h1
+            class="reveal-up text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl"
+          >
             Mitra Maklon<br />
-            <span class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent">
+            <span
+              class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent"
+            >
               Skincare
             </span>
           </h1>
@@ -87,13 +79,18 @@ const galleryItems = [
               class="h-[340px] w-full object-cover md:h-[480px] lg:h-[560px]"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
+            >
+            </div>
           </div>
 
           <!-- RIGHT: Text -->
           <div class="lg:w-[55%]">
             <SectionHeader label="Tentang Kami" variant="minimal" align="left" centered={false}>
-              <span slot="title">Hadir untuk Membantu <span class="text-primary">Brand Owner</span></span>
+              <span slot="title"
+                >Hadir untuk Membantu <span class="text-primary">Brand Owner</span></span
+              >
             </SectionHeader>
 
             <p class="reveal-up mt-5 text-base leading-relaxed text-base-content/50 md:text-lg">
@@ -108,12 +105,14 @@ const galleryItems = [
 
             <!-- Inline metrics -->
             <div class="reveal-up mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {metrics.map((m) => (
-                <div class="rounded-2xl border border-base-200/60 bg-base-200/30 p-4 text-center transition-all duration-300 hover:border-primary/15 hover:bg-primary/[0.03]">
-                  <span class="text-2xl font-black text-primary">{m.value}</span>
-                  <p class="mt-1 text-[11px] font-medium text-base-content/40">{m.label}</p>
-                </div>
-              ))}
+              {
+                companyMetrics.map((m) => (
+                  <div class="rounded-2xl border border-base-200/60 bg-base-200/30 p-4 text-center transition-all duration-300 hover:border-primary/15 hover:bg-primary/[0.03]">
+                    <span class="text-2xl font-black text-primary">{m.value}</span>
+                    <p class="mt-1 text-[11px] font-medium text-base-content/40">{m.label}</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -131,13 +130,22 @@ const galleryItems = [
 
         <div class="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
           <!-- Vision -->
-          <div class="reveal-up group origin-center p-2 transition-transform duration-500 ease-out hover:scale-[1.04] md:p-4">
+          <div
+            class="reveal-up group origin-center p-2 transition-transform duration-500 ease-out hover:scale-[1.04] md:p-4"
+          >
             <div class="flex items-start gap-5">
-              <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white">
-                <Icon name="lucide:eye" class="h-6 w-6 transition-transform duration-500 group-hover:scale-110" />
+              <div
+                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white"
+              >
+                <Icon
+                  name="lucide:eye"
+                  class="h-6 w-6 transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
               <div>
-                <span class="text-[10px] font-bold tracking-[0.2em] text-primary/40 uppercase">Visi</span>
+                <span class="text-[10px] font-bold tracking-[0.2em] text-primary/40 uppercase"
+                  >Visi</span
+                >
                 <h3 class="mt-1 text-xl font-bold">Arah Kami</h3>
                 <p class="mt-3 text-base leading-relaxed text-base-content/55 italic">
                   "{visionMission.vision}"
@@ -147,21 +155,34 @@ const galleryItems = [
           </div>
 
           <!-- Mission -->
-          <div class="reveal-up group origin-center p-2 transition-transform duration-500 ease-out hover:scale-[1.04] md:p-4">
+          <div
+            class="reveal-up group origin-center p-2 transition-transform duration-500 ease-out hover:scale-[1.04] md:p-4"
+          >
             <div class="flex items-start gap-5">
-              <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white">
-                <Icon name="lucide:target" class="h-6 w-6 transition-transform duration-500 group-hover:scale-110" />
+              <div
+                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white"
+              >
+                <Icon
+                  name="lucide:target"
+                  class="h-6 w-6 transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
               <div>
-                <span class="text-[10px] font-bold tracking-[0.2em] text-primary/40 uppercase">Misi</span>
+                <span class="text-[10px] font-bold tracking-[0.2em] text-primary/40 uppercase"
+                  >Misi</span
+                >
                 <h3 class="mt-1 text-xl font-bold">Komitmen Kami</h3>
                 <ul class="mt-3 space-y-2.5">
-                  {visionMission.missions.map((m: string, i: number) => (
-                    <li class="flex items-start gap-3">
-                      <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">{i + 1}</span>
-                      <span class="text-sm leading-relaxed text-base-content/55">{m}</span>
-                    </li>
-                  ))}
+                  {
+                    visionMission.missions.map((m: string, i: number) => (
+                      <li class="flex items-start gap-3">
+                        <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+                          {i + 1}
+                        </span>
+                        <span class="text-sm leading-relaxed text-base-content/55">{m}</span>
+                      </li>
+                    ))
+                  }
                 </ul>
               </div>
             </div>
@@ -174,9 +195,19 @@ const galleryItems = [
     <!-- 4. CORE VALUES — Full-width green band                              -->
     <!-- ================================================================== -->
     <section class="relative overflow-hidden bg-primary py-16 md:py-24">
-      <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
-      <div class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
+      <div
+        class="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 30px 30px;"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"
+      >
+      </div>
 
       <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
         <SectionHeader label="Nilai Kami" variant="minimal" tone="light">
@@ -184,16 +215,21 @@ const galleryItems = [
         </SectionHeader>
 
         <div class="mt-12 overflow-hidden">
-          <div class="flex animate-scroll-left gap-6" style="--scroll-speed: 20s; width: max-content;">
-            {[...coreValues, ...coreValues, ...coreValues].map((val) => (
-              <div class="group flex w-[240px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10">
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
-                  <Icon name={val.icon} class="h-6 w-6" />
+          <div
+            class="flex animate-scroll-left gap-6"
+            style="--scroll-speed: 20s; width: max-content;"
+          >
+            {
+              [...coreValues, ...coreValues, ...coreValues].map((val) => (
+                <div class="group flex w-[240px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10">
+                  <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
+                    <Icon name={val.icon} class="h-6 w-6" />
+                  </div>
+                  <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
+                  <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
                 </div>
-                <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
-                <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </div>
@@ -209,42 +245,45 @@ const galleryItems = [
         </SectionHeader>
 
         <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {galleryItems.map((item) => (
-            <div
-              class:list={[
-                "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
-                item.layout === "featured" && "sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col",
-                item.layout === "wide" && "sm:col-span-2 lg:col-span-4",
-              ]}
-            >
+          {
+            facilityGalleryItems.map((item) => (
               <div
                 class:list={[
-                  "relative overflow-hidden",
-                  item.layout === "featured" && "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-0 lg:flex-1 lg:h-full xl:min-h-[420px]",
-                  item.layout === "square" && "aspect-square sm:aspect-[5/4]",
-                  item.layout === "wide" && "aspect-[16/9] sm:aspect-[21/9]",
+                  "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
+                  item.layout === "featured" &&
+                    "sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col",
+                  item.layout === "wide" && "sm:col-span-2 lg:col-span-4",
                 ]}
               >
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
-                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-primary">
-                    <Icon name={item.icon} class="h-4 w-4" />
+                <div
+                  class:list={[
+                    "relative overflow-hidden",
+                    item.layout === "featured" &&
+                      "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-0 lg:flex-1 lg:h-full xl:min-h-[420px]",
+                    item.layout === "square" && "aspect-square sm:aspect-[5/4]",
+                    item.layout === "wide" && "aspect-[16/9] sm:aspect-[21/9]",
+                  ]}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.label}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                  <div class="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-primary">
+                      <Icon name={item.icon} class="h-4 w-4" />
+                    </div>
+                    <h3 class="text-sm font-bold text-white">{item.label}</h3>
                   </div>
-                  <h3 class="text-sm font-bold text-white">{item.label}</h3>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
-
   </main>
 </MainLayout>
 
@@ -255,25 +294,15 @@ const galleryItems = [
 </style>
 
 <script>
-  // Scroll reveal animations
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const el = entry.target as HTMLElement;
-        const delay = parseInt(el.dataset.revealDelay || "0");
-        el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ` + delay + 'ms';
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-        revealObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+  import { observeReveal } from "../scripts/reveal";
 
-  document.querySelectorAll(".reveal-up").forEach((el, i) => {
-    const htmlEl = el as HTMLElement;
-    htmlEl.style.opacity = "0";
-    htmlEl.style.transform = "translateY(24px)";
-    if (!htmlEl.dataset.revealDelay) htmlEl.dataset.revealDelay = String(i * 50);
-    revealObserver.observe(htmlEl);
+  const companyRoot = document.querySelector<HTMLElement>("[data-company]")!;
+
+  observeReveal(companyRoot.querySelectorAll<HTMLElement>(".reveal-up"), {
+    delay: (index) => index * 50,
+    duration: 600,
+    rootMargin: "0px 0px -40px 0px",
+    threshold: 0.1,
+    translateY: "24px",
   });
 </script>

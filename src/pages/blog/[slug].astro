@@ -13,13 +13,13 @@ export function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<MainLayout
-  title={`${post.title} | Magna`}
-  description={post.excerpt}
->
+<MainLayout title={`${post.title} | Magna`} description={post.excerpt}>
   <main>
     <article class="mx-auto max-w-4xl px-4 pb-16 pt-28 lg:px-8 md:pt-36">
-      <a href="/blog" class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-secondary">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-secondary"
+      >
         <Icon name="mdi:arrow-left" class="h-4 w-4" />
         Kembali ke Blog
       </a>
@@ -58,9 +58,13 @@ const { post } = Astro.props;
       </div>
 
       <footer class="mt-10 flex flex-wrap gap-2 border-t border-base-300 pt-6">
-        {post.tags.map((tag) => (
-          <span class="badge badge-outline rounded-full px-3 py-2 text-base-content/60">#{tag}</span>
-        ))}
+        {
+          post.tags.map((tag) => (
+            <span class="badge badge-outline rounded-full px-3 py-2 text-base-content/60">
+              #{tag}
+            </span>
+          ))
+        }
       </footer>
     </article>
   </main>

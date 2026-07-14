@@ -43,8 +43,9 @@ const contactItems = [
 <MainLayout
   title="Kontak | Magna Maklon"
   description="Hubungi tim Magna untuk konsultasi maklon skincare. Kantor di Indramayu, Jawa Barat."
+  showGlobalCta={false}
 >
-  <main class="overflow-x-hidden bg-base-100">
+  <main data-contact class="overflow-x-hidden bg-base-100">
     <!-- Kontak + Form -->
     <section class="py-12 md:py-16">
       <div class="mx-auto max-w-6xl px-4 lg:px-8">
@@ -56,47 +57,50 @@ const contactItems = [
           <!-- Info kontak -->
           <aside class="lg:col-span-4">
             <div class="space-y-3">
-              {contactItems.map((item) => (
-                <div class="rounded-2xl border border-base-200/80 bg-white p-4 shadow-sm">
-                  <div class="flex items-start gap-3">
-                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon name={item.icon} size={18} />
-                    </span>
-                    <div class="min-w-0 flex-1">
-                      <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">
-                        {item.label}
-                      </p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noopener noreferrer" : undefined}
-                          class="mt-0.5 block break-all text-sm font-bold text-base-content hover:text-primary"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p class="mt-0.5 text-sm font-bold text-base-content">{item.value}</p>
-                      )}
-                      {item.action && item.href && (
-                        <a
-                          href={item.href}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noopener noreferrer" : undefined}
-                          class="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-                        >
-                          {item.action}
-                          <Icon name="lucide:arrow-right" size={12} />
-                        </a>
-                      )}
+              {
+                contactItems.map((item) => (
+                  <div class="rounded-2xl border border-base-200/80 bg-white p-4 shadow-sm">
+                    <div class="flex items-start gap-3">
+                      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Icon name={item.icon} size={18} />
+                      </span>
+                      <div class="min-w-0 flex-1">
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-base-content/40">
+                          {item.label}
+                        </p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            class="mt-0.5 block break-all text-sm font-bold text-base-content hover:text-primary"
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p class="mt-0.5 text-sm font-bold text-base-content">{item.value}</p>
+                        )}
+                        {item.action && item.href && (
+                          <a
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            class="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+                          >
+                            {item.action}
+                            <Icon name="lucide:arrow-right" size={12} />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              }
 
               <div class="rounded-2xl border border-primary/15 bg-primary/[0.04] p-4">
                 <p class="text-xs leading-relaxed text-base-content/60">
-                  <span class="font-semibold text-primary">Tips:</span> gunakan WhatsApp untuk respon tercepat. Tim kami biasanya membalas dalam 1×24 jam kerja.
+                  <span class="font-semibold text-primary">Tips:</span> gunakan WhatsApp untuk respon
+                  tercepat. Tim kami biasanya membalas dalam 1×24 jam kerja.
                 </p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <a
@@ -134,10 +138,18 @@ const contactItems = [
                 </p>
               </div>
 
-              <form class="space-y-6" data-wa-number={siteConfig.waNumber} id="consultForm" novalidate>
+              <form
+                class="space-y-6"
+                data-wa-number={siteConfig.waNumber}
+                id="consultForm"
+                novalidate
+              >
                 <div class="grid gap-4 sm:grid-cols-2">
                   <div class="sm:col-span-2">
-                    <label for="nama" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                    <label
+                      for="nama"
+                      class="mb-1.5 block text-sm font-semibold text-base-content/80"
+                    >
                       Nama Lengkap <span class="text-error">*</span>
                     </label>
                     <input
@@ -149,7 +161,9 @@ const contactItems = [
                       placeholder="Contoh: Budi Santoso"
                       class={inputClass}
                     />
-                    <p class="field-error mt-1 hidden text-xs text-error" data-for="nama">Nama wajib diisi.</p>
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="nama">
+                      Nama wajib diisi.
+                    </p>
                   </div>
 
                   <div>
@@ -166,11 +180,16 @@ const contactItems = [
                       placeholder="08xx-xxxx-xxxx"
                       class={inputClass}
                     />
-                    <p class="field-error mt-1 hidden text-xs text-error" data-for="wa">Nomor WhatsApp wajib diisi.</p>
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="wa">
+                      Nomor WhatsApp wajib diisi.
+                    </p>
                   </div>
 
                   <div>
-                    <label for="email" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                    <label
+                      for="email"
+                      class="mb-1.5 block text-sm font-semibold text-base-content/80"
+                    >
                       Email
                       <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
                     </label>
@@ -185,7 +204,10 @@ const contactItems = [
                   </div>
 
                   <div>
-                    <label for="produk" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                    <label
+                      for="produk"
+                      class="mb-1.5 block text-sm font-semibold text-base-content/80"
+                    >
                       Jenis Produk <span class="text-error">*</span>
                     </label>
                     <select id="produk" name="produk" required class={inputClass}>
@@ -196,11 +218,16 @@ const contactItems = [
                       <option value="Baby Care">Baby Care</option>
                       <option value="Lainnya">Lainnya</option>
                     </select>
-                    <p class="field-error mt-1 hidden text-xs text-error" data-for="produk">Pilih jenis produk.</p>
+                    <p class="field-error mt-1 hidden text-xs text-error" data-for="produk">
+                      Pilih jenis produk.
+                    </p>
                   </div>
 
                   <div>
-                    <label for="estimasi" class="mb-1.5 block text-sm font-semibold text-base-content/80">
+                    <label
+                      for="estimasi"
+                      class="mb-1.5 block text-sm font-semibold text-base-content/80"
+                    >
                       Estimasi Produksi
                       <span class="text-[11px] font-normal text-base-content/35">(opsional)</span>
                     </label>
@@ -225,8 +252,7 @@ const contactItems = [
                       rows={4}
                       maxlength={500}
                       placeholder="Ceritakan ide produk, target pasar, atau pertanyaan Anda..."
-                      class={`${inputClass} resize-y leading-relaxed`}
-                    ></textarea>
+                      class={`${inputClass} resize-y leading-relaxed`}></textarea>
                   </div>
                 </div>
 
@@ -240,7 +266,8 @@ const contactItems = [
                     <span id="submitBtnText">Kirim via WhatsApp</span>
                   </button>
                   <p class="mt-3 text-xs text-base-content/40">
-                    Dengan mengirim form, Anda akan diarahkan ke WhatsApp dengan pesan yang sudah terisi.
+                    Dengan mengirim form, Anda akan diarahkan ke WhatsApp dengan pesan yang sudah
+                    terisi.
                   </p>
                 </div>
               </form>
@@ -251,7 +278,10 @@ const contactItems = [
     </section>
 
     <!-- Lokasi -->
-    <section id="lokasi" class="scroll-mt-24 border-t border-base-200/60 bg-base-200/30 py-12 md:py-16">
+    <section
+      id="lokasi"
+      class="scroll-mt-24 border-t border-base-200/60 bg-base-200/30 py-12 md:py-16"
+    >
       <div class="mx-auto max-w-6xl px-4 lg:px-8">
         <SectionHeader
           label="Lokasi"
@@ -270,32 +300,34 @@ const contactItems = [
             role="tablist"
             aria-label="Pilih lokasi"
           >
-            {contactLocations.map((loc, idx) => (
-              <button
-                type="button"
-                role="tab"
-                aria-selected={idx === 0 ? "true" : "false"}
-                aria-controls="locationMapPanel"
-                id={`location-tab-${loc.id}`}
-                data-map={loc.embedUrl}
-                data-maps={loc.mapsUrl}
-                data-id={loc.id}
-                data-name={loc.name}
-                data-address={loc.address}
-                data-hours={loc.hours}
-                data-icon={loc.icon}
-                class:list={[
-                  "location-pill flex flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-center transition-all sm:flex-row sm:gap-2 sm:px-4 sm:py-3",
-                  idx === 0
-                    ? "bg-primary text-white shadow-sm"
-                    : "bg-white text-base-content/55 hover:bg-primary/5 hover:text-primary",
-                ]}
-              >
-                <Icon name={loc.icon} size={18} class="shrink-0" />
-                <span class="text-[11px] font-bold leading-tight sm:hidden">{loc.shortName}</span>
-                <span class="hidden text-sm font-bold leading-tight sm:inline">{loc.name}</span>
-              </button>
-            ))}
+            {
+              contactLocations.map((loc, idx) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === 0 ? "true" : "false"}
+                  aria-controls="locationMapPanel"
+                  id={`location-tab-${loc.id}`}
+                  data-map={loc.embedUrl}
+                  data-maps={loc.mapsUrl}
+                  data-id={loc.id}
+                  data-name={loc.name}
+                  data-address={loc.address}
+                  data-hours={loc.hours}
+                  data-icon={loc.icon}
+                  class:list={[
+                    "location-pill flex flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-center transition-all sm:flex-row sm:gap-2 sm:px-4 sm:py-3",
+                    idx === 0
+                      ? "bg-primary text-white shadow-sm"
+                      : "bg-white text-base-content/55 hover:bg-primary/5 hover:text-primary",
+                  ]}
+                >
+                  <Icon name={loc.icon} size={18} class="shrink-0" />
+                  <span class="text-[11px] font-bold leading-tight sm:hidden">{loc.shortName}</span>
+                  <span class="hidden text-sm font-bold leading-tight sm:inline">{loc.name}</span>
+                </button>
+              ))
+            }
           </div>
 
           <div class="flex flex-col lg:grid lg:grid-cols-5">
@@ -317,20 +349,29 @@ const contactItems = [
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
                   title={`Peta ${contactLocations[0].name}`}
-                  class="absolute inset-0 h-full w-full"
-                ></iframe>
+                  class="absolute inset-0 h-full w-full"></iframe>
               </div>
             </div>
 
             <!-- Detail alamat -->
-            <div class="order-2 border-t border-base-200/70 p-4 sm:p-5 lg:order-1 lg:col-span-2 lg:border-r lg:border-t-0">
+            <div
+              class="order-2 border-t border-base-200/70 p-4 sm:p-5 lg:order-1 lg:col-span-2 lg:border-r lg:border-t-0"
+            >
               <div class="flex items-start gap-3">
-                <span id="locationIconWrap" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span
+                  id="locationIconWrap"
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
+                >
                   <Icon name={contactLocations[0].icon} size={20} />
                 </span>
                 <div class="min-w-0 flex-1">
-                  <p class="text-[11px] font-semibold uppercase tracking-wider text-primary/60">Lokasi</p>
-                  <h3 id="locationName" class="mt-1 text-base font-bold text-base-content sm:text-lg">
+                  <p class="text-[11px] font-semibold uppercase tracking-wider text-primary/60">
+                    Lokasi
+                  </p>
+                  <h3
+                    id="locationName"
+                    class="mt-1 text-base font-bold text-base-content sm:text-lg"
+                  >
                     {contactLocations[0].name}
                   </h3>
                 </div>
@@ -345,7 +386,9 @@ const contactItems = [
                 </div>
                 <div class="flex items-start gap-2.5">
                   <Icon name="lucide:clock" size={16} class="mt-0.5 shrink-0 text-primary/70" />
-                  <p id="locationHours" class="text-sm text-base-content/65">{contactLocations[0].hours}</p>
+                  <p id="locationHours" class="text-sm text-base-content/65">
+                    {contactLocations[0].hours}
+                  </p>
                 </div>
               </div>
 
@@ -386,8 +429,11 @@ const contactItems = [
   import { createConsultationMessage, createWhatsappLink } from "../lib/whatsapp";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const copyBtn = document.getElementById("copyWaBtn");
-    const copyLabel = document.getElementById("copyWaLabel");
+    const root = document.querySelector<HTMLElement>("[data-contact]");
+    if (!root) return;
+
+    const copyBtn = root.querySelector("#copyWaBtn");
+    const copyLabel = root.querySelector("#copyWaLabel");
     copyBtn?.addEventListener("click", async () => {
       const number = copyBtn.getAttribute("data-number") || "";
       try {
@@ -395,15 +441,17 @@ const contactItems = [
         if (copyLabel) {
           const original = copyLabel.textContent;
           copyLabel.textContent = "Tersalin!";
-          setTimeout(() => { if (copyLabel) copyLabel.textContent = original; }, 2000);
+          setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = original;
+          }, 2000);
         }
       } catch {
         if (copyLabel) copyLabel.textContent = "Gagal menyalin";
       }
     });
 
-    const pesanTextarea = document.getElementById("pesan") as HTMLTextAreaElement | null;
-    const charCount = document.getElementById("char-count");
+    const pesanTextarea = root.querySelector("#pesan") as HTMLTextAreaElement | null;
+    const charCount = root.querySelector("#char-count");
     pesanTextarea?.addEventListener("input", () => {
       const len = pesanTextarea.value.length;
       if (charCount) {
@@ -413,13 +461,13 @@ const contactItems = [
       }
     });
 
-    const form = document.getElementById("consultForm") as HTMLFormElement | null;
-    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
-    const submitBtnText = document.getElementById("submitBtnText");
+    const form = root.querySelector("#consultForm") as HTMLFormElement | null;
+    const submitBtn = root.querySelector("#submitBtn") as HTMLButtonElement | null;
+    const submitBtnText = root.querySelector("#submitBtnText");
 
     const showError = (id: string, show: boolean) => {
-      const el = document.querySelector(`.field-error[data-for="${id}"]`);
-      const input = document.getElementById(id);
+      const el = root.querySelector(`.field-error[data-for="${id}"]`);
+      const input = root.querySelector(`#${id}`);
       el?.classList.toggle("hidden", !show);
       input?.classList.toggle("border-error/50", show);
       input?.classList.toggle("ring-2", show);
@@ -429,7 +477,7 @@ const contactItems = [
     const validateForm = () => {
       let valid = true;
       ["nama", "wa", "produk"].forEach((id) => {
-        const field = document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null;
+        const field = root.querySelector(`#${id}`) as HTMLInputElement | HTMLSelectElement | null;
         const empty = !field?.value.trim();
         showError(id, empty);
         if (empty) valid = false;
@@ -438,23 +486,27 @@ const contactItems = [
     };
 
     ["nama", "wa", "produk"].forEach((id) => {
-      document.getElementById(id)?.addEventListener("input", () => showError(id, false));
-      document.getElementById(id)?.addEventListener("change", () => showError(id, false));
+      root.querySelector(`#${id}`)?.addEventListener("input", () => showError(id, false));
+      root.querySelector(`#${id}`)?.addEventListener("change", () => showError(id, false));
     });
 
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!validateForm()) {
         const firstInvalid = form.querySelector(".field-error:not(.hidden)");
-        (firstInvalid?.previousElementSibling as HTMLElement)?.focus?.()
-          || (firstInvalid?.parentElement?.querySelector("input, select") as HTMLElement)?.focus?.();
+        const invalidField =
+          (firstInvalid?.parentElement?.querySelector("input, select") as HTMLElement | null) ??
+          (firstInvalid?.previousElementSibling as HTMLElement | null);
+        invalidField?.focus();
         return;
       }
 
       const waNumber = form.getAttribute("data-wa-number");
       const getValue = (id: string) => {
-        const field = document.getElementById(id);
-        return field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement
+        const field = root.querySelector(`#${id}`);
+        return field instanceof HTMLInputElement ||
+          field instanceof HTMLTextAreaElement ||
+          field instanceof HTMLSelectElement
           ? field.value
           : "";
       };
@@ -480,14 +532,14 @@ const contactItems = [
       }, 2000);
     });
 
-    const pills = document.querySelectorAll<HTMLButtonElement>(".location-pill");
-    const mapFrame = document.getElementById("locationMapFrame") as HTMLIFrameElement | null;
-    const mapLink = document.getElementById("locationMapLink") as HTMLAnchorElement | null;
-    const mapPanel = document.getElementById("locationMapPanel");
-    const locationName = document.getElementById("locationName");
-    const locationAddress = document.getElementById("locationAddress");
-    const locationHours = document.getElementById("locationHours");
-    const locationIconWrap = document.getElementById("locationIconWrap");
+    const pills = root.querySelectorAll<HTMLButtonElement>(".location-pill");
+    const mapFrame = root.querySelector("#locationMapFrame") as HTMLIFrameElement | null;
+    const mapLink = root.querySelector("#locationMapLink") as HTMLAnchorElement | null;
+    const mapPanel = root.querySelector("#locationMapPanel");
+    const locationName = root.querySelector("#locationName");
+    const locationAddress = root.querySelector("#locationAddress");
+    const locationHours = root.querySelector("#locationHours");
+    const locationIconWrap = root.querySelector("#locationIconWrap");
 
     function activateLocation(pill: HTMLButtonElement) {
       const mapUrl = pill.getAttribute("data-map");

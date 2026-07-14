@@ -26,7 +26,7 @@ export const specializedServices = [
   {
     title: "Merek & Paten",
     desc: "Pengurusan HAKI, BPOM, dan legalitas brand skincare Anda.",
-    href: "/merek-paten",
+    href: "/paten-brand",
     icon: "lucide:scale",
   },
   {
@@ -38,12 +38,32 @@ export const specializedServices = [
 ] as const;
 
 export const oneStopServices = [
-  { icon: "lucide:message-circle", title: "Konsultasi Konsep", desc: "Diskusi ide produk dan target pasar" },
-  { icon: "lucide:flask-conical", title: "Formulasi Custom", desc: "Formula dikembangkan sesuai kebutuhan brand" },
-  { icon: "lucide:beaker", title: "Sample Produk", desc: "Evaluasi sampel sebelum produksi massal" },
+  {
+    icon: "lucide:message-circle",
+    title: "Konsultasi Konsep",
+    desc: "Diskusi ide produk dan target pasar",
+  },
+  {
+    icon: "lucide:flask-conical",
+    title: "Formulasi Custom",
+    desc: "Formula dikembangkan sesuai kebutuhan brand",
+  },
+  {
+    icon: "lucide:beaker",
+    title: "Sample Produk",
+    desc: "Evaluasi sampel sebelum produksi massal",
+  },
   { icon: "lucide:palette", title: "Desain Kemasan", desc: "Kemasan sesuai identitas brand Anda" },
-  { icon: "lucide:scroll-text", title: "Bantuan Legalitas", desc: "BPOM, Halal, dan HKI diurus tim legal" },
+  {
+    icon: "lucide:scroll-text",
+    title: "Bantuan Legalitas",
+    desc: "BPOM, Halal, dan HKI diurus tim legal",
+  },
   { icon: "lucide:factory", title: "Produksi Massal", desc: "Produksi skala besar standar CPKB" },
-  { icon: "lucide:shield-check", title: "Quality Control", desc: "Pengecekan kualitas sebelum pengiriman" },
+  {
+    icon: "lucide:shield-check",
+    title: "Quality Control",
+    desc: "Pengecekan kualitas sebelum pengiriman",
+  },
   { icon: "lucide:truck", title: "Siap Distribusi", desc: "Produk jadi siap dipasarkan" },
 ] as const;

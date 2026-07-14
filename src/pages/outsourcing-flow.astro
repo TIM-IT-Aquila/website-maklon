@@ -1,295 +1,97 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { processSteps } from "../data/process";
-
-const totalSteps = processSteps.length;
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout
   title="Alur Maklon | Magna"
   description="Proses maklon yang terstruktur dari konsultasi hingga produk siap dikirim."
 >
-  <main>
-    <section class="bg-base-100 pb-14 pt-12 lg:pb-20 lg:pt-16">
-      <div class="mx-auto max-w-5xl px-4 lg:px-8">
-        <SectionHeader label="9 Tahap" variant="minimal">
-          <span slot="title">Proses <span class="text-primary">Maklon</span> Lengkap</span>
-        </SectionHeader>
+  <main class="overflow-hidden bg-base-100">
+    <section class="relative py-16 md:py-24">
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-primary/[0.07] to-transparent"
+      >
+      </div>
 
-        <div class="mt-8 rounded-3xl border border-base-200/80 bg-base-100 p-4 shadow-sm sm:p-6 lg:p-8">
-          <!-- Progress -->
-          <div class="mb-6">
-            <div class="mb-2 flex items-center justify-between gap-3 text-xs font-medium text-base-content/50">
-              <span>
-                Tahap <span id="flow-current" class="font-bold text-primary">1</span> dari {totalSteps}
-              </span>
-              <span id="flow-percent" class="text-primary/70">11%</span>
-            </div>
-            <div class="h-2 overflow-hidden rounded-full bg-base-200">
-              <div
-                id="flow-progress"
-                class="h-full rounded-full bg-primary transition-all duration-500 ease-out"
-                style={`width: ${Math.round(100 / totalSteps)}%`}
-              ></div>
-            </div>
-          </div>
+      <div class="relative mx-auto max-w-6xl px-4 lg:px-8">
+        <SectionHeader label="9 Tahap Terarah" title="Proses Maklon dari Ide hingga Siap Jual" />
 
-          <!-- Mobile: chip navigator -->
+        <div class="relative mt-14 md:mt-20">
           <div
-            class="flow-chip-scroll mb-6 flex gap-2 overflow-x-auto pb-1 lg:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            role="tablist"
-            aria-label="Pilih tahap proses maklon"
+            class="absolute bottom-8 left-6 top-13 w-[3px] -translate-x-1/2 rounded-full bg-primary md:left-1/2"
           >
-            {processSteps.map((step, i) => (
-              <button
-                type="button"
-                role="tab"
-                class:list={[
-                  "flow-chip shrink-0 snap-start rounded-full border px-3.5 py-2 text-left text-xs font-semibold transition-all duration-300",
-                  i === 0
-                    ? "border-primary bg-primary text-white shadow-sm"
-                    : "border-base-200 bg-base-100 text-base-content/70 hover:border-primary/30 hover:text-primary",
-                ]}
-                data-step={step.step}
-                aria-selected={i === 0 ? "true" : "false"}
-                aria-controls={`flow-panel-${step.step}`}
-              >
-                <span class="mr-1 opacity-80">{step.step}.</span>
-                {step.title}
-              </button>
-            ))}
           </div>
 
-          <div class="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8">
-            <!-- Desktop: sidebar navigator -->
-            <nav
-              class="hidden lg:block"
-              role="tablist"
-              aria-label="Pilih tahap proses maklon"
-            >
-              <ol class="space-y-1">
-                {processSteps.map((step, i) => (
-                  <li>
-                    <button
-                      type="button"
-                      role="tab"
-                      class:list={[
-                        "flow-nav flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all duration-300",
-                        i === 0
-                          ? "bg-primary text-white shadow-md shadow-primary/20"
-                          : "text-base-content/70 hover:bg-primary/5 hover:text-primary",
-                      ]}
-                      data-step={step.step}
-                      aria-selected={i === 0 ? "true" : "false"}
-                      aria-controls={`flow-panel-${step.step}`}
-                    >
-                      <span
-                        class:list={[
-                          "flow-nav-badge flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-black",
-                          i === 0 ? "bg-white/20 text-white" : "bg-primary/10 text-primary",
-                        ]}
-                      >
-                        {String(step.step).padStart(2, "0")}
-                      </span>
-                      <span class="min-w-0 text-sm font-semibold leading-snug">{step.title}</span>
-                    </button>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <!-- Detail panel -->
-            <div class="min-w-0">
-              {processSteps.map((step, i) => {
-                const isFinal = step.step === totalSteps;
+          <div class="space-y-8 md:space-y-12">
+            {
+              processSteps.map((step, index) => {
+                const isLeft = index % 2 === 0;
+                const isFinal = index === processSteps.length - 1;
 
                 return (
-                  <article
-                    id={`flow-panel-${step.step}`}
-                    class:list={[
-                      "flow-panel rounded-2xl border border-base-200/70 bg-base-100 p-5 transition-all duration-300 sm:p-6",
-                      i !== 0 && "hidden",
-                      isFinal && "border-primary/20 bg-primary/[0.03]",
-                    ]}
-                    role="tabpanel"
-                    data-step={step.step}
-                    aria-hidden={i !== 0 ? "true" : "false"}
-                  >
-                    <div class="flex flex-wrap items-start justify-between gap-3">
-                      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                        <Icon name={step.icon} size={24} />
+                  <article class="relative grid grid-cols-1 md:grid-cols-2">
+                    <div
+                      class:list={[
+                        "relative ml-14 md:ml-0",
+                        isLeft ? "md:col-start-1 md:pr-14" : "md:col-start-2 md:pl-14",
+                      ]}
+                    >
+                      <div
+                        class:list={[
+                          "group relative rounded-2xl border bg-base-100 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6",
+                          isFinal
+                            ? "border-primary/30 bg-primary/[0.03]"
+                            : "border-base-200 hover:border-primary/30",
+                        ]}
+                      >
+                        <span
+                          class:list={[
+                            "absolute top-13 hidden h-[3px] w-14 rounded-full bg-primary md:block",
+                            isLeft ? "-right-14" : "-left-14",
+                          ]}
+                        />
+
+                        <div class="flex items-start gap-4">
+                          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                            <Icon name={step.icon} size={22} />
+                          </div>
+                          <div class="min-w-0 flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                              <span class="text-[11px] font-black tracking-[0.18em] text-primary uppercase">
+                                Tahap {String(step.step).padStart(2, "0")}
+                              </span>
+                              {isFinal && (
+                                <span class="badge badge-primary badge-sm">Siap Jual</span>
+                              )}
+                            </div>
+                            <h2 class="mt-1 text-lg font-black text-base-content sm:text-xl">
+                              {step.title}
+                            </h2>
+                          </div>
+                        </div>
+
+                        <p class="mt-4 text-sm font-semibold leading-relaxed text-primary/80">
+                          {step.desc}
+                        </p>
+                        <p class="mt-3 text-sm leading-relaxed text-base-content/60">
+                          {step.detail}
+                        </p>
                       </div>
-                      <span class="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold tracking-wider text-primary">
-                        TAHAP {String(step.step).padStart(2, "0")}
-                      </span>
                     </div>
 
-                    <div class="mt-5">
-                      <div class="flex flex-wrap items-center gap-2">
-                        <h3 class="text-xl font-bold text-base-content sm:text-2xl">{step.title}</h3>
-                        {isFinal && (
-                          <span class="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                            <Icon name="lucide:trophy" size={12} />
-                            Tahap Akhir
-                          </span>
-                        )}
-                      </div>
-                      <p class="mt-2 text-sm font-medium text-primary/80">{step.desc}</p>
-                      <p class="mt-4 text-sm leading-relaxed text-base-content/65 sm:text-base">
-                        {step.detail}
-                      </p>
+                    <div class="absolute left-6 top-7 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-4 border-base-100 bg-primary text-sm font-black text-white md:left-1/2">
+                      {String(step.step).padStart(2, "0")}
                     </div>
                   </article>
                 );
-              })}
-
-              <!-- Navigasi -->
-              <div class="mt-5 flex items-center justify-between gap-3 border-t border-base-200/80 pt-5">
-                <button
-                  type="button"
-                  id="flow-prev"
-                  class="inline-flex h-10 items-center gap-2 rounded-xl border border-base-200 px-4 text-sm font-semibold text-base-content/60 transition-all hover:border-primary/30 hover:text-primary disabled:pointer-events-none disabled:opacity-35"
-                  disabled
-                >
-                  <Icon name="lucide:chevron-left" size={16} />
-                  Sebelumnya
-                </button>
-
-                <span id="flow-step-label" class="hidden text-center text-xs font-medium text-base-content/45 sm:block">
-                  {processSteps[0].title}
-                </span>
-
-                <button
-                  type="button"
-                  id="flow-next"
-                  class="inline-flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white shadow-sm shadow-primary/20 transition-all hover:bg-primary/90 disabled:cursor-default disabled:opacity-50"
-                >
-                  <span id="flow-next-label">Selanjutnya</span>
-                  <Icon name="lucide:chevron-right" size={16} class="flow-next-icon" />
-                </button>
-              </div>
-            </div>
+              })
+            }
           </div>
         </div>
-
-        <p class="mt-4 text-center text-xs text-base-content/40">
-          Klik tahap di atas atau gunakan tombol navigasi untuk melihat detail setiap langkah.
-        </p>
       </div>
     </section>
   </main>
 </MainLayout>
-
-<script define:vars={{ totalSteps }}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const panels = Array.from(document.querySelectorAll(".flow-panel"));
-    const navBtns = Array.from(document.querySelectorAll(".flow-nav"));
-    const chipBtns = Array.from(document.querySelectorAll(".flow-chip"));
-    const prevBtn = document.getElementById("flow-prev");
-    const nextBtn = document.getElementById("flow-next");
-    const currentEl = document.getElementById("flow-current");
-    const percentEl = document.getElementById("flow-percent");
-    const progressEl = document.getElementById("flow-progress");
-    const stepLabelEl = document.getElementById("flow-step-label");
-    const nextLabelEl = document.getElementById("flow-next-label");
-    const chipScroll = document.querySelector(".flow-chip-scroll");
-
-    if (!panels.length || !prevBtn || !nextBtn || !currentEl || !percentEl || !progressEl) return;
-
-    let active = 1;
-
-    function getTitle(step) {
-      const panel = panels.find((p) => Number(p.getAttribute("data-step")) === step);
-      return panel?.querySelector("h3")?.textContent?.trim() ?? "";
-    }
-
-    function scrollChipIntoView(step) {
-      const chip = chipBtns.find((btn) => Number(btn.getAttribute("data-step")) === step);
-      if (chip && chipScroll) {
-        chip.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-      }
-    }
-
-    function setActive(step) {
-      if (step < 1 || step > totalSteps) return;
-      active = step;
-
-      panels.forEach((panel) => {
-        const isActive = Number(panel.getAttribute("data-step")) === step;
-        panel.classList.toggle("hidden", !isActive);
-        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
-      });
-
-      navBtns.forEach((btn) => {
-        const isActive = Number(btn.getAttribute("data-step")) === step;
-        btn.setAttribute("aria-selected", isActive ? "true" : "false");
-        btn.classList.toggle("bg-primary", isActive);
-        btn.classList.toggle("text-white", isActive);
-        btn.classList.toggle("shadow-md", isActive);
-        btn.classList.toggle("shadow-primary/20", isActive);
-        btn.classList.toggle("text-base-content/70", !isActive);
-        btn.classList.toggle("hover:bg-primary/5", !isActive);
-        btn.classList.toggle("hover:text-primary", !isActive);
-
-        const badge = btn.querySelector(".flow-nav-badge");
-        if (badge) {
-          badge.classList.toggle("bg-white/20", isActive);
-          badge.classList.toggle("text-white", isActive);
-          badge.classList.toggle("bg-primary/10", !isActive);
-          badge.classList.toggle("text-primary", !isActive);
-        }
-      });
-
-      chipBtns.forEach((btn) => {
-        const isActive = Number(btn.getAttribute("data-step")) === step;
-        btn.setAttribute("aria-selected", isActive ? "true" : "false");
-        btn.classList.toggle("border-primary", isActive);
-        btn.classList.toggle("bg-primary", isActive);
-        btn.classList.toggle("text-white", isActive);
-        btn.classList.toggle("shadow-sm", isActive);
-        btn.classList.toggle("border-base-200", !isActive);
-        btn.classList.toggle("bg-base-100", !isActive);
-        btn.classList.toggle("text-base-content/70", !isActive);
-      });
-
-      const percent = Math.round((step / totalSteps) * 100);
-      currentEl.textContent = String(step);
-      percentEl.textContent = `${percent}%`;
-      progressEl.style.width = `${percent}%`;
-
-      if (stepLabelEl) stepLabelEl.textContent = getTitle(step);
-      if (nextLabelEl) nextLabelEl.textContent = step === totalSteps ? "Selesai" : "Selanjutnya";
-
-      prevBtn.disabled = step === 1;
-      nextBtn.disabled = step === totalSteps;
-
-      scrollChipIntoView(step);
-    }
-
-    function bindStepButtons(buttons) {
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const step = Number(btn.getAttribute("data-step"));
-          if (!Number.isNaN(step)) setActive(step);
-        });
-      });
-    }
-
-    bindStepButtons(navBtns);
-    bindStepButtons(chipBtns);
-
-    prevBtn.addEventListener("click", () => setActive(active - 1));
-    nextBtn.addEventListener("click", () => {
-      if (active < totalSteps) setActive(active + 1);
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") setActive(active - 1);
-      if (e.key === "ArrowRight" && active < totalSteps) setActive(active + 1);
-    });
-
-    setActive(1);
-  });
-</script>

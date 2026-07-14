@@ -8,14 +8,11 @@ interface Props {
   name: string;
   class?: string;
   size?: number;
+  id?: string;
 }
 
-const { name, class: className, size = 24 } = Astro.props;
+const { name, class: className, size = 24, id } = Astro.props;
 const iconName = name.includes(":") ? name : `lucide:${name}`;
 ---
 
-<AstroIcon
-  name={iconName}
-  class={className}
-  size={size}
-/>
+<AstroIcon id={id} name={iconName} class={className} size={size} />

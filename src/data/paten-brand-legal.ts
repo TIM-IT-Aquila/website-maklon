@@ -3,9 +3,9 @@ import type {
   LegalPillar,
   UploadDocumentField,
   VaultDocument,
-} from "../lib/merek-paten-legal";
+} from "../lib/paten-brand-legal";
 
-export const merekPatenHero = {
+export const patenBrandHero = {
   image: "/assets/hero-home/legaldokument.jpg",
   alt: "Dokumen legalitas merek, BPOM, dan sertifikasi halal skincare",
 };
@@ -22,7 +22,12 @@ export const legalPillars: LegalPillar[] = [
     statusLabel: "Kami Urus Penuh",
     badgeVariant: "success",
     icon: "lucide:shield-check",
-    services: ["Cek ketersediaan nama merek", "Pendaftaran DJKI", "Monitoring & keberatan", "Sertifikat merek resmi"],
+    services: [
+      "Cek ketersediaan nama merek",
+      "Pendaftaran DJKI",
+      "Monitoring & keberatan",
+      "Sertifikat merek resmi",
+    ],
   },
   {
     id: "bpom",
@@ -35,7 +40,12 @@ export const legalPillars: LegalPillar[] = [
     statusLabel: "Kami Urus Penuh",
     badgeVariant: "info",
     icon: "lucide:scroll-text",
-    services: ["Penyusunan dokumen BPOM", "Koordinasi uji lab", "Pendampingan audit", "Penerbitan Nomor NA"],
+    services: [
+      "Penyusunan dokumen BPOM",
+      "Koordinasi uji lab",
+      "Pendampingan audit",
+      "Penerbitan Nomor NA",
+    ],
   },
   {
     id: "halal",
@@ -48,7 +58,12 @@ export const legalPillars: LegalPillar[] = [
     statusLabel: "Kami Urus Penuh",
     badgeVariant: "success",
     icon: "lucide:badge-check",
-    services: ["Audit bahan & proses", "Pengajuan ke LPPOM/BPJPH", "Pendampingan inspeksi", "Sertifikat halal resmi"],
+    services: [
+      "Audit bahan & proses",
+      "Pengajuan ke LPPOM/BPJPH",
+      "Pendampingan inspeksi",
+      "Sertifikat halal resmi",
+    ],
   },
 ];
 

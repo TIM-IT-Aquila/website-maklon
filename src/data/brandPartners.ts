@@ -8,7 +8,7 @@ export type BrandPartner = {
 };
 
 // Sementara memakai logo Magna sebagai placeholder hingga logo brand partner asli tersedia.
-const magnaLogo = siteConfig.defaultOgImage;
+const magnaLogo = siteConfig.logo;
 
 export const brandPartners: BrandPartner[] = [
   { name: "Magna", logo: magnaLogo, scale: 0.88, opacity: 0.45 },

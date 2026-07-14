@@ -11,64 +11,23 @@ import { processSteps } from "../data/process";
 import { products } from "../data/products";
 import { faqs } from "../data/faqs";
 import { brandPartners, brandPartnersRowTwo } from "../data/brandPartners";
-import { categoryImages, factoryImages, processImages, productImages, heroImages } from "../data/images";
+import { categoryImages, processImages } from "../data/images";
 import { certifications } from "../data/certifications";
+import { facilityGalleryItems } from "../data/company";
+import { homeComparisonRows, homeHeroSlides } from "../data/home";
 import TestimonialSection from "../components/sections/TestimonialSection.astro";
 
 const processPreviewSteps = processSteps.slice(0, 5);
 const topProducts = products.slice(0, 8);
 const categories = categoryImages.slice(0, 6);
 
-const heroSlides = [
-  {
-    image: heroImages.skincareLab,
-    titleMain: "Laboratorium Modern",
-    titleAccent: "untuk Formulasi Presisi",
-    description: "Teknologi riset terkini dan tim ahli R&D siap mengembangkan formula unik untuk brand kecantikan Anda.",
-  },
-  {
-    image: heroImages.skincareProduction,
-    titleMain: "Produksi Berkualitas",
-    titleAccent: "Standar CPKB & GMP",
-    description: "Setiap tahap produksi diawasi ketat agar produk skincare premium Anda aman, konsisten, dan siap dipasarkan.",
-  },
-  {
-    image: heroImages.packagingReady,
-    titleMain: "Siap Dikemas & Kirim",
-    titleAccent: "Langsung Distribusi",
-    description: "Produk jadi dengan kemasan rapi dan legal — siap dikirim ke seluruh Indonesia tanpa repot urusan logistik.",
-  },
-  {
-    image: heroImages.labResearch,
-    titleMain: "Riset & Inovasi",
-    titleAccent: "500+ Formula Siap Pakai",
-    description: "Pilih dari ratusan formula teruji atau kustomisasi sesuai kebutuhan — dari konsultasi hingga produk siap jual.",
-  },
-];
-
-const galleryItems = [
-  { label: "Laboratorium R&D", image: factoryImages.labResearch, icon: "lucide:flask-conical", layout: "featured" as const },
-  { label: "Ruang QC", image: factoryImages.qualityControl, icon: "lucide:microscope", layout: "square" as const },
-  { label: "Lini Produksi", image: factoryImages.productionLine, icon: "lucide:factory", layout: "square" as const },
-  { label: "Area Pengemasan", image: factoryImages.packagingArea, icon: "lucide:package", layout: "square" as const },
-  { label: "Ruang Sampling", image: factoryImages.samplingRoom, icon: "lucide:beaker", layout: "square" as const },
-  { label: "Gudang Bahan Baku", image: factoryImages.bahanBaku, icon: "lucide:warehouse", layout: "wide" as const },
-];
-
-const comparisons = [
-  { aspect: "Kepemilikan Pabrik", us: "Pabrik Milik Sendiri", them: "Sering pihak ketiga" },
-  { aspect: "Formulasi", us: "Custom 500+ Formula", them: "Terbatas / template" },
-  { aspect: "Legalitas", us: "BPOM + Halal + HKI", them: "Belum tentu lengkap" },
-  { aspect: "MOQ", us: "Fleksibel", them: "Cenderung tinggi" },
-  { aspect: "Pendampingan", us: "Konsultasi gratis", them: "Sering terbatas" },
-];
 ---
 
 <MainLayout
   title="Magna – Jasa Skincare Terpercaya"
   description={siteConfig.description}
 >
-  <main class="overflow-x-hidden">
+  <main data-home class="overflow-x-hidden">
 
     <!-- ================================================================== -->
     <!-- 1. HERO — Image Slider                                              -->
@@ -76,7 +35,7 @@ const comparisons = [
     <section id="hero" class="relative flex h-[65vh] min-h-[520px] items-center">
       <!-- Background Slides -->
       <div class="absolute inset-0 z-0">
-        {heroSlides.map((slide, idx) => (
+        {homeHeroSlides.map((slide, idx) => (
           <div
             class="hero-slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
             class:list={{ "opacity-100": idx === 0, "opacity-0": idx !== 0 }}
@@ -91,7 +50,7 @@ const comparisons = [
       <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
         <div class="max-w-2xl">
           <div class="relative min-h-[180px] md:min-h-[200px]">
-            {heroSlides.map((slide, idx) => (
+            {homeHeroSlides.map((slide, idx) => (
               <div
                 class="hero-text absolute inset-0 transition-opacity duration-1000 ease-in-out"
                 class:list={{ "opacity-100": idx === 0, "opacity-0 pointer-events-none": idx !== 0 }}
@@ -129,7 +88,7 @@ const comparisons = [
 
       <!-- Slide indicators — tengah bawah -->
       <div class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
-        {heroSlides.map((_, idx) => (
+        {homeHeroSlides.map((_, idx) => (
           <button
             class="hero-dot rounded-full bg-white transition-all duration-500"
             class:list={{ "h-3 w-10 bg-white": idx === 0, "h-3 w-3 bg-white/35 hover:bg-white/55": idx !== 0 }}
@@ -472,7 +431,7 @@ const comparisons = [
         </SectionHeader>
 
         <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {galleryItems.map((item) => (
+          {facilityGalleryItems.map((item) => (
             <div
               class:list={[
                 "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
@@ -528,7 +487,7 @@ const comparisons = [
             <div class="w-[33%] text-xs font-bold tracking-[0.12em] text-white/50 uppercase">Maklon Biasa</div>
           </div>
           <!-- Rows -->
-          {comparisons.map((row, i) => (
+          {homeComparisonRows.map((row, i) => (
             <div class="flex items-center border-b border-base-200/60 px-8 py-5 transition-all duration-300 hover:bg-primary/[0.03] hover:shadow-inner last:border-b-0">
               <div class="flex w-[34%] items-center gap-2">
                 <span class="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">{i + 1}</span>
@@ -674,6 +633,8 @@ const comparisons = [
 <!-- CLIENT-SIDE SCRIPTS                                                  -->
 <!-- ==================================================================== -->
 <script>
+  const homeRoot = document.querySelector<HTMLElement>("[data-home]")!;
+
   // ====================================================================
   // DATA
   // ====================================================================
@@ -689,19 +650,19 @@ const comparisons = [
   // 1. HERO SLIDER
   // ====================================================================
   let heroIdx = 0;
-  const heroTotal = document.querySelectorAll<HTMLElement>(".hero-slide").length;
+  const heroTotal = homeRoot.querySelectorAll<HTMLElement>(".hero-slide").length;
   let heroTimer: ReturnType<typeof setInterval> | undefined;
 
   function goHero(idx: number) {
     heroIdx = idx;
-    document.querySelectorAll<HTMLElement>(".hero-slide").forEach((s, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(".hero-slide").forEach((s, i) => {
       s.style.opacity = i === idx ? "1" : "0";
     });
-    document.querySelectorAll<HTMLElement>(".hero-text").forEach((t, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(".hero-text").forEach((t, i) => {
       t.style.opacity = i === idx ? "1" : "0";
       t.classList.toggle("pointer-events-none", i !== idx);
     });
-    document.querySelectorAll<HTMLElement>(".hero-dot").forEach((d, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(".hero-dot").forEach((d, i) => {
       if (i === idx) { d.className = "hero-dot h-3 w-10 rounded-full bg-white transition-all duration-500"; }
       else { d.className = "hero-dot h-3 w-3 rounded-full bg-white/35 hover:bg-white/55 transition-all duration-500"; }
     });
@@ -710,7 +671,7 @@ const comparisons = [
   function startHero() { stopHero(); heroTimer = setInterval(() => goHero((heroIdx + 1) % heroTotal), 5000); }
   function stopHero() { if (heroTimer) clearInterval(heroTimer); }
 
-  document.querySelectorAll<HTMLElement>(".hero-dot").forEach((dot) => {
+  homeRoot.querySelectorAll<HTMLElement>(".hero-dot").forEach((dot) => {
     dot.addEventListener("click", () => {
       const idx = parseInt(dot.getAttribute("data-slide") || "0");
       goHero(idx);
@@ -723,7 +684,7 @@ const comparisons = [
   // ====================================================================
   // 2. STATS COUNTER (Intersection Observer)
   // ====================================================================
-  const statCounters = document.querySelectorAll<HTMLElement>(".stat-counter");
+  const statCounters = homeRoot.querySelectorAll<HTMLElement>(".stat-counter");
   let countersAnimated = false;
 
   function animateCounter(el: HTMLElement) {
@@ -756,13 +717,13 @@ const comparisons = [
   // ====================================================================
   // 3. FAQ ACCORDION
   // ====================================================================
-  document.querySelectorAll<HTMLElement>(".faq-trigger").forEach(trigger => {
+  homeRoot.querySelectorAll<HTMLElement>(".faq-trigger").forEach(trigger => {
     trigger.addEventListener("click", () => {
       const panel = trigger.nextElementSibling as HTMLElement;
       const icon = trigger.querySelector(".faq-icon") as HTMLElement;
       const isOpen = trigger.getAttribute("aria-expanded") === "true";
       // Close all
-      document.querySelectorAll<HTMLElement>(".faq-trigger").forEach(t => {
+      homeRoot.querySelectorAll<HTMLElement>(".faq-trigger").forEach(t => {
         t.setAttribute("aria-expanded", "false");
         const p = t.nextElementSibling as HTMLElement;
         const i = t.querySelector(".faq-icon") as HTMLElement;
@@ -789,19 +750,19 @@ const comparisons = [
     activeProcess = idx;
     const step = processStepsData[idx];
 
-    document.querySelectorAll<HTMLElement>(".process-img").forEach((img, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(".process-img").forEach((img, i) => {
       if (i === idx) { img.classList.add("opacity-100", "scale-100"); img.classList.remove("opacity-0", "scale-110"); }
       else { img.classList.remove("opacity-100", "scale-100"); img.classList.add("opacity-0", "scale-110"); }
     });
 
-    const labelEl = document.getElementById("process-step-label");
-    const titleEl = document.getElementById("process-step-title");
-    const iconEl = document.getElementById("process-slide-icon");
+    const labelEl = homeRoot.querySelector("#process-step-label");
+    const titleEl = homeRoot.querySelector("#process-step-title");
+    const iconEl = homeRoot.querySelector("#process-slide-icon");
     if (labelEl) labelEl.textContent = `Tahap ${step.step}`;
     if (titleEl) titleEl.textContent = step.title;
     if (iconEl) iconEl.setAttribute("name", step.icon);
 
-    document.querySelectorAll<HTMLElement>(".process-btn").forEach((btn, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(".process-btn").forEach((btn, i) => {
       btn.classList.remove("border-primary/30", "bg-primary/[0.04]", "shadow-md", "border-base-200/70", "bg-white", "shadow-sm");
       if (i === idx) {
         btn.classList.add("border-primary/30", "bg-primary/[0.04]", "shadow-md");
@@ -814,7 +775,7 @@ const comparisons = [
   function startProcessAuto() { stopProcessAuto(); processTimer = setInterval(() => goProcess((activeProcess + 1) % processLen), 4000); }
   function stopProcessAuto() { if (processTimer) { clearInterval(processTimer); processTimer = undefined; } }
 
-  document.querySelectorAll<HTMLElement>(".process-btn").forEach(btn => {
+  homeRoot.querySelectorAll<HTMLElement>(".process-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       goProcess(parseInt(btn.getAttribute("data-step") || "0"));
       startProcessAuto();
@@ -833,12 +794,12 @@ const comparisons = [
   // ====================================================================
   let mobileIdx = 0;
   const mobileTotal = processStepsData.length;
-  const mobileTrack = document.getElementById("mobile-track");
-  const mobileDots = document.querySelectorAll<HTMLElement>(".mobile-dot");
-  const mobileProgress = document.getElementById("mobile-progress");
-  const mobileCurrent = document.getElementById("mobile-current");
-  const mobileTitle = document.getElementById("mobile-title");
-  const mobileSlideIcon = document.getElementById("mobile-slide-icon");
+  const mobileTrack = homeRoot.querySelector<HTMLElement>("#mobile-track");
+  const mobileDots = homeRoot.querySelectorAll<HTMLElement>(".mobile-dot");
+  const mobileProgress = homeRoot.querySelector<HTMLElement>("#mobile-progress");
+  const mobileCurrent = homeRoot.querySelector("#mobile-current");
+  const mobileTitle = homeRoot.querySelector("#mobile-title");
+  const mobileSlideIcon = homeRoot.querySelector("#mobile-slide-icon");
   let mobileTimer: ReturnType<typeof setInterval> | undefined;
 
   function goMobile(idx: number) {
@@ -850,7 +811,7 @@ const comparisons = [
     if (mobileTitle && processStepsData[mobileIdx]) mobileTitle.textContent = processStepsData[mobileIdx].title;
     if (mobileSlideIcon && processStepsData[mobileIdx]) mobileSlideIcon.setAttribute("name", processStepsData[mobileIdx].icon);
 
-    document.querySelectorAll<HTMLElement>(`[id^="mobile-img-"]`).forEach((img, i) => {
+    homeRoot.querySelectorAll<HTMLElement>(`[id^="mobile-img-"]`).forEach((img, i) => {
       if (i === mobileIdx) { img.classList.add("opacity-100", "scale-100"); img.classList.remove("opacity-0", "scale-110"); }
       else { img.classList.remove("opacity-100", "scale-100"); img.classList.add("opacity-0", "scale-110"); }
     });
@@ -865,8 +826,8 @@ const comparisons = [
   function stopMobile() { if (mobileTimer) clearInterval(mobileTimer); }
   function resetMobile() { stopMobile(); startMobile(); }
 
-  document.getElementById("mobile-prev")?.addEventListener("click", () => { goMobile(mobileIdx - 1); resetMobile(); });
-  document.getElementById("mobile-next")?.addEventListener("click", () => { goMobile(mobileIdx + 1); resetMobile(); });
+  homeRoot.querySelector("#mobile-prev")?.addEventListener("click", () => { goMobile(mobileIdx - 1); resetMobile(); });
+  homeRoot.querySelector("#mobile-next")?.addEventListener("click", () => { goMobile(mobileIdx + 1); resetMobile(); });
   mobileDots.forEach((dot, i) => { dot.addEventListener("click", () => { goMobile(i); resetMobile(); }); });
 
   let mTouchX = 0;
@@ -884,7 +845,7 @@ const comparisons = [
   // ====================================================================
   let tappedCard: HTMLElement | null = null;
 
-  document.querySelectorAll<HTMLElement>('.touch-card').forEach(card => {
+  homeRoot.querySelectorAll<HTMLElement>(".touch-card").forEach(card => {
     card.addEventListener('click', function(e) {
       // Only intercept on touch devices (coarse pointer)
       if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
@@ -908,7 +869,7 @@ const comparisons = [
   });
 
   // Close tapped card when clicking outside
-  document.addEventListener('click', function(e) {
+  homeRoot.addEventListener("click", function(e) {
     if (!tappedCard) return;
     if (!tappedCard.contains(e.target as Node)) {
       tappedCard.classList.remove('tapped');
@@ -932,7 +893,7 @@ const comparisons = [
     });
   }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 
-  document.querySelectorAll(".reveal-up").forEach((el, i) => {
+  homeRoot.querySelectorAll(".reveal-up").forEach((el, i) => {
     const htmlEl = el as HTMLElement;
     htmlEl.style.opacity = "0";
     htmlEl.style.transform = "translateY(24px)";

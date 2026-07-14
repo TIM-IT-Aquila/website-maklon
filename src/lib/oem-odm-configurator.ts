@@ -96,13 +96,11 @@ function getMaterialPremium(materialId: string): number {
 export function calculatePricing(state: ConfiguratorState): PricingBreakdown {
   const containerPremium = getContainerPremium(state.container);
   const scentPremium = state.mode === "odm" ? getScentPremium(state.scent) : 0;
-  const materialPremium =
-    state.mode === "odm" ? getMaterialPremium(state.material) : 0;
+  const materialPremium = state.mode === "odm" ? getMaterialPremium(state.material) : 0;
 
   if (state.mode === "oem") {
     const formula =
-      oemFormulaCatalog.find((item) => item.id === state.formulaId) ??
-      oemFormulaCatalog[0];
+      oemFormulaCatalog.find((item) => item.id === state.formulaId) ?? oemFormulaCatalog[0];
     const unitPrice = formula.baseUnitPrice + containerPremium;
     const moq = pricingConfig.oem.moq;
     const subtotalProduction = unitPrice * moq;
@@ -155,8 +153,7 @@ export function calculatePricing(state: ConfiguratorState): PricingBreakdown {
 
 export function buildPreviewSummary(state: ConfiguratorState): PreviewSummary {
   const formula =
-    oemFormulaCatalog.find((item) => item.id === state.formulaId) ??
-    oemFormulaCatalog[0];
+    oemFormulaCatalog.find((item) => item.id === state.formulaId) ?? oemFormulaCatalog[0];
 
   const activeSummary =
     state.mode === "odm"
@@ -164,18 +161,13 @@ export function buildPreviewSummary(state: ConfiguratorState): PreviewSummary {
       : formula.name;
 
   return {
-    modeLabel:
-      state.mode === "oem"
-        ? pricingConfig.oem.label
-        : pricingConfig.odm.label,
+    modeLabel: state.mode === "oem" ? pricingConfig.oem.label : pricingConfig.odm.label,
     formulaLabel: state.mode === "oem" ? formula.name : "Formula Kustom Eksklusif",
     textureLabel: findOptionLabel(textureOptions, state.texture),
     scentLabel: findOptionLabel(scentOptions, state.scent),
     containerLabel: findOptionLabel(containerOptions, state.container),
     materialLabel:
-      state.mode === "odm"
-        ? findOptionLabel(premiumMaterials, state.material)
-        : "Standard (OEM)",
+      state.mode === "odm" ? findOptionLabel(premiumMaterials, state.material) : "Standard (OEM)",
     designLabel: state.designFileName ?? "Belum ada file",
     activeSummary,
   };
@@ -193,10 +185,7 @@ export function createConfiguratorWhatsappMessage(
   state: ConfiguratorState,
   preview: PreviewSummary,
 ): string {
-  const moqRef =
-    state.mode === "oem"
-      ? pricingConfig.oem.moq
-      : pricingConfig.odm.moq;
+  const moqRef = state.mode === "oem" ? pricingConfig.oem.moq : pricingConfig.odm.moq;
 
   const lines = [
     "Halo, saya tertarik layanan OEM/ODM Magna dan ingin mendapatkan penawaran harga.",

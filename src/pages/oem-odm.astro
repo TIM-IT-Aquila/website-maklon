@@ -1,7 +1,21 @@
 ---
+import Icon from "../components/ui/Icon.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import WAButton from "../components/ui/WAButton.astro";
+import { siteConfig } from "../data/site";
+import { oemOdmStats, oemOdmHero } from "../data/oem-odm";
+import {
+  oemFormulaCatalog,
+  textureOptions,
+  scentOptions,
+  containerOptions,
+  premiumMaterials,
+  activeIngredientConfig,
+  pricingConfig,
+} from "../data/oem-odm-configurator";
+import { defaultConfiguratorState } from "../lib/oem-odm-configurator";
 import MainLayout from "../layouts/MainLayout.astro";
-import OemOdmConfiguratorSection from "../components/sections/OemOdmConfiguratorSection.astro";
-import OemOdmInfoSection from "../components/sections/OemOdmInfoSection.astro";
+import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-page";
 ---
 
 <MainLayout
@@ -9,7 +23,687 @@ import OemOdmInfoSection from "../components/sections/OemOdmInfoSection.astro";
   description="Layanan OEM dan ODM maklon skincare. Rancang preferensi formula & kemasan, lalu konsultasi penawaran harga langsung via WhatsApp."
 >
   <main class="overflow-hidden">
-    <OemOdmConfiguratorSection />
-    <OemOdmInfoSection />
+    <section
+      id="oem-odm-studio"
+      class="relative overflow-hidden bg-gradient-to-b from-base-100 via-primary/[0.02] to-base-200/30"
+      data-oem-odm-configurator
+    >
+      <PageHero
+        image={oemOdmHero.image}
+        alt={oemOdmHero.alt}
+        titleMain="Rancang Produk"
+        titleAccent="Skincare Anda"
+      >
+        <p
+          slot="description"
+          class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base"
+        >
+          Rancang preferensi formula dan kemasan Anda — lalu kirim ringkasan ke tim kami untuk
+          konsultasi dan penawaran harga via WhatsApp.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {
+            oemOdmStats.slice(0, 3).map((stat) => (
+              <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-sm">
+                <strong class="text-white">{stat.value}</strong> {stat.label}
+              </span>
+            ))
+          }
+        </div>
+      </PageHero>
+
+      <div class="relative mx-auto max-w-7xl px-4 pb-12 pt-8 lg:px-8 lg:pb-16">
+        <div class="mt-8 flex justify-center">
+          <div role="tablist" class="tabs tabs-box w-full max-w-2xl bg-white/90 p-1 shadow-md">
+            <button
+              type="button"
+              role="tab"
+              class="tab flex-1 gap-2 text-sm font-semibold tab-active"
+              data-mode-tab="oem"
+              aria-selected="true"
+            >
+              <Icon name="lucide:factory" size={15} />
+              OEM — Formula Siap Pakai
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="tab flex-1 gap-2 text-sm font-semibold"
+              data-mode-tab="odm"
+              aria-selected="false"
+            >
+              <Icon name="lucide:lightbulb" size={15} />
+              ODM — Kustom Penuh
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio layout -->
+        <div class="mt-8 grid gap-6 lg:grid-cols-12 lg:gap-8">
+          <!-- Left: configuration steps -->
+          <div class="space-y-5 lg:col-span-7">
+            <!-- Step nav -->
+            <div class="flex gap-2 overflow-x-auto pb-1">
+              <button
+                type="button"
+                class="btn btn-sm rounded-full btn-primary"
+                data-step-nav="formula"
+              >
+                1. Formula
+              </button>
+              <button
+                type="button"
+                class="btn btn-sm rounded-full btn-ghost border border-base-200"
+                data-step-nav="packaging"
+              >
+                2. Kemasan
+              </button>
+            </div>
+
+            <!-- Step 1: Formula -->
+            <div
+              id="step-formula"
+              class="scroll-mt-28 rounded-2xl border border-base-200 bg-white p-5 shadow-sm lg:p-6"
+            >
+              <div class="mb-4 flex items-center gap-2">
+                <Icon name="lucide:flask-conical" size={18} class="text-primary" />
+                <h2 class="font-bold text-base-content">Formulasi & Bahan Aktif</h2>
+              </div>
+              <p class="mb-4 text-xs text-base-content/50" data-area1-desc>
+                Pilih formula standar dari katalog siap produksi.
+              </p>
+
+              <div data-panel-oem>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  {
+                    oemFormulaCatalog.map((formula, index) => (
+                      <label class="cursor-pointer" data-formula-card={formula.id}>
+                        <input
+                          type="radio"
+                          name="oem-formula"
+                          value={formula.id}
+                          class="peer sr-only"
+                          checked={index === 0}
+                          data-formula-input
+                        />
+                        <div class="rounded-xl border-2 border-base-200 p-4 transition-all duration-200 peer-checked:border-primary peer-checked:bg-primary/[0.03] peer-checked:shadow-md hover:border-primary/30">
+                          <div class="flex items-start justify-between gap-2">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+                              <Icon name={formula.icon} size={15} class="text-primary" />
+                            </div>
+                            <span class="badge badge-primary badge-outline badge-xs">
+                              {formula.highlight}
+                            </span>
+                          </div>
+                          <p class="mt-2 text-sm font-bold leading-snug">{formula.name}</p>
+                          <p class="mt-1 text-[11px] text-base-content/45 line-clamp-2">
+                            {formula.description}
+                          </p>
+                        </div>
+                      </label>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div data-panel-odm class="hidden space-y-5">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  {
+                    activeIngredientConfig.map((ingredient) => (
+                      <div data-ingredient={ingredient.id}>
+                        <div class="mb-1 flex items-center justify-between text-sm">
+                          <span class="font-medium">{ingredient.label}</span>
+                          <span
+                            class="badge badge-ghost badge-sm font-mono"
+                            data-ingredient-value={ingredient.id}
+                          >
+                            {ingredient.id === "retinol"
+                              ? "0.3"
+                              : ingredient.id === "vitaminC"
+                                ? "10"
+                                : "2"}
+                            {ingredient.unit}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min={ingredient.min}
+                          max={ingredient.max}
+                          step={ingredient.step}
+                          value={
+                            ingredient.id === "retinol"
+                              ? 0.3
+                              : ingredient.id === "vitaminC"
+                                ? 10
+                                : 2
+                          }
+                          class="range range-primary range-xs w-full"
+                          data-ingredient-slider={ingredient.id}
+                        />
+                      </div>
+                    ))
+                  }
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <select class="select select-bordered select-sm w-full" data-texture-select>
+                    {textureOptions.map((t) => <option value={t.id}>{t.label}</option>)}
+                  </select>
+                  <select class="select select-bordered select-sm w-full" data-scent-select>
+                    {scentOptions.map((s) => <option value={s.id}>{s.label}</option>)}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Packaging -->
+            <div
+              id="step-packaging"
+              class="scroll-mt-28 rounded-2xl border border-base-200 bg-white p-5 shadow-sm lg:p-6"
+            >
+              <div class="mb-4 flex items-center gap-2">
+                <Icon name="lucide:package" size={18} class="text-primary" />
+                <h2 class="font-bold text-base-content">Branding & Kemasan</h2>
+              </div>
+
+              <p class="mb-3 text-xs font-medium text-base-content/60">Jenis Wadah</p>
+              <div class="flex flex-wrap gap-2">
+                {
+                  containerOptions.map((container, index) => (
+                    <label class="cursor-pointer">
+                      <input
+                        type="radio"
+                        name="container"
+                        value={container.id}
+                        class="peer sr-only"
+                        checked={index === 0}
+                        data-container-input
+                      />
+                      <span class="inline-flex items-center gap-1.5 rounded-full border border-base-200 px-3 py-2 text-xs font-medium transition-all peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary hover:border-primary/30">
+                        <Icon name={container.icon} size={13} />
+                        {container.label}
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+
+              <div data-odm-packaging class="mt-5 hidden space-y-4 border-t border-base-200 pt-5">
+                <p class="text-xs font-medium text-base-content/60">Material Premium (ODM)</p>
+                <div class="flex flex-wrap gap-2">
+                  {
+                    premiumMaterials.map((material, index) => (
+                      <label class="cursor-pointer">
+                        <input
+                          type="radio"
+                          name="material"
+                          value={material.id}
+                          class="peer sr-only"
+                          checked={index === 0}
+                          data-material-input
+                        />
+                        <span class="inline-flex rounded-full border border-base-200 px-3 py-1.5 text-xs font-medium transition-all peer-checked:border-secondary peer-checked:bg-secondary/10 peer-checked:text-secondary">
+                          {material.label}
+                        </span>
+                      </label>
+                    ))
+                  }
+                </div>
+                <input
+                  type="file"
+                  accept=".pdf,.ai,.psd,.png,.jpg,.jpeg"
+                  class="file-input file-input-bordered file-input-sm w-full"
+                  data-design-upload
+                />
+                <p class="text-[10px] text-base-content/40">
+                  Upload cetak biru desain kemasan (opsional)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: sticky live panel -->
+          <div class="lg:col-span-5">
+            <div class="sticky top-24 space-y-4">
+              <div
+                class="overflow-hidden rounded-2xl border border-base-200 bg-gradient-to-br from-white via-primary/[0.02] to-emerald-50/50 shadow-xl transition-shadow duration-300"
+                data-preview-card
+              >
+                <div class="border-b border-base-200/80 bg-base-100/50 px-5 py-3">
+                  <div class="flex items-center justify-between">
+                    <span class="badge badge-primary badge-sm">Live Preview</span>
+                    <span
+                      class="text-[10px] font-bold uppercase tracking-widest text-base-content/35"
+                      data-preview-mode>OEM</span
+                    >
+                  </div>
+                </div>
+
+                <div class="px-5 py-6">
+                  <div class="relative mx-auto flex h-40 items-end justify-center">
+                    <div
+                      class="absolute inset-x-10 bottom-0 h-16 rounded-full bg-primary/10 blur-xl"
+                    >
+                    </div>
+                    <div
+                      class="relative flex h-32 w-16 flex-col items-center border-2 shadow-md transition-all duration-500"
+                      data-mockup-container
+                    >
+                      <div class="mt-1.5 h-2 w-6 rounded-full bg-base-content/10"></div>
+                      <div
+                        class="mt-auto h-3/4 w-full rounded-b-[inherit] bg-primary/25"
+                        data-mockup-body
+                      >
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 class="mt-4 text-center text-base font-black" data-preview-formula>
+                    Serum Glowing Niacinamide 5%
+                  </h3>
+                  <p
+                    class="mt-0.5 text-center text-[11px] text-base-content/50"
+                    data-preview-active
+                  >
+                    —
+                  </p>
+
+                  <dl class="mt-4 space-y-1.5 text-xs">
+                    <div class="flex justify-between gap-2">
+                      <dt class="text-base-content/45">Wadah</dt>
+                      <dd class="font-medium" data-preview-container-label>Botol Pipet</dd>
+                    </div>
+                    <div class="flex justify-between gap-2">
+                      <dt class="text-base-content/45">Tekstur</dt>
+                      <dd class="font-medium" data-preview-texture>Emulsion</dd>
+                    </div>
+                    <div class="flex justify-between gap-2">
+                      <dt class="text-base-content/45">Material</dt>
+                      <dd class="font-medium" data-preview-material>Standard</dd>
+                    </div>
+                    <div class="hidden justify-between gap-2" data-preview-design-row>
+                      <dt class="text-base-content/45">Desain</dt>
+                      <dd class="max-w-[140px] truncate font-medium" data-preview-design>—</dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <!-- Ringkasan & info konsultasi -->
+                <div class="border-t border-base-200 bg-base-200/30 p-5">
+                  <p
+                    class="text-[10px] font-semibold uppercase tracking-wider text-base-content/40"
+                  >
+                    Ringkasan Preferensi
+                  </p>
+                  <p class="mt-2 text-xs leading-relaxed text-base-content/55" data-moq-hint>
+                    MOQ referensi OEM: mulai {pricingConfig.oem.moq.toLocaleString("id-ID")} pcs
+                  </p>
+
+                  <div class="mt-4 rounded-xl border border-primary/15 bg-primary/[0.05] px-3 py-3">
+                    <p class="text-xs font-semibold text-primary">Konsultasi & Penawaran Harga</p>
+                    <p class="mt-1 text-[11px] leading-relaxed text-base-content/55">
+                      Website ini untuk informasi dan konsultasi awal. Harga final, MOQ pasti, dan
+                      pemesanan diproses langsung dengan tim kami via WhatsApp.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <WAButton
+                text="Konsultasi & Minta Penawaran via WhatsApp"
+                message="Halo, saya tertarik layanan OEM/ODM dan ingin konsultasi penawaran harga."
+                variant="primary"
+                size="lg"
+                asButton={true}
+                class="w-full shadow-lg shadow-primary/20"
+                data-wa-config-btn
+              />
+              <p class="text-center text-[10px] text-base-content/40">
+                Kirim ringkasan konfigurasi Anda — tim kami akan merespons dengan penawaran resmi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script
+        is:inline
+        type="application/json"
+        id="oem-odm-default-state"
+        set:html={JSON.stringify(defaultConfiguratorState)}
+      />
+      <script
+        is:inline
+        type="application/json"
+        id="oem-odm-wa-phone"
+        set:html={JSON.stringify(siteConfig.waNumber)}
+      />
+    </section>
+
+    <script>
+      import {
+        buildPreviewSummary,
+        createConfiguratorWhatsappMessage,
+        getContainerMockupClass,
+        getMaterialMockupStyle,
+        type ConfiguratorState,
+        type ServiceMode,
+      } from "../lib/oem-odm-configurator";
+      import { pricingConfig } from "../data/oem-odm-configurator";
+
+      const root = document.querySelector<HTMLElement>(
+        "[data-oem-odm-configurator]",
+      ) as HTMLElement;
+
+      const defaultState = JSON.parse(
+        document.getElementById("oem-odm-default-state")?.textContent ?? "{}",
+      ) as ConfiguratorState;
+      const waPhone = JSON.parse(
+        document.getElementById("oem-odm-wa-phone")?.textContent ?? '""',
+      ) as string;
+
+      let state: ConfiguratorState = { ...defaultState };
+
+      const els = {
+        modeTabs: root.querySelectorAll<HTMLButtonElement>("[data-mode-tab]"),
+        stepNavs: root.querySelectorAll<HTMLButtonElement>("[data-step-nav]"),
+        panelOem: root.querySelector<HTMLElement>("[data-panel-oem]"),
+        panelOdm: root.querySelector<HTMLElement>("[data-panel-odm]"),
+        odmPackaging: root.querySelector<HTMLElement>("[data-odm-packaging]"),
+        area1Desc: root.querySelector<HTMLElement>("[data-area1-desc]"),
+        ingredientSliders: root.querySelectorAll<HTMLInputElement>("[data-ingredient-slider]"),
+        textureSelect: root.querySelector<HTMLSelectElement>("[data-texture-select]"),
+        scentSelect: root.querySelector<HTMLSelectElement>("[data-scent-select]"),
+        designUpload: root.querySelector<HTMLInputElement>("[data-design-upload]"),
+        previewCard: root.querySelector<HTMLElement>("[data-preview-card]"),
+        previewMode: root.querySelector<HTMLElement>("[data-preview-mode]"),
+        previewFormula: root.querySelector<HTMLElement>("[data-preview-formula]"),
+        previewActive: root.querySelector<HTMLElement>("[data-preview-active]"),
+        previewTexture: root.querySelector<HTMLElement>("[data-preview-texture]"),
+        previewMaterial: root.querySelector<HTMLElement>("[data-preview-material]"),
+        previewDesign: root.querySelector<HTMLElement>("[data-preview-design]"),
+        previewDesignRow: root.querySelector<HTMLElement>("[data-preview-design-row]"),
+        previewContainerLabel: root.querySelector<HTMLElement>("[data-preview-container-label]"),
+        mockupContainer: root.querySelector<HTMLElement>("[data-mockup-container]"),
+        mockupBody: root.querySelector<HTMLElement>("[data-mockup-body]"),
+        moqHint: root.querySelector<HTMLElement>("[data-moq-hint]"),
+        waBtn: root.querySelector<HTMLButtonElement>("[data-wa-config-btn]"),
+      };
+
+      function setMode(mode: ServiceMode): void {
+        state.mode = mode;
+        els.modeTabs.forEach((tab) => {
+          const active = tab.dataset.modeTab === mode;
+          tab.classList.toggle("tab-active", active);
+          tab.setAttribute("aria-selected", String(active));
+        });
+        els.panelOem?.classList.toggle("hidden", mode !== "oem");
+        els.panelOdm?.classList.toggle("hidden", mode !== "odm");
+        els.odmPackaging?.classList.toggle("hidden", mode !== "odm");
+        els.previewDesignRow?.classList.toggle("hidden", mode !== "odm");
+        if (els.moqHint) {
+          const moq = mode === "oem" ? pricingConfig.oem.moq : pricingConfig.odm.moq;
+          els.moqHint.textContent = `MOQ referensi ${mode.toUpperCase()}: mulai ${moq.toLocaleString("id-ID")} pcs`;
+        }
+        if (els.area1Desc) {
+          els.area1Desc.textContent =
+            mode === "oem"
+              ? "Pilih formula standar dari katalog siap produksi."
+              : "Atur bahan aktif, tekstur, dan aroma untuk formula eksklusif.";
+        }
+      }
+
+      function readStateFromDom(): void {
+        const formula = root.querySelector<HTMLInputElement>("[data-formula-input]:checked");
+        if (formula) state.formulaId = formula.value;
+        els.ingredientSliders.forEach((slider) => {
+          const key = slider.dataset.ingredientSlider as "retinol" | "vitaminC" | "ceramide";
+          state[key] = Number(slider.value);
+          const badge = root.querySelector<HTMLElement>(`[data-ingredient-value="${key}"]`);
+          if (badge) badge.textContent = `${slider.value}%`;
+        });
+        if (els.textureSelect) state.texture = els.textureSelect.value;
+        if (els.scentSelect) state.scent = els.scentSelect.value;
+        const container = root.querySelector<HTMLInputElement>("[data-container-input]:checked");
+        if (container) state.container = container.value;
+        const material = root.querySelector<HTMLInputElement>("[data-material-input]:checked");
+        if (material) state.material = material.value;
+      }
+
+      function pulsePreview(): void {
+        els.previewCard?.classList.add("ring-2", "ring-primary/30");
+        window.setTimeout(
+          () => els.previewCard?.classList.remove("ring-2", "ring-primary/30"),
+          400,
+        );
+      }
+
+      function updateUI(): void {
+        readStateFromDom();
+        const preview = buildPreviewSummary(state);
+        const mockupClass = getContainerMockupClass(state.container);
+        const mockupStyle = getMaterialMockupStyle(
+          state.mode === "odm" ? state.material : "standard",
+        );
+
+        if (els.previewMode) els.previewMode.textContent = state.mode.toUpperCase();
+        if (els.previewFormula) els.previewFormula.textContent = preview.formulaLabel;
+        if (els.previewActive) els.previewActive.textContent = preview.activeSummary;
+        if (els.previewTexture) els.previewTexture.textContent = preview.textureLabel;
+        if (els.previewMaterial) els.previewMaterial.textContent = preview.materialLabel;
+        if (els.previewDesign) els.previewDesign.textContent = preview.designLabel;
+        if (els.previewContainerLabel)
+          els.previewContainerLabel.textContent = preview.containerLabel;
+
+        if (els.mockupContainer) {
+          els.mockupContainer.className = `relative flex h-32 w-16 flex-col items-center border-2 shadow-md transition-all duration-500 ${mockupClass} ${mockupStyle.accent}`;
+        }
+        if (els.mockupBody) {
+          els.mockupBody.className = `mt-auto h-3/4 w-full rounded-b-[inherit] ${mockupStyle.bg}`;
+        }
+
+        if (els.waBtn) {
+          const msg = createConfiguratorWhatsappMessage(state, preview);
+          els.waBtn.onclick = () =>
+            window.open(
+              `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`,
+              "_blank",
+              "noopener,noreferrer",
+            );
+        }
+
+        pulsePreview();
+      }
+
+      els.modeTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          setMode(tab.dataset.modeTab as ServiceMode);
+          updateUI();
+        });
+      });
+
+      els.stepNavs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.stepNav;
+          const target = document.getElementById(`step-${id}`);
+          target?.scrollIntoView({ behavior: "smooth", block: "start" });
+          els.stepNavs.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle("btn-primary", active);
+            b.classList.toggle("btn-ghost", !active);
+          });
+        });
+      });
+
+      root.addEventListener("change", (e) => {
+        const t = e.target as HTMLElement;
+        if (
+          t.matches(
+            "[data-formula-input], [data-ingredient-slider], [data-texture-select], [data-scent-select], [data-container-input], [data-material-input]",
+          )
+        ) {
+          updateUI();
+        }
+      });
+      root.addEventListener("input", (e) => {
+        if ((e.target as HTMLElement).matches("[data-ingredient-slider]")) updateUI();
+      });
+      els.designUpload?.addEventListener("change", () => {
+        state.designFileName = els.designUpload?.files?.[0]?.name ?? null;
+        updateUI();
+      });
+
+      setMode(state.mode);
+      updateUI();
+    </script>
+
+    <section id="oem-odm-info" class="border-t border-base-200 bg-base-200/40 py-14 lg:py-16">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="mt-8 overflow-hidden rounded-3xl border border-base-200 bg-white shadow-lg">
+          <div role="tablist" class="tabs tabs-bordered bg-base-100/50 px-2 pt-2">
+            <button
+              type="button"
+              role="tab"
+              class="tab tab-active font-semibold"
+              data-info-tab="compare">Perbandingan</button
+            >
+            <button type="button" role="tab" class="tab font-semibold" data-info-tab="flow"
+              >Alur Kerja</button
+            >
+            <button type="button" role="tab" class="tab font-semibold" data-info-tab="faq"
+              >FAQ</button
+            >
+          </div>
+
+          <div class="p-5 lg:p-8" data-info-panel="compare">
+            <div class="overflow-x-auto">
+              <table class="table table-zebra">
+                <thead>
+                  <tr class="text-xs uppercase tracking-wider text-base-content/50">
+                    <th>Aspek</th>
+                    <th class="text-primary">OEM</th>
+                    <th class="text-secondary">ODM</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    comparisonRows.map((row) => (
+                      <tr>
+                        <td class="font-semibold">{row.aspect}</td>
+                        <td class="text-sm text-base-content/65">{row.oem}</td>
+                        <td class="text-sm text-base-content/65">{row.odm}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="hidden p-5 lg:p-8" data-info-panel="flow">
+            <div class="mb-4 flex justify-center">
+              <div class="tabs tabs-box tabs-sm">
+                <button type="button" class="tab tab-active" data-flow-tab="oem">OEM</button>
+                <button type="button" class="tab" data-flow-tab="odm">ODM</button>
+              </div>
+            </div>
+
+            <div data-flow-panel="oem">
+              <ol class="steps steps-vertical w-full sm:steps-horizontal">
+                {
+                  oemFlow.map((step) => (
+                    <li class="step step-primary" data-content={String(step.step)}>
+                      <div class="mt-2 text-left sm:mt-4">
+                        <p class="text-sm font-bold">{step.title}</p>
+                        <p class="text-xs text-base-content/50">{step.desc}</p>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+
+            <div class="hidden" data-flow-panel="odm">
+              <ol class="steps steps-vertical w-full sm:steps-horizontal">
+                {
+                  odmFlow.map((step) => (
+                    <li class="step step-secondary" data-content={String(step.step)}>
+                      <div class="mt-2 text-left sm:mt-4">
+                        <p class="text-sm font-bold">{step.title}</p>
+                        <p class="text-xs text-base-content/50">{step.desc}</p>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+          </div>
+
+          <div class="hidden space-y-2 p-5 lg:p-8" data-info-panel="faq">
+            {
+              oemOdmFaqs.map((faq, i) => (
+                <details class="group rounded-xl border border-base-200 bg-base-100/50 [&_summary::-webkit-details-marker]:hidden">
+                  <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
+                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    <span class="flex-1 text-sm font-semibold">{faq.q}</span>
+                    <Icon
+                      name="lucide:chevron-down"
+                      size={16}
+                      class="text-base-content/30 transition-transform group-open:rotate-180"
+                    />
+                  </summary>
+                  <p class="px-4 pb-4 pl-14 text-sm leading-relaxed text-base-content/55">
+                    {faq.a}
+                  </p>
+                </details>
+              ))
+            }
+            <p class="pt-2 text-center text-sm text-base-content/45">
+              Masih ada pertanyaan?
+              <WAButton
+                text="Chat tim kami"
+                variant="text-link"
+                message="Halo, saya ingin konsultasi layanan OEM/ODM."
+                size="sm"
+                hideIcon
+                class="!inline !h-auto !p-0 !text-sm !font-semibold"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </MainLayout>
+
+<script>
+  const infoRoot = document.getElementById("oem-odm-info");
+  if (infoRoot) {
+    const infoTabs = infoRoot.querySelectorAll<HTMLButtonElement>("[data-info-tab]");
+    const infoPanels = infoRoot.querySelectorAll<HTMLElement>("[data-info-panel]");
+
+    infoTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.infoTab;
+        infoTabs.forEach((item) => item.classList.toggle("tab-active", item === tab));
+        infoPanels.forEach((panel) =>
+          panel.classList.toggle("hidden", panel.dataset.infoPanel !== target),
+        );
+      });
+    });
+
+    const flowTabs = infoRoot.querySelectorAll<HTMLButtonElement>("[data-flow-tab]");
+    const flowPanels = infoRoot.querySelectorAll<HTMLElement>("[data-flow-panel]");
+
+    flowTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.flowTab;
+        flowTabs.forEach((item) => item.classList.toggle("tab-active", item === tab));
+        flowPanels.forEach((panel) =>
+          panel.classList.toggle("hidden", panel.dataset.flowPanel !== target),
+        );
+      });
+    });
+  }
+</script>

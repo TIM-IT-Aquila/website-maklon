@@ -1,25 +1,53 @@
 export const oemFlow = [
-  { step: 1, title: "Konsultasi", icon: "lucide:message-circle", desc: "Pilih formula atau brief produk" },
+  {
+    step: 1,
+    title: "Konsultasi",
+    icon: "lucide:message-circle",
+    desc: "Pilih formula atau brief produk",
+  },
   { step: 2, title: "Sampling", icon: "lucide:flask-conical", desc: "Sample dibuat & direview" },
-  { step: 3, title: "Approval", icon: "lucide:check-circle", desc: "Formula disetujui untuk produksi" },
+  {
+    step: 3,
+    title: "Approval",
+    icon: "lucide:check-circle",
+    desc: "Formula disetujui untuk produksi",
+  },
   { step: 4, title: "Produksi", icon: "lucide:factory", desc: "Produksi massal + QC ketat" },
   { step: 5, title: "Launch", icon: "lucide:rocket", desc: "Produk siap edar" },
 ];
 
 export const odmFlow = [
-  { step: 1, title: "Brief Brand", icon: "lucide:clipboard-list", desc: "Tim dalami visi & target pasar" },
-  { step: 2, title: "Formulasi", icon: "lucide:microscope", desc: "R&D kembangkan formula eksklusif" },
+  {
+    step: 1,
+    title: "Brief Brand",
+    icon: "lucide:clipboard-list",
+    desc: "Tim dalami visi & target pasar",
+  },
+  {
+    step: 2,
+    title: "Formulasi",
+    icon: "lucide:microscope",
+    desc: "R&D kembangkan formula eksklusif",
+  },
   { step: 3, title: "Branding", icon: "lucide:paintbrush", desc: "Desain kemasan & identitas" },
   { step: 4, title: "Produksi", icon: "lucide:factory", desc: "Produksi + legalitas" },
   { step: 5, title: "Launch", icon: "lucide:rocket", desc: "Produk siap jual" },
 ];
 
 export const comparisonRows = [
-  { aspect: "Formula", oem: "Pilih katalog / bawa sendiri", odm: "Dikembangkan eksklusif oleh R&D" },
+  {
+    aspect: "Formula",
+    oem: "Pilih katalog / bawa sendiri",
+    odm: "Dikembangkan eksklusif oleh R&D",
+  },
   { aspect: "MOQ", oem: "Mulai 1.000 pcs", odm: "Mulai 3.000 pcs" },
   { aspect: "Biaya R&D", oem: "Tidak ada", odm: "Termasuk biaya formulasi" },
   { aspect: "Timeline", oem: "30–60 hari", odm: "60–90 hari" },
-  { aspect: "Cocok Untuk", oem: "Brand yang ingin cepat launch", odm: "Brand yang ingin produk unik" },
+  {
+    aspect: "Cocok Untuk",
+    oem: "Brand yang ingin cepat launch",
+    odm: "Brand yang ingin produk unik",
+  },
 ];
 
 export const oemOdmFaqs = [
@@ -40,5 +68,3 @@ export const oemOdmFaqs = [
     a: "OEM 30–60 hari (formula siap), ODM 60–90 hari (termasuk formulasi & sampling). Timeline detail diberikan setelah konsultasi awal.",
   },
 ];
-
-

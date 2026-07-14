@@ -1,13 +1,430 @@
 ---
+import Icon from "../components/ui/Icon.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import SectionHeader from "../components/ui/SectionHeader.astro";
+import { siteConfig } from "../data/site";
+import {
+  rdCredentials,
+  rdStats,
+  rdIngredientCategories,
+  rdIngredientLibrary,
+  rdTestingFlow,
+  rdFacilities,
+  rdLabFaqs,
+  rdHero,
+} from "../data/research-development";
+import { createRdConsultMessage } from "../lib/rd-lab";
+import { createWhatsappLink } from "../lib/whatsapp";
 import MainLayout from "../layouts/MainLayout.astro";
-import RdLabSection from "../components/sections/RdLabSection.astro";
+
+const featuredFacilities = rdFacilities.slice(0, 4);
+const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMessage());
 ---
 
 <MainLayout
   title="Research & Development | Magna"
-  description="R&D skincare oleh tim Apoteker di lab berstandar ISO/CPKB — ingredient library bahan aktif populer dan alur pengujian formula yang transparan."
+  description="R&D skincare oleh tim Apoteker di lab berstandar ISO/CPKB â€” ingredient library bahan aktif populer dan alur pengujian formula yang transparan."
 >
   <main class="overflow-hidden">
-    <RdLabSection />
+    <section id="rd-lab" class="overflow-hidden" data-rd-lab>
+      <PageHero
+        image={rdHero.image}
+        alt={rdHero.alt}
+        titleMain="Riset & Formulasi"
+        titleAccent="Tim Ahli"
+      >
+        <p
+          slot="description"
+          class="mt-3 max-w-lg text-sm leading-relaxed text-white/55 md:text-base"
+        >
+          Dikembangkan tim Apoteker di laboratorium berstandar <strong class="text-white/75"
+            >ISO</strong
+          > dan
+          <strong class="text-white/75">CPKB</strong> — dari pemilihan bahan aktif hingga formula siap
+          produksi.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {
+            rdCredentials.map((cred) => (
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/75 backdrop-blur-sm">
+                <Icon name={cred.icon} size={13} class="text-white/90" />
+                {cred.label}
+              </span>
+            ))
+          }
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-2 sm:max-w-md">
+          {
+            rdStats.map((stat) => (
+              <div class="rounded-xl border border-white/15 bg-white/10 px-3 py-3 backdrop-blur-sm">
+                <p class="text-base font-black text-white">{stat.value}</p>
+                <p class="mt-0.5 text-[10px] font-medium text-white/60">{stat.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </PageHero>
+
+      <!-- Bahan Aktif -->
+      <div class="bg-base-200/40 py-14 md:py-16">
+        <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <SectionHeader label="Bahan Aktif" variant="minimal" title="Ingredient Library Populer" />
+
+          <div class="reveal-up mt-6 flex flex-wrap justify-center gap-2" data-ingredient-filters>
+            {
+              rdIngredientCategories.slice(0, 6).map((cat, i) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "btn btn-xs rounded-full sm:btn-sm",
+                    i === 0 ? "btn-primary" : "btn-ghost border border-base-200",
+                  ]}
+                  data-ingredient-filter={cat.id}
+                >
+                  {cat.label}
+                </button>
+              ))
+            }
+          </div>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {
+              rdIngredientLibrary.map((ing) => (
+                <button
+                  type="button"
+                  class="reveal-up group rounded-2xl border border-base-200/70 bg-white p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+                  data-rd-modal-trigger="ingredient"
+                  data-rd-modal-id={ing.id}
+                  data-ingredient-tag={ing.tag}
+                >
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary">
+                      <Icon name={ing.icon} size={16} class="text-primary group-hover:text-white" />
+                    </div>
+                    <span class="badge badge-primary badge-outline badge-xs">{ing.tag}</span>
+                  </div>
+                  <h3 class="mt-3 text-sm font-bold text-base-content">{ing.name}</h3>
+                  <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-base-content/50">
+                    {ing.desc}
+                  </p>
+                  <span class="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                    Lihat detail
+                    <Icon name="lucide:arrow-right" size={12} />
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Alur Pengujian -->
+      <div class="bg-base-100 py-14 md:py-16">
+        <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <SectionHeader
+            label="Pengujian"
+            variant="minimal"
+            title="Alur Pengujian Sebelum Produksi"
+          />
+
+          <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {
+              rdTestingFlow.map((flow) => (
+                <button
+                  type="button"
+                  class="reveal-up group rounded-2xl border border-base-200/70 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+                  data-rd-modal-trigger="testing"
+                  data-rd-modal-id={flow.step}
+                >
+                  <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+                    {flow.step}
+                  </div>
+                  <h3 class="mt-3 text-sm font-bold text-base-content">{flow.title}</h3>
+                  <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-base-content/50">
+                    {flow.desc}
+                  </p>
+                  <span class="badge badge-ghost badge-xs mt-3">{flow.duration}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Fasilitas Lab -->
+      <div class="bg-base-200/40 py-14 md:py-16">
+        <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <SectionHeader label="Fasilitas" variant="minimal" title="Laboratorium Terstandarisasi" />
+
+          <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {
+              featuredFacilities.map((facility, i) => (
+                <button
+                  type="button"
+                  class="reveal-up group rounded-2xl border border-base-200/70 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+                  data-rd-modal-trigger="facility"
+                  data-rd-modal-id={i}
+                >
+                  <div
+                    class={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${facility.color} text-white shadow-sm`}
+                  >
+                    <Icon name={facility.icon} size={16} />
+                  </div>
+                  <h3 class="mt-3 text-sm font-bold text-base-content">{facility.title}</h3>
+                  <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-base-content/50">
+                    {facility.desc}
+                  </p>
+                  <span class="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                    Info lab
+                    <Icon name="lucide:arrow-right" size={12} />
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="bg-base-100 py-14 md:py-16">
+        <div class="mx-auto max-w-3xl px-4 lg:px-8">
+          <SectionHeader label="FAQ" variant="minimal">
+            <span slot="title">Pertanyaan <span class="text-primary">Umum R&D</span></span>
+          </SectionHeader>
+
+          <div class="mt-10 space-y-3">
+            {
+              rdLabFaqs.map((faq, i) => (
+                <details
+                  class="reveal-up group rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 open:border-primary/15 open:shadow-md [&_summary::-webkit-details-marker]:hidden"
+                  open={i === 0}
+                >
+                  <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 list-none">
+                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    <span class="flex-1 text-sm font-bold text-base-content/80">{faq.q}</span>
+                    <Icon
+                      name="lucide:chevron-down"
+                      size={16}
+                      class="shrink-0 text-base-content/25 transition-transform duration-300 group-open:rotate-180"
+                    />
+                  </summary>
+                  <p class="px-5 pb-5 pl-14 text-sm leading-relaxed text-base-content/55">
+                    {faq.a}
+                  </p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal detail -->
+      <dialog class="modal modal-bottom sm:modal-middle" data-rd-modal>
+        <div class="modal-box max-w-lg rounded-3xl border border-base-200 p-0 shadow-2xl">
+          <div
+            class="rounded-t-3xl bg-gradient-to-br from-primary/10 via-white to-emerald-50/50 p-6"
+          >
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white shadow-md"
+                >
+                  <Icon name="lucide:flask-conical" size={20} />
+                </div>
+                <div class="min-w-0 text-left">
+                  <span
+                    class="badge badge-primary badge-outline badge-xs"
+                    data-rd-modal-badge
+                    hidden></span>
+                  <h3 class="text-lg font-black text-base-content" data-rd-modal-title>Detail</h3>
+                </div>
+              </div>
+              <form method="dialog">
+                <button type="submit" class="btn btn-sm btn-circle btn-ghost" aria-label="Tutup">
+                  <Icon name="lucide:x" size={16} />
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="space-y-4 p-6">
+            <p class="text-sm leading-relaxed text-base-content/65" data-rd-modal-desc></p>
+            <div
+              class="rounded-xl border border-primary/10 bg-primary/[0.04] p-4"
+              data-rd-modal-extra-wrap
+              hidden
+            >
+              <p
+                class="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/60"
+                data-rd-modal-extra-label
+              >
+              </p>
+              <p class="mt-1 text-sm font-medium text-base-content/75" data-rd-modal-extra></p>
+            </div>
+            <a
+              href={defaultWaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-block"
+              data-rd-modal-wa
+            >
+              <Icon name="lucide:message-circle" size={16} />
+              Konsultasi via WhatsApp
+            </a>
+          </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button type="submit" aria-label="Tutup modal">close</button>
+        </form>
+      </dialog>
+    </section>
   </main>
 </MainLayout>
+
+<script>
+  import { rdIngredientLibrary, rdTestingFlow, rdFacilities } from "../data/research-development";
+  import { createRdConsultMessage } from "../lib/rd-lab";
+  import { createWhatsappLink } from "../lib/whatsapp";
+  import { observeReveal } from "../scripts/reveal";
+  import { siteConfig } from "../data/site";
+
+  type ModalKind = "ingredient" | "testing" | "facility";
+
+  function initRdLab() {
+    const root = document.querySelector<HTMLElement>("[data-rd-lab]");
+    if (!root) return;
+
+    const modal = root.querySelector<HTMLDialogElement>("[data-rd-modal]");
+    const modalTitle = root.querySelector<HTMLElement>("[data-rd-modal-title]");
+    const modalDesc = root.querySelector<HTMLElement>("[data-rd-modal-desc]");
+    const modalBadge = root.querySelector<HTMLElement>("[data-rd-modal-badge]");
+    const modalExtraWrap = root.querySelector<HTMLElement>("[data-rd-modal-extra-wrap]");
+    const modalExtraLabel = root.querySelector<HTMLElement>("[data-rd-modal-extra-label]");
+    const modalExtra = root.querySelector<HTMLElement>("[data-rd-modal-extra]");
+    const modalWa = root.querySelector<HTMLAnchorElement>("[data-rd-modal-wa]");
+    const filterBtns = root.querySelectorAll<HTMLButtonElement>("[data-ingredient-filter]");
+    const ingredientCards = root.querySelectorAll<HTMLElement>("[data-ingredient-tag]");
+
+    const featuredFacilities = rdFacilities.slice(0, 4);
+
+    function openModal(kind: ModalKind, id: string | number) {
+      if (!modal || !modalTitle || !modalDesc) return;
+
+      if (kind === "ingredient") {
+        const ing = rdIngredientLibrary.find((item) => item.id === id);
+        if (!ing) return;
+        modalTitle.textContent = ing.name;
+        modalDesc.textContent = ing.detail;
+        if (modalBadge) {
+          modalBadge.textContent = ing.tag;
+          modalBadge.hidden = false;
+        }
+        if (modalExtraWrap && modalExtraLabel && modalExtra) {
+          modalExtraWrap.hidden = false;
+          modalExtraLabel.textContent = "Manfaat Utama";
+          modalExtra.textContent = ing.benefit;
+        }
+        if (modalWa) {
+          modalWa.href = createWhatsappLink(siteConfig.waNumber, createRdConsultMessage(ing.name));
+        }
+      }
+
+      if (kind === "testing") {
+        const step = rdTestingFlow.find((item) => item.step === Number(id));
+        if (!step) return;
+        modalTitle.textContent = step.title;
+        modalDesc.textContent = step.detail;
+        if (modalBadge) modalBadge.hidden = true;
+        if (modalExtraWrap && modalExtraLabel && modalExtra) {
+          modalExtraWrap.hidden = false;
+          modalExtraLabel.textContent = "Estimasi Durasi";
+          modalExtra.textContent = step.duration;
+        }
+        if (modalWa) {
+          modalWa.href = createWhatsappLink(
+            siteConfig.waNumber,
+            createRdConsultMessage(undefined, step.title),
+          );
+        }
+      }
+
+      if (kind === "facility") {
+        const facility = featuredFacilities[Number(id)];
+        if (!facility) return;
+        modalTitle.textContent = facility.title;
+        modalDesc.textContent = facility.detail;
+        if (modalBadge) modalBadge.hidden = true;
+        if (modalExtraWrap) modalExtraWrap.hidden = true;
+        if (modalWa) {
+          modalWa.href = createWhatsappLink(
+            siteConfig.waNumber,
+            createRdConsultMessage(undefined, `Fasilitas ${facility.title}`),
+          );
+        }
+      }
+
+      modal.showModal();
+    }
+
+    root.querySelectorAll<HTMLElement>("[data-rd-modal-trigger]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const kind = trigger.dataset.rdModalTrigger as ModalKind;
+        const id = trigger.dataset.rdModalId ?? "";
+        openModal(kind, kind === "testing" ? Number(id) : id);
+      });
+    });
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const categoryId = btn.dataset.ingredientFilter ?? "all";
+        filterBtns.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle("btn-primary", active);
+          b.classList.toggle("btn-ghost", !active);
+          b.classList.toggle("border", !active);
+          b.classList.toggle("border-base-200", !active);
+        });
+        ingredientCards.forEach((card) => {
+          const tag = card.dataset.ingredientTag ?? "";
+          const show = categoryId === "all" || tag === categoryId;
+          card.classList.toggle("hidden", !show);
+        });
+      });
+    });
+
+    observeReveal(root.querySelectorAll<HTMLElement>(".reveal-up"), {
+      delay: (index) => (index % 8) * 50,
+      skipVisible: true,
+    });
+  }
+
+  initRdLab();
+  document.addEventListener("astro:page-load", initRdLab);
+</script>
+
+<style>
+  [data-rd-lab] .reveal-up {
+    will-change: opacity, transform;
+  }
+
+  [data-rd-modal]::backdrop {
+    background: rgb(15 31 26 / 0.45);
+    backdrop-filter: blur(4px);
+  }
+
+  [data-rd-modal][open] .modal-box {
+    animation: rd-modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes rd-modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>

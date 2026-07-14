@@ -1,31 +1,50 @@
-import { companyImages, factoryImages, avatarImages } from "./images";
+import { companyImages, factoryImages } from "./images";
 
-export const companyPurpose = [
+export const companyMetrics = [
+  { value: "10+", label: "Tahun Pengalaman" },
+  { value: "200+", label: "Brand Partner" },
+  { value: "500+", label: "Formula Siap Pakai" },
+  { value: "50+", label: "Tenaga Ahli" },
+] as const;
+
+export const facilityGalleryItems = [
   {
-    icon: "lucide:clipboard-check",
-    title: "Untuk Kebutuhan Branding",
-    desc: "Website ini hadir sebagai company profile resmi untuk memperkenalkan perusahaan jasa maklon secara profesional kepada calon mitra bisnis.",
-    image: companyImages.office,
-  },
-  {
-    icon: "lucide:flask-conical",
-    title: "Untuk Memperkenalkan Layanan",
-    desc: "Menampilkan secara lengkap layanan maklon yang tersedia — dari skincare, bodycare, hingga custom formula — agar calon customer mudah memahami.",
+    label: "Laboratorium R&D",
     image: factoryImages.labResearch,
+    icon: "lucide:flask-conical",
+    layout: "featured",
   },
   {
-    icon: "lucide:handshake",
-    title: "Untuk Membangun Kepercayaan",
-    desc: "Menyajikan informasi fasilitas, proses produksi, dan keunggulan perusahaan untuk membangun kepercayaan dan kredibilitas di mata calon customer.",
-    image: companyImages.team,
+    label: "Ruang QC",
+    image: factoryImages.qualityControl,
+    icon: "lucide:microscope",
+    layout: "square",
   },
   {
-    icon: "lucide:message-circle",
-    title: "Untuk Mengarahkan ke WhatsApp",
-    desc: "Setiap halaman dirancang dengan CTA yang mengarahkan calon customer ke konsultasi WhatsApp sebagai langkah awal kerja sama maklon.",
-    image: companyImages.building,
+    label: "Lini Produksi",
+    image: factoryImages.productionLine,
+    icon: "lucide:factory",
+    layout: "square",
   },
-];
+  {
+    label: "Area Pengemasan",
+    image: factoryImages.packagingArea,
+    icon: "lucide:package",
+    layout: "square",
+  },
+  {
+    label: "Ruang Sampling",
+    image: factoryImages.samplingRoom,
+    icon: "lucide:beaker",
+    layout: "square",
+  },
+  {
+    label: "Gudang Bahan Baku",
+    image: factoryImages.bahanBaku,
+    icon: "lucide:warehouse",
+    layout: "wide",
+  },
+] as const;
 
 export const visionMission = {
   vision:
@@ -71,107 +90,3 @@ export const ourStory = {
   ],
   image: companyImages.labTeam,
 };
-
-export const trustPlaceholder = [
-  {
-    title: "Dipercaya untuk Pengembangan",
-    desc: "Dipercaya dalam pengembangan berbagai jenis produk kecantikan mulai dari skincare dan bodycare dengan formula yang disesuaikan.",
-    icon: "lucide:handshake",
-    image: factoryImages.formulasiLab,
-  },
-  {
-    title: "Mendukung Brand Baru",
-    desc: "Mendukung brand baru dalam proses pembuatan produk dari nol — termasuk formulasi, sampling, produksi, hingga pengurusan legalitas BPOM dan Halal.",
-    icon: "lucide:rocket",
-    image: factoryImages.productionLine,
-  },
-  {
-    title: "Fokus pada Kualitas",
-    desc: "Fokus pada kualitas, formula, dan tampilan produk agar setiap hasil maklon memiliki standar tinggi dan siap bersaing di pasar.",
-    icon: "lucide:star",
-    image: factoryImages.qualityControl,
-  },
-];
-
-export const teamMembers = [
-  {
-    name: "Dr. Anita Wijaya",
-    role: "CEO & Founder",
-    avatar: avatarImages.founder,
-    bio: "Lebih dari 15 tahun pengalaman di industri skincare dan formulasi skincare.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-  {
-    name: "Budi Santoso",
-    role: "Head of R&D",
-    avatar: avatarImages.man1,
-    bio: "Ahli formulasi dengan 10+ tahun riset pengembangan produk kecantikan.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-  {
-    name: "Citra Dewi",
-    role: "Quality Control Manager",
-    avatar: avatarImages.woman1,
-    bio: "Memastikan setiap produk lolos standar kualitas tinggi sebelum dipasarkan.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-  {
-    name: "Dedi Kurniawan",
-    role: "Production Manager",
-    avatar: avatarImages.man2,
-    bio: "Mengelola lini produksi dengan efisiensi dan menjaga konsistensi kualitas.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-  {
-    name: "Eka Rahmawati",
-    role: "Head of Marketing",
-    avatar: avatarImages.woman2,
-    bio: "Strategi pemasaran dan branding untuk membantu produk partner sukses di pasar.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-  {
-    name: "Fajar Hidayat",
-    role: "Legal & Compliance",
-    avatar: avatarImages.woman3,
-    bio: "Spesialis pengurusan BPOM, Halal, HKI, dan legalitas produk kecantikan.",
-    social: { linkedin: "#", twitter: "#" },
-  },
-];
-
-export const companyWorkProcess = [
-  {
-    step: 1,
-    title: "Konsultasi Awal",
-    desc: "Diskusikan ide dan kebutuhan produk Anda bersama tim ahli kami. Kami bantu arahkan dari konsep ke realisasi.",
-    icon: "lucide:messages-square",
-    color: "from-secondary to-secondary/70",
-  },
-  {
-    step: 2,
-    title: "Formulasi & Sampling",
-    desc: "Tim R&D kami mengembangkan formula sesuai brief dan membuat sample untuk Anda evaluasi.",
-    icon: "lucide:flask-conical",
-    color: "from-secondary to-secondary/70",
-  },
-  {
-    step: 3,
-    title: "Desain & Legalitas",
-    desc: "Kami bantu desain kemasan profesional dan urus legalitas BPOM, Halal, dan HKI produk Anda.",
-    icon: "lucide:scroll-text",
-    color: "from-secondary to-secondary/70",
-  },
-  {
-    step: 4,
-    title: "Produksi & QC",
-    desc: "Produksi massal dengan quality control ketat di setiap batch untuk konsistensi kualitas.",
-    icon: "lucide:factory",
-    color: "from-secondary to-secondary/70",
-  },
-  {
-    step: 5,
-    title: "Pengiriman & Dukungan",
-    desc: "Produk siap dikirim ke tangan Anda. Tim support kami siap mendampingi pasca produksi.",
-    icon: "lucide:truck",
-    color: "from-secondary to-secondary/70",
-  },
-];
