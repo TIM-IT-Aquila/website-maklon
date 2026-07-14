@@ -1,65 +1,75 @@
-# Code Style & Layer Convention
+# Code Style dan Konvensi Arsitektur
 
-Dokumen ini menjadi pola penulisan tunggal untuk file aktif di project.
+Dokumen ini adalah standar implementasi untuk file aktif di proyek Magna. Gunakan bersama [AGENTS.md](AGENTS.md); jangan menduplikasi aturan yang sama di dokumen atau kode lain.
 
-## 1. Tanggung Jawab Layer
+## 1. Pembagian Layer
 
-- `src/pages/`: route, metadata halaman, dan markup khusus satu halaman.
-- `src/components/ui/`: komponen UI kecil yang dipakai lintas halaman.
-- `src/components/cards/` dan `src/components/sections/`: komponen reusable yang dipakai minimal di dua konteks.
-- `src/data/`: data statis dan type data yang berkaitan langsung dengannya; tidak ada markup atau DOM logic.
-- `src/lib/`: fungsi murni reusable; tidak mengakses DOM dan tidak merender UI.
-- `src/scripts/`: helper perilaku browser yang reusable; menerima elemen/root secara eksplisit dan tidak memilih DOM global sendiri.
-- `src/layouts/`: kerangka global, SEO, serta elemen global.
+| Lokasi            | Boleh berisi                                 | Tidak boleh berisi                           |
+| ----------------- | -------------------------------------------- | -------------------------------------------- |
+| `src/pages/`      | Route, metadata, markup unik, komposisi page | Data panjang yang dapat digunakan ulang      |
+| `src/layouts/`    | Shell global, SEO, elemen global             | Konten domain spesifik halaman               |
+| `src/components/` | UI reusable dan presentasi props             | Sumber data bisnis atau logic domain panjang |
+| `src/data/`       | Konten statis, type domain, path aset        | DOM, event listener, markup UI               |
+| `src/lib/`        | Helper murni dengan input eksplisit          | Akses DOM atau state halaman                 |
+| `src/scripts/`    | Interaksi browser reusable                   | Selector DOM global tersembunyi              |
+| `src/styles/`     | Theme, token, reset, utilitas lintas halaman | Gaya khusus satu route                       |
 
-Markup yang hanya dipakai satu route tetap berada di file page agar tidak menghasilkan component satu-kali-pakai.
+Markup yang hanya dipakai satu halaman tetap berada pada page. Buat komponen baru hanya jika pola UI atau perilakunya sudah stabil dan dipakai ulang.
 
-## 2. Urutan Frontmatter Astro
+## 2. Prinsip Pengambilan Keputusan
 
-1. Import layout.
-2. Import komponen, urut dari shared ke UI.
-3. Import data.
-4. Import helper/lib.
-5. Type, interface, dan konstanta page.
+- **YAGNI:** Jangan membuat abstraksi, dependency, prop, atau data untuk kemungkinan fitur masa depan.
+- **SSOT:** Satu fakta hanya memiliki satu pemilik. Contoh: `siteConfig` untuk identitas/kontak, `navItems` untuk menu/route, dan `images.ts` untuk asset path bersama.
+- **SoC:** Bedakan konten (`data`), aturan murni (`lib`), interaksi browser (`scripts`), dan presentasi (`pages`, `components`, `layouts`).
+- **DRY:** Konsolidasikan pola yang sama setelah muncul berulang. Jangan menyatukan dua fitur yang memiliki variasi domain besar hanya karena markupnya sekilas mirip.
 
-Pisahkan setiap kelompok import dengan satu baris kosong.
+Saat perubahan melewati beberapa layer, perbarui sumber kepemilikan terlebih dahulu lalu konsumsi dari layer lain.
 
-## 3. Penulisan UI
+## 3. Astro dan UI
 
-- Gunakan `SectionHeader`, `PageHero`, dan `WAButton` untuk pola yang sudah tersedia.
-- Data berulang dirender dengan `.map()` dari `src/data/`.
-- Gunakan `class:list` untuk class kondisional; jangan merakit class Tailwind panjang di script client.
-- Section utama memakai spacing global; override hanya untuk hero atau kebutuhan visual yang jelas.
+- Gunakan `.astro` untuk halaman dan komponen.
+- Pisahkan import berdasarkan peran: layout/komponen, data, lalu helper atau client script. Gunakan satu baris kosong antar kelompok.
+- Gunakan `SectionHeader`, `PageHero`, `WAButton`, dan `Icon` bila pola visualnya sesuai.
+- Render data koleksi dengan `.map()` dan gunakan `class:list` untuk class kondisional.
+- Utamakan Tailwind dan DaisyUI. Hindari inline style kecuali nilainya benar-benar dinamis atau tidak tersedia sebagai utility.
+- Tetapkan `alt` pada gambar dan `aria-label` pada kontrol tanpa teks.
 
-## 4. Script Client
+## 4. Data dan Helper
 
-- Satu blok script per domain interaksi pada sebuah halaman.
-- Scope selector dari root `data-*` halaman, bukan `document` global, kecuali untuk event keyboard yang memang global.
-- Data dari server diteruskan memakai `<script is:inline type="application/json">`.
-- Jangan menduplikasi data statis di script client; import dari `src/data/` bila script diproses Astro.
+- Beri nama export berdasarkan domain: `products`, `processSteps`, `siteConfig`, `homeHeroSlides`.
+- Simpan type yang hanya dipakai satu domain bersama data domain tersebut.
+- Jangan menyalin nomor WhatsApp, link, logo, route, atau copy statis ke beberapa file.
+- Gunakan `createWhatsappLink` untuk menghasilkan URL WhatsApp.
+- Hapus export, field, asset mapping, dan file yang tidak memiliki konsumen aktif.
 
-## 5. Data dan Helper
+## 5. Client Script
 
-- Gunakan nama export yang spesifik dan konsisten (`products`, `processSteps`, `siteConfig`).
-- Hapus export, field, atau file yang tidak mempunyai konsumen aktif.
-- Helper menerima input eksplisit dan mengembalikan output; tidak bergantung pada state halaman.
+- Setiap halaman/komponen interaktif memiliki root `data-*`.
+- Selector harus dimulai dari root tersebut, bukan dari `document` global.
+- Helper di `src/scripts/` menerima root atau elemen sebagai parameter eksplisit.
+- Gunakan `observeReveal` dari `src/scripts/reveal.ts` untuk animasi reveal berbasis `IntersectionObserver` yang standar.
+- Gunakan `<script is:inline type="application/json">` untuk meneruskan data render server yang tidak dapat diimpor langsung ke client script.
+- Kelompokkan satu domain interaksi dalam satu blok script jika hal itu membuat lifecycle lebih jelas.
 
-## 6. Validasi Wajib
+## 6. Styling
 
-Setelah perubahan struktur atau interaksi, jalankan:
+- Primary: `#659287`
+- Secondary: `#835f11`
+- White: `#ffffff`
+- Heading: Arsenal
+- Body: Karla
+- Accent: Josefin Slab
 
-```bash
+`src/styles/global.css` memuat DaisyUI theme, font, spacing global, dan animasi yang dipakai lintas route. Style khusus halaman ditulis lokal pada file `.astro` halaman tersebut.
+
+## 7. Validasi
+
+Setelah perubahan struktur, route, interaksi, atau styling penting, jalankan:
+
+```sh
 bun run format:check
 bun run check
 bun run build
 ```
 
-## 7. Prinsip Arsitektur
-
-- **YAGNI:** Tambahkan komponen, prop, data, atau helper hanya bila dipakai oleh kebutuhan aktif. Hapus export, asset mapping, dan variasi UI yang tidak memiliki konsumen.
-- **SSOT:** Setiap fakta bisnis dan konten statis memiliki satu pemilik di `src/data/`; setiap pola UI global memiliki satu komponen pemilik. Jangan menyalin daftar, link WhatsApp, path logo, atau konfigurasi yang sama ke beberapa file.
-- **SoC:** `pages` mengatur route dan markup yang unik; `components` menangani UI reusable; `data` tidak menyentuh DOM; `lib` adalah fungsi murni dengan input eksplisit; `styles/global.css` hanya memuat token, reset, dan utilitas lintas halaman. Gaya/interaksi khusus route harus berada pada route tersebut dan selector script harus dimulai dari root `data-*` miliknya.
-
-Jika satu perubahan membutuhkan beberapa layer, ubah sumber kepemilikan terlebih dahulu, lalu biarkan layer lain hanya mengonsumsi sumber tersebut.
-
-`prettier` memformat CSS, TypeScript, serta konfigurasi proyek. Validitas dan pemeriksaan tipe file `.astro` dijalankan melalui `bun run check`.
+Prettier memeriksa CSS, TypeScript, dan konfigurasi proyek. `astro check` memeriksa sintaks serta type file Astro. Build harus berhasil sebelum pekerjaan dianggap selesai.

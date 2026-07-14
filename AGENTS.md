@@ -1,406 +1,98 @@
-# AGENT.md
+# Panduan Agent — Website Magna
 
-## Role Agent
-Kamu adalah AI coding assistant untuk project website company profile maklon skincare.
+## Konteks Proyek
 
-Project ini menggunakan:
+Proyek ini adalah website company profile statis untuk jasa maklon skincare Magna. Tujuannya adalah membantu calon partner memahami layanan, produk, proses, fasilitas, legalitas, dan cara konsultasi via WhatsApp.
 
-- Astro JS
-- Tailwind CSS
+### Stack
+
+- Astro static site
+- Tailwind CSS v4
 - DaisyUI
-- Tidak menggunakan React
-- Tidak menggunakan backend dulu
-- Website bersifat company profile statis
-- CTA utama diarahkan ke WhatsApp
-- kalo ingin melakukan build menggunakan : bun run build
-- kemudian klo ingin menjalankan server menggunakan : bun run dev
+- TypeScript strict
+- Bun
 
-Tugas utama agent adalah membantu membuat, memperbaiki, merapikan, dan mengembangkan kode sesuai arsitektur project.
+### Batasan
 
----
+- Jangan gunakan React, Next.js, backend, database, atau API server.
+- Jangan membuat state server atau autentikasi.
+- CTA utama harus mengarah ke WhatsApp.
+- Jangan mengubah struktur folder atau route tanpa alasan produk yang jelas.
+- Jangan mengklaim sertifikasi, legalitas, angka bisnis, atau informasi kontak baru tanpa sumber konten yang telah divalidasi.
 
-## Tujuan Project
-Website ini dibuat untuk menampilkan profil perusahaan maklon skincare secara profesional.
+## Perintah Utama
 
-Website harus membantu calon customer memahami:
-
-- Siapa perusahaan ini
-- Layanan maklon yang tersedia
-- Produk apa saja yang bisa dibuat
-- Fasilitas pabrik atau proses produksi
-- Keunggulan perusahaan
-- Alur kerja maklon
-- Cara konsultasi melalui WhatsApp
-
----
-
-## Aturan Utama
-Agent wajib mengikuti aturan berikut:
-
-1. Gunakan Astro component dengan file `.astro`.
-2. Jangan gunakan React.
-3. Jangan gunakan Next.js.
-4. Jangan membuat backend.
-5. Jangan menaruh semua kode di `index.astro`.
-6. Pisahkan kode berdasarkan layer.
-7. Gunakan Tailwind CSS untuk layout dan spacing.
-8. Gunakan DaisyUI untuk komponen UI seperti navbar, button, card, dropdown, badge, dan hero.
-9. Gunakan desain clean, modern, soft, dan premium.
-10. Gunakan warna utama project:
-
-- Primary: `659287`
-- Secondary: `#835f11`
-- White: `#FFFFFF`
-    
-11. Gunakan font astro
-12. Semua halaman harus responsive untuk mobile dan desktop.
-13. CTA utama harus diarahkan ke WhatsApp.
-14. Jangan mengubah struktur folder tanpa alasan yang jelas.
-15. Jika membuat file baru, jelaskan lokasi file tersebut.
-
----
-
-## Layer Architecture
-Project ini dipisahkan menjadi 3 layer utama:
-
----
-
-### 1. Presentation Layer
-Presentation Layer adalah bagian tampilan website.
-
-Berisi:
-
-- Halaman
-- Layout
-- Section
-- Komponen UI
-- Card
-- Navbar
-- Footer
-
-Folder yang termasuk Presentation Layer:
-
-```
-src/pages/
-src/layouts/
-src/components/
+```sh
+bun run dev
+bun run format:check
+bun run check
+bun run build
 ```
 
-Contoh file:
+Selalu jalankan `format:check`, `check`, dan `build` setelah perubahan yang memengaruhi struktur, interaksi, route, atau styling penting.
 
-```
-src/pages/index.astro
-src/pages/about.astro
-src/pages/blog.astro
+## Arsitektur dan Kepemilikan
 
-src/layouts/MainLayout.astro
+| Layer          | Lokasi            | Tanggung jawab                                                                    |
+| -------------- | ----------------- | --------------------------------------------------------------------------------- |
+| Route          | `src/pages/`      | Metadata, route, dan markup yang unik untuk satu halaman                          |
+| Layout         | `src/layouts/`    | Shell HTML, SEO, navbar, CTA global, dan footer                                   |
+| UI             | `src/components/` | Komponen reuse seperti `SectionHeader`, `PageHero`, `WAButton`, card, dan section |
+| Konten         | `src/data/`       | Satu sumber data statis, konfigurasi, type domain, serta path aset                |
+| Helper         | `src/lib/`        | Fungsi murni reusable tanpa akses DOM                                             |
+| Client scripts | `src/scripts/`    | Perilaku browser reusable yang menerima root/elemen secara eksplisit              |
+| Styling        | `src/styles/`     | Theme DaisyUI, token desain, dan CSS yang memang global                           |
 
-src/components/Navbar.astro
-src/components/Footer.astro
-src/components/sections/HeroSection.astro
-src/components/sections/ServiceSection.astro
-src/components/sections/FactorySection.astro
-src/components/sections/ProcessSection.astro
-src/components/sections/CTASection.astro
-src/components/cards/ServiceCard.astro
-```
+`src/config/` bukan layer aktif. Konten atau konfigurasi baru harus ditempatkan di `src/data/` bila memang dibutuhkan.
 
-Aturan Presentation Layer:
+### Prinsip Wajib
 
-- Tidak menyimpan data panjang langsung di component.
-- Tidak menulis logic panjang di component.
-- Ambil data dari `src/data/`.
-- Ambil helper function dari `src/lib/`.
-- Fokus pada HTML, Astro, Tailwind, dan DaisyUI.
-- Component harus mudah dipakai ulang.
+- **YAGNI:** Jangan menambah prop, komponen, data, helper, atau dependency untuk kebutuhan hipotetis.
+- **SSOT:** Simpan setiap fakta bisnis, URL WhatsApp, route menu, asset path, dan copy statis pada satu pemilik. Konsumen hanya mengimpor sumber tersebut.
+- **SoC:** Pisahkan markup halaman, UI reusable, data, helper murni, dan perilaku browser.
+- **DRY:** Ekstrak pola hanya jika pola itu stabil dan benar-benar dipakai berulang. Jangan menggenerikkan markup yang berbeda domain hanya demi mengurangi baris.
 
-Contoh penggunaan yang benar:
+## Aturan Implementasi
 
-```
----
-import { services } from "../../data/services";
-import ServiceCard from "../cards/ServiceCard.astro";
----
+### Halaman dan Komponen
 
-<section id="layanan" class="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-  <div class="text-center">
-    <p class="font-semibold text-primary">Layanan Kami</p>
-    <h2 class="mt-3 text-3xl font-black md:text-4xl">
-      Solusi Maklon untuk Brand Kecantikan
-    </h2>
-  </div>
+- Gunakan file `.astro`.
+- Markup yang hanya dipakai satu route boleh tetap berada di page agar tidak menghasilkan komponen satu-kali-pakai.
+- Gunakan komponen yang sudah ada sebelum membuat pola UI baru: `SectionHeader`, `PageHero`, `WAButton`, `Icon`, `CTASection`, dan `TestimonialSection`.
+- Render koleksi dari data memakai `.map()`.
+- Gunakan `class:list` untuk class kondisional.
+- Semua tampilan harus responsif pada mobile dan desktop.
 
-  <div class="mt-10 grid gap-6 md:grid-cols-3">
-    {services.map((service) => (
-      <ServiceCard service={service} />
-    ))}
-  </div>
-</section>
-```
+### Konten dan Helper
 
----
+- Informasi perusahaan dan WhatsApp berasal dari `src/data/site.ts`.
+- Navigasi dan route menu berasal dari `src/data/nav.ts`.
+- Path gambar bersama berasal dari `src/data/images.ts`.
+- Data berulang halaman berasal dari file domain di `src/data/`.
+- Helper menerima input eksplisit, tidak bergantung pada state halaman, dan tidak mengakses DOM.
+- Hapus export atau file yang tidak memiliki konsumen aktif.
 
-### 2. Content / Product / Factory Layer
-Layer ini menyimpan data statis website.
+### Interaksi Client
 
-Berisi data:
+- Scope selector dari root `data-*` milik halaman atau komponen; jangan memilih DOM global selain lifecycle/event global yang memang diperlukan.
+- Untuk pola reveal yang berulang gunakan `observeReveal` dari `src/scripts/reveal.ts`.
+- Data yang hanya tersedia saat render server dapat diteruskan dengan `<script is:inline type="application/json">`.
+- Hindari menduplikasi data statis ke script client; impor dari `src/data/` bila script diproses oleh Astro.
 
-- Informasi website
-- Menu navigasi
-- Layanan maklon
-- Produk yang bisa dibuat
-- Informasi pabrik
-- Alur proses maklon
-- Keunggulan
-- Kontak
-- Artikel blog sederhana
+### Styling dan Aksesibilitas
 
-Folder yang termasuk layer ini:
+- Gunakan Tailwind untuk layout, spacing, responsivitas, dan state visual; gunakan DaisyUI untuk pola UI standar.
+- Warna brand: primary `#659287`, secondary `#835f11`, dan putih `#ffffff`.
+- Gunakan Arsenal untuk heading, Karla untuk body, dan Josefin Slab untuk aksen sesuai theme global.
+- Gaya khusus satu route ditempatkan pada file page tersebut; `global.css` hanya untuk token, base style, dan utilitas lintas halaman.
+- Pastikan gambar memiliki `alt`, tombol memiliki label, dan link eksternal memakai `target="_blank"` bersama `rel="noopener noreferrer"`.
 
-```
-src/data/
-```
+## Route Aktif
 
-Contoh file:
+`/`, `/company`, `/services`, `/products`, `/outsourcing-flow`, `/oem-odm`, `/research-development`, `/paten-brand`, `/halal`, `/certification`, `/portofolio`, `/contact`, `/csr`, `/faq`, `/blog`, dan `/blog/[slug]`.
 
-```
-src/data/site.ts
-src/data/services.ts
-src/data/products.ts
-src/data/factory.ts
-src/data/process.ts
-src/data/blog.ts
-```
+## Dokumentasi
 
-Aturan Content/Product/Factory Layer:
-
-- Data disimpan dalam bentuk array atau object.
-- Jangan campur data panjang ke dalam component.
-- Data harus mudah diganti tanpa mengubah UI.
-- Gunakan nama field yang jelas.
-- Data produk dan pabrik dipisahkan agar mudah dijelaskan saat presentasi.
-
-Contoh `src/data/products.ts`:
-
-```
-export const products = [
-  {
-    name: "Toner",
-    category: "Skincare",
-    description: "Produk perawatan wajah untuk membantu menyegarkan dan melembapkan kulit.",
-  },
-  {
-    name: "Serum",
-    category: "Skincare",
-    description: "Produk dengan bahan aktif yang dapat disesuaikan dengan kebutuhan brand.",
-  },
-  {
-    name: "Body Lotion",
-    category: "Bodycare",
-    description: "Produk perawatan tubuh dengan formula lembut dan tekstur nyaman.",
-  },
-];
-```
-
-Contoh `src/data/factory.ts`:
-
-```
-export const factoryHighlights = [
-  {
-    title: "Produksi Terarah",
-    description: "Proses produksi dilakukan secara terstruktur dari sampling hingga produk siap jual.",
-  },
-  {
-    title: "Quality Control",
-    description: "Setiap produk melalui pengecekan kualitas sebelum masuk tahap akhir.",
-  },
-  {
-    title: "Support Brand Baru",
-    description: "Cocok untuk pemilik brand yang baru memulai bisnis skincare.",
-  },
-];
-```
-
----
-
-### 3. Logic Layer
-Logic Layer adalah bagian yang menyimpan fungsi bantuan.
-
-Berisi:
-
-- Generate link WhatsApp
-- Format teks
-- SEO helper
-- Validasi data sederhana
-- Utility function
-
-Folder yang termasuk Logic Layer:
-
-```
-src/lib/
-```
-
-Contoh file:
-
-```
-src/lib/whatsapp.ts
-src/lib/seo.ts
-src/lib/format.ts
-```
-
-Aturan Logic Layer:
-
-- Jangan menaruh fungsi helper panjang di component.
-- Function harus reusable.
-- Function harus memiliki nama yang jelas.
-- Hindari logic yang tidak perlu.
-- Karena project ini statis, logic cukup sederhana.
-
-Contoh `src/lib/whatsapp.ts`:
-
-```
-export function createWhatsappLink(phone: string, message: string) {
-  const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/${phone}?text=${encodedMessage}`;
-}
-```
-
-Contoh pemakaian di component:
-
-```
----
-import { siteConfig } from "../../data/site";
-import { createWhatsappLink } from "../../lib/whatsapp";
-
-const waLink = createWhatsappLink(
-  siteConfig.whatsapp,
-  "Halo, saya ingin konsultasi maklon skincare."
-);
----
-
-<a href={waLink} target="_blank" class="btn btn-primary">
-  Konsultasi WhatsApp
-</a>
-```
-
----
-
-## Struktur Folder Wajib
-Gunakan struktur berikut:
-
-```
-src/
-├─ pages/
-│  ├─ index.astro
-│  ├─ about.astro
-│  └─ blog.astro
-│
-├─ layouts/
-│  └─ MainLayout.astro
-│
-├─ components/
-│  ├─ ui/
-│  │  └─ SectionHeader.astro
-│  │
-│  ├─ cards/
-│  │  ├─ ServiceCard.astro
-│  │  └─ ProductCard.astro
-│  │
-│  ├─ sections/
-│  │  ├─ HeroSection.astro
-│  │  ├─ ServiceSection.astro
-│  │  ├─ ProductSection.astro
-│  │  ├─ FactorySection.astro
-│  │  ├─ ProcessSection.astro
-│  │  ├─ AdvantageSection.astro
-│  │  └─ CTASection.astro
-│  │
-│  ├─ Navbar.astro
-│  └─ Footer.astro
-│
-├─ data/
-│  ├─ site.ts
-│  ├─ services.ts
-│  ├─ products.ts
-│  ├─ factory.ts
-│  ├─ process.ts
-│  └─ advantages.ts
-│
-├─ lib/
-│  ├─ whatsapp.ts
-│  └─ seo.ts
-│
-└─ styles/
-   └─ global.css
-```
-
----
-
-## Aturan Styling
-Gunakan Tailwind CSS dan DaisyUI.
-
-File `src/styles/global.css` wajib berisi:
-
-```
-@import "tailwindcss";
-@plugin "daisyui";
-
-@theme {
-  --color-primary: #B9CEAC;
-  --color-secondary: #835f11;
-  --color-brand-white: #FFFFFF;
-}
-```
-
-Gunakan class Tailwind seperti:
-
-```
-<section class="mx-auto max-w-7xl px-4 py-16 lg:px-8"></section>
-```
-
-Gunakan class DaisyUI seperti:
-
-```
-<button class="btn btn-primary">Konsultasi</button>
-<div class="card bg-base-100 shadow-xl"></div>
-<div class="navbar bg-base-100"></div>
-```
-
----
-
-## Prompt Default untuk Agent
-Saat user meminta fitur baru, agent harus memahami project sebagai berikut:
-
-```
-Saya membuat website company profile maklon skincare menggunakan Astro JS + Tailwind CSS + DaisyUI.
-
-Ikuti AGENT.md, README.md, dan DESAIN.md.
-
-Gunakan arsitektur layer:
-- Presentation Layer untuk halaman, layout, dan component
-- Content/Product/Factory Layer untuk data produk, layanan, pabrik, proses
-- Logic Layer untuk helper function dan reusable logic
-
-Jangan gunakan React.
-Jangan gunakan backend.
-Jangan campur semua kode di index.astro.
-Gunakan warna utama #659287, #88BDA4, dan putih.
-```
-
----
-
-## Checklist Sebelum Memberi Kode
-Sebelum memberikan kode, pastikan:
-
-- File diletakkan di folder yang benar.
-- Component tidak terlalu panjang.
-- Data berulang ditaruh di `src/data/`.
-- Logic reusable ditaruh di `src/lib/`.
-- Styling menggunakan Tailwind dan DaisyUI.
-- Desain sesuai warna brand.
-- Mobile responsive.
-- CTA WhatsApp bekerja.
-- Tidak ada React.
-- Tidak ada backend.
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- [README.md](README.md): cara menjalankan, route, arsitektur, dan deployment.
+- [CODE_STYLE.md](CODE_STYLE.md): aturan gaya dan pola kode yang lebih rinci.
+- [CLAUDE.md](CLAUDE.md): pointer instruksi untuk Claude Code tanpa menduplikasi aturan.

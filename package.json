@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "@iconify-json/lucide": "^1.2.114",
+    "@iconify-json/lucide": "^1.2.117",
     "@iconify-json/mdi": "^1.2.3",
-    "@tailwindcss/vite": "^4.3.1",
-    "astro": "^7.0.3",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.9",
     "astro-icon": "^1.1.5",
-    "daisyui": "^5.6.3",
-    "tailwindcss": "^4.3.1",
+    "daisyui": "^5.6.18",
+    "tailwindcss": "^4.3.2",
     "vite-imagetools": "^10.0.1"
   },
   "allowScripts": {
