@@ -64,16 +64,7 @@ export const blogImages = {
   edukasi: "/assets/hero-home/labreserch.jpg",
 };
 
-// --- TESTIMONIAL / AVATAR (persegi) ---
-export const avatarImages = {
-  woman1: `${P}/product-square.svg`,
-  woman2: `${P}/product-square.svg`,
-  woman3: `${P}/product-square.svg`,
-  man1: `${P}/product-square.svg`,
-  man2: `${P}/product-square.svg`,
-  teamLab: `${P}/product-square.svg`,
-  founder: `${P}/product-square.svg`,
-};
+
 
 // --- PORTOFOLIO / BRAND (4:3) ---
 export const portfolioImages = {

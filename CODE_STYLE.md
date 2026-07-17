@@ -29,10 +29,12 @@ Saat perubahan melewati beberapa layer, perbarui sumber kepemilikan terlebih dah
 
 - Gunakan `.astro` untuk halaman dan komponen.
 - Pisahkan import berdasarkan peran: layout/komponen, data, lalu helper atau client script. Gunakan satu baris kosong antar kelompok.
-- Gunakan `SectionHeader`, `PageHero`, `WAButton`, dan `Icon` bila pola visualnya sesuai.
+- Gunakan `Container`, `SectionHeader`, `PageHero`, `WAButton`, `FAQItem`, `ModalShell`, dan `Icon` bila pola visualnya sesuai.
 - Render data koleksi dengan `.map()` dan gunakan `class:list` untuk class kondisional.
 - Utamakan Tailwind dan DaisyUI. Hindari inline style kecuali nilainya benar-benar dinamis atau tidak tersedia sebagai utility.
 - Tetapkan `alt` pada gambar dan `aria-label` pada kontrol tanpa teks.
+
+Kontrak, katalog, dan padanan konsep Figma tersedia di [COMPONENT_SYSTEM.md](COMPONENT_SYSTEM.md). Props mengontrol variasi yang terbatas, slot membawa markup, dan `class` hanya menjadi escape hatch. Jangan membuat variant tanpa consumer aktif atau generic component yang menampung beberapa domain berbeda.
 
 ## 4. Data dan Helper
 

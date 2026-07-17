@@ -45,12 +45,6 @@ export const navItems: NavItem[] = [
     label: "Services",
     children: [
       {
-        label: "Semua Layanan",
-        href: "/services",
-        description: "Ringkasan layanan maklon",
-        icon: "mdi:view-grid",
-      },
-      {
         label: "OEM / ODM",
         href: "/oem-odm",
         description: "Jasa maklon skincare",
@@ -77,6 +71,4 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "Products", href: "/products" },
-  { label: "Portfolio", href: "/portofolio" },
-  { label: "Blog", href: "/blog" },
 ];

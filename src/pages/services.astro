@@ -1,6 +1,6 @@
 ---
 import ServiceCard from "../components/cards/ServiceCard.astro";
-import TestimonialSection from "../components/sections/TestimonialSection.astro";
+import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
 import PageHero from "../components/ui/PageHero.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
@@ -68,17 +68,17 @@ import MainLayout from "../layouts/MainLayout.astro";
     </section>
 
     <section class="bg-base-100 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Container>
         <SectionHeader label="Kategori Produk" title="Maklon untuk Setiap Kebutuhan Brand" />
 
         <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => <ServiceCard service={service} />)}
         </div>
-      </div>
+      </Container>
     </section>
 
     <section class="bg-base-200/45 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Container>
         <SectionHeader label="Layanan Spesialis" title="Dukungan yang Dibutuhkan Brand Anda" />
 
         <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -104,11 +104,11 @@ import MainLayout from "../layouts/MainLayout.astro";
             ))
           }
         </div>
-      </div>
+      </Container>
     </section>
 
     <section class="bg-base-100 py-20 md:py-24">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Container>
         <SectionHeader label="One-stop Service" title="Kami Dampingi di Setiap Tahap" />
 
         <div class="relative mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -127,9 +127,8 @@ import MainLayout from "../layouts/MainLayout.astro";
             ))
           }
         </div>
-      </div>
+      </Container>
     </section>
 
-    <TestimonialSection />
   </main>
 </MainLayout>

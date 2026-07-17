@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"dialog"> {
+  boxClass?: string;
+  closeLabel?: string;
+}
+
+const {
+  boxClass,
+  class: className,
+  closeLabel = "Tutup modal",
+  ...attributes
+} = Astro.props;
+---
+
+<dialog
+  {...attributes}
+  class:list={["modal modal-bottom sm:modal-middle", className]}
+>
+  <div
+    class:list={[
+      "modal-box max-w-lg rounded-3xl p-0 shadow-2xl",
+      boxClass,
+    ]}
+  >
+    <slot />
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button type="submit" aria-label={closeLabel}>close</button>
+  </form>
+</dialog>

@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Container from "../components/ui/Container.astro";
 import { blogPosts } from "../data/blog";
 import Icon from "../components/ui/Icon.astro";
 ---
@@ -13,7 +14,7 @@ import Icon from "../components/ui/Icon.astro";
     <!-- ================================================================== -->
     <!-- 1. GRID 2 KOLOM — Foto lebar kotak-kotak                           -->
     <!-- ================================================================== -->
-    <section class="mx-auto max-w-7xl px-4 pt-8 pb-14 lg:px-8 lg:pt-14 lg:pb-20">
+    <Container as="section" class="pt-8 pb-14 lg:pt-14 lg:pb-20">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
         {
           blogPosts.map((post, i) => {
@@ -73,7 +74,7 @@ import Icon from "../components/ui/Icon.astro";
           })
         }
       </div>
-    </section>
+    </Container>
   </main>
 </MainLayout>
 

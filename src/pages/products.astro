@@ -1,5 +1,7 @@
 ---
+import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
+import ModalShell from "../components/ui/ModalShell.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { siteConfig } from "../data/site";
 import { products } from "../data/products";
@@ -17,8 +19,8 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText)
   <main class="overflow-hidden">
     <section id="products-catalog" class="overflow-hidden bg-base-100" data-products-section>
       <div class="pt-20 pb-14 lg:pt-24 lg:pb-16">
-        <div class="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader label="Produk" variant="minimal">
+        <Container>
+          <SectionHeader label="Produk">
             <span slot="title">Produk yang Bisa <span class="text-primary">Kami Buat</span></span>
           </SectionHeader>
 
@@ -81,11 +83,10 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText)
               ))
             }
           </div>
-        </div>
+        </Container>
       </div>
 
-      <dialog class="modal modal-bottom sm:modal-middle" data-product-modal>
-        <div class="modal-box max-w-lg rounded-3xl border border-base-200 p-0 shadow-2xl">
+      <ModalShell boxClass="border border-base-200" data-product-modal>
           <div class="rounded-t-3xl bg-gradient-to-br from-primary/10 via-white to-base-200/30 p-6">
             <div class="flex items-start justify-between gap-3">
               <div>
@@ -113,11 +114,7 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText)
               Konsultasi Maklon Produk Ini
             </a>
           </div>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-          <button type="submit" aria-label="Tutup">close</button>
-        </form>
-      </dialog>
+      </ModalShell>
     </section>
   </main>
 </MainLayout>
@@ -179,6 +176,9 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText)
         if (countEl) countEl.textContent = String(visible);
       });
     });
+
+    const initialCategory = new URLSearchParams(window.location.search).get("category");
+    filterBtns.find((btn) => btn.dataset.productFilter === initialCategory)?.click();
 
     observeReveal(root.querySelectorAll<HTMLElement>(".reveal-up"), {
       duration: 500,

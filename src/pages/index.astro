@@ -1,4 +1,6 @@
 ---
+import Container from "../components/ui/Container.astro";
+import FAQItem from "../components/ui/FAQItem.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import MainLayout from "../layouts/MainLayout.astro";
@@ -11,13 +13,12 @@ import { processSteps } from "../data/process";
 import { products } from "../data/products";
 import { faqs } from "../data/faqs";
 import { brandPartners, brandPartnersRowTwo } from "../data/brandPartners";
-import { categoryImages, processImages } from "../data/images";
+import { categoryImages } from "../data/images";
 import { certifications } from "../data/certifications";
 import { facilityGalleryItems } from "../data/company";
 import { homeComparisonRows, homeHeroSlides } from "../data/home";
-import TestimonialSection from "../components/sections/TestimonialSection.astro";
 
-const processPreviewSteps = processSteps.slice(0, 5);
+const processPreviewSteps = processSteps.slice(0, 4);
 const topProducts = products.slice(0, 8);
 const categories = categoryImages.slice(0, 6);
 
@@ -47,7 +48,7 @@ const categories = categoryImages.slice(0, 6);
       </div>
 
       <!-- Content -->
-      <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
+      <Container class="relative z-10 w-full">
         <div class="max-w-2xl">
           <div class="relative min-h-[180px] md:min-h-[200px]">
             {homeHeroSlides.map((slide, idx) => (
@@ -74,7 +75,6 @@ const categories = categoryImages.slice(0, 6);
               text="Konsultasi Gratis"
               message="Halo, saya ingin konsultasi mengenai maklon skincare."
               variant="white"
-              size="md"
               class="rounded-xl shadow-xl shadow-black/20"
             />
             <a href="/outsourcing-flow"
@@ -84,7 +84,7 @@ const categories = categoryImages.slice(0, 6);
             </a>
           </div>
         </div>
-      </div>
+      </Container>
 
       <!-- Slide indicators — tengah bawah -->
       <div class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
@@ -100,39 +100,36 @@ const categories = categoryImages.slice(0, 6);
     </section>
 
     <!-- ================================================================== -->
-    <!-- 2. CATEGORY — Grid minimalis sejajar                               -->
+    <!-- 2. CATEGORY — Kategori tipografi                                   -->
     <!-- ================================================================== -->
-    <section class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Kategori" variant="minimal" title="Jelajahi Rangkaian Produk Kami" />
+    <section class="bg-base-100 py-12 md:py-14">
+      <Container>
+        <SectionHeader label="Kategori" title="Jelajahi Rangkaian Produk Kami" />
 
-        <div class="mt-12 grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
-          {categories.map((cat) => {
-            const waCat = createWhatsappLink(siteConfig.waNumber, `Halo, saya tertarik dengan produk kategori ${cat.name}. Bisa info lebih lanjut?`);
+        <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+          {categories.map((cat, index) => {
             return (
-              <a href={waCat} target="_blank" rel="noopener noreferrer"
-                class="group flex flex-col rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg"
+              <a href={`/products?category=${encodeURIComponent(cat.name)}`}
+                class="reveal-up group flex min-h-28 flex-col rounded-2xl bg-primary p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary/90 hover:shadow-lg md:min-h-32 md:p-5"
+                data-reveal-delay={index * 90}
               >
-                <div class="p-3 pb-0">
-                  <div class="relative w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/5 to-primary/10" style="aspect-ratio: 4/3">
-                    <img src={cat.image} alt={cat.name} class="h-full w-full object-cover transition-all duration-500 group-hover:scale-110" loading="lazy" />
-                    <!-- Hover overlay konsultasi -->
-                    <div class="absolute inset-0 flex items-center justify-center rounded-xl bg-black/50 opacity-0 backdrop-blur-[1px] transition-all duration-300 group-hover:opacity-100">
-                      <span class="flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-bold text-primary shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        Konsultasi
-                      </span>
-                    </div>
-                  </div>
+                <span class="text-xs font-bold tracking-[0.2em] text-white/70">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div class="mt-auto">
+                  <span class="block h-px w-8 bg-white/70 transition-all duration-300 group-hover:w-full"></span>
+                  <h3 class="mt-3 text-xl font-black tracking-tight text-white md:text-2xl">
+                    {cat.name}
+                  </h3>
                 </div>
-                <div class="px-4 pb-4 pt-3 text-center">
-                  <h3 class="text-base font-bold text-base-content">{cat.name}</h3>
-                </div>
+                <span class="mt-3 flex items-center gap-2 text-xs font-bold tracking-wide text-white/85" aria-hidden="true">
+                  Lihat produk <Icon name="lucide:arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </span>
               </a>
             );
           })}
-        </div>
-      </div>
+          </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
@@ -142,7 +139,12 @@ const categories = categoryImages.slice(0, 6);
       <!-- Decorative overlay -->
       <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary to-primary/90"></div>
       <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 30px 30px;"></div>
-      <div class="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
+      <Container class="relative z-10">
+        <div class="mb-10 text-center md:mb-12">
+          <h2 class="mt-3 font-heading text-3xl font-bold text-white md:text-4xl">
+            Wujudkan Brand Anda Bersama Magna
+          </h2>
+        </div>
         <div class="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
           {[
             { value: 500, suffix: "+", label: "Formula Siap Pakai" },
@@ -158,57 +160,49 @@ const categories = categoryImages.slice(0, 6);
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 4. LAYANAN — Service cards with image hover overlay                 -->
     <!-- ================================================================== -->
     <section id="layanan" class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Layanan" variant="minimal" title="Solusi Lengkap untuk Brand Kecantikan Anda" />
+      <Container>
+        <SectionHeader label="Layanan" title="Solusi Lengkap untuk Brand Kecantikan Anda" />
 
         <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((svc) => {
             const waService = createWhatsappLink(siteConfig.waNumber, `Halo, saya tertarik dengan layanan ${svc.title}. Bisa info lebih lanjut?`);
             return (
               <a href={waService} target="_blank" rel="noopener noreferrer"
-                class="group flex flex-col items-center rounded-2xl border border-base-200/60 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+                class="group relative min-h-72 overflow-hidden rounded-2xl bg-primary shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div class="relative w-full overflow-hidden rounded-xl" style="aspect-ratio: 4/3">
-                  <img src={svc.image} alt={svc.title} class="h-full w-full object-contain transition-all duration-500 group-hover:scale-105" loading="lazy" />
-                  <!-- Hover overlay konsultasi -->
-                  <div class="absolute inset-0 flex items-center justify-center rounded-xl bg-black/50 opacity-0 backdrop-blur-[1px] transition-all duration-300 group-hover:opacity-100">
-                    <span class="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-primary shadow-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                      Konsultasi
-                    </span>
-                  </div>
+                <img src={svc.image} alt={svc.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span class="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-primary shadow-lg">
+                    <Icon name="lucide:message-circle" class="h-4 w-4" />
+                    Konsultasi
+                  </span>
                 </div>
-                <div class="mt-3 text-center">
-                  <h3 class="text-sm font-bold text-base-content">{svc.title}</h3>
-                  <p class="mt-1 text-xs text-base-content/50 line-clamp-2">{svc.desc}</p>
+                <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <h3 class="text-lg font-bold">{svc.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-white/75 line-clamp-2">{svc.desc}</p>
                 </div>
               </a>
             );
           })}
         </div>
 
-        <div class="mt-10 text-center">
-          <a href="/layanan" class="btn btn-outline btn-primary">
-            Lihat Semua Layanan
-            <Icon name="lucide:arrow-right" class="h-4 w-4" />
-          </a>
-        </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 5. KEUNGGULAN — Split layout: image left + cards right              -->
     <!-- ================================================================== -->
     <section id="keunggulan" class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Keunggulan" variant="minimal">
+      <Container>
+        <SectionHeader label="Keunggulan">
           <span slot="title">Kenapa <span class="text-primary">Magna?</span></span>
         </SectionHeader>
 
@@ -237,15 +231,15 @@ const categories = categoryImages.slice(0, 6);
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 6. PRODUCT SHOWCASE — Modern hover cards                            -->
     <!-- ================================================================== -->
     <section id="produk" class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Produk" variant="minimal">
+      <Container>
+        <SectionHeader label="Produk">
           <span slot="title">Produk yang Bisa <span class="text-primary">Kami Buat</span></span>
         </SectionHeader>
 
@@ -257,10 +251,10 @@ const categories = categoryImages.slice(0, 6);
               <!-- Card -->
               <a href={waProduct} target="_blank" rel="noopener noreferrer" class="group relative block aspect-square w-full overflow-hidden rounded-2xl border border-base-200/70 bg-base-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md">
                 <img src={product.image} alt={product.name} class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105" loading="lazy" />
-                <span class="absolute right-2 top-2 rounded-lg bg-primary px-2.5 py-1 text-[10px] font-bold text-white shadow-sm">{product.category}</span>
+                <span class="absolute right-3 top-3 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-black/20">{product.category}</span>
                 <!-- Nama produk di dalam card bawah tengah -->
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-3 pt-8">
-                  <h3 class="text-center text-xs font-semibold text-white drop-shadow-sm">{product.name}</h3>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-12">
+                  <h3 class="text-center text-sm font-bold text-white drop-shadow-md sm:text-base">{product.name}</h3>
                 </div>
                 <!-- Overlay hover/click: popup deskripsi -->
                 <div class="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-black/55 p-4 opacity-0 backdrop-blur-[1px] transition-all duration-300 group-hover:opacity-100">
@@ -282,175 +276,103 @@ const categories = categoryImages.slice(0, 6);
             <Icon name="lucide:arrow-right" class="h-4 w-4" />
           </a>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
-    <!-- 7. PROCESS — Interactive timeline + mobile carousel                 -->
+    <!-- 7. PROCESS — Timeline preview                                       -->
     <!-- ================================================================== -->
-    <section id="alur" class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Alur" variant="minimal" title="Proses Mudah & Transparan" />
+    <section id="alur" class="relative overflow-hidden bg-base-100 py-16 md:py-20">
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-primary/[0.07] to-transparent"></div>
+      <Container maxWidth="6xl" class="relative">
+        <SectionHeader label="Alur" title="Proses Mudah & Transparan" />
 
-        <!-- DESKTOP: Interactive timeline -->
-        <div class="mt-14 hidden gap-8 lg:flex">
-          <div class="w-[42%] space-y-2">
-            {processPreviewSteps.map((step, idx) => (
-              <button
-                class="process-btn group flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all duration-500"
-                class:list={{
-                  "border-primary/30 bg-primary/[0.04] shadow-md": idx === 0,
-                  "border-base-200/70 bg-white shadow-sm hover:border-primary/20 hover:bg-primary/[0.02]": idx !== 0,
-                }}
-                data-step={idx}
-              >
-                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary transition-all duration-500 group-[.border-primary/30]:bg-primary group-[.border-primary/30]:text-white group-[.border-primary/30]:shadow-md group-[.border-primary/30]:shadow-primary/20">
-                  <Icon name={step.icon} class="h-5 w-5" />
-                </div>
-                <div class="text-left">
-                  <span class="text-[10px] font-bold tracking-[0.15em] text-primary/50 uppercase">Tahap {step.step}</span>
-                  <h3 class="text-sm font-bold">{step.title}</h3>
-                </div>
-                <div class="ml-auto h-2 w-2 shrink-0 rounded-full bg-transparent transition-all duration-500 group-[.border-primary/30]:bg-primary group-[.border-primary/30]:scale-100 scale-0"></div>
-              </button>
-            ))}
-          </div>
+        <div class="relative mt-14 md:mt-20">
+          <div class="absolute bottom-8 left-6 top-13 w-[3px] -translate-x-1/2 rounded-full bg-primary md:left-1/2"></div>
 
-          <div class="w-[58%]">
-            <div class="sticky top-24 overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-lg">
-              <div class="relative aspect-[4/3] bg-base-200">
-                {processPreviewSteps.map((step, idx) => (
-                  <img
-                    id={`process-img-${idx}`}
-                    class="process-img absolute inset-0 h-full w-full object-cover"
-                    class:list={{ "opacity-100 scale-100": idx === 0, "opacity-0 scale-110": idx !== 0 }}
-                    src={processImages[step.imageKey]}
-                    alt={step.title}
-                    loading={idx === 0 ? "eager" : "lazy"}
-                  />
-                ))}
-                <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div class="absolute bottom-6 left-6 flex items-center gap-3">
-                  <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-md">
-                    <Icon id="process-slide-icon" name={processPreviewSteps[0].icon} class="h-5 w-5" />
-                  </div>
-                  <div>
-                    <span id="process-step-label" class="text-[10px] font-bold tracking-wider text-white/60 uppercase">Tahap 1</span>
-                    <h3 id="process-step-title" class="text-lg font-bold text-white">{processPreviewSteps[0].title}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- MOBILE: Card carousel -->
-        <div class="mt-10 lg:hidden">
-          <div class="relative">
-            <div class="mb-4 flex items-center gap-3">
-              <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-base-200">
-                <div id="mobile-progress" class="h-full rounded-full bg-primary transition-all duration-500 ease-out" style="width: 20%"></div>
-              </div>
-              <span class="text-xs font-bold text-base-content/40">
-                <span id="mobile-current">1</span>/<span>{processPreviewSteps.length}</span>
-              </span>
-            </div>
-            <div class="overflow-hidden rounded-2xl shadow-md">
-              <div class="relative aspect-[16/9] bg-base-200">
-                {processPreviewSteps.map((step, idx) => (
-                  <img
-                    id={`mobile-img-${idx}`}
-                    class="absolute inset-0 h-full w-full object-cover transition-all duration-600 ease-in-out"
-                    class:list={{ "opacity-100 scale-100": idx === 0, "opacity-0 scale-110": idx !== 0 }}
-                    src={processImages[step.imageKey]}
-                    alt={step.title}
-                    loading="lazy"
-                  />
-                ))}
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <div class="absolute bottom-4 left-4 flex items-center gap-2">
-                  <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 text-white backdrop-blur-md">
-                    <Icon id="mobile-slide-icon" name={processPreviewSteps[0].icon} class="h-4 w-4" />
-                  </div>
-                  <span id="mobile-title" class="text-sm font-bold text-white">{processPreviewSteps[0].title}</span>
-                </div>
-              </div>
-            </div>
-            <div class="mt-3 overflow-hidden rounded-2xl">
-              <div id="mobile-track" class="flex transition-transform duration-500 ease-out">
-                {processPreviewSteps.map((step) => (
-                  <div class="w-full shrink-0 px-0.5">
-                    <div class="rounded-2xl border border-base-200 bg-white p-4 shadow-sm">
-                      <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Icon name={step.icon} class="h-5 w-5" />
+          <div class="space-y-8 md:space-y-12">
+            {processPreviewSteps.map((step, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <article class="relative grid grid-cols-1 md:grid-cols-2">
+                  <div class:list={["relative ml-14 md:ml-0", isLeft ? "md:col-start-1 md:pr-14" : "md:col-start-2 md:pl-14"]}>
+                    <div class="group relative rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-6">
+                      <span class:list={["absolute top-13 hidden h-[3px] w-14 rounded-full bg-primary md:block", isLeft ? "-right-14" : "-left-14"]} />
+                      <div class="flex items-start gap-4">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                          <Icon name={step.icon} size={22} />
                         </div>
-                        <div>
-                          <span class="text-[10px] font-bold tracking-wider text-primary/50">TAHAP {step.step}</span>
-                          <h3 class="text-sm font-bold">{step.title}</h3>
+                        <div class="min-w-0 flex-1">
+                          <span class="text-[11px] font-black tracking-[0.18em] text-primary uppercase">Tahap {String(step.step).padStart(2, "0")}</span>
+                          <h3 class="mt-1 text-lg font-black text-base-content sm:text-xl">{step.title}</h3>
                         </div>
                       </div>
-                      <p class="mt-2 text-sm leading-relaxed text-base-content/60">{step.desc}</p>
+                      <p class="mt-4 text-sm font-semibold leading-relaxed text-primary/80">{step.desc}</p>
+                      <p class="mt-3 text-sm leading-relaxed text-base-content/60">{step.detail}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-between">
-              <button id="mobile-prev" class="btn btn-circle btn-ghost btn-sm" aria-label="Sebelumnya">
-                <Icon name="lucide:chevron-left" class="h-4 w-4" />
-              </button>
-              <div class="flex gap-1.5">
-                {processPreviewSteps.map((_, i) => (
-                  <button class={`mobile-dot rounded-full transition-all duration-400 ${i === 0 ? "h-1.5 w-6 bg-primary" : "h-1.5 w-1.5 bg-base-300"}`} data-dot={i} aria-label={`Tahap ${i + 1}`}></button>
-                ))}
-              </div>
-              <button id="mobile-next" class="btn btn-circle btn-ghost btn-sm" aria-label="Selanjutnya">
-                <Icon name="lucide:chevron-right" class="h-4 w-4" />
-              </button>
-            </div>
+                  <div class="absolute left-6 top-7 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-4 border-base-100 bg-primary text-sm font-black text-white md:left-1/2">{String(step.step).padStart(2, "0")}</div>
+                </article>
+              );
+            })}
+
+            {processSteps.slice(4, 5).map((step) => (
+              <a href="/outsourcing-flow" class="group relative block" aria-label="Lihat tahap kelima dan alur maklon lengkap">
+                <article class="relative grid grid-cols-1 md:grid-cols-2">
+                  <div class="relative ml-14 md:col-start-1 md:ml-0 md:pr-14">
+                    <div class="relative overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm sm:p-6">
+                      <span class="absolute top-13 -right-14 hidden h-[3px] w-14 rounded-full bg-primary md:block"></span>
+                      <div class="blur-sm transition duration-300 group-hover:blur-none">
+                        <div class="flex items-start gap-4">
+                          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary"><Icon name={step.icon} size={22} /></div>
+                          <div><span class="text-[11px] font-black tracking-[0.18em] text-primary uppercase">Tahap {String(step.step).padStart(2, "0")}</span><h3 class="mt-1 text-lg font-black sm:text-xl">{step.title}</h3></div>
+                        </div>
+                        <p class="mt-4 text-sm font-semibold leading-relaxed text-primary/80">{step.desc}</p>
+                      </div>
+                      <span class="absolute inset-0 flex items-center justify-center bg-base-100/35 text-sm font-bold text-primary backdrop-blur-[1px] transition-colors group-hover:bg-base-100/15">Lanjutkan ke alur lengkap <Icon name="lucide:arrow-right" class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+                    </div>
+                  </div>
+                  <div class="absolute left-6 top-7 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-4 border-base-100 bg-primary/70 text-sm font-black text-white md:left-1/2">{String(step.step).padStart(2, "0")}</div>
+                </article>
+              </a>
+            ))}
           </div>
         </div>
 
-        <div class="mt-10 text-center">
-          <a href="/outsourcing-flow" class="btn btn-primary">
-            Lihat Alur Maklon Lengkap
-            <Icon name="lucide:arrow-right" class="h-4 w-4" />
-          </a>
-        </div>
-      </div>
+        
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 8. FACTORY GALLERY — Image cards w/ overlay                         -->
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Fasilitas" variant="minimal">
+      <Container>
+        <SectionHeader label="Fasilitas">
           <span slot="title">Pabrik <span class="text-primary">Modern</span> & Terstandar</span>
         </SectionHeader>
 
-        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+        <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
           {facilityGalleryItems.map((item) => (
             <div
               class:list={[
                 "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
-                item.layout === "featured" && "sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col",
-                item.layout === "wide" && "sm:col-span-2 lg:col-span-4",
+                item.layout === "featured" && "col-span-2",
+                item.layout === "wide" && "col-span-2",
               ]}
             >
               <div
                 class:list={[
                   "relative overflow-hidden",
-                  item.layout === "featured" && "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-0 lg:flex-1 lg:h-full xl:min-h-[420px]",
-                  item.layout === "square" && "aspect-square sm:aspect-[5/4]",
-                  item.layout === "wide" && "aspect-[16/9] sm:aspect-[21/9]",
+                  item.layout === "featured" && "aspect-[16/10] lg:aspect-[2/1]",
+                  item.layout === "square" && "aspect-square",
+                  item.layout === "wide" && "aspect-[16/10] lg:aspect-[2/1]",
                 ]}
               >
                 <img
                   src={item.image}
                   alt={item.label}
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
@@ -464,15 +386,15 @@ const categories = categoryImages.slice(0, 6);
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 9. COMPARISON — Premium table                                        -->
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-6xl px-4 lg:px-8">
-        <SectionHeader label="Perbandingan" variant="minimal">
+      <Container maxWidth="6xl">
+        <SectionHeader label="Perbandingan">
           <span slot="title">Yang Membedakan <span class="text-primary">Kami</span></span>
         </SectionHeader>
 
@@ -508,7 +430,7 @@ const categories = categoryImages.slice(0, 6);
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
@@ -519,8 +441,8 @@ const categories = categoryImages.slice(0, 6);
       <div class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"></div>
 
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Sertifikasi" variant="minimal" tone="light" title="Percayalah dengan Kami" />
+      <Container class="relative">
+        <SectionHeader label="Sertifikasi" tone="light" title="Percayalah dengan Kami" />
 
         <div class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
           {certifications.map((cert) => (
@@ -544,86 +466,34 @@ const categories = categoryImages.slice(0, 6);
             <Icon name="lucide:arrow-right" class="h-4 w-4" />
           </a>
         </div>
-      </div>
+      </Container>
     </section>
 
-    <!-- ================================================================== -->
-    <!-- 11. BRAND PARTNER — Logo marquee                                     -->
-    <!-- ================================================================== -->
-    <section class="overflow-hidden bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Brand Partner" variant="minimal">
-          <span slot="title">Brand yang Telah <span class="text-primary">Bekerja Sama</span></span>
-        </SectionHeader>
-      </div>
+    
 
-      <div class="mt-12 space-y-6">
-        <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div class="flex w-max animate-scroll-left items-center gap-10 md:gap-14" style="--scroll-speed: 45s">
-            {[...brandPartners, ...brandPartners].map((brand) => (
-              <div
-                class="brand-logo-item group flex shrink-0 items-center justify-center rounded-2xl border border-base-200/50 bg-white/60 px-8 py-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:bg-white hover:shadow-md"
-                style={`--brand-scale: ${brand.scale}; --brand-opacity: ${brand.opacity}`}
-              >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  class="h-9 w-auto max-w-[120px] object-contain grayscale transition-all duration-500 group-hover:grayscale-0 md:h-11"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div class="flex w-max animate-scroll-right items-center gap-10 md:gap-14" style="--scroll-speed: 50s">
-            {[...brandPartnersRowTwo, ...brandPartnersRowTwo].map((brand) => (
-              <div
-                class="brand-logo-item group flex shrink-0 items-center justify-center rounded-2xl border border-base-200/50 bg-white/60 px-8 py-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:bg-white hover:shadow-md"
-                style={`--brand-scale: ${brand.scale}; --brand-opacity: ${brand.opacity}`}
-              >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  class="h-8 w-auto max-w-[110px] object-contain grayscale transition-all duration-500 group-hover:grayscale-0 md:h-10"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <TestimonialSection />
 
     <!-- ================================================================== -->
     <!-- 12. FAQ — Accordion                                                  -->
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-3xl px-4 lg:px-8">
-        <SectionHeader label="FAQ" variant="minimal">
+      <Container maxWidth="3xl">
+        <SectionHeader label="FAQ">
           <span slot="title">Pertanyaan <span class="text-primary">Umum</span></span>
         </SectionHeader>
 
         <div class="mt-16 space-y-3">
-          {faqs.slice(0, 6).map((faq, idx) => (
-            <div class="reveal-up faq-item rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-300 hover:border-primary/10">
-              <button
-                class="faq-trigger flex w-full items-center justify-between px-6 py-4 text-left"
-                aria-expanded={idx === 0 ? "true" : "false"}
-              >
-                <span class="text-sm font-bold text-base-content/80 pr-4">{faq.q}</span>
-                <Icon name="lucide:chevron-down" class="faq-icon h-4 w-4 shrink-0 text-base-content/25 transition-transform duration-300" />
-              </button>
-              <div class="faq-panel overflow-hidden transition-all duration-400" style={idx === 0 ? "max-height: 500px; opacity: 1;" : "max-height: 0; opacity: 0;"}>
-                <p class="px-6 pb-5 pt-0 text-sm leading-relaxed text-base-content/55">{faq.a}</p>
-              </div>
-            </div>
+          {faqs.slice(0, 6).map((faq, index) => (
+            <FAQItem
+              question={faq.q}
+              answer={faq.a}
+              index={index + 1}
+              name="home-faq"
+              open={index === 0}
+              class="reveal-up"
+            />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
 
   </main>
@@ -634,17 +504,6 @@ const categories = categoryImages.slice(0, 6);
 <!-- ==================================================================== -->
 <script>
   const homeRoot = document.querySelector<HTMLElement>("[data-home]")!;
-
-  // ====================================================================
-  // DATA
-  // ====================================================================
-  const processStepsData = [
-    { step: 1, title: "Konsultasi Konsep", icon: "lucide:message-circle", desc: "Diskusikan ide produk, konsep, dan target pasar secara gratis bersama tim konsultan kami." },
-    { step: 2, title: "Riset & Formulasi", icon: "lucide:flask-conical", desc: "Tim R&D melakukan riset dan mengembangkan formula custom sesuai kebutuhan brand Anda." },
-    { step: 3, title: "Pembuatan Sample", icon: "lucide:beaker", desc: "Sample produk dibuat untuk Anda evaluasi sebelum masuk ke tahap produksi massal." },
-    { step: 4, title: "Revisi Sample", icon: "lucide:refresh-cw", desc: "Revisi sample hingga sesuai dengan ekspektasi dan standar kualitas brand Anda." },
-    { step: 5, title: "Desain & Legalitas", icon: "lucide:file-text", desc: "Desain kemasan, pengurusan BPOM, Halal, dan HKI — semua kami bantu urus." },
-  ];
 
   // ====================================================================
   // 1. HERO SLIDER
@@ -715,132 +574,6 @@ const categories = categoryImages.slice(0, 6);
   if (statCounters.length > 0) statsObserver.observe(statCounters[0]);
 
   // ====================================================================
-  // 3. FAQ ACCORDION
-  // ====================================================================
-  homeRoot.querySelectorAll<HTMLElement>(".faq-trigger").forEach(trigger => {
-    trigger.addEventListener("click", () => {
-      const panel = trigger.nextElementSibling as HTMLElement;
-      const icon = trigger.querySelector(".faq-icon") as HTMLElement;
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      // Close all
-      homeRoot.querySelectorAll<HTMLElement>(".faq-trigger").forEach(t => {
-        t.setAttribute("aria-expanded", "false");
-        const p = t.nextElementSibling as HTMLElement;
-        const i = t.querySelector(".faq-icon") as HTMLElement;
-        if (p) { p.style.maxHeight = "0"; p.style.opacity = "0"; }
-        if (i) i.style.transform = "rotate(0deg)";
-      });
-      if (!isOpen) {
-        trigger.setAttribute("aria-expanded", "true");
-        if (panel) { panel.style.maxHeight = panel.scrollHeight + "px"; panel.style.opacity = "1"; }
-        if (icon) icon.style.transform = "rotate(180deg)";
-      }
-    });
-  });
-
-  // ====================================================================
-  // 4. PROCESS — Desktop Interactive Timeline
-  // ====================================================================
-  const processLen = processStepsData.length;
-  let activeProcess = 0;
-  let processTimer: ReturnType<typeof setInterval> | undefined;
-
-  function goProcess(idx: number) {
-    if (idx < 0 || idx >= processLen || idx === activeProcess) return;
-    activeProcess = idx;
-    const step = processStepsData[idx];
-
-    homeRoot.querySelectorAll<HTMLElement>(".process-img").forEach((img, i) => {
-      if (i === idx) { img.classList.add("opacity-100", "scale-100"); img.classList.remove("opacity-0", "scale-110"); }
-      else { img.classList.remove("opacity-100", "scale-100"); img.classList.add("opacity-0", "scale-110"); }
-    });
-
-    const labelEl = homeRoot.querySelector("#process-step-label");
-    const titleEl = homeRoot.querySelector("#process-step-title");
-    const iconEl = homeRoot.querySelector("#process-slide-icon");
-    if (labelEl) labelEl.textContent = `Tahap ${step.step}`;
-    if (titleEl) titleEl.textContent = step.title;
-    if (iconEl) iconEl.setAttribute("name", step.icon);
-
-    homeRoot.querySelectorAll<HTMLElement>(".process-btn").forEach((btn, i) => {
-      btn.classList.remove("border-primary/30", "bg-primary/[0.04]", "shadow-md", "border-base-200/70", "bg-white", "shadow-sm");
-      if (i === idx) {
-        btn.classList.add("border-primary/30", "bg-primary/[0.04]", "shadow-md");
-      } else {
-        btn.classList.add("border-base-200/70", "bg-white", "shadow-sm");
-      }
-    });
-  }
-
-  function startProcessAuto() { stopProcessAuto(); processTimer = setInterval(() => goProcess((activeProcess + 1) % processLen), 4000); }
-  function stopProcessAuto() { if (processTimer) { clearInterval(processTimer); processTimer = undefined; } }
-
-  homeRoot.querySelectorAll<HTMLElement>(".process-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      goProcess(parseInt(btn.getAttribute("data-step") || "0"));
-      startProcessAuto();
-    });
-  });
-
-  const processContainer = document.querySelector(".lg\\:flex");
-  if (processContainer) {
-    processContainer.addEventListener("mouseenter", stopProcessAuto);
-    processContainer.addEventListener("mouseleave", startProcessAuto);
-    startProcessAuto();
-  }
-
-  // ====================================================================
-  // 5. MOBILE PROCESS CAROUSEL
-  // ====================================================================
-  let mobileIdx = 0;
-  const mobileTotal = processStepsData.length;
-  const mobileTrack = homeRoot.querySelector<HTMLElement>("#mobile-track");
-  const mobileDots = homeRoot.querySelectorAll<HTMLElement>(".mobile-dot");
-  const mobileProgress = homeRoot.querySelector<HTMLElement>("#mobile-progress");
-  const mobileCurrent = homeRoot.querySelector("#mobile-current");
-  const mobileTitle = homeRoot.querySelector("#mobile-title");
-  const mobileSlideIcon = homeRoot.querySelector("#mobile-slide-icon");
-  let mobileTimer: ReturnType<typeof setInterval> | undefined;
-
-  function goMobile(idx: number) {
-    if (!mobileTrack) return;
-    mobileIdx = ((idx % mobileTotal) + mobileTotal) % mobileTotal;
-    mobileTrack.style.transform = `translateX(-${mobileIdx * 100}%)`;
-    if (mobileProgress) mobileProgress.style.width = `${((mobileIdx + 1) / mobileTotal) * 100}%`;
-    if (mobileCurrent) mobileCurrent.textContent = String(mobileIdx + 1);
-    if (mobileTitle && processStepsData[mobileIdx]) mobileTitle.textContent = processStepsData[mobileIdx].title;
-    if (mobileSlideIcon && processStepsData[mobileIdx]) mobileSlideIcon.setAttribute("name", processStepsData[mobileIdx].icon);
-
-    homeRoot.querySelectorAll<HTMLElement>(`[id^="mobile-img-"]`).forEach((img, i) => {
-      if (i === mobileIdx) { img.classList.add("opacity-100", "scale-100"); img.classList.remove("opacity-0", "scale-110"); }
-      else { img.classList.remove("opacity-100", "scale-100"); img.classList.add("opacity-0", "scale-110"); }
-    });
-
-    mobileDots.forEach((dot, i) => {
-      if (i === mobileIdx) { dot.className = "mobile-dot h-1.5 w-6 rounded-full bg-primary transition-all duration-400"; }
-      else { dot.className = "mobile-dot h-1.5 w-1.5 rounded-full bg-base-300 transition-all duration-400"; }
-    });
-  }
-
-  function startMobile() { stopMobile(); mobileTimer = setInterval(() => goMobile(mobileIdx + 1), 4000); }
-  function stopMobile() { if (mobileTimer) clearInterval(mobileTimer); }
-  function resetMobile() { stopMobile(); startMobile(); }
-
-  homeRoot.querySelector("#mobile-prev")?.addEventListener("click", () => { goMobile(mobileIdx - 1); resetMobile(); });
-  homeRoot.querySelector("#mobile-next")?.addEventListener("click", () => { goMobile(mobileIdx + 1); resetMobile(); });
-  mobileDots.forEach((dot, i) => { dot.addEventListener("click", () => { goMobile(i); resetMobile(); }); });
-
-  let mTouchX = 0;
-  mobileTrack?.parentElement?.addEventListener("touchstart", (e) => { mTouchX = e.changedTouches[0].screenX; stopMobile(); }, { passive: true });
-  mobileTrack?.parentElement?.addEventListener("touchend", (e) => {
-    const diff = mTouchX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 40) goMobile(diff > 0 ? mobileIdx + 1 : mobileIdx - 1);
-    resetMobile();
-  }, { passive: true });
-
-  startMobile();
-
-  // ====================================================================
   // 7. TOUCH CARD TAP-TO-REVEAL (mobile only)
   // ====================================================================
   let tappedCard: HTMLElement | null = null;
@@ -909,27 +642,6 @@ const categories = categoryImages.slice(0, 6);
   .hero-slide {
     transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  /* ================================================================== */
-  /* PROCESS TRANSITIONS                                                */
-  /* ================================================================== */
-  .process-img {
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .process-btn {
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .process-btn .rounded-xl {
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* ================================================================== */
-  /* CAROUSEL TRANSITIONS                                               */
-  /* ================================================================== */
-  #mobile-track { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-  #mobile-progress { transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-  .mobile-dot { cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-  .testi-dot { cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
   /* ================================================================== */
   /* SCROLL REVEAL BASE                                                 */

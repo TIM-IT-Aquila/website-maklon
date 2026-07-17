@@ -1,4 +1,6 @@
 ---
+import Container from "./Container.astro";
+
 interface Props {
   image: string;
   alt: string;
@@ -20,7 +22,7 @@ const { image, alt, titleMain, titleAccent, id, class: className } = Astro.props
     <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/65"></div>
   </div>
 
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
+  <Container class="relative z-10 w-full">
     <div class="max-w-2xl">
       <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
         {titleMain}<br />
@@ -35,5 +37,5 @@ const { image, alt, titleMain, titleAccent, id, class: className } = Astro.props
 
       <slot />
     </div>
-  </div>
+  </Container>
 </section>

@@ -1,5 +1,8 @@
 ---
+import Container from "../components/ui/Container.astro";
+import FAQItem from "../components/ui/FAQItem.astro";
 import Icon from "../components/ui/Icon.astro";
+import ModalShell from "../components/ui/ModalShell.astro";
 import PageHero from "../components/ui/PageHero.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { siteConfig } from "../data/site";
@@ -67,8 +70,8 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMes
 
       <!-- Bahan Aktif -->
       <div class="bg-base-200/40 py-14 md:py-16">
-        <div class="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader label="Bahan Aktif" variant="minimal" title="Ingredient Library Populer" />
+        <Container>
+          <SectionHeader label="Bahan Aktif" title="Ingredient Library Populer" />
 
           <div class="reveal-up mt-6 flex flex-wrap justify-center gap-2" data-ingredient-filters>
             {
@@ -115,19 +118,18 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMes
               ))
             }
           </div>
-        </div>
+        </Container>
       </div>
 
       <!-- Alur Pengujian -->
       <div class="bg-base-100 py-14 md:py-16">
-        <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <Container>
           <SectionHeader
             label="Pengujian"
-            variant="minimal"
-            title="Alur Pengujian Sebelum Produksi"
+            title="Pengujian Laboratium"
           />
 
-          <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
             {
               rdTestingFlow.map((flow) => (
                 <button
@@ -148,13 +150,13 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMes
               ))
             }
           </div>
-        </div>
+        </Container>
       </div>
 
       <!-- Fasilitas Lab -->
       <div class="bg-base-200/40 py-14 md:py-16">
-        <div class="mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeader label="Fasilitas" variant="minimal" title="Laboratorium Terstandarisasi" />
+        <Container>
+          <SectionHeader label="Fasilitas" title="Laboratorium Terstandarisasi" />
 
           <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {
@@ -182,47 +184,34 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMes
               ))
             }
           </div>
-        </div>
+        </Container>
       </div>
 
       <!-- FAQ -->
       <div class="bg-base-100 py-14 md:py-16">
-        <div class="mx-auto max-w-3xl px-4 lg:px-8">
-          <SectionHeader label="FAQ" variant="minimal">
+        <Container maxWidth="3xl">
+          <SectionHeader label="FAQ">
             <span slot="title">Pertanyaan <span class="text-primary">Umum R&D</span></span>
           </SectionHeader>
 
           <div class="mt-10 space-y-3">
             {
-              rdLabFaqs.map((faq, i) => (
-                <details
-                  class="reveal-up group rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 open:border-primary/15 open:shadow-md [&_summary::-webkit-details-marker]:hidden"
-                  open={i === 0}
-                >
-                  <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 list-none">
-                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
-                      {i + 1}
-                    </span>
-                    <span class="flex-1 text-sm font-bold text-base-content/80">{faq.q}</span>
-                    <Icon
-                      name="lucide:chevron-down"
-                      size={16}
-                      class="shrink-0 text-base-content/25 transition-transform duration-300 group-open:rotate-180"
-                    />
-                  </summary>
-                  <p class="px-5 pb-5 pl-14 text-sm leading-relaxed text-base-content/55">
-                    {faq.a}
-                  </p>
-                </details>
+              rdLabFaqs.map((faq, index) => (
+                <FAQItem
+                  question={faq.q}
+                  answer={faq.a}
+                  index={index + 1}
+                  open={index === 0}
+                  class="reveal-up"
+                />
               ))
             }
           </div>
-        </div>
+        </Container>
       </div>
 
       <!-- Modal detail -->
-      <dialog class="modal modal-bottom sm:modal-middle" data-rd-modal>
-        <div class="modal-box max-w-lg rounded-3xl border border-base-200 p-0 shadow-2xl">
+      <ModalShell boxClass="border border-base-200" data-rd-modal>
           <div
             class="rounded-t-3xl bg-gradient-to-br from-primary/10 via-white to-emerald-50/50 p-6"
           >
@@ -273,11 +262,7 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, createRdConsultMes
               Konsultasi via WhatsApp
             </a>
           </div>
-        </div>
-        <form method="dialog" class="modal-backdrop">
-          <button type="submit" aria-label="Tutup modal">close</button>
-        </form>
-      </dialog>
+      </ModalShell>
     </section>
   </main>
 </MainLayout>

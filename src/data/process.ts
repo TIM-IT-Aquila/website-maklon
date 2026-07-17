@@ -57,6 +57,17 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step: 5,
+    title: "Pengujian",
+    icon: "lucide:flask-conical",
+    desc: "Formula diuji untuk memastikan kualitas, keamanan, dan kestabilannya.",
+    legacyDetail:
+      "Tim desain kami akan mengembangkan konsep kemasan — dari pemilihan material botol/jar, desain label, hingga mockup 3D. Kami pastikan kemasan tidak hanya estetik tapi juga fungsional dan compliant dengan regulasi BPOM.",
+    detail:
+      "Formula melalui pengujian dasar seperti pH, stabilitas, dan kompatibilitas kemasan sebelum dilanjutkan ke tahap berikutnya. Hasilnya memastikan produk siap dikembangkan sesuai standar kualitas.",
+    imageKey: "desain",
+  },
+  {
+    step: 6,
     title: "Desain Kemasan",
     icon: "lucide:palette",
     desc: "Kemasan dirancang sesuai konsep dan identitas brand Anda.",
@@ -65,7 +76,7 @@ export const processSteps: ProcessStep[] = [
     imageKey: "desain",
   },
   {
-    step: 6,
+    step: 7,
     title: "Pengurusan Legalitas",
     icon: "lucide:file-text",
     desc: "BPOM, Halal, HKI, dan dokumen legal lain diurus tim kami.",
@@ -74,7 +85,7 @@ export const processSteps: ProcessStep[] = [
     imageKey: "legalitas",
   },
   {
-    step: 7,
+    step: 8,
     title: "Produksi Massal",
     icon: "lucide:factory",
     desc: "Produksi skala besar dengan standar CPKB dan GMP.",
@@ -83,7 +94,7 @@ export const processSteps: ProcessStep[] = [
     imageKey: "produksi",
   },
   {
-    step: 8,
+    step: 9,
     title: "Quality Control",
     icon: "lucide:search",
     desc: "Pemeriksaan kualitas menyeluruh sebelum produk dikirim.",
@@ -92,7 +103,7 @@ export const processSteps: ProcessStep[] = [
     imageKey: "qc",
   },
   {
-    step: 9,
+    step: 10,
     title: "Pengiriman Produk",
     icon: "lucide:truck",
     desc: "Produk siap dikirim ke alamat Anda dengan aman dan tepat waktu.",

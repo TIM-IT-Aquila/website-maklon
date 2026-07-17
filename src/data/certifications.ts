@@ -28,15 +28,7 @@ export const certifications = [
     number: "CPKB/2024/KK-0031",
     image: certificationImages.cpkb,
   },
-  {
-    name: "ISO 9001",
-    fullName: "Sistem Manajemen Mutu Internasional",
-    icon: "lucide:globe",
-    desc: "Sertifikasi sistem manajemen mutu internasional yang memastikan standar kualitas proses dan produk terjamin secara berkelanjutan.",
-    year: "2023",
-    number: "ISO 9001:2015 — 44Q 20034",
-    image: certificationImages.iso,
-  },
+  
   {
     name: "HKI / Merek",
     fullName: "Hak Kekayaan Intelektual",

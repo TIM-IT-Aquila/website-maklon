@@ -1,8 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
-import TestimonialSection from "../components/sections/TestimonialSection.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import { portfolioItems } from "../data/portofolio";
 ---
@@ -16,8 +16,8 @@ import { portfolioItems } from "../data/portofolio";
     <!-- 1. PORTOFOLIO — Image only, 4 columns, hover shows details         -->
     <!-- ================================================================== -->
     <section class="bg-base-100 pt-20 pb-14 lg:pt-24 lg:pb-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Portofolio" variant="minimal">
+      <Container>
+        <SectionHeader label="Portofolio">
           <span slot="title">Brand yang Telah <span class="text-primary">Bekerja Sama</span></span>
         </SectionHeader>
 
@@ -111,10 +111,9 @@ import { portfolioItems } from "../data/portofolio";
             ))
           }
         </div>
-      </div>
+      </Container>
     </section>
 
-    <TestimonialSection />
   </main>
 </MainLayout>
 

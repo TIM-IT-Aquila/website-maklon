@@ -83,7 +83,7 @@ public/
 └─ assets/       # Gambar, logo, dan placeholder yang disajikan apa adanya
 ```
 
-Detail konvensi layer, DRY, SSOT, SoC, dan YAGNI tersedia di [CODE_STYLE.md](CODE_STYLE.md). Instruksi kerja untuk coding agent tersedia di [AGENTS.md](AGENTS.md).
+Detail konvensi layer, DRY, SSOT, SoC, dan YAGNI tersedia di [CODE_STYLE.md](CODE_STYLE.md). Katalog dan kontrak komponen ala Figma tersedia di [COMPONENT_SYSTEM.md](COMPONENT_SYSTEM.md). Instruksi kerja untuk coding agent tersedia di [AGENTS.md](AGENTS.md).
 
 ## Sumber Konten Utama
 

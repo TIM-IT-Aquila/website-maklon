@@ -1,6 +1,7 @@
 ---
 import { navItems } from "../data/nav";
 import { siteConfig } from "../data/site";
+import Container from "./ui/Container.astro";
 import Icon from "./ui/Icon.astro";
 import WAButton from "./ui/WAButton.astro";
 
@@ -21,7 +22,7 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
   data-navbar
   class="sticky top-0 z-50 border-b border-base-300/40 bg-white/90 backdrop-blur-2xl transition-all duration-300"
 >
-  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+  <Container>
     <div class="navbar">
       <!-- ================================================================== -->
       <!-- KIRI: LOGO ICON                                                    -->
@@ -148,7 +149,7 @@ function isChildActive(children: { href: string }[] | undefined): boolean {
       </button>
     </div>
     </div>
-  </div>
+  </Container>
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu" class="mobile-menu-hidden fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] w-full bg-black/40 backdrop-blur-sm lg:hidden" style="display:none;">

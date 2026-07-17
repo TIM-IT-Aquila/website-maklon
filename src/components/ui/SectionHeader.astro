@@ -1,39 +1,30 @@
 ---
 interface Props {
-  tag?: string;
   label?: string;
   title?: string;
-  centered?: boolean;
   align?: "center" | "left";
-  variant?: "default" | "minimal";
   tone?: "default" | "light";
   class?: string;
 }
 
 const {
-  tag,
   label,
   title,
-  centered = true,
-  align = centered ? "center" : "left",
-  variant = "minimal",
+  align = "center",
   tone = "default",
   class: className,
 } = Astro.props;
-
-const displayLabel = label ?? tag;
 ---
 
 <div
   class:list={[
-    variant === "minimal" && align === "center" && "reveal-up mx-auto max-w-2xl text-center",
-    variant === "minimal" && align === "left" && "reveal-up max-w-none text-left",
-    variant === "default" && `mb-8 ${centered ? "text-center" : ""}`,
+    align === "center" && "reveal-up mx-auto max-w-2xl text-center",
+    align === "left" && "reveal-up max-w-none text-left",
     className,
   ]}
 >
   {
-    variant === "minimal" && displayLabel && (
+    label && (
       <div
         class:list={[
           "mb-6 flex items-center gap-3",
@@ -47,23 +38,16 @@ const displayLabel = label ?? tag;
             tone === "light" ? "text-white/60" : "text-primary/60",
           ]}
         >
-          {displayLabel}
+          {label}
         </span>
         <span class:list={["block h-px w-8", tone === "light" ? "bg-white/30" : "bg-primary/30"]} />
       </div>
     )
   }
 
-  {
-    variant === "default" && displayLabel && (
-      <p class="mb-2 font-semibold tracking-wide text-primary">{displayLabel}</p>
-    )
-  }
-
   <h2
     class:list={[
-      variant === "minimal" && "text-3xl font-black leading-tight md:text-4xl lg:text-5xl",
-      variant === "default" && "text-3xl font-black md:text-4xl",
+      "text-3xl font-black leading-tight md:text-4xl lg:text-5xl",
       tone === "light" && "text-white",
     ]}
   >

@@ -46,6 +46,30 @@ export const facilityGalleryItems = [
   },
 ] as const;
 
+export const factoryScopeRooms = [
+  { label: "Lab R&D", image: factoryImages.labResearch },
+  { label: "Ruang Pengemasan", image: factoryImages.packagingArea },
+  { label: "Ruang Quality Control", image: factoryImages.qualityControl },
+  { label: "Gudang Bahan Baku & Kemasan", image: factoryImages.bahanBaku },
+  { label: "Gudang Produk Jadi", image: factoryImages.productionLine },
+  { label: "Ruang Timbang", image: factoryImages.samplingRoom },
+  { label: "Ruang Antar Barang", image: factoryImages.productionLine },
+  { label: "Ruang Mixing & Filling Serbuk", image: factoryImages.formulasiLab },
+  {
+    label: "Ruang Mixing & Filling Cairan, Setengah Padat & Padat",
+    image: factoryImages.productionLine,
+  },
+  {
+    label: "Ruang Mixing & Filling Cairan Setengah Padat",
+    image: factoryImages.formulasiLab,
+  },
+  { label: "Ruang Kantor", image: companyImages.office },
+  { label: "Ruang Ekstrak", image: factoryImages.labResearch },
+  { label: "Ruang WIP", image: factoryImages.samplingRoom },
+  { label: "Ruang Ganti Laki-Laki", image: companyImages.team },
+  { label: "Ruang Ganti Perempuan", image: companyImages.team },
+] as const;
+
 export const visionMission = {
   vision:
     "Menjadi partner maklon terpercaya untuk membantu brand kecantikan berkembang dengan produk berkualitas.",

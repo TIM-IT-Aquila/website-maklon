@@ -3,7 +3,7 @@ import { factoryImages } from "./images";
 export const advantages = [
   {
     icon: "lucide:factory",
-    title: "One Stop Service",
+    title: "Layanan Lengkap",
     desc: "Semua proses dari konsep hingga produk jadi dalam satu tempat tanpa ribet.",
     image: factoryImages.productionLine,
   },
@@ -30,11 +30,5 @@ export const advantages = [
     title: "Tim R&D Berpengalaman",
     desc: "Didukung tim riset dan pengembangan yang ahli di bidangnya.",
     image: factoryImages.labResearch,
-  },
-  {
-    icon: "lucide:shield-check",
-    title: "Quality Control Ketat",
-    desc: "Setiap produk melewati QC ketat sebelum dikirim ke pelanggan.",
-    image: factoryImages.qualityControl,
   },
 ];

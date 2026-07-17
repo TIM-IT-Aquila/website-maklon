@@ -117,7 +117,7 @@ export const rdIngredientLibrary = [
 export const rdTestingFlow = [
   {
     step: 1,
-    title: "Uji Stabilitas Suhu",
+    title: "Uji Stabilitas",
     icon: "lucide:thermometer",
     desc: "Formula diuji pada suhu 40°C, 50°C, dan cycling test untuk memastikan tekstur, warna, dan aroma tetap stabil.",
     detail:
@@ -126,31 +126,14 @@ export const rdTestingFlow = [
   },
   {
     step: 2,
-    title: "Uji Mikroba & Bakteri",
+    title: "Uji Mikrobiologi & Logam Berat",
     icon: "lucide:microscope",
     desc: "Pengujian TPC, yeast & mold, serta challenge test di lab mikrobiologi — produk dijamin aman dan higienis.",
     detail:
       "Dilakukan di lab mikrobiologi bersertifikat. Meliputi total plate count, uji jamur, dan challenge test dengan bakteri patogen sesuai standar BPOM.",
     duration: "2–4 minggu",
   },
-  {
-    step: 3,
-    title: "Tes Iritasi Kulit",
-    icon: "lucide:heart-pulse",
-    desc: "Uji patch pada panel terlatih sesuai protokol dermatologi — memastikan formula lembut dan tidak mengiritasi.",
-    detail:
-      "Uji patch 48–72 jam pada panel 30+ orang. Skor iritasi dinilai oleh dermatolog untuk memastikan keamanan pada kulit sensitif.",
-    duration: "1–2 minggu",
-  },
-  {
-    step: 4,
-    title: "Pengiriman Sampel Fisik",
-    icon: "lucide:package-check",
-    desc: "Sampel dikirim ke rumah Anda untuk dicoba langsung — revisi formula hingga Anda 100% puas.",
-    detail:
-      "Sampel V1, V1.1, hingga final dikirim ke alamat klien. Feedback tekstur, aroma, dan performa langsung menjadi acuan revisi formula.",
-    duration: "3–7 hari pengiriman",
-  },
+  
 ];
 
 // ─── FAQ singkat R&D ──────────────────────────────────────────────────

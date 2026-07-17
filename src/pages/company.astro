@@ -1,12 +1,13 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import WAButton from "../components/ui/WAButton.astro";
 import {
   companyMetrics,
   coreValues,
-  facilityGalleryItems,
+  factoryScopeRooms,
   ourStory,
   visionMission,
 } from "../data/company";
@@ -34,7 +35,7 @@ import { factoryImages, companyImages } from "../data/images";
       </div>
 
       <!-- Content -->
-      <div class="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
+      <Container class="relative z-10 w-full">
         <div class="max-w-2xl">
           <h1
             class="reveal-up text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl"
@@ -57,19 +58,18 @@ import { factoryImages, companyImages } from "../data/images";
               text="Konsultasi Gratis"
               message="Halo, saya ingin konsultasi maklon skincare."
               variant="white"
-              size="md"
               class="rounded-xl shadow-xl shadow-black/20"
             />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 2. ABOUT COMPANY — Split layout: text + image + metrics             -->
     <!-- ================================================================== -->
     <section class="bg-base-100 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Container>
         <div class="flex flex-col items-center gap-8 lg:flex-row lg:gap-14">
           <!-- LEFT: Image -->
           <div class="reveal-up relative w-full overflow-hidden rounded-3xl lg:w-[45%]">
@@ -87,7 +87,7 @@ import { factoryImages, companyImages } from "../data/images";
 
           <!-- RIGHT: Text -->
           <div class="lg:w-[55%]">
-            <SectionHeader label="Tentang Kami" variant="minimal" align="left" centered={false}>
+            <SectionHeader label="Tentang Kami" align="left">
               <span slot="title"
                 >Hadir untuk Membantu <span class="text-primary">Brand Owner</span></span
               >
@@ -116,15 +116,15 @@ import { factoryImages, companyImages } from "../data/images";
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 3. VISION · MISSION                                                   -->
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Visi & Misi" variant="minimal">
+      <Container>
+        <SectionHeader label="Visi & Misi">
           <span slot="title">Arah dan <span class="text-primary">Komitmen</span> Kami</span>
         </SectionHeader>
 
@@ -188,7 +188,7 @@ import { factoryImages, companyImages } from "../data/images";
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
@@ -209,8 +209,8 @@ import { factoryImages, companyImages } from "../data/images";
       >
       </div>
 
-      <div class="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Nilai Kami" variant="minimal" tone="light">
+      <Container class="relative">
+        <SectionHeader label="Nilai Kami" tone="light">
           <span slot="title">Prinsip yang <span class="text-emerald-200">Kami Pegang</span></span>
         </SectionHeader>
 
@@ -232,57 +232,50 @@ import { factoryImages, companyImages } from "../data/images";
             }
           </div>
         </div>
-      </div>
+      </Container>
     </section>
 
     <!-- ================================================================== -->
     <!-- 5. FACILITIES — Bento gallery (sama seperti home)                   -->
     <!-- ================================================================== -->
     <section class="bg-base-200/40 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader label="Fasilitas" variant="minimal">
-          <span slot="title">Pabrik <span class="text-primary">Modern</span> & Terstandar</span>
+      <Container>
+        <SectionHeader label="Fasilitas">
+          <span slot="title">Ruang Lingkup <span class="text-primary">Pabrik</span></span>
         </SectionHeader>
 
-        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {
-            facilityGalleryItems.map((item) => (
-              <div
-                class:list={[
-                  "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
-                  item.layout === "featured" &&
-                    "sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col",
-                  item.layout === "wide" && "sm:col-span-2 lg:col-span-4",
-                ]}
-              >
-                <div
-                  class:list={[
-                    "relative overflow-hidden",
-                    item.layout === "featured" &&
-                      "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-0 lg:flex-1 lg:h-full xl:min-h-[420px]",
-                    item.layout === "square" && "aspect-square sm:aspect-[5/4]",
-                    item.layout === "wide" && "aspect-[16/9] sm:aspect-[21/9]",
-                  ]}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.label}
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
-                  <div class="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
-                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-primary">
-                      <Icon name={item.icon} class="h-4 w-4" />
-                    </div>
-                    <h3 class="text-sm font-bold text-white">{item.label}</h3>
-                  </div>
+        <div class="reveal-up mt-12 overflow-hidden">
+          <div class="facility-track flex w-max">
+            {
+              [false, true].map((duplicate) => (
+                <div class="flex shrink-0 gap-4 pr-4" aria-hidden={duplicate ? "true" : undefined}>
+                  {
+                    factoryScopeRooms.map((room, index) => (
+                      <div class="group relative w-56 shrink-0 overflow-hidden rounded-2xl border border-base-200/70 bg-base-200 shadow-sm sm:w-60">
+                        <div class="aspect-[4/3]">
+                          <img
+                            src={room.image}
+                            alt={duplicate ? "" : room.label}
+                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                        <span class="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-xs font-bold text-white backdrop-blur-sm">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <h3 class="absolute bottom-0 left-0 right-0 p-4 text-sm font-bold text-white">
+                          {room.label}
+                        </h3>
+                      </div>
+                    ))
+                  }
                 </div>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   </main>
 </MainLayout>
@@ -290,6 +283,22 @@ import { factoryImages, companyImages } from "../data/images";
 <style is:global>
   .reveal-up {
     will-change: transform, opacity;
+  }
+
+  .facility-track {
+    animation: facility-scroll 45s linear infinite;
+  }
+
+  @keyframes facility-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .facility-track {
+      animation: none;
+    }
   }
 </style>
 

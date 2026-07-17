@@ -1,4 +1,6 @@
 ---
+import Container from "../components/ui/Container.astro";
+import FAQItem from "../components/ui/FAQItem.astro";
 import Icon from "../components/ui/Icon.astro";
 import PageHero from "../components/ui/PageHero.astro";
 import WAButton from "../components/ui/WAButton.astro";
@@ -52,7 +54,7 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
         </div>
       </PageHero>
 
-      <div class="relative mx-auto max-w-7xl px-4 pb-12 pt-8 lg:px-8 lg:pb-16">
+      <Container class="relative pb-12 pt-8 lg:pb-16">
         <div class="mt-8 flex justify-center">
           <div role="tablist" class="tabs tabs-box w-full max-w-2xl bg-white/90 p-1 shadow-md">
             <button
@@ -363,7 +365,7 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       <script
         is:inline
@@ -395,10 +397,10 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
       ) as HTMLElement;
 
       const defaultState = JSON.parse(
-        document.getElementById("oem-odm-default-state")?.textContent ?? "{}",
+        root.querySelector("#oem-odm-default-state")?.textContent ?? "{}",
       ) as ConfiguratorState;
       const waPhone = JSON.parse(
-        document.getElementById("oem-odm-wa-phone")?.textContent ?? '""',
+        root.querySelector("#oem-odm-wa-phone")?.textContent ?? '""',
       ) as string;
 
       let state: ConfiguratorState = { ...defaultState };
@@ -524,7 +526,7 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
       els.stepNavs.forEach((btn) => {
         btn.addEventListener("click", () => {
           const id = btn.dataset.stepNav;
-          const target = document.getElementById(`step-${id}`);
+          const target = root.querySelector(`#step-${id}`);
           target?.scrollIntoView({ behavior: "smooth", block: "start" });
           els.stepNavs.forEach((b) => {
             const active = b === btn;
@@ -557,7 +559,7 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
     </script>
 
     <section id="oem-odm-info" class="border-t border-base-200 bg-base-200/40 py-14 lg:py-16">
-      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <Container>
         <div class="mt-8 overflow-hidden rounded-3xl border border-base-200 bg-white shadow-lg">
           <div role="tablist" class="tabs tabs-bordered bg-base-100/50 px-2 pt-2">
             <button
@@ -640,23 +642,13 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
 
           <div class="hidden space-y-2 p-5 lg:p-8" data-info-panel="faq">
             {
-              oemOdmFaqs.map((faq, i) => (
-                <details class="group rounded-xl border border-base-200 bg-base-100/50 [&_summary::-webkit-details-marker]:hidden">
-                  <summary class="flex cursor-pointer items-center gap-3 p-4 list-none">
-                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
-                      {i + 1}
-                    </span>
-                    <span class="flex-1 text-sm font-semibold">{faq.q}</span>
-                    <Icon
-                      name="lucide:chevron-down"
-                      size={16}
-                      class="text-base-content/30 transition-transform group-open:rotate-180"
-                    />
-                  </summary>
-                  <p class="px-4 pb-4 pl-14 text-sm leading-relaxed text-base-content/55">
-                    {faq.a}
-                  </p>
-                </details>
+              oemOdmFaqs.map((faq, index) => (
+                <FAQItem
+                  question={faq.q}
+                  answer={faq.a}
+                  index={index + 1}
+                  variant="compact"
+                />
               ))
             }
             <p class="pt-2 text-center text-sm text-base-content/45">
@@ -672,7 +664,7 @@ import { comparisonRows, oemFlow, odmFlow, oemOdmFaqs } from "../data/oem-odm-pa
             </p>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   </main>
 </MainLayout>

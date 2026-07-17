@@ -1,4 +1,5 @@
 ---
+import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { processSteps } from "../data/process";
@@ -16,7 +17,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       >
       </div>
 
-      <div class="relative mx-auto max-w-6xl px-4 lg:px-8">
+      <Container maxWidth="6xl" class="relative">
         <SectionHeader label="9 Tahap Terarah" title="Proses Maklon dari Ide hingga Siap Jual" />
 
         <div class="relative mt-14 md:mt-20">
@@ -29,7 +30,6 @@ import MainLayout from "../layouts/MainLayout.astro";
             {
               processSteps.map((step, index) => {
                 const isLeft = index % 2 === 0;
-                const isFinal = index === processSteps.length - 1;
 
                 return (
                   <article class="relative grid grid-cols-1 md:grid-cols-2">
@@ -39,14 +39,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                         isLeft ? "md:col-start-1 md:pr-14" : "md:col-start-2 md:pl-14",
                       ]}
                     >
-                      <div
-                        class:list={[
-                          "group relative rounded-2xl border bg-base-100 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6",
-                          isFinal
-                            ? "border-primary/30 bg-primary/[0.03]"
-                            : "border-base-200 hover:border-primary/30",
-                        ]}
-                      >
+                        <div class="group relative rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl sm:p-6">
                         <span
                           class:list={[
                             "absolute top-13 hidden h-[3px] w-14 rounded-full bg-primary md:block",
@@ -63,9 +56,6 @@ import MainLayout from "../layouts/MainLayout.astro";
                               <span class="text-[11px] font-black tracking-[0.18em] text-primary uppercase">
                                 Tahap {String(step.step).padStart(2, "0")}
                               </span>
-                              {isFinal && (
-                                <span class="badge badge-primary badge-sm">Siap Jual</span>
-                              )}
                             </div>
                             <h2 class="mt-1 text-lg font-black text-base-content sm:text-xl">
                               {step.title}
@@ -91,7 +81,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             }
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   </main>
 </MainLayout>

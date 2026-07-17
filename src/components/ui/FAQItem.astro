@@ -1,0 +1,77 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  question: string;
+  answer: string;
+  index: number;
+  open?: boolean;
+  name?: string;
+  variant?: "card" | "compact";
+  tone?: "neutral" | "primary";
+  class?: string;
+}
+
+const {
+  question,
+  answer,
+  index,
+  open = false,
+  name,
+  variant = "card",
+  tone = "neutral",
+  class: className,
+} = Astro.props;
+
+const cardToneClasses = {
+  neutral: "border-base-200/70 open:border-primary/15",
+  primary: "border-primary/10 open:border-primary/20",
+};
+---
+
+<details
+  name={name}
+  open={open}
+  class:list={[
+    "group border [&_summary::-webkit-details-marker]:hidden",
+    variant === "card" &&
+      "rounded-2xl bg-white shadow-sm transition-all duration-300 open:shadow-md",
+    variant === "card" && cardToneClasses[tone],
+    variant === "compact" && "rounded-xl border-base-200 bg-base-100/50",
+    className,
+  ]}
+>
+  <summary
+    class:list={[
+      "flex cursor-pointer items-center gap-3 list-none",
+      variant === "card" ? "px-5 py-4" : "p-4",
+    ]}
+  >
+    <span
+      class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary"
+    >
+      {index}
+    </span>
+    <span
+      class:list={[
+        "flex-1 text-sm",
+        variant === "card" ? "font-bold text-base-content/80" : "font-semibold",
+      ]}
+    >
+      {question}
+    </span>
+    <Icon
+      name="lucide:chevron-down"
+      size={16}
+      class="shrink-0 text-base-content/25 transition-transform duration-300 group-open:rotate-180"
+    />
+  </summary>
+  <p
+    class:list={[
+      "pl-14 text-sm leading-relaxed text-base-content/55",
+      variant === "card" ? "px-5 pb-5" : "px-4 pb-4",
+    ]}
+  >
+    {answer}
+  </p>
+</details>

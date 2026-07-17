@@ -1,33 +1,17 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 import { siteConfig } from "../../data/site";
 import { createWhatsappLink } from "../../lib/whatsapp";
 import Icon from "./Icon.astro";
 
-interface Props {
-  /** Teks tombol. Default: "Konsultasi via WhatsApp" */
+interface Props extends HTMLAttributes<"button"> {
   text?: string;
-  /** Pesan WhatsApp kustom. Default: siteConfig.waText */
   message?: string;
-  /** Nomor WA. Default: siteConfig.waNumber */
   phone?: string;
-  /** Variasi style */
-  variant?:
-    | "primary"
-    | "primary-outline"
-    | "white"
-    | "ghost"
-    | "floating"
-    | "text-link"
-    | "text-link-black";
-  /** Ukuran */
-  size?: "sm" | "md" | "lg" | "xl";
-  /** Sembunyikan icon WhatsApp */
+  variant?: "primary" | "white" | "floating" | "text-link";
+  size?: "sm" | "md" | "lg";
   hideIcon?: boolean;
-  /** Icon custom (nama icon lucide/mdi) */
-  iconName?: string;
-  /** Class tambahan */
-  class?: string;
-  /** Gunakan <button> bukan <a> */
   asButton?: boolean;
 }
 
@@ -38,63 +22,49 @@ const {
   variant = "primary",
   size = "md",
   hideIcon = false,
-  iconName,
   class: extraClass = "",
   asButton = false,
+  ...attributes
 } = Astro.props;
 
-const waLink = createWhatsappLink(phone, message);
-
-// ── Size classes ──
 const sizeClasses = {
   sm: "h-9 px-4 text-xs gap-1.5",
   md: "h-11 px-5 text-sm gap-2",
   lg: "h-13 px-7 text-sm gap-2.5",
-  xl: "h-14 px-10 text-base gap-3",
 };
 
-// ── Variant classes ──
 const variantClasses = {
   primary:
     "bg-primary text-white shadow-md shadow-primary/15 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:brightness-110",
-  "primary-outline":
-    "border border-primary/30 bg-white text-primary shadow-sm hover:bg-primary/[0.03] hover:border-primary/50 hover:-translate-y-0.5 hover:shadow-md",
   white:
     "bg-white text-primary shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-0.5 hover:scale-105",
-  ghost: "text-base-content/60 hover:text-primary hover:bg-primary/[0.03]",
   floating:
     "bg-primary text-white shadow-xl shadow-primary/20 ring-1 ring-white/20 hover:scale-110 hover:brightness-110 hover:shadow-2xl hover:shadow-primary/30",
   "text-link": "text-base-content/60 hover:text-primary",
-  "text-link-black": "text-base-content transition-colors hover:text-primary",
 };
 
-const iconSize = {
+const iconSizes = {
   sm: 14,
   md: 16,
   lg: 18,
-  xl: 20,
 };
 
-const variantClass = variantClasses[variant];
-const sizeClass = sizeClasses[size];
-const iconNameToUse = iconName || "mdi:whatsapp";
+const waLink = createWhatsappLink(phone, message);
 const iconOnly = variant === "floating";
-
-// ── Shared attributes ──
-const linkAttrs = {
-  href: asButton ? undefined : waLink,
-  target: "_blank",
-  rel: "noopener noreferrer",
-  class: `wa-button inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 ${variantClass} ${sizeClass} ${extraClass} ${iconOnly ? "h-14 w-14 rounded-full p-0" : ""}`,
-};
+const buttonClass = `wa-button inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 ${variantClasses[variant]} ${sizeClasses[size]} ${extraClass} ${iconOnly ? "h-14 w-14 rounded-full p-0" : ""}`;
 ---
 
 {
   !asButton && (
-    <a {...linkAttrs} aria-label={iconOnly ? `WhatsApp: ${text}` : text}>
-      {!hideIcon && iconNameToUse && (
-        <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />
-      )}
+    <a
+      {...attributes}
+      href={waLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={buttonClass}
+      aria-label={iconOnly ? `WhatsApp: ${text}` : text}
+    >
+      {!hideIcon && <Icon name="mdi:whatsapp" size={iconSizes[size]} class="shrink-0" />}
       {!iconOnly && <span>{text}</span>}
     </a>
   )
@@ -103,13 +73,13 @@ const linkAttrs = {
 {
   asButton && (
     <button
-      {...linkAttrs}
+      {...attributes}
+      type="button"
+      class={buttonClass}
       onclick={`window.open('${waLink}', '_blank', 'noopener,noreferrer')`}
       aria-label={text}
     >
-      {!hideIcon && iconNameToUse && (
-        <Icon name={iconNameToUse} size={iconSize[size]} class="shrink-0" />
-      )}
+      {!hideIcon && <Icon name="mdi:whatsapp" size={iconSizes[size]} class="shrink-0" />}
       {!iconOnly && <span>{text}</span>}
     </button>
   )
