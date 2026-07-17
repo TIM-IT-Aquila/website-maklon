@@ -1,70 +1,58 @@
-export const oemFlow = [
+export const serviceOptions = [
   {
-    step: 1,
-    title: "Konsultasi",
+    title: "OEM",
+    icon: "lucide:factory",
+    description:
+      "Gunakan arah formula yang sudah tersedia untuk memulai proses dengan lebih praktis.",
+    suitableFor: "Untuk brand yang ingin memulai dengan lebih efisien.",
+  },
+  {
+    title: "ODM",
+    icon: "lucide:lightbulb",
+    description:
+      "Kembangkan konsep formula dan kemasan berdasarkan brief serta kebutuhan brand Anda.",
+    suitableFor: "Untuk brand yang ingin membangun konsep yang lebih spesifik.",
+  },
+] as const;
+
+export const consultationFocus = [
+  "Niacinamide",
+  "Hyaluronic Acid",
+  "Ceramide",
+  "Vitamin C",
+  "Retinol",
+  "Salicylic Acid",
+] as const;
+
+export const consultationSteps = [
+  {
+    title: "Hubungi kami",
     icon: "lucide:message-circle",
-    desc: "Pilih formula atau brief produk",
+    description: "Mulai konsultasi melalui WhatsApp dengan tim Magna.",
   },
-  { step: 2, title: "Sampling", icon: "lucide:flask-conical", desc: "Sample dibuat & direview" },
   {
-    step: 3,
-    title: "Approval",
-    icon: "lucide:check-circle",
-    desc: "Formula disetujui untuk produksi",
-  },
-  { step: 4, title: "Produksi", icon: "lucide:factory", desc: "Produksi massal + QC ketat" },
-  { step: 5, title: "Launch", icon: "lucide:rocket", desc: "Produk siap edar" },
-];
-
-export const odmFlow = [
-  {
-    step: 1,
-    title: "Brief Brand",
+    title: "Ceritakan brief Anda",
     icon: "lucide:clipboard-list",
-    desc: "Tim dalami visi & target pasar",
+    description: "Sampaikan tujuan brand, target pasar, dan preferensi produk Anda.",
   },
   {
-    step: 2,
-    title: "Formulasi",
-    icon: "lucide:microscope",
-    desc: "R&D kembangkan formula eksklusif",
+    title: "Tentukan langkah berikutnya",
+    icon: "lucide:arrow-right",
+    description: "Diskusikan arah OEM atau ODM yang sesuai sebelum masuk ke proses produksi.",
   },
-  { step: 3, title: "Branding", icon: "lucide:paintbrush", desc: "Desain kemasan & identitas" },
-  { step: 4, title: "Produksi", icon: "lucide:factory", desc: "Produksi + legalitas" },
-  { step: 5, title: "Launch", icon: "lucide:rocket", desc: "Produk siap jual" },
-];
-
-export const comparisonRows = [
-  {
-    aspect: "Formula",
-    oem: "Pilih katalog / bawa sendiri",
-    odm: "Dikembangkan eksklusif oleh R&D",
-  },
-  { aspect: "MOQ", oem: "Mulai 1.000 pcs", odm: "Mulai 3.000 pcs" },
-  { aspect: "Biaya R&D", oem: "Tidak ada", odm: "Termasuk biaya formulasi" },
-  { aspect: "Timeline", oem: "30–60 hari", odm: "60–90 hari" },
-  {
-    aspect: "Cocok Untuk",
-    oem: "Brand yang ingin cepat launch",
-    odm: "Brand yang ingin produk unik",
-  },
-];
+] as const;
 
 export const oemOdmFaqs = [
   {
-    q: "Apa perbedaan utama OEM dan ODM?",
-    a: "OEM: Anda memilih formula dari katalog atau membawa formula sendiri, kami produksikan. ODM: Tim R&D kami mengembangkan formula eksklusif dari nol berdasarkan brief Anda — termasuk desain kemasan.",
+    q: "Apa perbedaan OEM dan ODM?",
+    a: "OEM menggunakan arah formula yang tersedia, sedangkan ODM dikembangkan dari brief dan kebutuhan brand Anda. Tim Magna dapat membantu menentukan pilihan yang sesuai saat konsultasi.",
   },
   {
-    q: "Berapa MOQ untuk OEM dan ODM?",
-    a: "OEM umumnya mulai 1.000 pcs, ODM mulai 3.000 pcs karena melibatkan proses R&D formulasi. MOQ pasti dan penawaran harga diberikan setelah konsultasi dengan tim kami via WhatsApp.",
+    q: "Apa yang perlu disiapkan sebelum konsultasi?",
+    a: "Cukup siapkan gambaran singkat tentang brand, target pasar, dan kebutuhan produk yang ingin didiskusikan. Detail formula dan kemasan dapat dibahas bersama tim kami.",
   },
   {
-    q: "Apakah dibantu pengurusan BPOM dan Halal?",
-    a: "Ya. Tim legal kami mendampingi notifikasi BPOM, sertifikasi Halal, dan HKI merek hingga produk siap edar nasional.",
+    q: "Bagaimana mendapatkan penawaran?",
+    a: "Hubungi tim Magna melalui WhatsApp. Penawaran dan langkah selanjutnya akan disesuaikan dengan kebutuhan yang Anda sampaikan.",
   },
-  {
-    q: "Berapa lama proses dari awal sampai produk jadi?",
-    a: "OEM 30–60 hari (formula siap), ODM 60–90 hari (termasuk formulasi & sampling). Timeline detail diberikan setelah konsultasi awal.",
-  },
-];
+] as const;

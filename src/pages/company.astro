@@ -214,23 +214,18 @@ import { factoryImages, companyImages } from "../data/images";
           <span slot="title">Prinsip yang <span class="text-emerald-200">Kami Pegang</span></span>
         </SectionHeader>
 
-        <div class="mt-12 overflow-hidden">
-          <div
-            class="flex animate-scroll-left gap-6"
-            style="--scroll-speed: 20s; width: max-content;"
-          >
-            {
-              [...coreValues, ...coreValues, ...coreValues].map((val) => (
-                <div class="group flex w-[240px] shrink-0 flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/15 hover:shadow-xl hover:shadow-black/10">
-                  <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white transition-all duration-500 group-hover:bg-white group-hover:text-primary group-hover:shadow-lg">
-                    <Icon name={val.icon} class="h-6 w-6" />
-                  </div>
-                  <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
-                  <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {
+            coreValues.map((val) => (
+              <article class="flex flex-col items-center rounded-2xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white">
+                  <Icon name={val.icon} class="h-6 w-6" />
                 </div>
-              ))
-            }
-          </div>
+                <h3 class="mt-4 text-base font-bold text-white">{val.title}</h3>
+                <p class="mt-2 text-xs leading-relaxed text-white/50">{val.desc}</p>
+              </article>
+            ))
+          }
         </div>
       </Container>
     </section>
