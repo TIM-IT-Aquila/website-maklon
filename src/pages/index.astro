@@ -206,10 +206,10 @@ const categories = categoryImages.slice(0, 6);
           <span slot="title">Kenapa <span class="text-primary">Magna?</span></span>
         </SectionHeader>
 
-        <div class="mt-16 flex flex-col gap-8 lg:flex-row">
+        <div class="mt-16 flex flex-col gap-8 lg:items-stretch lg:flex-row">
           <!-- Left: Featured image -->
           <div class="reveal-up relative overflow-hidden rounded-2xl lg:w-[42%]">
-            <img src="/assets/hero-home/skincarelab.jpg" alt="Lab Magna" class="h-72 w-full object-cover lg:h-full lg:min-h-[480px]" loading="lazy" />
+            <img src="/assets/hero-home/lab.jpg" alt="Lab Magna" class="h-72 w-full object-cover lg:h-full" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-black/30"></div>
             <div class="absolute bottom-5 left-5 lg:top-5 lg:left-5 lg:bottom-auto">
               <span class="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-wider text-white backdrop-blur-md uppercase">Lab R&D Internal</span>
@@ -217,9 +217,15 @@ const categories = categoryImages.slice(0, 6);
           </div>
 
           <!-- Right: Advantages grid -->
-          <div class="grid gap-4 sm:grid-cols-2 lg:w-[58%]">
-            {advantages.map((adv) => (
-              <div class="reveal-up group flex items-start gap-4 rounded-2xl border border-base-200/70 bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg">
+          <div class="grid gap-4 sm:grid-cols-2 lg:w-[58%] lg:grid-cols-6">
+            {advantages.map((adv, index) => (
+              <div
+                class:list={[
+                  "reveal-up group flex items-start gap-4 rounded-2xl border border-base-200/70 bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/15 hover:shadow-lg lg:col-span-2",
+                  index === 4 && "sm:col-span-2",
+                  index >= 3 && "lg:col-span-3",
+                ]}
+              >
                 <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/15">
                   <Icon name={adv.icon} class="h-5 w-5" />
                 </div>
@@ -352,7 +358,7 @@ const categories = categoryImages.slice(0, 6);
           <span slot="title">Pabrik <span class="text-primary">Modern</span> & Terstandar</span>
         </SectionHeader>
 
-        <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+        <div class="mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
           {facilityGalleryItems.map((item) => (
             <div
               class:list={[

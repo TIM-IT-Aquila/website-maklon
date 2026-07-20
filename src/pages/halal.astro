@@ -8,7 +8,6 @@ import SectionHeader from "../components/ui/SectionHeader.astro";
 import { siteConfig } from "../data/site";
 import {
   halalGuarantees,
-  halalCertificationSteps,
   halalFaqs,
   halalWaMessage,
   halalHero,
@@ -45,6 +44,9 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
             ))
           }
         </div>
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
+          Kami membantu produk skincare Anda bersertifikat halal BPJPH.
+        </p>
       </PageHero>
 
       <!-- Jaminan Halal -->
@@ -75,40 +77,6 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
                       <Icon name="lucide:arrow-right" size={12} />
                     </span>
                   </div>
-                </button>
-              ))
-            }
-          </div>
-        </Container>
-      </div>
-
-      <!-- Alur pengurusan -->
-      <div class="bg-base-100 py-14 md:py-16">
-        <Container>
-          <SectionHeader
-            label="Alur Pengurusan"
-            title="Timeline Sertifikasi Halal"
-          />
-
-          <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {
-              halalCertificationSteps.map((step) => (
-                <button
-                  type="button"
-                  class="reveal-up group rounded-2xl border border-primary/10 bg-gradient-to-br from-white to-primary/5 p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
-                  data-halal-modal-trigger="step"
-                  data-halal-modal-id={step.step}
-                >
-                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
-                    {step.step}
-                  </div>
-                  <div class="mt-3 flex items-center gap-1.5">
-                    <Icon name={step.icon} size={14} class="text-primary" />
-                    <h3 class="text-xs font-bold leading-snug text-base-content">{step.title}</h3>
-                  </div>
-                  <p class="mt-2 line-clamp-2 text-[11px] leading-relaxed text-base-content/50">
-                    {step.desc}
-                  </p>
                 </button>
               ))
             }
@@ -178,13 +146,11 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
 </MainLayout>
 
 <script>
-  import { halalCertificationSteps, halalGuarantees, halalWaMessage } from "../data/halal";
+  import { halalGuarantees, halalWaMessage } from "../data/halal";
   import { createHalalConsultMessage } from "../lib/halal";
   import { createWhatsappLink } from "../lib/whatsapp";
   import { observeReveal } from "../scripts/reveal";
   import { siteConfig } from "../data/site";
-
-  type ModalKind = "guarantee" | "step";
 
   function initHalalSection() {
     const root = document.querySelector<HTMLElement>("[data-halal-section]");
@@ -195,33 +161,18 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
     const modalDesc = root.querySelector<HTMLElement>("[data-halal-modal-desc]");
     const modalWa = root.querySelector<HTMLAnchorElement>("[data-halal-modal-wa]");
 
-    function openModal(kind: ModalKind, id: string | number) {
+    function openModal(id: string) {
       if (!modal || !modalTitle || !modalDesc) return;
 
-      if (kind === "guarantee") {
-        const item = halalGuarantees.find((g) => g.id === id);
-        if (!item) return;
-        modalTitle.textContent = item.title;
-        modalDesc.textContent = item.detail;
-        if (modalWa) {
-          modalWa.href = createWhatsappLink(
-            siteConfig.waNumber,
-            createHalalConsultMessage(halalWaMessage, item.title),
-          );
-        }
-      }
-
-      if (kind === "step") {
-        const step = halalCertificationSteps.find((s) => s.step === Number(id));
-        if (!step) return;
-        modalTitle.textContent = step.title;
-        modalDesc.textContent = step.detail;
-        if (modalWa) {
-          modalWa.href = createWhatsappLink(
-            siteConfig.waNumber,
-            createHalalConsultMessage(halalWaMessage, step.title),
-          );
-        }
+      const item = halalGuarantees.find((guarantee) => guarantee.id === id);
+      if (!item) return;
+      modalTitle.textContent = item.title;
+      modalDesc.textContent = item.detail;
+      if (modalWa) {
+        modalWa.href = createWhatsappLink(
+          siteConfig.waNumber,
+          createHalalConsultMessage(halalWaMessage, item.title),
+        );
       }
 
       modal.showModal();
@@ -229,9 +180,8 @@ const defaultWaLink = createWhatsappLink(siteConfig.waNumber, halalWaMessage);
 
     root.querySelectorAll<HTMLElement>("[data-halal-modal-trigger]").forEach((trigger) => {
       trigger.addEventListener("click", () => {
-        const kind = trigger.dataset.halalModalTrigger as ModalKind;
         const id = trigger.dataset.halalModalId ?? "";
-        openModal(kind, kind === "step" ? Number(id) : id);
+        openModal(id);
       });
     });
 

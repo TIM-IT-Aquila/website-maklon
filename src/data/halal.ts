@@ -32,49 +32,6 @@ export const halalGuarantees = [
   },
 ] as const;
 
-export const halalCertificationSteps = [
-  {
-    step: 1,
-    icon: "lucide:clipboard-check",
-    title: "Audit Dokumen Formula",
-    desc: "Review bahan baku, MSDS, dan diagram alir proses produksi.",
-    detail:
-      "Tim kami melakukan audit menyeluruh terhadap daftar bahan baku, sertifikat halal supplier, MSDS, diagram alir proses, dan dokumen SJPH sebelum pengajuan resmi.",
-  },
-  {
-    step: 2,
-    icon: "lucide:upload",
-    title: "Pengajuan Berkas ke SIHALAL",
-    desc: "Pendaftaran dan unggah dokumen teknis via platform BPJPH.",
-    detail:
-      "Semua berkas teknis diunggah ke platform SIHALAL BPJPH secara lengkap dan terstruktur — termasuk identitas produk, komposisi, dan data fasilitas produksi.",
-  },
-  {
-    step: 3,
-    icon: "lucide:search-check",
-    title: "Pemeriksaan oleh LPH",
-    desc: "Audit lapangan dan verifikasi proses produksi di pabrik.",
-    detail:
-      "Lembaga Pemeriksa Halal (LPH) melakukan inspeksi fasilitas, proses produksi, penyimpanan, dan sistem jaminan halal langsung di lokasi pabrik.",
-  },
-  {
-    step: 4,
-    icon: "lucide:users",
-    title: "Sidang Fatwa MUI",
-    desc: "Penetapan kehalalan produk melalui sidang fatwa resmi.",
-    detail:
-      "Hasil pemeriksaan LPH diajukan ke sidang fatwa untuk penetapan kehalalan. Tim kami mendampingi jika ada klarifikasi teknis yang dibutuhkan.",
-  },
-  {
-    step: 5,
-    icon: "lucide:badge-check",
-    title: "Sertifikat Halal Terbit",
-    desc: "Sertifikat resmi diterbitkan atas nama merek klien.",
-    detail:
-      "Sertifikat Halal resmi diterbitkan atas nama brand klien. Produk skincare Anda siap dipasarkan dengan legalitas halal yang diakui secara nasional.",
-  },
-] as const;
-
 export const halalFaqs = [
   {
     q: "Apakah produk skincare wajib bersertifikat halal?",

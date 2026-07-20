@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Container from "../components/ui/Container.astro";
-import Icon from "../components/ui/Icon.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
 import { certifications } from "../data/certifications";
 ---
@@ -44,7 +43,7 @@ import { certifications } from "../data/certifications";
                     <div class="aspect-[3/4] overflow-hidden">
                       <img
                         src={cert.image}
-                        alt={`Sertifikat ${cert.name}`}
+                        alt={`Sertifikat ${cert.fullName}`}
                         class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
@@ -61,23 +60,9 @@ import { certifications } from "../data/certifications";
 
                 {/* Details */}
                 <div class="flex flex-col justify-center p-7 lg:p-10">
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="badge badge-soft badge-primary px-3 py-2 text-[10px] font-bold tracking-wider">
-                      {cert.name}
-                    </span>
-                    <span class="text-xs font-medium text-base-content/35 tracking-wider">
-                      {cert.year}
-                    </span>
-                  </div>
-                  <h3 class="mt-3 text-xl font-bold leading-snug text-base-content lg:text-2xl">
+                  <h3 class="text-xl font-bold leading-snug text-base-content lg:text-2xl">
                     {cert.fullName}
                   </h3>
-                  <div class="mt-2 flex items-center gap-1.5">
-                    <Icon name="lucide:hash" size={13} class="text-base-content/25" />
-                    <span class="text-xs font-mono text-base-content/40 tracking-wide">
-                      {cert.number}
-                    </span>
-                  </div>
                   <p class="mt-5 text-sm leading-relaxed text-base-content/60 lg:text-base">
                     {cert.desc}
                   </p>
