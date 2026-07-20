@@ -1,19 +1,12 @@
-import type { rdIngredientLibrary, rdTestingFlow } from "../data/research-development";
+import type { rdTestingFlow } from "../data/research-development";
 
-export type RdIngredient = (typeof rdIngredientLibrary)[number];
 export type RdTestingStep = (typeof rdTestingFlow)[number];
 
-export function createRdConsultMessage(ingredientName?: string, testingStep?: string): string {
-  const lines = [
-    "Halo, saya ingin konsultasi formula dan racikan bahan aktif untuk produk skincare saya.",
-  ];
+export function createRdConsultMessage(topic?: string): string {
+  const lines = ["Halo, saya ingin konsultasi pengembangan produk skincare."];
 
-  if (ingredientName) {
-    lines.push("", `Bahan aktif yang saya minati: ${ingredientName}`);
-  }
-
-  if (testingStep) {
-    lines.push("", `Saya ingin tahu lebih lanjut tentang tahap: ${testingStep}`);
+  if (topic) {
+    lines.push("", `Saya ingin tahu lebih lanjut tentang: ${topic}`);
   }
 
   return lines.join("\n");

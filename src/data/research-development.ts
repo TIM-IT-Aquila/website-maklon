@@ -117,23 +117,36 @@ export const rdIngredientLibrary = [
 export const rdTestingFlow = [
   {
     step: 1,
-    title: "Uji Stabilitas",
-    icon: "lucide:thermometer",
-    desc: "Formula diuji pada suhu 40°C, 50°C, dan cycling test untuk memastikan tekstur, warna, dan aroma tetap stabil.",
-    detail:
-      "Uji dipercepat (accelerated stability) selama minimal 12 minggu. Parameter: pH, viskositas, warna, bau, dan homogenitas dipantau rutin.",
-    duration: "12–16 minggu",
+    title: "Uji Logam Berat",
+    icon: "lucide:atom",
+    desc: "Pengujian kandungan logam berat pada formula produk.",
+    detail: "Informasi pengujian logam berat dapat dikonsultasikan dengan tim Magna.",
+    duration: "Pengujian laboratorium",
   },
   {
     step: 2,
-    title: "Uji Mikrobiologi & Logam Berat",
+    title: "Uji Mikrobiologi",
     icon: "lucide:microscope",
-    desc: "Pengujian TPC, yeast & mold, serta challenge test di lab mikrobiologi — produk dijamin aman dan higienis.",
-    detail:
-      "Dilakukan di lab mikrobiologi bersertifikat. Meliputi total plate count, uji jamur, dan challenge test dengan bakteri patogen sesuai standar BPOM.",
-    duration: "2–4 minggu",
+    desc: "Pengujian mikrobiologi pada formula produk.",
+    detail: "Informasi pengujian mikrobiologi dapat dikonsultasikan dengan tim Magna.",
+    duration: "Pengujian laboratorium",
   },
-  
+  {
+    step: 3,
+    title: "Uji Dermatologi (Patch Test)",
+    icon: "lucide:heart-pulse",
+    desc: "Pengujian dermatologi dengan metode patch test.",
+    detail: "Informasi patch test dapat dikonsultasikan dengan tim Magna.",
+    duration: "Pengujian laboratorium",
+  },
+  {
+    step: 4,
+    title: "Uji Hidrokuinon",
+    icon: "lucide:flask-conical",
+    desc: "Pengujian kandungan hidrokuinon pada formula produk.",
+    detail: "Informasi pengujian hidrokuinon dapat dikonsultasikan dengan tim Magna.",
+    duration: "Pengujian laboratorium",
+  },
 ];
 
 // ─── FAQ singkat R&D ──────────────────────────────────────────────────

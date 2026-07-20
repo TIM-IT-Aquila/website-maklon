@@ -11,7 +11,7 @@ export const certifications = [
     image: certificationImages.bpom,
   },
   {
-    name: "Halal MUI",
+    name: "HALAL",
     fullName: "Sertifikasi Halal",
     icon: "lucide:badge-check",
     desc: "Produk terjamin kehalalannya sesuai syariat Islam melalui audit ketat dari lembaga sertifikasi halal resmi terakreditasi.",
@@ -28,10 +28,10 @@ export const certifications = [
     number: "CPKB/2024/KK-0031",
     image: certificationImages.cpkb,
   },
-  
+
   {
-    name: "HKI / Merek",
-    fullName: "Hak Kekayaan Intelektual",
+    name: "HAKI",
+    fullName: "Hak Atas Kekayaan Intelektual",
     icon: "lucide:shield",
     desc: "Perlindungan hukum penuh untuk merek dagang dan inovasi produk agar brand Anda aman dari klaim pihak lain.",
     year: "2025",

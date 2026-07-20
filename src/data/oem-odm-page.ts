@@ -1,27 +1,65 @@
-export const serviceOptions = [
+export const oemServiceTiers = [
   {
-    title: "OEM",
-    icon: "lucide:factory",
+    level: "01",
+    title: "White Label",
+    subtitle: "Produk Siap Pakai",
+    icon: "lucide:package-check",
     description:
-      "Gunakan arah formula yang sudah tersedia untuk memulai proses dengan lebih praktis.",
-    suitableFor: "Untuk brand yang ingin memulai dengan lebih efisien.",
+      "Solusi tercepat untuk memiliki brand kosmetik sendiri. Formula siap diproduksi dan dikemas dengan merek dagang Anda.",
+    highlights: ["Formula siap pakai", "Produksi lebih praktis", "Branding dengan merek Anda"],
+    categories: [
+      "Skincare: day cream, night cream, serum, face mist, toner, moisturizer, dan lainnya.",
+      "Bodycare & Haircare: perawatan tubuh dan rambut esensial.",
+      "Baby & Kids Care: formulasi khusus untuk bayi dan anak-anak.",
+    ],
   },
   {
-    title: "ODM",
-    icon: "lucide:lightbulb",
+    level: "02",
+    title: "Semi Custom",
+    subtitle: "Modifikasi Formula",
+    icon: "lucide:sliders-horizontal",
     description:
-      "Kembangkan konsep formula dan kemasan berdasarkan brief serta kebutuhan brand Anda.",
-    suitableFor: "Untuk brand yang ingin membangun konsep yang lebih spesifik.",
+      "Pilih formula dasar kami lalu tambahkan maksimal dua bahan aktif pilihan untuk menghadirkan ciri khas brand Anda.",
+    highlights: [
+      "Formula dasar Magna",
+      "Maksimal 2 bahan aktif pilihan",
+      "Trial dan uji laboratorium yang efisien",
+    ],
+  },
+  {
+    level: "03",
+    title: "Full Custom",
+    subtitle: "Formulasi Eksklusif",
+    icon: "lucide:flask-conical",
+    description:
+      "Produk dirancang dari nol khusus untuk brand Anda, mulai dari arah formula hingga karakter produk yang ingin dibangun.",
+    highlights: [
+      "Pengembangan formula dari nol",
+      "Disesuaikan dengan konsep brand",
+      "Formula eksklusif untuk brand Anda",
+    ],
   },
 ] as const;
 
-export const consultationFocus = [
-  "Niacinamide",
-  "Hyaluronic Acid",
-  "Ceramide",
-  "Vitamin C",
-  "Retinol",
-  "Salicylic Acid",
+export const odmFlexibilities = [
+  {
+    title: "Bawa Konsep Sendiri",
+    icon: "lucide:lightbulb",
+    description:
+      "Sampaikan ide verbal atau visual Anda, lalu tim R&D membantu menerjemahkannya menjadi arah produk fisik.",
+  },
+  {
+    title: "Bawa Formula & Bahan Sendiri",
+    icon: "lucide:flask-conical",
+    description:
+      "Bahan aktif unik atau formula rahasia Anda dapat dibahas untuk pengujian stabilitas dan proses produksi massal.",
+  },
+  {
+    title: "Bawa Kemasan Sendiri",
+    icon: "lucide:package-open",
+    description:
+      "Selain opsi kemasan dari jaringan pemasok kami, gunakan botol, wadah, atau box rancangan tim Anda untuk proses filling dan packaging.",
+  },
 ] as const;
 
 export const consultationSteps = [
@@ -38,21 +76,22 @@ export const consultationSteps = [
   {
     title: "Tentukan langkah berikutnya",
     icon: "lucide:arrow-right",
-    description: "Diskusikan arah OEM atau ODM yang sesuai sebelum masuk ke proses produksi.",
+    description:
+      "Pilih tingkat layanan OEM atau kebebasan konsep ODM yang sesuai untuk brand Anda.",
   },
 ] as const;
 
 export const oemOdmFaqs = [
   {
-    q: "Apa perbedaan OEM dan ODM?",
-    a: "OEM menggunakan arah formula yang tersedia, sedangkan ODM dikembangkan dari brief dan kebutuhan brand Anda. Tim Magna dapat membantu menentukan pilihan yang sesuai saat konsultasi.",
+    q: "Apa perbedaan White Label, Semi Custom, dan Full Custom?",
+    a: "White Label memakai formula siap pakai, Semi Custom memodifikasi formula dasar dengan maksimal dua bahan aktif, sedangkan Full Custom dikembangkan dari nol khusus untuk kebutuhan brand Anda.",
   },
   {
-    q: "Apa yang perlu disiapkan sebelum konsultasi?",
-    a: "Cukup siapkan gambaran singkat tentang brand, target pasar, dan kebutuhan produk yang ingin didiskusikan. Detail formula dan kemasan dapat dibahas bersama tim kami.",
+    q: "Apakah saya dapat membawa konsep atau bahan sendiri?",
+    a: "Ya. Pada layanan ODM, Anda dapat membawa konsep, bahan aktif atau formula, hingga kemasan sendiri untuk dibahas bersama tim Magna.",
   },
   {
-    q: "Bagaimana mendapatkan penawaran?",
-    a: "Hubungi tim Magna melalui WhatsApp. Penawaran dan langkah selanjutnya akan disesuaikan dengan kebutuhan yang Anda sampaikan.",
+    q: "Bagaimana menentukan layanan yang sesuai?",
+    a: "Mulai dengan konsultasi WhatsApp. Sampaikan kesiapan konsep dan kebutuhan produk Anda, lalu tim Magna membantu menentukan jalur layanan yang sesuai.",
   },
 ] as const;

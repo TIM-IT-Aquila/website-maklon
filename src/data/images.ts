@@ -64,8 +64,6 @@ export const blogImages = {
   edukasi: "/assets/hero-home/labreserch.jpg",
 };
 
-
-
 // --- PORTOFOLIO / BRAND (4:3) ---
 export const portfolioImages = {
   skincareBrand: "/assets/portofolio/portofolio1.png",
@@ -78,12 +76,11 @@ export const portfolioImages = {
 // Visual placeholder dokumen. Ganti dengan foto sertifikat perusahaan yang asli
 // setelah dokumennya tersedia dan lolos verifikasi legal.
 export const certificationImages = {
-  bpom: "/assets/desain legalitas.jpg",
-  halal:
-    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
-  cpkb: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
+  bpom: "/assets/sertifikat/BPOM.png",
+  halal: "/assets/sertifikat/HALAL.png",
+  cpkb: "/assets/sertifikat/CPKB.png",
   iso: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
-  hki: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80",
+  hki: "/assets/sertifikat/HAKI.png",
 };
 
 // --- ABOUT / COMPANY (4:3) ---
