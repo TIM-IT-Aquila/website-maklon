@@ -31,7 +31,7 @@ import { certifications } from "../data/certifications";
             certifications.map((cert, index) => (
               <div
                 class:list={[
-                  "cert-card group grid overflow-hidden rounded-3xl border border-base-200/80 bg-base-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/20 md:grid-cols-2",
+                  "cert-card group grid overflow-hidden rounded-3xl border border-base-200/80 bg-base-100 shadow-lg shadow-base-300/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 hover:-translate-y-0.5 md:grid-cols-2",
                   index % 2 === 1 && "md:[&>div:first-child]:order-2",
                 ]}
                 style="opacity:0;transform:translateY(30px)"

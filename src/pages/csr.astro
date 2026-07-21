@@ -30,24 +30,22 @@ import { csrItems, csrHero } from "../data/csr";
         </SectionHeader>
 
         <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {csrItems.map((item, i) => (
-            <div class="reveal-up group relative overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-xl"
-              class:list={{ "md:col-span-2 lg:col-span-2": i === 0, "lg:col-span-1": i !== 0 }}
-            >
+          {csrItems.map((item) => (
+            <div class="reveal-up group relative flex flex-col overflow-hidden rounded-2xl border border-base-200/60 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-xl">
               <!-- Image -->
-              <div class="relative h-44 overflow-hidden">
+              <div class="relative aspect-[16/10] overflow-hidden">
                 <img src={item.image} alt={item.title} class="h-full w-full object-cover transition-all duration-700 group-hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               </div>
               <!-- Content -->
-              <div class="p-6">
+              <div class="flex flex-1 flex-col p-6">
                 <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white">
                     <Icon name={item.icon} class="h-5 w-5" />
                   </div>
                   <h3 class="text-base font-bold text-base-content">{item.title}</h3>
                 </div>
-                <p class="mt-3 text-sm leading-relaxed text-base-content/50">{item.desc}</p>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-base-content/60">{item.desc}</p>
               </div>
             </div>
           ))}

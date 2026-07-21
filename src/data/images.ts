@@ -9,14 +9,20 @@ const P = "/assets/placeholders";
 
 // --- HERO & BANNER (landscape 16:9) ---
 export const heroImages = {
-  skincareLab: "/assets/hero-home/skincarelab.jpg",
-  skincareProduction: "/assets/hero-home/skincareproduction.jpg",
-  packagingReady: "/assets/hero-home/skincareproduction.jpg",
-  factoryProduction: "/assets/hero-home/factoryproduction.jpg",
-  labResearch: "/assets/hero-home/labreserch.jpg",
-  legalDocument: "/assets/hero-home/legaldokument.jpg",
+  laboratium: "/assets/hero-home/skincarelab.jpg",
+  ruangqc: "/assets/hero-home/ruangqc.jpg",
+  liniproduksi: "/assets/hero-home/liniproduksi.jpg",
+  areapengemasan: "/assets/hero-home/areapengemasan.jpg",
+  ruangsampling: "/assets/hero-home/ruangsampling.jpg",
+  gudangbahanbaku: "/assets/hero-home/gudangbahanbaku.jpg",
+  laboratium: "/assets/hero-home/skincarelab.jpg",
   skincareHero: "/assets/hero-home/skincarelab.jpg",
   formulasiHero: "/assets/hero-home/skincareproduction.jpg",
+  // -- alias untuk consumer --
+  skincareLab: "/assets/hero-home/skincarelab.jpg",
+  skincareProduction: "/assets/hero-home/skincareproduction.jpg",
+  packagingReady: "/assets/hero-home/areapengemasan.jpg",
+  labResearch: "/assets/hero-home/labreserch.jpg",
 };
 
 // --- LAB & FACTORY (4:3 ratio) ---
@@ -29,6 +35,13 @@ export const factoryImages = {
   formulasiLab: "/assets/hero-home/labreserch.jpg",
   mikrobiologi: "/assets/hero-home/labreserch.jpg",
   bahanBaku: "/assets/hero-home/factoryproduction.jpg",
+  // -- alias untuk consumer --
+  ruangqc: "/assets/hero-home/ruangqc.jpg",
+  liniproduksi: "/assets/hero-home/liniproduksi.jpg",
+  areapengemasan: "/assets/hero-home/areapengemasan.jpg",
+  ruangsampling: "/assets/hero-home/ruangsampling.jpg",
+  gudangbahanbaku: "/assets/hero-home/gudangbahanbaku.jpg",
+  laboratium: "/assets/hero-home/skincarelab.jpg",
 };
 
 // --- PROSES MAKLON (16:9, untuk interactive slider) ---
@@ -88,5 +101,5 @@ export const companyImages = {
   office: "/assets/hero-home/skincarelab.jpg",
   team: "/assets/hero-home/skincareproduction.jpg",
   building: "/assets/hero-home/factoryproduction.jpg",
-  labTeam: "/assets/hero-home/labreserch.jpg",
+  labTeam: "/assets/Logo-magna.svg",
 };

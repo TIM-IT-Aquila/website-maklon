@@ -72,17 +72,13 @@ import { factoryImages, companyImages } from "../data/images";
       <Container>
         <div class="flex flex-col items-center gap-8 lg:flex-row lg:gap-14">
           <!-- LEFT: Image -->
-          <div class="reveal-up relative w-full overflow-hidden rounded-3xl lg:w-[45%]">
+          <div class="reveal-up w-full lg:w-[45%]">
             <img
               src={companyImages.labTeam}
-              alt="Tim Magna"
-              class="h-[340px] w-full object-cover md:h-[480px] lg:h-[560px]"
+              alt="Logo Magna"
+              class="w-full object-contain p-12"
               loading="lazy"
             />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
-            >
-            </div>
           </div>
 
           <!-- RIGHT: Text -->

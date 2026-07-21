@@ -2,28 +2,28 @@ import { heroImages } from "./images";
 
 export const homeHeroSlides = [
   {
-    image: heroImages.skincareLab,
+    image: heroImages.laboratium,
     titleMain: "Laboratorium Modern",
     titleAccent: "untuk Formulasi Presisi",
     description:
       "Teknologi riset terkini dan tim ahli R&D siap mengembangkan formula unik untuk brand kecantikan Anda.",
   },
   {
-    image: heroImages.skincareProduction,
+    image: heroImages.ruangqc,
     titleMain: "Produksi Berkualitas",
     titleAccent: "Standar CPKB & GMP",
     description:
       "Setiap tahap produksi diawasi ketat agar produk skincare premium Anda aman, konsisten, dan siap dipasarkan.",
   },
   {
-    image: heroImages.packagingReady,
+    image: heroImages.liniproduksi,
     titleMain: "Siap Dikemas & Kirim",
     titleAccent: "Langsung Distribusi",
     description:
       "Produk jadi dengan kemasan rapi dan legal — siap dikirim ke seluruh Indonesia tanpa repot urusan logistik.",
   },
   {
-    image: heroImages.labResearch,
+    image: heroImages.gudangbahanbaku,
     titleMain: "Riset & Inovasi",
     titleAccent: "500+ Formula Siap Pakai",
     description:

@@ -10,49 +10,49 @@ export const companyMetrics = [
 export const facilityGalleryItems = [
   {
     label: "Laboratorium R&D",
-    image: factoryImages.labResearch,
+    image: factoryImages.laboratium,
     icon: "lucide:flask-conical",
     layout: "featured",
   },
   {
     label: "Ruang QC",
-    image: factoryImages.qualityControl,
+    image: factoryImages.ruangqc,
     icon: "lucide:microscope",
     layout: "square",
   },
   {
     label: "Lini Produksi",
-    image: factoryImages.productionLine,
+    image: factoryImages.liniproduksi,
     icon: "lucide:factory",
     layout: "square",
   },
   {
     label: "Area Pengemasan",
-    image: factoryImages.packagingArea,
+    image: factoryImages.areapengemasan,
     icon: "lucide:package",
     layout: "square",
   },
   {
     label: "Ruang Sampling",
-    image: factoryImages.samplingRoom,
+    image: factoryImages.ruangsampling,
     icon: "lucide:beaker",
     layout: "square",
   },
   {
     label: "Gudang Bahan Baku",
-    image: factoryImages.bahanBaku,
+    image: factoryImages.gudangbahanbaku,
     icon: "lucide:warehouse",
     layout: "wide",
   },
 ] as const;
 
 export const factoryScopeRooms = [
-  { label: "Lab R&D", image: factoryImages.labResearch },
-  { label: "Ruang Pengemasan", image: factoryImages.packagingArea },
-  { label: "Ruang Quality Control", image: factoryImages.qualityControl },
-  { label: "Gudang Bahan Baku & Kemasan", image: factoryImages.bahanBaku },
+  { label: "Lab R&D", image: factoryImages.laboratium },
+  { label: "Ruang Pengemasan", image: factoryImages.areapengemasan },
+  { label: "Ruang Quality Control", image: factoryImages.ruangqc },
+  { label: "Gudang Bahan Baku & Kemasan", image: factoryImages.gudangbahanbaku },
   { label: "Gudang Produk Jadi", image: factoryImages.productionLine },
-  { label: "Ruang Timbang", image: factoryImages.samplingRoom },
+  { label: "Ruang Timbang", image: factoryImages.ruangsampling },
   { label: "Ruang Antar Barang", image: factoryImages.productionLine },
   { label: "Ruang Mixing & Filling Serbuk", image: factoryImages.formulasiLab },
   {

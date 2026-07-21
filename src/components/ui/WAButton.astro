@@ -49,9 +49,16 @@ const iconSizes = {
   lg: 18,
 };
 
+const floatingIconSizes = {
+  sm: 18,
+  md: 22,
+  lg: 26,
+};
+
 const waLink = createWhatsappLink(phone, message);
+const floatingSizeMap = { sm: "h-12 w-12", md: "h-14 w-14", lg: "h-16 w-16" } as const;
 const iconOnly = variant === "floating";
-const buttonClass = `wa-button inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 ${variantClasses[variant]} ${sizeClasses[size]} ${extraClass} ${iconOnly ? "h-14 w-14 rounded-full p-0" : ""}`;
+const buttonClass = `wa-button inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 ${variantClasses[variant]} ${sizeClasses[size]} ${extraClass} ${iconOnly ? `rounded-full p-0 ${floatingSizeMap[size]}` : ""}`;
 ---
 
 {
@@ -64,7 +71,7 @@ const buttonClass = `wa-button inline-flex items-center justify-center rounded-x
       class={buttonClass}
       aria-label={iconOnly ? `WhatsApp: ${text}` : text}
     >
-      {!hideIcon && <Icon name="mdi:whatsapp" size={iconSizes[size]} class="shrink-0" />}
+      {!hideIcon && <Icon name="mdi:whatsapp" size={iconOnly ? floatingIconSizes[size] : iconSizes[size]} class="shrink-0" />}
       {!iconOnly && <span>{text}</span>}
     </a>
   )
@@ -79,7 +86,7 @@ const buttonClass = `wa-button inline-flex items-center justify-center rounded-x
       onclick={`window.open('${waLink}', '_blank', 'noopener,noreferrer')`}
       aria-label={text}
     >
-      {!hideIcon && <Icon name="mdi:whatsapp" size={iconSizes[size]} class="shrink-0" />}
+      {!hideIcon && <Icon name="mdi:whatsapp" size={iconOnly ? floatingIconSizes[size] : iconSizes[size]} class="shrink-0" />}
       {!iconOnly && <span>{text}</span>}
     </button>
   )
