@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<"button"> {
   message?: string;
   phone?: string;
   variant?: "primary" | "white" | "floating" | "text-link";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
   hideIcon?: boolean;
   asButton?: boolean;
 }
@@ -31,6 +31,7 @@ const sizeClasses = {
   sm: "h-9 px-4 text-xs gap-1.5",
   md: "h-11 px-5 text-sm gap-2",
   lg: "h-13 px-7 text-sm gap-2.5",
+  xl: "h-[52px] px-8 text-sm gap-2.5",
 };
 
 const variantClasses = {
@@ -47,16 +48,18 @@ const iconSizes = {
   sm: 14,
   md: 16,
   lg: 18,
+  xl: 20,
 };
 
 const floatingIconSizes = {
   sm: 18,
   md: 22,
   lg: 26,
+  xl: 30,
 };
 
 const waLink = createWhatsappLink(phone, message);
-const floatingSizeMap = { sm: "h-12 w-12", md: "h-14 w-14", lg: "h-16 w-16" } as const;
+const floatingSizeMap = { sm: "h-12 w-12", md: "h-14 w-14", lg: "h-16 w-16", xl: "h-[72px] w-[72px]" } as const;
 const iconOnly = variant === "floating";
 const buttonClass = `wa-button inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 ${variantClasses[variant]} ${sizeClasses[size]} ${extraClass} ${iconOnly ? `rounded-full p-0 ${floatingSizeMap[size]}` : ""}`;
 ---
