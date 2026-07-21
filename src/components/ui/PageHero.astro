@@ -25,12 +25,11 @@ const { image, alt, titleMain, titleAccent, id, class: className } = Astro.props
   <Container class="relative z-10 w-full">
     <div class="max-w-2xl">
       <h1 class="text-3xl font-black leading-[1.06] text-white md:text-4xl lg:text-5xl xl:text-6xl">
-        {titleMain}<br />
-        <span
+        {titleMain}{titleAccent && <><br /><span
           class="bg-gradient-to-r from-emerald-300 via-green-200 to-white bg-clip-text text-transparent"
         >
           {titleAccent}
-        </span>
+        </span></>}
       </h1>
 
       <slot name="description" />

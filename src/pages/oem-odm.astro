@@ -23,12 +23,13 @@ import MainLayout from "../layouts/MainLayout.astro";
     <PageHero
       image={oemOdmHero.image}
       alt={oemOdmHero.alt}
-      titleMain="Mulai Brand Skincare"
-      titleAccent="Dari Percakapan yang Tepat"
+      titleMain="Magna Manufacture menyediakan layanan OEM & ODM yang fleksibel, mulai dari produk siap jual hingga pengembangan formula eksklusif."
+      titleAccent=""
+      class="oem-hero"
     >
       <p slot="description" class="mt-4 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
-        Ceritakan ide, target pasar, dan kebutuhan brand Anda. Tim Magna akan membantu menentukan
-        arah OEM atau ODM yang paling sesuai melalui konsultasi WhatsApp.
+        Kami membantu setiap tahapan, mulai dari pengembangan produk, pengadaan bahan baku, desain
+        kemasan, registrasi BPOM, sertifikasi Halal, hingga proses produksi.
       </p>
       <div class="mt-7 flex flex-wrap gap-3">
         <WAButton
@@ -185,4 +186,22 @@ import MainLayout from "../layouts/MainLayout.astro";
     </section>
 
   </main>
+<style>
+  .oem-hero h1 {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  @media (min-width: 640px) {
+    .oem-hero h1 {
+      font-size: 0.875rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .oem-hero h1 {
+      font-size: 1rem;
+    }
+  }
+</style>
+
 </MainLayout>
