@@ -10,17 +10,16 @@ import { createWhatsappLink } from "../lib/whatsapp";
 import { advantages } from "../data/advantages";
 import { services } from "../data/services";
 import { processSteps } from "../data/process";
-import { products } from "../data/products";
+import { featuredProducts } from "../data/products";
 import { faqs } from "../data/faqs";
-import { brandPartners, brandPartnersRowTwo } from "../data/brandPartners";
 import { categoryImages } from "../data/images";
 import { certifications } from "../data/certifications";
 import { facilityGalleryItems } from "../data/company";
 import { homeComparisonRows, homeHeroSlides } from "../data/home";
 
 const processPreviewSteps = processSteps.slice(0, 4);
-const topProducts = products.slice(0, 8);
-const categories = categoryImages.slice(0, 6);
+const topProducts = featuredProducts;
+const categories = categoryImages;
 
 ---
 
@@ -107,27 +106,16 @@ const categories = categoryImages.slice(0, 6);
         <SectionHeader label="Kategori" title="Jelajahi Rangkaian Produk Kami" />
 
         <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-          {categories.map((cat, index) => {
-            const icons: Record<string, string> = {
-              Skincare: "lucide:droplet",
-              Bodycare: "lucide:sparkles",
-              Haircare: "lucide:wind",
-              "Baby Care": "lucide:baby",
-            };
-            return (
-              <a href={`/products?category=${encodeURIComponent(cat.name)}`}
-                class="reveal-up group flex flex-col items-center justify-center gap-3 rounded-2xl border border-base-200/70 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg"
-                data-reveal-delay={index * 90}
-              >
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
-                  <Icon name={icons[cat.name] ?? "lucide:package"} size={24} />
-                </div>
-                <h3 class="text-sm font-bold text-base-content">
-                  {cat.name}
-                </h3>
-              </a>
-            );
-          })}
+          {categories.map((cat, index) => (
+            <a href={`/products?category=${encodeURIComponent(cat.name)}`}
+              class="reveal-up group flex flex-col items-center justify-center gap-2 rounded-2xl border border-primary/20 bg-primary p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-lg"
+              data-reveal-delay={index * 90}
+            >
+              <h3 class="text-sm font-bold text-white group-hover:text-white/80 transition-colors text-center">
+                {cat.name}
+              </h3>
+            </a>
+          ))}
           </div>
       </Container>
     </section>

@@ -60,8 +60,6 @@ export const processSteps: ProcessStep[] = [
     title: "Pengujian",
     icon: "lucide:flask-conical",
     desc: "Formula diuji untuk memastikan kualitas, keamanan, dan kestabilannya.",
-    legacyDetail:
-      "Tim desain kami akan mengembangkan konsep kemasan — dari pemilihan material botol/jar, desain label, hingga mockup 3D. Kami pastikan kemasan tidak hanya estetik tapi juga fungsional dan compliant dengan regulasi BPOM.",
     detail:
       "Formula melalui pengujian dasar seperti pH, stabilitas, dan kompatibilitas kemasan sebelum dilanjutkan ke tahap berikutnya. Hasilnya memastikan produk siap dikembangkan sesuai standar kualitas.",
     imageKey: "desain",

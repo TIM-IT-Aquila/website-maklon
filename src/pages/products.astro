@@ -3,191 +3,195 @@ import Container from "../components/ui/Container.astro";
 import Icon from "../components/ui/Icon.astro";
 import ModalShell from "../components/ui/ModalShell.astro";
 import SectionHeader from "../components/ui/SectionHeader.astro";
-import { siteConfig } from "../data/site";
-import { products } from "../data/products";
-import { createWhatsappLink } from "../lib/whatsapp";
+import { productCategories } from "../data/products";
 import MainLayout from "../layouts/MainLayout.astro";
-
-const categories = [...new Set(products.map((p) => p.category))];
-const defaultWaLink = createWhatsappLink(siteConfig.waNumber, siteConfig.waText);
 ---
 
 <MainLayout
   title="Produk Maklon | Magna"
-  description="Berbagai produk skincare, bodycare, dan haircare yang bisa dibuat melalui jasa maklon Magna."
+  description="Pilihan produk skincare, body care, hair care, dan kategori lainnya yang dapat dikembangkan bersama Magna."
 >
   <main class="overflow-hidden">
-    <section id="products-catalog" class="overflow-hidden bg-base-100" data-products-section>
-      <div class="pt-20 pb-14 lg:pt-24 lg:pb-16">
-        <Container>
-          <SectionHeader label="Produk">
-            <span slot="title">Produk yang Bisa <span class="text-primary">Kami Buat</span></span>
-          </SectionHeader>
+    <section class="bg-base-100 py-20 lg:py-24" data-product-catalog>
+      <Container>
+        <SectionHeader label="Kategori Produk">
+          <span slot="title">Produk yang Bisa <span class="text-primary">Kami Buat</span></span>
+        </SectionHeader>
+        <p class="mx-auto mt-5 max-w-3xl text-center text-sm leading-relaxed text-base-content/60 md:text-base">
+          Pilih kategori untuk melihat pilihan produk yang sesuai dengan konsep brand Anda.
+        </p>
 
-          <div class="reveal-up mt-8 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex flex-wrap gap-2" data-product-filters>
-              <button
-                type="button"
-                class="btn btn-sm btn-primary rounded-full"
-                data-product-filter="all">Semua</button
-              >
-              {
-                categories.map((cat) => (
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-ghost rounded-full border border-base-200"
-                    data-product-filter={cat}
-                  >
-                    {cat}
-                  </button>
-                ))
-              }
-            </div>
-            <span class="text-sm text-base-content/50">
-              <span class="font-bold text-base-content" data-product-count>{products.length}</span> produk
-            </span>
-          </div>
-
-          <div
-            class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-            data-product-grid
-          >
+        <nav class="mx-auto mt-10 max-w-6xl overflow-x-auto pb-3" aria-label="Kategori produk">
+          <div class="flex w-max snap-x snap-mandatory gap-2 px-1">
             {
-              products.map((p) => (
+              productCategories.map((category, categoryIndex) => (
                 <button
                   type="button"
-                  class="reveal-up group overflow-hidden rounded-2xl border border-base-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
-                  data-product-card={p.id}
-                  data-product-category={p.category}
+                  class:list={[
+                    "inline-flex shrink-0 snap-start items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold transition",
+                    categoryIndex === 0
+                      ? "border-primary bg-primary text-white"
+                      : "border-base-200 bg-white text-base-content hover:border-primary/30 hover:bg-primary hover:text-white",
+                  ]}
+                  data-product-category-button={category.id}
+                  aria-pressed={categoryIndex === 0 ? "true" : "false"}
                 >
-                  <figure class="relative h-56 overflow-hidden sm:h-64">
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <span class="badge badge-sm absolute left-3 top-3 border-0 bg-white/90 text-primary shadow-sm">
-                      {p.category}
-                    </span>
-                  </figure>
-                  <div class="p-4">
-                    <h3 class="text-sm font-bold text-base-content">{p.name}</h3>
-                    <p class="mt-1 line-clamp-2 text-xs text-base-content/50">{p.desc}</p>
-                    <span class="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                      Lihat detail
-                      <Icon name="lucide:arrow-right" size={12} />
-                    </span>
-                  </div>
+                  {category.title}
                 </button>
               ))
             }
           </div>
-        </Container>
-      </div>
+        </nav>
+
+        <div class="mx-auto mt-6 max-w-6xl">
+          {
+            productCategories.map((category, categoryIndex) => (
+              <section
+                class:list={[categoryIndex !== 0 && "hidden"]}
+                data-product-category-panel={category.id}
+                aria-label={category.title}
+              >
+                <div class="mb-6 flex items-end justify-between gap-4">
+                  <div>
+                    <p class="text-xs font-bold tracking-[0.18em] text-primary uppercase">Kategori</p>
+                    <h2 class="mt-1 text-2xl font-black text-base-content md:text-3xl">{category.title}</h2>
+                  </div>
+                  <p class="hidden text-sm text-base-content/50 sm:block">Klik kartu untuk melihat detail</p>
+                </div>
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {
+                    category.groups.map((group) => (
+                      <button
+                        type="button"
+                        class="group relative overflow-hidden rounded-3xl border border-base-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        data-product-group
+                        aria-label={`Lihat pilihan ${group.title}`}
+                      >
+                        {
+                          group.image ? (
+                            <img
+                              src={group.image}
+                              alt={group.title}
+                              class="h-80 w-full object-cover md:h-96"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div
+                              class="flex h-80 items-center justify-center bg-base-200/55 text-base-content/20 md:h-96"
+                              aria-hidden="true"
+                            >
+                              <Icon name="lucide:image-off" size={32} />
+                            </div>
+                          )
+                        }
+                        <span class="absolute left-4 top-4 rounded-xl bg-white/95 px-3 py-2 text-sm font-black text-base-content shadow-sm backdrop-blur-sm">
+                          {group.title}
+                        </span>
+                        <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/95 via-black/80 to-black/35 p-5 text-left text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                          <div data-product-preview class="max-h-full w-full overflow-y-auto pr-1">
+                            <p class="text-xs font-bold tracking-[0.18em] text-emerald-200 uppercase">Pilihan Produk</p>
+                            <h3 class="mt-1 text-xl font-black">{group.title}</h3>
+                            {group.items.length > 0 && (
+                              <ul class="mt-4 space-y-2 text-sm leading-relaxed">
+                                {group.items.map((item) => (
+                                  <li class="flex gap-2">
+                                    <Icon name="lucide:check" size={15} class="mt-0.5 shrink-0 text-emerald-200" />
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                            {
+                              group.subgroups?.map((subgroup) => (
+                                <div class="mt-4 border-t pt-4">
+                                  <h4 class="text-xs font-bold tracking-wide text-emerald-200 uppercase">{subgroup.title}</h4>
+                                  <ul class="mt-2 space-y-2 text-sm leading-relaxed">
+                                    {subgroup.items.map((item) => (
+                                      <li class="flex gap-2">
+                                        <Icon name="lucide:check" size={15} class="mt-0.5 shrink-0 text-emerald-200" />
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))
+                            }
+                          </div>
+                        </div>
+                      </button>
+                    ))
+                  }
+                </div>
+              </section>
+            ))
+          }
+        </div>
+      </Container>
 
       <ModalShell boxClass="border border-base-200" data-product-modal>
-          <div class="rounded-t-3xl bg-gradient-to-br from-primary/10 via-white to-base-200/30 p-6">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <span class="badge badge-primary badge-outline badge-xs" data-product-modal-category
-                ></span>
-                <h3 class="mt-1 text-lg font-black text-base-content" data-product-modal-title></h3>
-              </div>
-              <form method="dialog">
-                <button type="submit" class="btn btn-sm btn-circle btn-ghost" aria-label="Tutup">
-                  <Icon name="lucide:x" size={16} />
-                </button>
-              </form>
-            </div>
-          </div>
-          <div class="space-y-4 p-6">
-            <p class="text-sm leading-relaxed text-base-content/65" data-product-modal-desc></p>
-            <a
-              href={defaultWaLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-soft btn-primary btn-block rounded-xl"
-              data-product-modal-wa
-            >
-              <Icon name="lucide:message-circle" size={16} />
-              Konsultasi Maklon Produk Ini
-            </a>
-          </div>
+        <div class="flex items-center justify-between border-b border-base-200 px-6 py-4">
+          <p class="text-sm font-bold text-base-content">Detail pilihan produk</p>
+          <form method="dialog">
+            <button type="submit" class="btn btn-sm btn-circle btn-ghost" aria-label="Tutup">
+              <Icon name="lucide:x" size={16} />
+            </button>
+          </form>
+        </div>
+        <div class="p-6" data-product-modal-content></div>
       </ModalShell>
     </section>
   </main>
 </MainLayout>
 
 <script>
-  import { products } from "../data/products";
-  import { createWhatsappLink } from "../lib/whatsapp";
-  import { observeReveal } from "../scripts/reveal";
-  import { siteConfig } from "../data/site";
+  function initProductCatalog() {
+    const root = document.querySelector<HTMLElement>("[data-product-catalog]");
+    if (!root || root.dataset.initialized) return;
+    root.dataset.initialized = "true";
 
-  function initProductsCatalog() {
-    const root = document.querySelector<HTMLElement>("[data-products-section]");
-    if (!root) return;
-
+    const buttons = root.querySelectorAll<HTMLButtonElement>("[data-product-category-button]");
+    const panels = root.querySelectorAll<HTMLElement>("[data-product-category-panel]");
     const modal = root.querySelector<HTMLDialogElement>("[data-product-modal]");
-    const modalTitle = root.querySelector<HTMLElement>("[data-product-modal-title]");
-    const modalCategory = root.querySelector<HTMLElement>("[data-product-modal-category]");
-    const modalDesc = root.querySelector<HTMLElement>("[data-product-modal-desc]");
-    const modalWa = root.querySelector<HTMLAnchorElement>("[data-product-modal-wa]");
-    const countEl = root.querySelector<HTMLElement>("[data-product-count]");
-    const filterBtns = root.querySelectorAll<HTMLButtonElement>("[data-product-filter]");
-    const cards = root.querySelectorAll<HTMLElement>("[data-product-card]");
+    const modalContent = root.querySelector<HTMLElement>("[data-product-modal-content]");
 
-    function openModal(id: string) {
-      const product = products.find((p) => p.id === id);
-      if (!product || !modal || !modalTitle || !modalDesc) return;
-      modalTitle.textContent = product.name;
-      if (modalCategory) modalCategory.textContent = product.category;
-      modalDesc.textContent = product.detail;
-      if (modalWa) {
-        modalWa.href = createWhatsappLink(
-          siteConfig.waNumber,
-          `Halo, saya ingin konsultasi maklon untuk produk ${product.name} (${product.category}).`,
-        );
-      }
-      modal.showModal();
+    function showCategory(id: string) {
+      buttons.forEach((button) => {
+        const active = button.dataset.productCategoryButton === id;
+        button.classList.toggle("border-primary", active);
+        button.classList.toggle("bg-primary", active);
+        button.classList.toggle("text-white", active);
+        button.classList.toggle("border-base-200", !active);
+        button.classList.toggle("bg-white", !active);
+        button.classList.toggle("text-base-content", !active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      panels.forEach((panel) => panel.classList.toggle("hidden", panel.dataset.productCategoryPanel !== id));
     }
 
-    cards.forEach((card) => {
-      card.addEventListener("click", () => openModal(card.dataset.productCard ?? ""));
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => showCategory(button.dataset.productCategoryButton ?? ""));
     });
 
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const cat = btn.dataset.productFilter ?? "all";
-        filterBtns.forEach((b) => {
-          const active = b === btn;
-          b.classList.toggle("btn-primary", active);
-          b.classList.toggle("btn-ghost", !active);
-          b.classList.toggle("border", !active);
-          b.classList.toggle("border-base-200", !active);
-        });
-        let visible = 0;
-        cards.forEach((card) => {
-          const show = cat === "all" || card.dataset.productCategory === cat;
-          card.classList.toggle("hidden", !show);
-          if (show) visible++;
-        });
-        if (countEl) countEl.textContent = String(visible);
+    root.querySelectorAll<HTMLButtonElement>("[data-product-group]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const preview = card.querySelector<HTMLElement>("[data-product-preview]");
+        if (!preview || !modal || !modalContent) return;
+        modalContent.replaceChildren(preview.cloneNode(true));
+        modal.showModal();
       });
     });
 
-    const initialCategory = new URLSearchParams(window.location.search).get("category");
-    filterBtns.find((btn) => btn.dataset.productFilter === initialCategory)?.click();
-
-    observeReveal(root.querySelectorAll<HTMLElement>(".reveal-up"), {
-      duration: 500,
-      easing: "ease",
-      threshold: 0.1,
-      translateY: "16px",
-    });
+    // Buka kategori dari URL ?category=
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get("category");
+    if (catParam) {
+      const matched = Array.from(buttons).find(
+        (b) => b.textContent?.trim().toLowerCase() === catParam.toLowerCase()
+      );
+      if (matched) showCategory(matched.dataset.productCategoryButton ?? "");
+    }
   }
 
-  initProductsCatalog();
-  document.addEventListener("astro:page-load", initProductsCatalog);
+  initProductCatalog();
+  document.addEventListener("astro:page-load", initProductCatalog);
 </script>

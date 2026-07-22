@@ -1,32 +1,25 @@
 // =============================================================================
 // LIBRARY FOTO TERPUSAT — Magna
-// Semua gambar menggunakan placeholder SVG lokal buatan sendiri.
-// Produk putih polos berlabel "YOUR BRAND" — tidak ada gambar stok berlisensi.
-// Cukup ganti file SVG di public/assets/placeholders/ dengan foto asli brand saat sudah tersedia.
 // =============================================================================
-
-const P = "/assets/placeholders";
 
 // --- HERO & BANNER (landscape 16:9) ---
 export const heroImages = {
-  laboratium: "/assets/hero-home/skincarelab.jpg",
+  laboratium: "/assets/hero-home/laboratium.jpg",
   ruangqc: "/assets/hero-home/ruangqc.jpg",
   liniproduksi: "/assets/hero-home/liniproduksi.jpg",
   areapengemasan: "/assets/hero-home/areapengemasan.jpg",
   ruangsampling: "/assets/hero-home/ruangsampling.jpg",
   gudangbahanbaku: "/assets/hero-home/gudangbahanbaku.jpg",
-  laboratium: "/assets/hero-home/skincarelab.jpg",
-  skincareHero: "/assets/hero-home/skincarelab.jpg",
-  formulasiHero: "/assets/hero-home/skincareproduction.jpg",
-  // -- alias untuk consumer --
-  skincareLab: "/assets/hero-home/skincarelab.jpg",
-  skincareProduction: "/assets/hero-home/skincareproduction.jpg",
-  packagingReady: "/assets/hero-home/areapengemasan.jpg",
-  labResearch: "/assets/hero-home/labreserch.jpg",
 };
 
 // --- LAB & FACTORY (4:3 ratio) ---
 export const factoryImages = {
+  laboratium: "/assets/hero-home/laboratium.jpg",
+  ruangqc: "/assets/hero-home/ruangqc.jpg",
+  liniproduksi: "/assets/hero-home/liniproduksi.jpg",
+  areapengemasan: "/assets/hero-home/areapengemasan.jpg",
+  ruangsampling: "/assets/hero-home/ruangsampling.jpg",
+  gudangbahanbaku: "/assets/hero-home/gudangbahanbaku.jpg",
   labResearch: "/assets/hero-home/labreserch.jpg",
   productionLine: "/assets/hero-home/factoryproduction.jpg",
   qualityControl: "/assets/hero-home/labreserch.jpg",
@@ -35,13 +28,6 @@ export const factoryImages = {
   formulasiLab: "/assets/hero-home/labreserch.jpg",
   mikrobiologi: "/assets/hero-home/labreserch.jpg",
   bahanBaku: "/assets/hero-home/factoryproduction.jpg",
-  // -- alias untuk consumer --
-  ruangqc: "/assets/hero-home/ruangqc.jpg",
-  liniproduksi: "/assets/hero-home/liniproduksi.jpg",
-  areapengemasan: "/assets/hero-home/areapengemasan.jpg",
-  ruangsampling: "/assets/hero-home/ruangsampling.jpg",
-  gudangbahanbaku: "/assets/hero-home/gudangbahanbaku.jpg",
-  laboratium: "/assets/hero-home/skincarelab.jpg",
 };
 
 // --- PROSES MAKLON (16:9, untuk interactive slider) ---
@@ -58,11 +44,16 @@ export const processImages = {
 };
 
 // --- KATEGORI PRODUK (square) ---
+// Disesuaikan dengan kategori produk yang ada di products.ts
 export const categoryImages = [
   { name: "Skincare", image: "/assets/kategori/skincare.png" },
-  { name: "Bodycare", image: "/assets/kategori/bodycare.png" },
-  { name: "Haircare", image: "/assets/kategori/haircare.png" },
-  { name: "Baby Care", image: "/assets/kategori/babycare.png" },
+  { name: "Body Care", image: "/assets/kategori/bodycare.png" },
+  { name: "Hair Care", image: "/assets/kategori/haircare.png" },
+  { name: "Oral Care Collection", image: "/assets/produk/Oral-Care-Collection.jpg" },
+  { name: "Baby & Kids Care", image: "/assets/kategori/babycare.png" },
+  { name: "Fragrance Collection", image: "/assets/produk/Fragrance-Collection.jpg" },
+  { name: "Spa & Wellness", image: "/assets/produk/body-mask.jpg" },
+  { name: "Makeup", image: "/assets/produk/serum.png" },
 ];
 
 // --- BLOG / ARTIKEL (16:9 landscape) ---
@@ -101,5 +92,5 @@ export const companyImages = {
   office: "/assets/hero-home/skincarelab.jpg",
   team: "/assets/hero-home/skincareproduction.jpg",
   building: "/assets/hero-home/factoryproduction.jpg",
-  labTeam: "/assets/Logo-magna.svg",
+  labTeam: "/assets/hero-home/labreserch.jpg",
 };
