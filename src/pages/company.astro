@@ -7,11 +7,12 @@ import WAButton from "../components/ui/WAButton.astro";
 import {
   companyMetrics,
   coreValues,
-  factoryScopeRooms,
+  facilityGalleryItems,
   ourStory,
   visionMission,
 } from "../data/company";
 import { factoryImages, companyImages } from "../data/images";
+import { siteConfig } from "../data/site";
 ---
 
 <MainLayout
@@ -235,35 +236,108 @@ import { factoryImages, companyImages } from "../data/images";
           <span slot="title">Ruang Lingkup <span class="text-primary">Pabrik</span></span>
         </SectionHeader>
 
-        <div class="reveal-up mt-12 overflow-hidden">
-          <div class="facility-track flex w-max">
-            {
-              [false, true].map((duplicate) => (
-                <div class="flex shrink-0 gap-4 pr-4" aria-hidden={duplicate ? "true" : undefined}>
-                  {
-                    factoryScopeRooms.map((room, index) => (
-                      <div class="group relative w-56 shrink-0 overflow-hidden rounded-2xl border border-base-200/70 bg-base-200 shadow-sm sm:w-60">
-                        <div class="aspect-[4/3]">
-                          <img
-                            src={room.image}
-                            alt={duplicate ? "" : room.label}
-                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-                        <span class="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 text-xs font-bold text-white backdrop-blur-sm">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <h3 class="absolute bottom-0 left-0 right-0 p-4 text-sm font-bold text-white">
-                          {room.label}
-                        </h3>
-                      </div>
-                    ))
-                  }
+        <div class="mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+          {facilityGalleryItems.map((item) => (
+            <div
+              class:list={[
+                "reveal-up group overflow-hidden rounded-2xl border border-base-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/15 hover:shadow-md",
+                item.layout === "featured" && "col-span-2",
+                item.layout === "wide" && "col-span-2",
+              ]}
+            >
+              <div
+                class:list={[
+                  "relative overflow-hidden",
+                  item.layout === "featured" && "aspect-[16/10] lg:aspect-[2/1]",
+                  item.layout === "square" && "aspect-square",
+                  item.layout === "wide" && "aspect-[16/10] lg:aspect-[2/1]",
+                ]}
+              >
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 flex items-center gap-3 p-4">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-primary">
+                    <Icon name={item.icon} class="h-4 w-4" />
+                  </div>
+                  <h3 class="text-sm font-bold text-white">{item.label}</h3>
                 </div>
-              ))
-            }
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. CONTACT — Full-width green band dengan CTA                       -->
+    <!-- ================================================================== -->
+    <section class="relative overflow-hidden bg-primary py-16 md:py-20">
+      <div
+        class="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style="background-image: radial-gradient(circle at 75% 25%, white 1px, transparent 1px); background-size: 30px 30px;"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-white/5 blur-3xl"
+      >
+      </div>
+
+      <Container class="relative">
+        <div class="mx-auto max-w-3xl text-center">
+          <SectionHeader label="Hubungi Kami" tone="light">
+            <span slot="title"
+              >Siap Mulai <span class="text-emerald-200">Bersama Magna?</span></span
+            >
+          </SectionHeader>
+          <p class="reveal-up mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/60 md:text-base">
+            Tim kami siap mendampingi Anda dari konsultasi awal hingga produk siap jual.
+          </p>
+
+          <div class="reveal-up mt-6 flex flex-wrap items-center justify-center gap-4 text-left">
+            <div class="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
+                <Icon name="lucide:clock" size={18} />
+              </span>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-wider text-white/40">Jam Operasional</p>
+                <p class="text-sm font-bold text-white">{siteConfig.operationalHours}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
+                <Icon name="lucide:map-pin" size={18} />
+              </span>
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-wider text-white/40">Alamat</p>
+                <p class="max-w-[200px] text-sm font-bold text-white leading-tight">{siteConfig.address}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal-up mt-8 flex flex-wrap justify-center gap-3">
+            <WAButton
+              text="Konsultasi Gratis"
+              message="Halo, saya ingin konsultasi maklon skincare."
+              variant="white"
+              size="lg"
+              class="rounded-xl shadow-xl shadow-black/10"
+            />
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-2 rounded-xl border border-white/25 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-white/10"
+            >
+              Lihat Halaman Kontak
+              <Icon name="lucide:arrow-right" size={16} />
+            </a>
           </div>
         </div>
       </Container>

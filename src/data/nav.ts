@@ -36,8 +36,7 @@ export const navItems: NavItem[] = [
         description: "Tahapan proses maklon",
         icon: "mdi:sign-direction",
       },
-      { label: "Kontak", href: "/contact", description: "Hubungi tim Magna", icon: "mdi:phone" },
-      { label: "CSR", href: "/csr", description: "Komitmen lingkungan & sosial", icon: "mdi:leaf" },
+      
     ],
   },
   {
@@ -71,4 +70,5 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "Products", href: "/products" },
+  { label: "Contact", href: "/contact"},
 ];

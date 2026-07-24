@@ -97,19 +97,18 @@ const serviceNavItems = navItems.find((item) => item.id === "services")?.childre
         <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-base-content/40">
           Kontak
         </h4>
-        <ul class="space-y-2.5 text-sm">
-          <li>
-            <a
-              href={`https://www.instagram.com/${siteConfig.Instagram}/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-full bg-primary px-4 text-xs font-bold text-white shadow-md shadow-primary/15 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg hover:shadow-primary/20"
-            >
-              <Icon name="mdi:instagram" size={14} />
-              Instagram
-            </a>
-          </li>
-        </ul>
+        
+        <div class="mt-6">
+          <a
+            href={`https://www.instagram.com/${siteConfig.Instagram}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-xl font-bold transition-all duration-300 bg-primary text-white shadow-md shadow-primary/15 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:brightness-110 h-9 px-4 text-xs gap-1.5 w-full"
+          >
+            <Icon name="mdi:instagram" size={14} class="shrink-0" />
+            <span>Instagram</span>
+          </a>
+        </div>
         <div class="mt-6">
           <WAButton text="Konsultasi Gratis" variant="primary" size="sm" class="w-full rounded-full" />
         </div>

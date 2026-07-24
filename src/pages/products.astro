@@ -51,13 +51,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                 data-product-category-panel={category.id}
                 aria-label={category.title}
               >
-                <div class="mb-6 flex items-end justify-between gap-4">
-                  <div>
-                    <p class="text-xs font-bold tracking-[0.18em] text-primary uppercase">Kategori</p>
-                    <h2 class="mt-1 text-2xl font-black text-base-content md:text-3xl">{category.title}</h2>
-                  </div>
-                  <p class="hidden text-sm text-base-content/50 sm:block">Klik kartu untuk melihat detail</p>
-                </div>
+                
                 <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {
                     category.groups.map((group) => (

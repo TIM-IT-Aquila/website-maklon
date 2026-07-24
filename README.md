@@ -62,7 +62,6 @@ bun run build
 | `/certification`           | Sertifikasi dan lisensi                       |
 | `/portofolio`              | Portofolio brand partner                      |
 | `/contact`                 | Kontak, lokasi, dan formulir konsultasi       |
-| `/csr`                     | Komitmen CSR dan keberlanjutan                |
 | `/faq`                     | Pertanyaan umum                               |
 | `/blog` dan `/blog/[slug]` | Daftar serta detail artikel                   |
 

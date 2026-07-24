@@ -149,6 +149,38 @@ export const rdTestingFlow = [
   },
 ];
 
+// ─── Fasilitas Laboratorium ───────────────────────────────────────────
+export const rdFacilities = [
+  {
+    title: "Lab Formulasi",
+    icon: "lucide:flask-conical",
+    desc: "Laboratorium formulasi untuk meracik dan mengembangkan formula skincare sesuai kebutuhan.",
+    detail: "Tim R&D kami melakukan formulasi bahan aktif dengan dosis tepat, memastikan stabilitas dan efektivitas produk sebelum lanjut ke tahap produksi.",
+    color: "from-primary to-primary/60",
+  },
+  {
+    title: "Lab Uji Stabilitas",
+    icon: "lucide:thermometer",
+    desc: "Uji stabilitas dipercepat untuk memastikan formula bertahan dalam berbagai kondisi penyimpanan.",
+    detail: "Pengujian dilakukan dalam climate chamber dengan suhu dan kelembaban terkontrol selama periode tertentu untuk memprediksi shelf life produk.",
+    color: "from-blue-500 to-blue-400",
+  },
+  {
+    title: "Lab Uji Mikrobiologi",
+    icon: "lucide:microscope",
+    desc: "Pengujian mikroba untuk memastikan produk aman dari kontaminasi bakteri dan jamur.",
+    detail: "Setiap batch produk menjalani uji angka lempeng total (ALT), angka kapang khamir (AKK), dan uji patogen untuk memenuhi standar BPOM.",
+    color: "from-emerald-500 to-emerald-400",
+  },
+  {
+    title: "Lab Uji Sensoris",
+    icon: "lucide:hand",
+    desc: "Evaluasi tekstur, aroma, dan penampilan produk oleh panel terlatih.",
+    detail: "Panelis terlatih mengevaluasi organoleptik produk — mulai dari warna, aroma, tekstur saat diaplikasikan, hingga setelah pemakaian.",
+    color: "from-amber-500 to-amber-400",
+  },
+];
+
 // ─── FAQ singkat R&D ──────────────────────────────────────────────────
 export const rdLabFaqs = [
   {
@@ -169,53 +201,3 @@ export const rdLabFaqs = [
   },
 ];
 
-export const rdFacilities = [
-  {
-    icon: "lucide:microscope",
-    title: "Lab Riset & Formulasi",
-    desc: "Laboratorium riset dengan peralatan analisis terkini untuk pengembangan formula.",
-    detail:
-      "Dilengkapi homogenizer, pH meter presisi, viskometer Brookfield, dan sentrifus. Semua alat dikalibrasi berkala sesuai standar ISO.",
-    color: "from-indigo-500 to-blue-600",
-  },
-  {
-    icon: "lucide:thermometer",
-    title: "Lab Uji Stabilitas",
-    desc: "Ruang uji iklim untuk menguji stabilitas produk dalam berbagai kondisi suhu.",
-    detail:
-      "Chamber dengan kontrol suhu -10°C hingga 60°C dan humidity control. Mampu mensimulasikan kondisi tropis hingga subtropis untuk pasar ekspor.",
-    color: "from-amber-500 to-orange-600",
-  },
-  {
-    icon: "lucide:shield-check",
-    title: "Lab Mikrobiologi",
-    desc: "Pengujian mikroba untuk menjamin keamanan dan sterilitas produk.",
-    detail:
-      "Laminar air flow class II, autoclave, inkubator, dan colony counter. Pengujian meliputi TPC, yeast & mold, serta challenge test sesuai standar BPOM.",
-    color: "from-emerald-500 to-green-600",
-  },
-  {
-    icon: "lucide:test-tube",
-    title: "Lab Uji Bahan Baku",
-    desc: "Laboratorium pengujian kualitas bahan baku sebelum masuk produksi.",
-    detail:
-      "Setiap bahan baku diuji kemurnian, identitas, dan kadar sebelum diterima. Sistem batch tracking memastikan traceability dari bahan baku hingga produk jadi.",
-    color: "from-violet-500 to-purple-600",
-  },
-  {
-    icon: "lucide:eye",
-    title: "Uji Sensoris & Organoleptik",
-    desc: "Evaluasi tekstur, aroma, dan penampilan produk oleh panel terlatih.",
-    detail:
-      "Panel terlatih mengevaluasi more dari 15 parameter sensoris termasuk spreadability, absorption rate, dan after-feel. Hasil menjadi acuan perbaikan formula.",
-    color: "from-rose-500 to-pink-600",
-  },
-  {
-    icon: "lucide:layers",
-    title: "Ruang Scale-Up Pilot",
-    desc: "Fasilitas scale-up dari skala lab ke produksi untuk validasi formula.",
-    detail:
-      "Mixer pilot 10-50 kg untuk simulasi kondisi produksi. Setiap formula di-scale-up bertahap untuk memastikan konsistensi sebelum produksi massal.",
-    color: "from-cyan-500 to-teal-600",
-  },
-];

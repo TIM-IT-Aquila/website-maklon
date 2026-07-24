@@ -72,12 +72,12 @@ export const factoryScopeRooms = [
 
 export const visionMission = {
   vision:
-    "Menjadi partner maklon terpercaya untuk membantu brand kecantikan berkembang dengan produk berkualitas.",
+    "Menjadi produssen kosmetik premium dengan berlandaskan prinsip prinsip kelimuan dan semangat membantu",
   missions: [
-    "Membantu customer mengembangkan produk sesuai kebutuhan pasar dan tren terkini",
-    "Menyediakan proses maklon yang mudah dipahami dari awal hingga akhir",
-    "Menjaga kualitas produk dari sampling hingga produksi massal dengan standar tinggi",
-    "Mendukung brand baru agar siap bersaing di industri kecantikan",
+    "Melakukan R&D yang berkelanjutan",
+    "Penggunaan bahan baku yang bertanggungjawab",
+    "Proses produksi sesuai CPKB",
+    "Pembagian kesejahteraan yang berkeadilan diantara stakholder",
   ],
 };
 
